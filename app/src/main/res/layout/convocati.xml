@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="7dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="7"
+        android:background="@drawable/bordo_arrotondato_bianco"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_weight="2"
+            android:text="Giocatore" />
+
+        <EditText
+            android:id="@+id/edtRicGioc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="3dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgRicercaGiocatore"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:drawable/ic_search_category_default" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="3dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgAnnullaRicerca"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/elimina_quadrato" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:background="@color/traslucent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="2"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="Da convocare"
+                    android:textColor="@color/blu"
+                    android:textSize="24sp" />
+
+                <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/spnDaConvocare"
+                    android:background="@drawable/bordo_arrotondato_bianco"
+                    android:layout_width="wrap_content"
+                    android:layout_height="250dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Convocati"
+                android:textColor="@color/blu"
+                android:textSize="24sp" />
+
+            <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/spnConvocati"
+                android:background="@drawable/bordo_arrotondato_giallo"
+                android:layout_width="wrap_content"
+                android:layout_height="250dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:gravity="center_vertical|center_horizontal"
+        android:weightSum="2"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/cmdAnnullaConvocati"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/annulla"
+                android:visibility="invisible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/cmdOkConvocati"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/ok" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

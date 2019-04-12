@@ -1,0 +1,70 @@
+package looigi.gestionecampionato.adapter;
+
+import android.content.Context;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.List;
+import looigi.gestionecampionato.R;
+import looigi.gestionecampionato.dati.VariabiliStaticheAllenamenti;
+import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
+import looigi.gestionecampionato.maschere.Allenamenti;
+import looigi.gestionecampionato.utilities.Utility;
+
+public class AdapterGiocatoriAllPresenti extends ArrayAdapter {
+    private Context context;
+    private List<String> lista;
+
+    public AdapterGiocatoriAllPresenti(Context context, int textViewResourceId, List<String> objects) {
+        super(context, textViewResourceId, objects);
+        this.context = context;
+        this.lista = objects;
+    }
+
+    @Nullable
+    public View getView(int position, View convertView, ViewGroup parent) {
+        final int i = position;
+        final VariabiliStaticheAllenamenti vv = VariabiliStaticheAllenamenti.getInstance();
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View convertView2 = inflater.inflate(R.layout.listview_giocatori_allen, null);
+
+        TextView id = (TextView) convertView2.findViewById(R.id.id);
+        TextView ruolo = (TextView) convertView2.findViewById(R.id.ruolo);
+        TextView name = (TextView) convertView2.findViewById(R.id.name);
+        TextView numero = (TextView) convertView2.findViewById(R.id.txtNumero);
+        TextView categoria1 = (TextView) convertView2.findViewById(R.id.categoria1);
+        TextView categoria2 = (TextView) convertView2.findViewById(R.id.categoria2);
+        TextView categoria3 = (TextView) convertView2.findViewById(R.id.categoria3);
+        ImageView imgGiocatore = (ImageView) convertView2.findViewById(R.id.img);
+        String[] Campi = ((String) this.lista.get(i)).split(";");
+        id.setText(Campi[0]);
+        ruolo.setText(Campi[4]);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(Campi[2]);
+        stringBuilder.append(" ");
+        stringBuilder.append(Campi[3]);
+        name.setText(stringBuilder.toString());
+        numero.setText(Campi[14]);
+        categoria1.setText(Campi[20]);
+        categoria2.setText(Campi[17]);
+        categoria3.setText(Campi[19]);
+        Utility.getInstance().PrendeImmagineGiocatore(id.getText().toString(), imgGiocatore);
+        final String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+        convertView2.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    VariabiliStaticheAllenamenti.getInstance().getGiocatoriAssenti().add(vv.getGiocatoriPresenti().get(i));
+                    VariabiliStaticheAllenamenti.getInstance().getGiocatoriPresenti().remove(i);
+                    Allenamenti.fillListViewGiocatoriPresenti();
+                    Allenamenti.fillListViewGiocatoriAssenti();
+                }
+            }
+        });
+        return convertView2;
+    }
+}

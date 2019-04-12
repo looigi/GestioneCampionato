@@ -1,0 +1,1017 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
+
+    <!-- <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+        <include layout="@layout/bottoni_menu" >
+
+        </include>
+
+    </LinearLayout> -->
+
+    <LinearLayout
+        android:id="@+id/layContenuto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:id="@+id/layHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/bordo_arrotondato_verde"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/txtCasa"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:text="Casa"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="#008888"
+                    android:shadowColor="#000000"
+                    android:shadowDy="2"
+                    android:shadowRadius="1.5"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtFuori"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginRight="3dp"
+                    android:gravity="right|center_vertical"
+                    android:text="Fuori"
+                    android:textColor="#008888"
+                    android:shadowColor="#000000"
+                    android:shadowDy="2"
+                    android:shadowRadius="1.5"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1"
+                    android:weightSum="1"
+                    android:gravity="center_vertical|center_horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:padding="2dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:background="@drawable/bordo_arrotondato_bianco"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                            android:id="@+id/imgCasa"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtGoal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="Goal "
+                        android:textColor="#008888"
+                        android:shadowColor="#000000"
+                        android:shadowDy="2"
+                        android:shadowRadius="1.5"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtTempi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="Tempi "
+                        android:textColor="#008888"
+                        android:shadowColor="#000000"
+                        android:shadowDy="2"
+                        android:shadowRadius="1.5"
+                        android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1"
+                    android:weightSum="1"
+                    android:gravity="center_vertical|center_horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:padding="2dp"
+                            android:gravity="center_horizontal|center_vertical"
+                            android:background="@drawable/bordo_arrotondato_bianco"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/imgFuori"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="4"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/Pagina1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="3dp"
+                android:layout_margin="2dp"
+                android:orientation="horizontal"
+                android:background="@drawable/bordo_arrotondato_verde"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_height="45dp">
+
+                <ImageView
+                    android:id="@+id/imgPagina1"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    app:srcCompat="@drawable/tab_generale" />
+
+                <TextView
+                    android:id="@+id/txtPagina1"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gener." />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Pagina2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="3dp"
+                android:orientation="horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/bordo_arrotondato_verde"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_height="45dp">
+
+                <ImageView
+                    android:id="@+id/imgPagina2"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    app:srcCompat="@drawable/giocate" />
+
+                <TextView
+                    android:id="@+id/txtPagina2"
+                    android:layout_marginStart="3dp"
+                    android:gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I Tempo" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Pagina3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="3dp"
+                android:orientation="horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/bordo_arrotondato_verde"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_height="45dp">
+
+                <ImageView
+                    android:id="@+id/imgPagina3"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    app:srcCompat="@drawable/partite" />
+
+                <TextView
+                    android:id="@+id/txtPagina3"
+                    android:layout_marginStart="3dp"
+                    android:gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="II Tempo" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Pagina4"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:padding="3dp"
+                android:orientation="horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/bordo_arrotondato_verde"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_height="45dp">
+
+                <ImageView
+                    android:id="@+id/imgPagina4"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/nuova_partita" />
+
+                <TextView
+                    android:id="@+id/txtPagina4"
+                    android:layout_marginStart="3dp"
+                    android:gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="III Tempo" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:id="@+id/layoutGenerale"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/layPaginaContenitore"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/layPagina1"
+                        android:background="@drawable/bordo_arrotondato_bianco"
+                        android:layout_margin="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="left|center_vertical"
+                            android:layout_marginRight="5dp"
+                            android:weightSum="7">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Tipologia"
+                                android:textColor="@color/verdeScuro"
+                                android:textSize="15sp"
+                                android:textStyle="bold|italic" />
+
+                            <TextView
+                                android:id="@+id/txtTipologia"
+                                android:layout_width="0dp"
+                                android:textSize="15sp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text="TextView" />
+
+                            <!-- <Button
+                                android:id="@+id/btnTipologia"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:text="..." /> -->
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="35dp">
+
+                                <ImageView
+                                    android:id="@+id/btnTipologia"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/modifica" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="left|center_vertical"
+                            android:background="@color/bianco"
+                            android:weightSum="7">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Categoria"
+                                android:textSize="15sp"
+                                android:textColor="@color/verdeScuro"
+                                android:textStyle="bold|italic" />
+
+                            <TextView
+                                android:id="@+id/txtCategoria"
+                                android:layout_width="0dp"
+                                android:textSize="15sp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text="TextView" />
+
+                            <!-- <Button
+                                android:id="@+id/btnCategoria"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:text="..." /> -->
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="35dp">
+
+                                <ImageView
+                                    android:id="@+id/btnCategoria"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/modifica" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="center_vertical"
+                            android:layout_marginRight="5dp"
+                            android:weightSum="7">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:gravity="left|center_vertical"
+                                android:textSize="15sp"
+                                android:text="Allenatore"
+                                android:textColor="@color/verdeScuro"
+                                android:textStyle="bold|italic" />
+
+                            <Spinner
+                                android:id="@+id/spnAllenatore"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="5"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="left|center_vertical"
+                            android:background="@color/bianco"
+                            android:weightSum="7">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:textSize="15sp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Data"
+                                android:textColor="@color/verdeScuro"
+                                android:textStyle="bold|italic" />
+
+                            <TextView
+                                android:id="@+id/txtdata"
+                                android:layout_width="0dp"
+                                android:textSize="15sp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text="TextView" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="35dp">
+
+                                <ImageView
+                                    android:id="@+id/btnData"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/modifica" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="left|center_vertical"
+                            android:background="@color/bianco"
+                            android:weightSum="7">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:layout_weight="2"
+                                android:gravity="left|center_vertical"
+                                android:text="Ora"
+                                android:textColor="@color/verdeScuro"
+                                android:textStyle="bold|italic" />
+
+                            <TextView
+                                android:id="@+id/txtOra"
+                                android:layout_width="0dp"
+                                android:textSize="15sp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text="TextView" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="35dp">
+
+                                <ImageView
+                                    android:id="@+id/btnOra"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/modifica" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="left|center_vertical"
+                            android:layout_marginRight="5dp"
+                            android:weightSum="7">
+
+                            <TextView
+                                android:textSize="15sp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Avversario"
+                                android:textColor="@color/verdeScuro"
+                                android:textStyle="bold|italic" />
+
+                            <TextView
+                                android:id="@+id/txtAvversario"
+                                android:textSize="15sp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text="TextView" />
+
+                            <!-- <Button
+                                android:id="@+id/btnAvversario"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:text="..." /> -->
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="35dp">
+
+                                <ImageView
+                                    android:id="@+id/btnAvversario"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/modifica" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:background="@color/bianco"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:weightSum="7">
+
+                            <TextView
+                                android:id="@+id/txt4122"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:layout_weight="2"
+                                android:gravity="left|center_vertical"
+                                android:text="Campo"
+                                android:textColor="@color/verdeScuro"
+                                android:textStyle="bold|italic" />
+
+                            <TextView
+                                android:id="@+id/txtCampo"
+                                android:textSize="15sp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="5"
+                                android:text="TextView" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center_vertical"
+                            android:layout_weight="7"
+                            android:gravity="center_vertical|right">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:layout_weight="2"  />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:gravity="center_vertical|left"
+                                android:layout_height="wrap_content">
+
+                                <CheckBox
+                                    android:id="@+id/chkInCasa"
+                                    android:layout_width="wrap_content"
+                                    android:buttonTint="@color/colorPrimary"
+                                    android:layout_height="wrap_content"
+                                    android:text="In Casa" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="3"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:layout_height="wrap_content">
+
+                                <CheckBox
+                                    android:id="@+id/chkEsterno"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:buttonTint="@color/colorPrimary"
+                                    android:text="Campo esterno" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layCampoIndirizzo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="5dp"
+                            android:weightSum="7"
+                            android:gravity="center_vertical|left"
+                            android:layout_marginRight="5dp"
+                            android:background="@color/bianco">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:layout_weight="2"
+                                android:gravity="left|center_vertical"
+                                android:text="Indirizzo"
+                                android:textColor="@color/verdeScuro"
+                                android:textStyle="bold|italic" />
+
+                            <TextView
+                                android:id="@+id/txtCampoIndirizzo"
+                                android:textSize="15sp"
+                                android:layout_width="0dp"
+                                android:layout_weight="5"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical|left"
+                                android:gravity="center_vertical|left"
+                                android:text="" />
+
+                            <!-- <Button
+                                android:id="@+id/btnCoordinate"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:text="XY" /> -->
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layCampoEsterno"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:gravity="center_vertical|left"
+                            android:weightSum="7"
+                            android:background="@color/bianco">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:layout_weight="2"
+                                android:gravity="left|center_vertical"
+                                android:text="Ind. campo esterno"
+                                android:textColor="@color/verdeScuro"
+                                android:textStyle="bold|italic" />
+
+                            <EditText
+                                android:id="@+id/edtCampoEsterno"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:layout_weight="5"
+                                android:textSize="15sp"
+                                android:inputType="textPersonName"
+                                android:text="Name"
+                                android:theme="@style/MyEditText" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="left|center_vertical"
+                            android:layout_marginRight="5dp"
+                            android:weightSum="7">
+
+                            <TextView
+                                android:textSize="15sp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="Convocati"
+                                android:textColor="@color/verdeScuro"
+                                android:textStyle="bold|italic" />
+
+                            <TextView
+                                android:id="@+id/txtConvocati"
+                                android:textSize="15sp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text="TextView" />
+
+                            <!-- <Button
+                                android:id="@+id/btnAvversario"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:text="..." /> -->
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="35dp">
+
+                                <ImageView
+                                    android:id="@+id/btnConvocati"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/modifica" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="left|center_vertical"
+                            android:layout_marginRight="5dp"
+                            android:weightSum="7">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:layout_weight="2"
+                                android:text="Arbitro"
+                                android:textColor="@color/verdeScuro"
+                                android:textStyle="bold|italic" />
+
+                            <TextView
+                                android:id="@+id/txtArbitro"
+                                android:textSize="15sp"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text="TextView" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="35dp">
+
+                                <ImageView
+                                    android:id="@+id/btnArbitro"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    app:srcCompat="@drawable/modifica" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:layout_marginLeft="5dp"
+                            android:gravity="left|center_vertical"
+                            android:layout_marginRight="5dp"
+                            android:weightSum="7">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:textSize="15sp"
+                                android:layout_weight="6"
+                                android:text="Punteggio a tempi"
+                                android:textColor="@color/verdeScuro"
+                                android:textStyle="bold|italic" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:layout_height="35dp">
+
+                                <CheckBox
+                                    android:id="@+id/chkTempi"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@android:color/darker_gray" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layPagina2"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <include layout="@layout/primo_tempo" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layPagina3"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <include layout="@layout/secondo_tempo" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layPagina4"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <include layout="@layout/terzo_tempo" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray" />
+
+                    <LinearLayout
+                        android:id="@+id/layBarraTasti"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginTop="2dp"
+                        android:padding="3dp"
+                        android:orientation="horizontal"
+                        android:gravity="right|center_vertical">
+
+                        <!-- <Button
+                            android:id="@+id/btnSalva"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:text="Salva" /> -->
+
+                        <ImageView
+                            android:layout_marginStart="5dp"
+                            android:id="@+id/btnSalva"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            app:srcCompat="@drawable/save" />
+
+                        <!-- <Button
+                            android:id="@+id/btnAltroPartita"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:text="Altri dati" /> -->
+
+                        <ImageView
+                            android:layout_marginStart="5dp"
+                            android:id="@+id/btnAltroPartita"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            app:srcCompat="@drawable/altri_dati" />
+
+                        <!-- <Button
+                            android:id="@+id/btnMeteo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:text="Posizione" /> -->
+
+                        <ImageView
+                            android:layout_marginStart="5dp"
+                            android:id="@+id/btnMeteo"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            app:srcCompat="@drawable/posizione" />
+
+                        <ImageView
+                            android:layout_marginStart="5dp"
+                            android:id="@+id/btnWeb"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            app:srcCompat="@drawable/web" />
+
+                        <ImageView
+                            android:layout_marginStart="5dp"
+                            android:id="@+id/btnUscita"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            app:srcCompat="@drawable/uscita2" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layMascheraModUtenti"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bordo_arrotondato_verde"
+        android:padding="5dp"
+        android:layout_margin="5dp">
+
+        <include
+            android:id="@+id/idCategoria1"
+            layout="@layout/categoria"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/idData"
+            layout="@layout/scelta_data"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/idOra"
+            layout="@layout/scelta_ora"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/idAvversario"
+            layout="@layout/avversario"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/idTipologia"
+            layout="@layout/tipologia"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/idConvocati"
+            layout="@layout/convocati"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/idMeteo"
+            layout="@layout/meteo_partita"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/idAltroPartita"
+            layout="@layout/altro_partita"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/idArbitro"
+            layout="@layout/arbitro"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

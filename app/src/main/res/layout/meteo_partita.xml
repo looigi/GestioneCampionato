@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/bordo_arrotondato_bianco"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Meteo"
+        android:textColor="@color/blu"
+        android:textSize="24sp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginBottom="3dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Coordinate"
+        android:textColor="@color/verdeScuro"
+        android:textStyle="bold|italic" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="6"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txtLat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_weight="3"
+            android:textSize="15sp"
+            android:gravity="center_horizontal|center_vertical"
+            android:textColor="@color/verdeScuro"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/txtLon"
+            android:layout_width="0dp"
+            android:maxLines="1"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_weight="3"
+            android:gravity="center_horizontal|center_vertical"
+            android:textColor="@color/verdeScuro"
+            android:textStyle="bold|italic" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginBottom="3dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Tempo"
+        android:textColor="@color/verdeScuro"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/txtTempo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:textSize="15sp"
+        android:gravity="right|center_vertical"
+        android:textColor="@color/verdeScuro"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/txtPressione"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:gravity="right|center_vertical"
+        android:textColor="@color/verdeScuro"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/txtUmidita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:gravity="right|center_vertical"
+        android:textColor="@color/verdeScuro"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/txtGradi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:gravity="right|center_vertical"
+        android:textColor="@color/verdeScuro"
+        android:textStyle="bold|italic" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginBottom="3dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="right|center_vertical"
+        android:layout_height="40dp">
+
+        <TextView
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:text="Ottieni le coordinate dell'indirizzo del campo" />
+
+        <ImageView
+            android:layout_marginStart="5dp"
+            android:id="@+id/btnCoordinate"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            app:srcCompat="@drawable/get_coords" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginBottom="3dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAggiornaMeteo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:drawableTint="@color/colorPrimaryDark"
+            android:background="@android:drawable/ic_menu_rotate" />
+
+        <Button
+            android:id="@+id/cmdOkMeteo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/ok" />
+    </LinearLayout>
+
+</LinearLayout>

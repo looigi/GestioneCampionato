@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="3"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/Pagina1"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:background="@drawable/bordo_arrotondato_verde"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal"
+            android:padding="3dp">
+
+            <ImageView
+                android:id="@+id/imgPagina1"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:srcCompat="@drawable/tab_generale" />
+
+            <TextView
+                android:id="@+id/txtPagina1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:text="Squadre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Pagina2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            android:background="@drawable/bordo_arrotondato_verde"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_height="45dp">
+
+            <ImageView
+                android:id="@+id/imgPagina2"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:srcCompat="@drawable/giocate" />
+
+            <TextView
+                android:id="@+id/txtPagina2"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Partite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Pagina3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:orientation="horizontal"
+            android:layout_margin="2dp"
+            android:background="@drawable/bordo_arrotondato_verde"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_height="45dp">
+
+            <ImageView
+                android:id="@+id/imgPagina3"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:srcCompat="@drawable/partite" />
+
+            <TextView
+                android:id="@+id/txtPagina3"
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Classifica" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:id="@+id/layPaginaContenitore"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layPagina1Camp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/campionato_squadre" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layPagina2Camp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/campionato_partite" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layPagina3Camp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/campionato_classifica" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

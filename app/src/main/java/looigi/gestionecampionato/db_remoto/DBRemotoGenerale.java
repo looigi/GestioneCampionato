@@ -1,0 +1,90 @@
+package looigi.gestionecampionato.db_remoto;
+
+import android.content.Context;
+
+import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
+import looigi.gestionecampionato.utilities.Utility;
+
+public class DBRemotoGenerale {
+	private String ws = "wsGenerale.asmx/";
+	private String NS="http://cvcalcio.org/";
+	private String SA="http://cvcalcio.org/";
+
+	public void RitornaAnni(Context context, String Maschera) {
+		String Urletto="RitornaAnni";
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaAnni",
+				"", Maschera, NS, SA);
+	}
+
+	public void RitornaTipologie(Context context, String Maschera) {
+		String Urletto="RitornaTipologie";
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaTipologie",
+				"", Maschera, NS, SA);
+	}
+
+	public void RitornaRuoli(Context context, String Maschera) {
+		String Urletto="RitornaRuoli";
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaRuoli",
+				"", Maschera, NS, SA);
+	}
+
+	public void RitornaVersioneApplicazione(Context context, String Maschera) {
+		String Urletto="RitornaVersioneApplicazione";
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaVersioneApplicazione",
+				"", Maschera, NS, SA);
+	}
+
+	public void RitornaMaxAnno(Context context) {
+		String Urletto="RitornaMaxAnno";
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaMaxAnno",
+				"", "", NS, SA);
+	}
+
+	public void RitornaAnnoAttualeUtenti(Context context) {
+		String Urletto="RitornaAnnoAttualeUtente?";
+		Urletto += "idUtente=" + VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente();
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaAnnoAttualeUtenti",
+				"", "", NS, SA);
+	}
+
+	public void CreaNuovoAnno(Context context, String idAnno, String descAnno, String nomeSquadra) {
+		String Urletto="CreaNuovoAnno?";
+		Urletto += "idAnno=" + idAnno;
+		Urletto += "&descAnno=" + descAnno;
+		Urletto += "&nomeSquadra=" + nomeSquadra;
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "CreaNuovoAnno",
+				"", "", NS, SA);
+	}
+
+	public void ImpostaAnnoAttualeUtente(Context context, String idAnno) {
+		String Urletto="ImpostaAnnoAttualeUtente?";
+		Urletto += "idAnno=" + idAnno;
+		Urletto += "&idUtente=" + VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente();
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "ImpostaAnnoAttualeUtente",
+				"", "", NS, SA);
+	}
+
+	public void CreaNuovoAnno(Context context, String idAnno, String descAnno) {
+		String Urletto="CreaNuovoAnno?";
+		Urletto += "idAnno=" + idAnno;
+		Urletto += "Descrizione=" + descAnno;
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "CreaNuovoAnno",
+				"", "", NS, SA);
+	}
+
+	public void RitornaValoriPerRegistrazione(Context context, String Maschera) {
+		String Urletto="RitornaValoriPerRegistrazione";
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaValoriPerRegistrazione",
+				"", Maschera, NS, SA);
+	}
+}

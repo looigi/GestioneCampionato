@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:orientation="vertical"
+            android:layout_height="0dp">
+
+            <TextView
+                android:id="@+id/txtTitolo1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bordo_arrotondato_bianco"
+                android:gravity="center_horizontal|center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp" />
+
+            <!-- <LinearLayout
+                android:id="@+id/layScelte"
+                android:layout_width="match_parent"
+                android:weightSum="3"
+                android:padding="5dp"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imgGradi"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:srcCompat="@drawable/gradi" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imgUmidita"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:srcCompat="@drawable/umidita" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imgPressione"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:srcCompat="@drawable/pressione" />
+
+                </LinearLayout>
+            </LinearLayout> -->
+
+            <com.anychart.AnyChartView
+                android:id="@+id/any_chart_view1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </LinearLayout>
+
+<!--        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:padding="3dp"
+            android:orientation="vertical"
+            android:layout_height="0dp">
+
+            <TextView
+                android:id="@+id/txtTitolo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bordo_arrotondato_bianco"
+                android:gravity="center_horizontal|center_vertical"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp" />
+
+            <com.anychart.AnyChartView
+                android:id="@+id/any_chart_view2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout> -->
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabBackMappa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="1dp"
+        app:backgroundTint="@color/colorAccent"
+        app:srcCompat="@android:drawable/ic_menu_revert" />
+
+</RelativeLayout>

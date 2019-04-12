@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/bordo_arrotondato_bianco"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Altri dati"
+        android:textColor="@color/blu"
+        android:textSize="24sp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:weightSum="7">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:textSize="15sp"
+            android:gravity="left|center_vertical"
+            android:text="Risultato Giochetti"
+            android:textColor="@color/verdeScuro"
+            android:textStyle="bold|italic" />
+
+        <EditText
+            android:id="@+id/edtGiochetti"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:theme="@style/MyEditText"
+            android:layout_weight="2"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:textColor="@color/verdeScuro" />
+
+        <Button
+            android:id="@+id/btnRefresh"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@android:drawable/ic_menu_rotate"
+            android:text="" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:weightSum="7">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:gravity="left|center_vertical"
+            android:text="Note"
+            android:textColor="@color/verdeScuro"
+            android:textStyle="bold|italic" />
+
+        <EditText
+            android:id="@+id/edtNote"
+            android:layout_width="0dp"
+            android:theme="@style/MyEditText"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            android:textSize="15sp"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:text="Name" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/bordo_arrotondato_bianco"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Dirigenti"
+        android:textColor="@color/blu"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="150dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:gravity="center_horizontal|center_vertical"
+                android:background="@drawable/bordo_arrotondato_bianco"
+                android:text="Da convocare"
+                android:textColor="@color/verdeScuro"
+                android:textStyle="bold|italic" />
+
+            <ListView
+                android:id="@+id/lstvDirigenti"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginStart="2dp"
+            android:orientation="vertical"
+            android:layout_height="150dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:gravity="center_horizontal|center_vertical"
+                android:background="@drawable/bordo_arrotondato_bianco"
+                android:text="Convocati"
+                android:textColor="@color/verdeScuro"
+                android:textStyle="bold|italic" />
+
+            <ListView
+                android:background="@color/giallo"
+                android:id="@+id/lstvDirigentiConvocati"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cmdOkAltro"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/ok" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nuova_partita"
+            android:icon="@drawable/nuova_partita"
+            android:title="Nuova partita" />
+
+        <item
+            android:id="@+id/home"
+            android:icon="@drawable/casa"
+            android:title="Home" />
+
+        <item
+            android:id="@+id/campionato"
+            android:icon="@drawable/campionato"
+            android:title="Campionato" />
+
+        <item
+            android:id="@+id/allenamenti"
+            android:icon="@drawable/allenamenti"
+            android:title="Allenamenti" />
+
+        <item
+            android:id="@+id/statistiche"
+            android:icon="@drawable/statistiche"
+            android:title="Statistiche" />
+
+        <item
+            android:id="@+id/album"
+            android:icon="@drawable/album"
+            android:title="Album" />
+
+        <item
+            android:id="@+id/utenti"
+            android:icon="@drawable/utenti"
+            android:title="Utenti" />
+    </group>
+
+    <item android:title="Gestione dati">
+        <menu>
+            <item
+                android:id="@+id/allenatori"
+                android:icon="@drawable/allenatori"
+                android:title="Allenatori" />
+            <item
+                android:id="@+id/arbitri"
+                android:icon="@drawable/arbitri"
+                android:title="Arbitri" />
+            <item
+                android:id="@+id/avversari"
+                android:icon="@drawable/avversari"
+                android:title="Avversari" />
+            <item
+                android:id="@+id/categorie"
+                android:icon="@drawable/categorie"
+                android:title="Categorie" />
+            <item
+                android:id="@+id/dirigenti"
+                android:icon="@drawable/dirigenti"
+                android:title="Dirigenti" />
+            <item
+                android:id="@+id/rose"
+                android:icon="@drawable/rose"
+                android:title="Rose" />
+        </menu>
+    </item>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/about"
+                android:icon="@drawable/about"
+                android:title="About" />
+
+            <item
+                android:id="@+id/uscita"
+                android:icon="@drawable/uscita"
+                android:title="Uscita" />
+        </menu>
+    </item>
+</menu>

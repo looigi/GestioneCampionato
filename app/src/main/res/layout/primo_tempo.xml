@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:id="@+id/layHeaderPrimoTempo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:weightSum="5"
+        android:layout_margin="2dp"
+        android:orientation="horizontal"
+        android:background="@drawable/bordo_arrotondato_verde">
+
+        <TextView
+            android:id="@+id/txtPrimoTempo"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Primo Tempo"
+            android:textStyle="bold|italic" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:weightSum="4"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtTimer1Tempo"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:background="@color/traslucent"
+                android:textSize="20sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:gravity="center_horizontal|center_vertical"
+                android:text=""
+                android:shadowColor="#000000"
+                android:shadowDy="2"
+                android:shadowRadius="1.5"
+                android:textStyle="bold|italic" />
+
+            <ImageView
+                android:id="@+id/btnStartStopTimer1Tempo"
+                android:layout_margin="2dp"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@android:drawable/ic_media_play" />
+
+            <ImageView
+                android:id="@+id/btnReset1Tempo"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_margin="2dp"
+                android:layout_weight="1"
+                android:background="@drawable/reset" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal"
+        android:layout_marginRight="5dp"
+        android:weightSum="7">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="120dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="Goal avversari"
+                android:shadowColor="#000000"
+                android:shadowDy="2"
+                android:shadowRadius="1.5"
+                android:textStyle="bold|italic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:weightSum="3"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btnMenoAvvPrimoTempo"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:textSize="20sp"
+                        android:background="@drawable/meno" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtGoalAvvPrimoTempo"
+                    android:layout_width="0dp"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="1"
+                    android:shadowColor="#000000"
+                    android:shadowDy="2"
+                    android:shadowRadius="1.5"
+                    android:textStyle="bold|italic" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btnPiuAvvPrimoTempo"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:textSize="20sp"
+                        android:background="@drawable/piu" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_margin="1dp"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Min. G.Avv."
+                android:textSize="15sp"
+                android:textColor="@color/verdeScuro"
+                android:textStyle="bold|italic" />
+
+            <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/lvTempiGAvvPrimoTempo"
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/rosso_chiaro"
+                android:layout_height="match_parent"
+                android:background="@drawable/bordo_arrotondato_bianco" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/txtMarcPTTit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bordo_arrotondato_verde"
+        android:layout_margin="2dp"
+        android:textSize="18sp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Marcatori"
+        android:textStyle="bold|italic" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp"
+        android:background="@color/bianco"
+        android:weightSum="8">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/spnMarcatoriPrimoTempo"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@drawable/bordo_arrotondato_bianco" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/lstvMarcatoriPrimoTempo"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginStart="3dp"
+                android:background="@drawable/bordo_arrotondato_giallo" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+</LinearLayout>
