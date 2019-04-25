@@ -418,6 +418,29 @@
                         android:gravity="center_vertical|center_horizontal"
                         android:text="Partite allenatori" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1"
+                    android:padding="3dp"
+                    android:background="@drawable/bordo_arrotondato_bianco"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imgStatisticheAnnue"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        app:srcCompat="@drawable/statistiche_annuali" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="Statistiche annuali" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

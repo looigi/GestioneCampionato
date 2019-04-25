@@ -173,29 +173,31 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
     }
 
     public static void ScriveCoords() {
-        VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (VariabiliStaticheMeteo.getInstance().getLat() == null || VariabiliStaticheMeteo.getInstance().getLat().isEmpty()) {
-                    VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText("");
-                } else {
-                    if (VariabiliStaticheMeteo.getInstance().getLat().length()>10) {
-                        VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText("Lat.: "+VariabiliStaticheMeteo.getInstance().getLat().substring(0, 10));
+        if (VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale() != null) {
+            VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (VariabiliStaticheMeteo.getInstance().getLat() == null || VariabiliStaticheMeteo.getInstance().getLat().isEmpty()) {
+                        VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText("");
                     } else {
-                        VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText("Lat.: " +VariabiliStaticheMeteo.getInstance().getLat());
+                        if (VariabiliStaticheMeteo.getInstance().getLat().length() > 10) {
+                            VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText("Lat.: " + VariabiliStaticheMeteo.getInstance().getLat().substring(0, 10));
+                        } else {
+                            VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText("Lat.: " + VariabiliStaticheMeteo.getInstance().getLat());
+                        }
+                    }
+                    if (VariabiliStaticheMeteo.getInstance().getLon() == null || VariabiliStaticheMeteo.getInstance().getLon().isEmpty()) {
+                        VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText("");
+                    } else {
+                        if (VariabiliStaticheMeteo.getInstance().getLon().length() > 10) {
+                            VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText("Lon.: " + VariabiliStaticheMeteo.getInstance().getLon().substring(0, 10));
+                        } else {
+                            VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText("Lon.: " + VariabiliStaticheMeteo.getInstance().getLon());
+                        }
                     }
                 }
-                if (VariabiliStaticheMeteo.getInstance().getLon() == null || VariabiliStaticheMeteo.getInstance().getLon().isEmpty()) {
-                    VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText("");
-                } else {
-                    if (VariabiliStaticheMeteo.getInstance().getLon().length()>10) {
-                        VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText("Lon.: "+VariabiliStaticheMeteo.getInstance().getLon().substring(0, 10));
-                    } else {
-                        VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText("Lon.: "+VariabiliStaticheMeteo.getInstance().getLon());
-                    }
-                }
-            }
-        });
+            });
+        }
     }
 
     private void initializeGraphic() {

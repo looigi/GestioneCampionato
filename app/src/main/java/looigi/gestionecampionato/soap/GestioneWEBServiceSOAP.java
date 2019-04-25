@@ -407,6 +407,10 @@ public class GestioneWEBServiceSOAP {
 							rSta.RitornaTipologiaPartite(Ritorno, Maschera);
 							Ancora=false;
 							break;
+						case "RitornaStatisticheStagione":
+							rSta.RitornaStatisticheStagione(Ritorno, Maschera);
+							Ancora=false;
+							break;
 						case "RitornaPartiteCasaFuori":
 							rSta.RitornaPartiteCasaFuori(Ritorno, Maschera);
 							Ancora=false;

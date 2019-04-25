@@ -1,5 +1,8 @@
 package looigi.gestionecampionato.ritorni_ws;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -7,6 +10,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.List;
 
+import looigi.gestionecampionato.dati.NomiMaschere;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
 import looigi.gestionecampionato.dati.VariabiliStaticheGrafici;
 import looigi.gestionecampionato.dati.VariabiliStaticheStatistiche;
@@ -15,12 +19,30 @@ import looigi.gestionecampionato.maschere.Grafici;
 import looigi.gestionecampionato.maschere.Mappa;
 import looigi.gestionecampionato.maschere.Statistiche;
 
+import static looigi.gestionecampionato.dati.VariabiliStaticheGlobali.RadiceWS;
+
 public class wsStatistiche {
     private Runnable runRiga;
     private Handler hSelezionaRiga;
 
     private String ToglieTag(String Cosa) {
         return Cosa;
+    }
+
+    public void RitornaStatisticheStagione(String Ritorno, String Maschera) {
+        String Appoggio=ToglieTag(Ritorno);
+
+        if (Appoggio.toUpperCase().contains("ERROR:")) {
+            DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
+                    Appoggio, true, VariabiliStaticheGlobali.NomeApplicazione);
+        } else {
+            String pagina_web = RadiceWS+"/Statistiche/" +
+                    VariabiliStaticheGlobali.getInstance().getAnnoInCorso() + "_" +
+                    VariabiliStaticheStatistiche.getInstance().idCategoriaScelta + ".html";
+
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pagina_web));
+            VariabiliStaticheGlobali.getInstance().getContextPrincipale().startActivity(browserIntent);
+        }
     }
 
     public void RitornaStatisticheAvversari(String Ritorno, String Maschera) {
@@ -85,9 +107,27 @@ public class wsStatistiche {
             for (String cc : c) {
                 String ccc[]=cc.split(";");
                 if (ccc[0].equals("1")) {
-                    Gradi.add(Float.parseFloat(ccc[1]));
-                    Umidita.add(Float.parseFloat(ccc[2]));
-                    Pressione.add(Float.parseFloat(ccc[3]));
+                    if (ccc.length > 3) {
+                        Gradi.add(Float.parseFloat(ccc[1]));
+                        Umidita.add(Float.parseFloat(ccc[2]));
+                        Pressione.add(Float.parseFloat(ccc[3]));
+                    } else {
+                        if (ccc.length > 2) {
+                            Gradi.add(Float.parseFloat(ccc[1]));
+                            Umidita.add(Float.parseFloat(ccc[2]));
+                            Pressione.add(0F);
+                        } else {
+                            if (ccc.length > 1) {
+                                Gradi.add(Float.parseFloat(ccc[1]));
+                                Umidita.add(0F);
+                                Pressione.add(0F);
+                            } else {
+                                Gradi.add(0F);
+                                Umidita.add(0F);
+                                Pressione.add(0F);
+                            }
+                        }
+                    }
                 } else {
                     Tempo.add(ccc[1]);
                     Quanti.add(Integer.parseInt(ccc[2]));

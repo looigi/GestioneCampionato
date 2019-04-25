@@ -3,6 +3,7 @@ package looigi.gestionecampionato.db_remoto;
 import android.content.Context;
 
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
+import looigi.gestionecampionato.dati.VariabiliStaticheStatistiche;
 import looigi.gestionecampionato.utilities.Utility;
 
 public class DBRemotoStatistiche {
@@ -17,6 +18,15 @@ public class DBRemotoStatistiche {
         Urletto+="&idCategoria=" + idCategoria;
 
         Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaStatisticheAvversari", "", Maschera, NS, SA);
+    }
+
+    public void StatisticheAnnue(Context context) {
+        String Urletto="RitornaStatisticheStagione?";
+        Urletto += "idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+        Urletto += "&idCategoria=" + VariabiliStaticheStatistiche.getInstance().idCategoriaScelta;
+
+        Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaStatisticheStagione",
+                "", "", NS, SA);
     }
 
     public void RitornaStatisticheConvocati(Context context, String Maschera, String SoloAnno, String idCategoria) {

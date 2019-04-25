@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -25,6 +26,7 @@ import looigi.gestionecampionato.dati.VariabiliStaticheMain;
 import looigi.gestionecampionato.dati.VariabiliStaticheStatistiche;
 import looigi.gestionecampionato.dati.VariabiliStaticheUtenti;
 import looigi.gestionecampionato.db_remoto.DBRemotoCategorie;
+import looigi.gestionecampionato.db_remoto.DBRemotoGenerale;
 import looigi.gestionecampionato.db_remoto.DBRemotoStatistiche;
 import looigi.gestionecampionato.utilities.Utility;
 
@@ -308,6 +310,18 @@ public class Statistiche extends android.support.v4.app.Fragment {
             ivAllenatore.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Utility.getInstance().CambiaMaschera(-13, 10, -1);
+                }
+            });
+
+            Button cmdScegliCat = view.findViewById(R.id.cmdScegliCat);
+            cmdScegliCat.setVisibility(LinearLayout.GONE);
+
+            // Statistiche annue
+            ImageView ivStatAnnue=view.findViewById(R.id.imgStatisticheAnnue);
+            ivStatAnnue.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    DBRemotoStatistiche dbr = new DBRemotoStatistiche();
+                    dbr.StatisticheAnnue(context);
                 }
             });
 
