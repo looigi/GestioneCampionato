@@ -9,6 +9,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
+import looigi.gestionecampionato.dialog.DialogMessaggio;
 import looigi.gestionecampionato.ritorni_ws.wsMeteo;
 
 public class DBRemotoMeteo {
@@ -50,8 +52,15 @@ public class DBRemotoMeteo {
             }
 
             if (!errore) {
+                DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
+                        "Meteo impostato", false, VariabiliStaticheGlobali.NomeApplicazione);
+
                 wsMeteo wsm = new wsMeteo();
                 wsm.RitornaMeteo(returns);
+            } else {
+                DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
+                        "Problemi nel rilevare il meteo", true, VariabiliStaticheGlobali.NomeApplicazione);
+
             }
 
             return null;

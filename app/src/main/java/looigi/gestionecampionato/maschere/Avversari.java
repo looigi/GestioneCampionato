@@ -20,9 +20,11 @@ import looigi.gestionecampionato.adapter.AdapterAvversari;
 import looigi.gestionecampionato.dati.NomiMaschere;
 import looigi.gestionecampionato.dati.VariabiliStaticheAvversari;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
+import looigi.gestionecampionato.dati.VariabiliStaticheNuovaPartita;
 import looigi.gestionecampionato.db_remoto.DBRemotoAvversari;
 import looigi.gestionecampionato.dialog.DialogElimina;
 import looigi.gestionecampionato.dialog.DialogMessaggio;
+import looigi.gestionecampionato.gps.PrendeCoordinateGPS;
 import looigi.gestionecampionato.upload_download.CropUtility;
 import looigi.gestionecampionato.utilities.Utility;
 import com.theartofdev.edmodo.cropper.CropImage;
@@ -253,13 +255,16 @@ public class Avversari extends android.support.v4.app.Fragment {
                     String Indirizzo = VariabiliStaticheAvversari.getInstance().getEdtIndirizzo().getText().toString();
 
                     if (Avversario.isEmpty()) {
-                        DialogMessaggio.getInstance().show(VariabiliStaticheAvversari.getInstance().getContext(), "Inserire il nome dell'avversario", true, VariabiliStaticheGlobali.NomeApplicazione);
+                        DialogMessaggio.getInstance().show(VariabiliStaticheAvversari.getInstance().getContext(),
+                                "Inserire il nome dell'avversario", true, VariabiliStaticheGlobali.NomeApplicazione);
                     } else {
                         if (Campo.isEmpty()) {
-                            DialogMessaggio.getInstance().show(VariabiliStaticheAvversari.getInstance().getContext(), "Inserire il campo dell'avversario", true, VariabiliStaticheGlobali.NomeApplicazione);
+                            DialogMessaggio.getInstance().show(VariabiliStaticheAvversari.getInstance().getContext(),
+                                    "Inserire il campo dell'avversario", true, VariabiliStaticheGlobali.NomeApplicazione);
                         } else {
                             if (Indirizzo.isEmpty()) {
-                                DialogMessaggio.getInstance().show(VariabiliStaticheAvversari.getInstance().getContext(), "Inserire l'indirizzo del campo dell'avversario", true, VariabiliStaticheGlobali.NomeApplicazione);
+                                DialogMessaggio.getInstance().show(VariabiliStaticheAvversari.getInstance().getContext(),
+                                        "Inserire l'indirizzo del campo dell'avversario", true, VariabiliStaticheGlobali.NomeApplicazione);
                             } else {
                                 String Ricerca = VariabiliStaticheAvversari.getInstance().getEdtRicerca().getText().toString();
                                 String Coords = VariabiliStaticheAvversari.getInstance().getTxtCoord().getText().toString();

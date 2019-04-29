@@ -80,8 +80,8 @@ public class wsAvversari {
                     try {
                         Campo.add(a[3]);
                         Indirizzo.add(a[4]);
-                        Lat.add(a[7]);
-                        Lon.add(a[8]);
+                        Lat.add(a[5]);
+                        Lon.add(a[6]);
                     } catch (Exception ignored) {
                         Campo.add("Campo");
                         Indirizzo.add("Indirizzo");

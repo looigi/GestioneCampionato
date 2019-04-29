@@ -1196,6 +1196,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
     private void pressCheckInCasa() {
         VariabiliStaticheNuovaPartita vnp = VariabiliStaticheNuovaPartita.getInstance();
+
         if (vnp.getChkInCasa().isChecked()) {
             vnp.getTxtCampo().setVisibility(View.INVISIBLE);
             vnp.getTxtCampoIndirizzo().setVisibility(View.INVISIBLE);
@@ -1207,6 +1208,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
     private void pressCheckEsterno() {
         VariabiliStaticheNuovaPartita vnp = VariabiliStaticheNuovaPartita.getInstance();
+
         if (vnp.getChkEsterno().isChecked()) {
             vnp.getChkInCasa().setVisibility(LinearLayout.INVISIBLE);
             vnp.getTxtCampo().setVisibility(View.INVISIBLE);
@@ -1373,36 +1375,11 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         ImageView cmdCoordinate = view.findViewById(R.id.btnCoordinate);
         cmdCoordinate .setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                CheckBox chkInCasa = (CheckBox) view.findViewById(R.id.chkInCasa);
-                CheckBox chkEsterno = (CheckBox) view.findViewById(R.id.chkEsterno);
-                String Indirizzo;
-                if (chkInCasa.isChecked()) {
-                    Indirizzo="";
-                } else {
-                    if (chkEsterno.isChecked()) {
-                        Indirizzo = VariabiliStaticheNuovaPartita.getInstance().getEdtCampoEsterno().getText().toString();
-                    } else {
-                        Indirizzo = VariabiliStaticheNuovaPartita.getInstance().getTxtCampoIndirizzo().getText().toString();
-                    }
-                }
+                View view = VariabiliStaticheNuovaPartita.getInstance().getViewActivity();
+                Utility.getInstance().PrendeCoordinateDaIndirizzo(view);
 
-                if (!Indirizzo.isEmpty()) {
-                    LatLng l = Utility.getInstance().RitornaCoordinateDaIndirizzo(VariabiliStaticheNuovaPartita.getInstance().getContext(),
-                            Indirizzo);
-                    if (l != null) {
-                        VariabiliStaticheMeteo.getInstance().setLat(Double.toString(l.latitude));
-                        VariabiliStaticheMeteo.getInstance().setLon(Double.toString(l.longitude));
-
-                        VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText(Double.toString(l.latitude));
-                        VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText(Double.toString(l.longitude));
-                    }
-                } else {
-                    VariabiliStaticheMeteo.getInstance().setLat("");
-                    VariabiliStaticheMeteo.getInstance().setLon("");
-
-                    VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText("");
-                    VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText("");
-                }
+                DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(), "Indirizzo impostato",
+                        false, VariabiliStaticheGlobali.NomeApplicazione);
             }
         });
 
@@ -1676,6 +1653,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 pressCheckInCasa();
+
+                Utility.getInstance().PrendeCoordinateDaIndirizzo(vnp.getViewActivity());
                 }
             }
         );
@@ -1691,6 +1670,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
           @Override
           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
               pressCheckEsterno();
+
+              Utility.getInstance().PrendeCoordinateDaIndirizzo(vnp.getViewActivity());
           }
         });
 
@@ -2635,6 +2616,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 imgFuori.setVisibility(LinearLayout.GONE);
 
                 Utility.getInstance().PrendeImmagineAvversario(Integer.toString(vnp.idAvversarioScelto), imgFuori);
+
+                Utility.getInstance().PrendeCoordinateDaIndirizzo(view);
             }
         });
         cmdOkArbitri.setOnClickListener(new View.OnClickListener() {

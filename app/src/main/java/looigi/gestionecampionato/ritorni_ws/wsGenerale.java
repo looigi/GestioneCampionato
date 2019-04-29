@@ -181,6 +181,8 @@ public class wsGenerale {
 			VariabiliStaticheGlobali.getInstance().setAnnoInCorso(Integer.parseInt(c[0]));
 			VariabiliStaticheGlobali.getInstance().setDescAnnoInCorso(c[1]);
 			VariabiliStaticheGlobali.getInstance().setNomeSquadraAnno(c[2]);
+			VariabiliStaticheGlobali.getInstance().setLatAnno(c[3]);
+			VariabiliStaticheGlobali.getInstance().setLonAnno(c[4]);
 
 			Utility.getInstance().ScriveAnno();
 

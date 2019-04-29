@@ -76,8 +76,8 @@ public class Splash extends android.support.v4.app.Fragment {
         final View view = VariabiliStaticheGlobali.getInstance().getViewActivity();
 
         if (view != null) {
-            ControlloVersioneApplicazione c = new ControlloVersioneApplicazione();
-            c.ControllaVersione();
+            // ControlloVersioneApplicazione c = new ControlloVersioneApplicazione();
+            // c.ControllaVersione();
 
             DBLocaleUtenti dbl = new DBLocaleUtenti();
             dbl.CreaDB(VariabiliStaticheGlobali.getInstance().getContext());

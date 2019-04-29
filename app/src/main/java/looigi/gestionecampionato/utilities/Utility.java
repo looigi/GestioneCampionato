@@ -18,6 +18,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -38,6 +39,8 @@ import looigi.gestionecampionato.R;
 import looigi.gestionecampionato.dati.NomiMaschere;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
 import looigi.gestionecampionato.dati.VariabiliStaticheMain;
+import looigi.gestionecampionato.dati.VariabiliStaticheMeteo;
+import looigi.gestionecampionato.dati.VariabiliStaticheNuovaPartita;
 import looigi.gestionecampionato.dati.VariabiliStaticheUtenti;
 import looigi.gestionecampionato.dialog.DialogMessaggio;
 import looigi.gestionecampionato.maschere.About;
@@ -809,5 +812,51 @@ public class Utility {
 		String ora = oo+":"+mmm+":"+ss;
 
 		return ora;
+	}
+
+	public void PrendeCoordinateDaIndirizzo(View view) {
+		CheckBox chkInCasa = (CheckBox) view.findViewById(R.id.chkInCasa);
+		CheckBox chkEsterno = (CheckBox) view.findViewById(R.id.chkEsterno);
+		String Indirizzo;
+		String Lat="";
+		String Lon="";
+		if (chkInCasa.isChecked()) {
+			Lat=VariabiliStaticheGlobali.getInstance().getLatAnno();
+			Lon=VariabiliStaticheGlobali.getInstance().getLonAnno();
+
+			Indirizzo="";
+		} else {
+			if (chkEsterno.isChecked()) {
+				Indirizzo = VariabiliStaticheNuovaPartita.getInstance().getEdtCampoEsterno().getText().toString();
+			} else {
+				Indirizzo = VariabiliStaticheNuovaPartita.getInstance().getTxtCampoIndirizzo().getText().toString();
+			}
+		}
+
+		if (!Indirizzo.isEmpty()) {
+			LatLng l = Utility.getInstance().RitornaCoordinateDaIndirizzo(VariabiliStaticheNuovaPartita.getInstance().getContext(),
+					Indirizzo);
+			if (l != null) {
+				VariabiliStaticheMeteo.getInstance().setLat(Double.toString(l.latitude));
+				VariabiliStaticheMeteo.getInstance().setLon(Double.toString(l.longitude));
+
+				VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText(Double.toString(l.latitude));
+				VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText(Double.toString(l.longitude));
+			}
+		} else {
+			if (!Lat.isEmpty() && !Lon.isEmpty()) {
+				VariabiliStaticheMeteo.getInstance().setLat(Lat);
+				VariabiliStaticheMeteo.getInstance().setLon(Lon);
+
+				VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText(Lat);
+				VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText(Lon);
+			} else {
+				VariabiliStaticheMeteo.getInstance().setLat("");
+				VariabiliStaticheMeteo.getInstance().setLon("");
+
+				VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText("");
+				VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText("");
+			}
+		}
 	}
 }

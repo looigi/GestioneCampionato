@@ -31,6 +31,8 @@ public class VariabiliStaticheGlobali {
     private String DescAnnoInCorso;
     private String NomeSquadraAnno;
     private String OperazioneInCorso;
+    private String LatAnno;
+    private String LonAnno;
     public static String MascheraAttuale;
     public static String MascheraAttualePerMultimedia;
     public static String ImmagineDaEliminare;
@@ -44,6 +46,22 @@ public class VariabiliStaticheGlobali {
 
     final public static String NomeSquadraCastelVerde="CASTELVERDE";
     final public static String NomeSquadraPonteDiNona="PONTEDINONA";
+
+    public String getLatAnno() {
+        return LatAnno;
+    }
+
+    public void setLatAnno(String latAnno) {
+        LatAnno = latAnno;
+    }
+
+    public String getLonAnno() {
+        return LonAnno;
+    }
+
+    public void setLonAnno(String lonAnno) {
+        LonAnno = lonAnno;
+    }
 
     public String getNomeSquadraAnno() {
         return NomeSquadraAnno;
