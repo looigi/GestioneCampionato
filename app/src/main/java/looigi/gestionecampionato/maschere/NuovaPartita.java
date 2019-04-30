@@ -46,6 +46,7 @@ import looigi.gestionecampionato.db_remoto.DBRemotoAllenatori;
 import looigi.gestionecampionato.db_remoto.DBRemotoCategorie;
 import looigi.gestionecampionato.db_remoto.DBRemotoGiocatori;
 import looigi.gestionecampionato.db_remoto.DBRemotoPartite;
+import looigi.gestionecampionato.dialog.DialogDomanda;
 import looigi.gestionecampionato.dialog.DialogMessaggio;
 import looigi.gestionecampionato.dialog.DialogTempo;
 import looigi.gestionecampionato.gps.GPSStatusBroadcastReceiver;
@@ -60,6 +61,7 @@ import static looigi.gestionecampionato.dati.VariabiliStaticheGlobali.RadiceWS;
 
 public class NuovaPartita extends android.support.v4.app.Fragment {
     // private Context context;
+    private boolean ModificaEffettuata = false;
     private RelativeLayout rlMaschera;
     private static String TAG = NomiMaschere.getInstance().getNuovaPartita();
     // private static VariabiliStaticheNuovaPartita vnp;
@@ -84,6 +86,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         }
 
         if (view!=null) {
+            ModificaEffettuata = false;
             vnp.setViewActivity(view);
 
             Bundle args = getArguments();
@@ -232,6 +235,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 cmdAggiornaMeteo.setVisibility(LinearLayout.VISIBLE);
                 cmdAggiornaMeteo.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
+                        ModificaEffettuata = true;
                         try {
                             VariabiliStaticheNuovaPartita.getInstance().intentGPS = new Intent(VariabiliStaticheGlobali.getInstance().getContext(), GPSStatusBroadcastReceiver.class);
                             VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale().startService(VariabiliStaticheNuovaPartita.getInstance().intentGPS);
@@ -1246,12 +1250,16 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
         VariabiliStaticheNuovaPartita.getInstance().getChkTempi().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (vnp.getChkTempi().isChecked()) {
-                    vnp.getTxtTempi().setVisibility(LinearLayout.VISIBLE);
-                } else {
-                    vnp.getTxtTempi().setVisibility(LinearLayout.GONE);
+                String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    if (vnp.getChkTempi().isChecked()) {
+                        vnp.getTxtTempi().setVisibility(LinearLayout.VISIBLE);
+                    } else {
+                        vnp.getTxtTempi().setVisibility(LinearLayout.GONE);
+                    }
+                    ScriveRisultato();
                 }
-                ScriveRisultato();
             }
         });
 
@@ -1327,7 +1335,11 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         Button cmdRefresh = view.findViewById(R.id.btnRefresh);
         cmdRefresh.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ScriveRisultato();
+                String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    ScriveRisultato();
+                }
             }
         });
 
@@ -1375,11 +1387,15 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         ImageView cmdCoordinate = view.findViewById(R.id.btnCoordinate);
         cmdCoordinate .setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                View view = VariabiliStaticheNuovaPartita.getInstance().getViewActivity();
-                Utility.getInstance().PrendeCoordinateDaIndirizzo(view);
+                String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    View view = VariabiliStaticheNuovaPartita.getInstance().getViewActivity();
+                    Utility.getInstance().PrendeCoordinateDaIndirizzo(view);
 
-                DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(), "Indirizzo impostato",
-                        false, VariabiliStaticheGlobali.NomeApplicazione);
+                    DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(), "Indirizzo impostato",
+                            false, VariabiliStaticheGlobali.NomeApplicazione);
+                }
             }
         });
 
@@ -1388,6 +1404,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.getTxtTimer1Tempo().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     DialogTempo.getInstance().show(VariabiliStaticheGlobali.getInstance().getContextPrincipale(),
                             "Inserire il tempo",
                             false,
@@ -1404,6 +1421,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.getTxtTimer2Tempo().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     DialogTempo.getInstance().show(VariabiliStaticheGlobali.getInstance().getContextPrincipale(),
                             "Inserire il tempo",
                             false,
@@ -1420,6 +1438,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.getTxtTimer3Tempo().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     DialogTempo.getInstance().show(VariabiliStaticheGlobali.getInstance().getContextPrincipale(),
                             "Inserire il tempo",
                             false,
@@ -1440,6 +1459,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.getCmdReset1Tempo().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     TimerTempo.getInstance().ResetTempo(1, vnp.getTxtTimer1Tempo());
                 }
             }
@@ -1448,6 +1468,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.getCmdReset2Tempo().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     TimerTempo.getInstance().ResetTempo(2, vnp.getTxtTimer2Tempo());
                 }
             }
@@ -1456,6 +1477,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.getCmdReset3Tempo().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     TimerTempo.getInstance().ResetTempo(3, vnp.getTxtTimer3Tempo());
                 }
             }
@@ -1472,6 +1494,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.getCmdStartSopTimer1Tempo().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     if (TimerTempo.getInstance().getQualeTimerPartito() != 1) {
                         TimerTempo.getInstance().FaiPartireTimer(1, vnp.getTxtTimer1Tempo());
 
@@ -1525,6 +1548,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.getCmdStartSopTimer2Tempo().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     if (TimerTempo.getInstance().getQualeTimerPartito() != 2) {
                         TimerTempo.getInstance().FaiPartireTimer(2, vnp.getTxtTimer2Tempo());
 
@@ -1578,6 +1602,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.getCmdStartSopTimer3Tempo().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     if (TimerTempo.getInstance().getQualeTimerPartito() != 3) {
                         TimerTempo.getInstance().FaiPartireTimer(3, vnp.getTxtTimer3Tempo());
 
@@ -1696,6 +1721,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdMenoAvv1Tempo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     if (Integer.parseInt(vnp.getTxtRisAvv1Tempo().getText().toString()) > 0) {
                         vnp.getTxtRisAvv1Tempo().setText(Integer.toString(Integer.parseInt(vnp.getTxtRisAvv1Tempo().getText().toString()) - 1));
 
@@ -1715,6 +1741,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdMenoAvv2Tempo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     if (!vnp.getTxtRisAvv2Tempo().getText().equals("Non giocato")) {
                         if (Integer.parseInt(vnp.getTxtRisAvv2Tempo().getText().toString()) > 0) {
                             vnp.getTxtRisAvv2Tempo().setText(Integer.toString(Integer.parseInt(vnp.getTxtRisAvv2Tempo().getText().toString()) - 1));
@@ -1745,6 +1772,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdMenoAvv3Tempo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     if (!vnp.getTxtRisAvv3Tempo().getText().equals("Non giocato")) {
                         if (Integer.parseInt(vnp.getTxtRisAvv3Tempo().getText().toString()) > 0) {
                             vnp.getTxtRisAvv3Tempo().setText(Integer.toString(Integer.parseInt(vnp.getTxtRisAvv3Tempo().getText().toString()) - 1));
@@ -1776,6 +1804,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdPiuAvv1Tempo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     vnp.getTxtRisAvv1Tempo().setText(Integer.toString(Integer.parseInt(vnp.getTxtRisAvv1Tempo().getText().toString()) + 1));
 
                     int minuto = TimerTempo.getInstance().RitornaMinuto(1);
@@ -1793,6 +1822,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdPiuAvv2Tempo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     if (vnp.getTxtRisAvv2Tempo().getText().equals("Non giocato")) {
                         vnp.getTxtRisAvv2Tempo().setText("0");
 
@@ -1825,6 +1855,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdPiuAvv3Tempo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
                     if (vnp.getTxtRisAvv3Tempo().getText().equals("Non giocato")) {
                         vnp.getTxtRisAvv3Tempo().setText("0");
 
@@ -1863,53 +1894,62 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
         cmdCategoria.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                rlMaschera.setVisibility(RelativeLayout.VISIBLE);
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
 
-                view.findViewById(R.id.idCategoria1).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.idData).setVisibility(View.GONE);
-                view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                    view.findViewById(R.id.idCategoria1).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.idData).setVisibility(View.GONE);
+                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
+                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
+                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
+                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
+                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                }
             }
         });
 
         cmdData.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                rlMaschera.setVisibility(RelativeLayout.VISIBLE);
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
 
-                view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                view.findViewById(R.id.idData).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
+                    view.findViewById(R.id.idData).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
+                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
+                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
+                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
+                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
 
-                new MostraPannelloData(vnp.getContext(), vnp.getTxtData(), rlMaschera, view.findViewById(R.id.idData));
+                    new MostraPannelloData(vnp.getContext(), vnp.getTxtData(), rlMaschera, view.findViewById(R.id.idData));
+                }
             }
         });
 
         cmdOra.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                rlMaschera.setVisibility(RelativeLayout.VISIBLE);
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
 
-                view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                view.findViewById(R.id.idData).setVisibility(View.GONE);
-                view.findViewById(R.id.idOra).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
+                    view.findViewById(R.id.idData).setVisibility(View.GONE);
+                    view.findViewById(R.id.idOra).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
+                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
+                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
+                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
+                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
 
-                new MostraPannelloOra(vnp.getContext(), vnp.getTxtOra(), rlMaschera, view.findViewById(R.id.idOra));
+                    new MostraPannelloOra(vnp.getContext(), vnp.getTxtOra(), rlMaschera, view.findViewById(R.id.idOra));
+                }
             }
         });
 
@@ -1919,37 +1959,40 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         ImageView imgRicAvv = view.findViewById(R.id.imgRicercaAvversario);
         imgRicAvv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                EditText edtRicAvv = view.findViewById(R.id.edtRicAvv);
-                String Ricerca = edtRicAvv.getText().toString().trim();
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    EditText edtRicAvv = view.findViewById(R.id.edtRicAvv);
+                    String Ricerca = edtRicAvv.getText().toString().trim();
 
-                List<String> Avv = new ArrayList<>();
-                List<Integer> AvvID = new ArrayList<>();
-                List<String> AvvCampo = new ArrayList<>();
-                List<String> AvvCampoIndirizzo = new ArrayList<>();
-                List<Integer> AvvCampoID = new ArrayList<>();
+                    List<String> Avv = new ArrayList<>();
+                    List<Integer> AvvID = new ArrayList<>();
+                    List<String> AvvCampo = new ArrayList<>();
+                    List<String> AvvCampoIndirizzo = new ArrayList<>();
+                    List<Integer> AvvCampoID = new ArrayList<>();
 
-                if (!Ricerca.isEmpty()) {
-                    int pos = -1;
+                    if (!Ricerca.isEmpty()) {
+                        int pos = -1;
 
-                    for (String a : vnp.getAvversari()) {
-                        pos++;
-                        if (a.toUpperCase().trim().contains(Ricerca.toUpperCase().trim())) {
-                            Avv.add(vnp.getAvversari().get(pos));
-                            AvvID.add(vnp.getAvversariID().get(pos));
-                            AvvCampo.add(vnp.getAvversariCampo().get(pos));
-                            AvvCampoIndirizzo.add(vnp.getAvversariCampoIndirizzo().get(pos));
-                            AvvCampoID.add(vnp.getAvversariCampoID().get(pos));
+                        for (String a : vnp.getAvversari()) {
+                            pos++;
+                            if (a.toUpperCase().trim().contains(Ricerca.toUpperCase().trim())) {
+                                Avv.add(vnp.getAvversari().get(pos));
+                                AvvID.add(vnp.getAvversariID().get(pos));
+                                AvvCampo.add(vnp.getAvversariCampo().get(pos));
+                                AvvCampoIndirizzo.add(vnp.getAvversariCampoIndirizzo().get(pos));
+                                AvvCampoID.add(vnp.getAvversariCampoID().get(pos));
+                            }
                         }
+                    } else {
+                        Avv = vnp.getAvversari();
+                        AvvID = vnp.getAvversariID();
+                        AvvCampo = vnp.getAvversariCampo();
+                        AvvCampoIndirizzo = vnp.getAvversariCampoIndirizzo();
+                        AvvCampoID = vnp.getAvversariCampoID();
                     }
-                } else {
-                    Avv=vnp.getAvversari();
-                    AvvID=vnp.getAvversariID();
-                    AvvCampo=vnp.getAvversariCampo();
-                    AvvCampoIndirizzo=vnp.getAvversariCampoIndirizzo();
-                    AvvCampoID=vnp.getAvversariCampoID();
-                }
 
-                fillSpinnersAvversari(Avv, AvvID, AvvCampoID, AvvCampo, AvvCampoIndirizzo);
+                    fillSpinnersAvversari(Avv, AvvID, AvvCampoID, AvvCampo, AvvCampoIndirizzo);
+                }
             }
         });
 
@@ -1959,166 +2002,190 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         ImageView imgAnnRic = view.findViewById(R.id.imgAnnullaRicerca);
         imgAnnRic.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                EditText edtRicGioc = view.findViewById(R.id.edtRicGioc);
-                edtRicGioc.setText("");
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    EditText edtRicGioc = view.findViewById(R.id.edtRicGioc);
+                    edtRicGioc.setText("");
 
-                List<String> GiocatoreNomeECognome = new ArrayList<>();
-                List<Integer> GiocatoreID = new ArrayList<>();
-                List<String> GiocatoreRuolo = new ArrayList<>();
-                List<Integer> GiocatoreIDRuolo = new ArrayList<>();
-                List<Integer> GiocatoreNumeroMaglia = new ArrayList<>();
+                    List<String> GiocatoreNomeECognome = new ArrayList<>();
+                    List<Integer> GiocatoreID = new ArrayList<>();
+                    List<String> GiocatoreRuolo = new ArrayList<>();
+                    List<Integer> GiocatoreIDRuolo = new ArrayList<>();
+                    List<Integer> GiocatoreNumeroMaglia = new ArrayList<>();
 
-                GiocatoreNomeECognome=vnp.getGiocatoreCognomeNome();
-                GiocatoreID=vnp.getGiocatoreID();
-                GiocatoreRuolo=vnp.getGiocatoreRuolo();
-                GiocatoreIDRuolo=vnp.getGiocatoreIDRuolo();
-                GiocatoreNumeroMaglia=vnp.getGiocatoreNumeroMaglia();
+                    GiocatoreNomeECognome = vnp.getGiocatoreCognomeNome();
+                    GiocatoreID = vnp.getGiocatoreID();
+                    GiocatoreRuolo = vnp.getGiocatoreRuolo();
+                    GiocatoreIDRuolo = vnp.getGiocatoreIDRuolo();
+                    GiocatoreNumeroMaglia = vnp.getGiocatoreNumeroMaglia();
 
-                fillSpinnerConvocati(GiocatoreNomeECognome,
-                        GiocatoreID,
-                        GiocatoreRuolo,
-                        GiocatoreIDRuolo,
-                        GiocatoreNumeroMaglia,
-                        true);
+                    fillSpinnerConvocati(GiocatoreNomeECognome,
+                            GiocatoreID,
+                            GiocatoreRuolo,
+                            GiocatoreIDRuolo,
+                            GiocatoreNumeroMaglia,
+                            true);
+                }
             }
         });
 
         ImageView imgRicGioc = view.findViewById(R.id.imgRicercaGiocatore);
         imgRicGioc.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                EditText edtRicGioc = view.findViewById(R.id.edtRicGioc);
-                String Ricerca = edtRicGioc.getText().toString().trim();
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    EditText edtRicGioc = view.findViewById(R.id.edtRicGioc);
+                    String Ricerca = edtRicGioc.getText().toString().trim();
 
-                List<String> GiocatoreNomeECognome = new ArrayList<>();
-                List<Integer> GiocatoreID = new ArrayList<>();
-                List<String> GiocatoreRuolo = new ArrayList<>();
-                List<Integer> GiocatoreIDRuolo = new ArrayList<>();
-                List<Integer> GiocatoreNumeroMaglia = new ArrayList<>();
+                    List<String> GiocatoreNomeECognome = new ArrayList<>();
+                    List<Integer> GiocatoreID = new ArrayList<>();
+                    List<String> GiocatoreRuolo = new ArrayList<>();
+                    List<Integer> GiocatoreIDRuolo = new ArrayList<>();
+                    List<Integer> GiocatoreNumeroMaglia = new ArrayList<>();
 
-                if (!Ricerca.isEmpty()) {
-                    int pos = -1;
+                    if (!Ricerca.isEmpty()) {
+                        int pos = -1;
 
-                    for (String a : vnp.getGiocatoreCognomeNome()) {
-                        pos++;
-                        if (a.toUpperCase().trim().contains(Ricerca.toUpperCase().trim()) ||
-                                vnp.getGiocatoreNumeroMaglia().get(pos).toString().contains(Ricerca.toUpperCase().trim())) {
-                            GiocatoreNomeECognome.add(vnp.getGiocatoreCognomeNome().get(pos));
-                            GiocatoreID.add(vnp.getGiocatoreID().get(pos));
-                            GiocatoreRuolo.add(vnp.getGiocatoreRuolo().get(pos));
-                            GiocatoreIDRuolo.add(vnp.getGiocatoreIDRuolo().get(pos));
-                            GiocatoreNumeroMaglia.add(vnp.getGiocatoreNumeroMaglia().get(pos));
+                        for (String a : vnp.getGiocatoreCognomeNome()) {
+                            pos++;
+                            if (a.toUpperCase().trim().contains(Ricerca.toUpperCase().trim()) ||
+                                    vnp.getGiocatoreNumeroMaglia().get(pos).toString().contains(Ricerca.toUpperCase().trim())) {
+                                GiocatoreNomeECognome.add(vnp.getGiocatoreCognomeNome().get(pos));
+                                GiocatoreID.add(vnp.getGiocatoreID().get(pos));
+                                GiocatoreRuolo.add(vnp.getGiocatoreRuolo().get(pos));
+                                GiocatoreIDRuolo.add(vnp.getGiocatoreIDRuolo().get(pos));
+                                GiocatoreNumeroMaglia.add(vnp.getGiocatoreNumeroMaglia().get(pos));
+                            }
                         }
+                    } else {
+                        GiocatoreNomeECognome = vnp.getGiocatoreCognomeNome();
+                        GiocatoreID = vnp.getGiocatoreID();
+                        GiocatoreRuolo = vnp.getGiocatoreRuolo();
+                        GiocatoreIDRuolo = vnp.getGiocatoreIDRuolo();
+                        GiocatoreNumeroMaglia = vnp.getGiocatoreNumeroMaglia();
                     }
-                } else {
-                    GiocatoreNomeECognome=vnp.getGiocatoreCognomeNome();
-                    GiocatoreID=vnp.getGiocatoreID();
-                    GiocatoreRuolo=vnp.getGiocatoreRuolo();
-                    GiocatoreIDRuolo=vnp.getGiocatoreIDRuolo();
-                    GiocatoreNumeroMaglia=vnp.getGiocatoreNumeroMaglia();
-                }
 
-                fillSpinnerConvocati(GiocatoreNomeECognome,
-                        GiocatoreID,
-                        GiocatoreRuolo,
-                        GiocatoreIDRuolo,
-                        GiocatoreNumeroMaglia,
-                        true);
+                    fillSpinnerConvocati(GiocatoreNomeECognome,
+                            GiocatoreID,
+                            GiocatoreRuolo,
+                            GiocatoreIDRuolo,
+                            GiocatoreNumeroMaglia,
+                            true);
+                }
             }
         });
 
         cmdAvversario.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                rlMaschera.setVisibility(RelativeLayout.VISIBLE);
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
 
-                view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                view.findViewById(R.id.idData).setVisibility(View.GONE);
-                view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                view.findViewById(R.id.idAvversario).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
+                    view.findViewById(R.id.idData).setVisibility(View.GONE);
+                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAvversario).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
+                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
+                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
+                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                }
             }
         });
 
         cmdTipologia.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                rlMaschera.setVisibility(RelativeLayout.VISIBLE);
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
 
-                view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                view.findViewById(R.id.idData).setVisibility(View.GONE);
-                view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                view.findViewById(R.id.idTipologia).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
+                    view.findViewById(R.id.idData).setVisibility(View.GONE);
+                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
+                    view.findViewById(R.id.idTipologia).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
+                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
+                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                }
             }
         });
 
         cmdConvocati.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                rlMaschera.setVisibility(RelativeLayout.VISIBLE);
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
 
-                view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                view.findViewById(R.id.idData).setVisibility(View.GONE);
-                view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                view.findViewById(R.id.idConvocati).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
+                    view.findViewById(R.id.idData).setVisibility(View.GONE);
+                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
+                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
+                    view.findViewById(R.id.idConvocati).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
+                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                }
             }
         });
 
         cmdMeteo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                rlMaschera.setVisibility(RelativeLayout.VISIBLE);
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
 
-                view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                view.findViewById(R.id.idData).setVisibility(View.GONE);
-                view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                view.findViewById(R.id.idMeteo).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
+                    view.findViewById(R.id.idData).setVisibility(View.GONE);
+                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
+                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
+                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
+                    view.findViewById(R.id.idMeteo).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
+                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                }
             }
         });
 
         cmdAltroPartita.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                rlMaschera.setVisibility(RelativeLayout.VISIBLE);
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
 
-                view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                view.findViewById(R.id.idData).setVisibility(View.GONE);
-                view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                view.findViewById(R.id.idAltroPartita).setVisibility(View.VISIBLE);
-                view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
+                    view.findViewById(R.id.idData).setVisibility(View.GONE);
+                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
+                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
+                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
+                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAltroPartita).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                }
             }
         });
 
         cmdArbitro.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                rlMaschera.setVisibility(RelativeLayout.VISIBLE);
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
 
-                view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                view.findViewById(R.id.idData).setVisibility(View.GONE);
-                view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                view.findViewById(R.id.idArbitro).setVisibility(View.VISIBLE);
+                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
+                    view.findViewById(R.id.idData).setVisibility(View.GONE);
+                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
+                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
+                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
+                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
+                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
+                    view.findViewById(R.id.idArbitro).setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -2168,7 +2235,9 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.getCmdSalva().setVisibility(LinearLayout.GONE);
         vnp.getCmdSalva().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                SalvaPartita();
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    SalvaPartita();
+                }
             }
         });
 
@@ -2176,7 +2245,14 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.getCmdUscita().setVisibility(LinearLayout.GONE);
         vnp.getCmdUscita().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Utility.getInstance().CambiaMaschera(R.id.home, -1, -1);
+                if (ModificaEffettuata && idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    DialogDomanda.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
+                            "Si vuole veramente uscire ?\nSi perderanno tutte le modifiche effettuate",
+                            VariabiliStaticheGlobali.NomeApplicazione,
+                            "NUOVA_PARTITA");
+                } else {
+                    Utility.getInstance().CambiaMaschera(R.id.home, -1, -1);
+                }
             }
         });
 
@@ -2241,37 +2317,49 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
         layTastoPagina1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                layPagina1.setVisibility(LinearLayout.VISIBLE);
-                layPagina2.setVisibility(LinearLayout.GONE);
-                layPagina3.setVisibility(LinearLayout.GONE);
-                layPagina4.setVisibility(LinearLayout.GONE);
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata=true;
+                    layPagina1.setVisibility(LinearLayout.VISIBLE);
+                    layPagina2.setVisibility(LinearLayout.GONE);
+                    layPagina3.setVisibility(LinearLayout.GONE);
+                    layPagina4.setVisibility(LinearLayout.GONE);
+                }
             }
         });
 
         layTastoPagina2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                layPagina1.setVisibility(LinearLayout.GONE);
-                layPagina2.setVisibility(LinearLayout.VISIBLE);
-                layPagina3.setVisibility(LinearLayout.GONE);
-                layPagina4.setVisibility(LinearLayout.GONE);
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    layPagina1.setVisibility(LinearLayout.GONE);
+                    layPagina2.setVisibility(LinearLayout.VISIBLE);
+                    layPagina3.setVisibility(LinearLayout.GONE);
+                    layPagina4.setVisibility(LinearLayout.GONE);
+                }
             }
         });
 
         layTastoPagina3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                layPagina1.setVisibility(LinearLayout.GONE);
-                layPagina2.setVisibility(LinearLayout.GONE);
-                layPagina3.setVisibility(LinearLayout.VISIBLE);
-                layPagina4.setVisibility(LinearLayout.GONE);
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    layPagina1.setVisibility(LinearLayout.GONE);
+                    layPagina2.setVisibility(LinearLayout.GONE);
+                    layPagina3.setVisibility(LinearLayout.VISIBLE);
+                    layPagina4.setVisibility(LinearLayout.GONE);
+                }
             }
         });
 
         layTastoPagina4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                layPagina1.setVisibility(LinearLayout.GONE);
-                layPagina2.setVisibility(LinearLayout.GONE);
-                layPagina3.setVisibility(LinearLayout.GONE);
-                layPagina4.setVisibility(LinearLayout.VISIBLE);
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    layPagina1.setVisibility(LinearLayout.GONE);
+                    layPagina2.setVisibility(LinearLayout.GONE);
+                    layPagina3.setVisibility(LinearLayout.GONE);
+                    layPagina4.setVisibility(LinearLayout.VISIBLE);
+                }
             }
         });
 
@@ -2586,45 +2674,56 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
         cmdOkCategoria.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                View view = vnp.getViewActivity();
+                String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    View view = vnp.getViewActivity();
 
-                ChiudeMaschera(view);
+                    ChiudeMaschera(view);
 
-                DBRemotoGiocatori dbr = new DBRemotoGiocatori();
-                dbr.RitornaGiocatoriCategoria(vnp.getContext(), Integer.toString(vnp.idCategoriaScelta), TAG);
+                    DBRemotoGiocatori dbr = new DBRemotoGiocatori();
+                    dbr.RitornaGiocatoriCategoria(vnp.getContext(), Integer.toString(vnp.idCategoriaScelta), TAG);
 
-                TextView tCasa = view.findViewById(R.id.txtCasa);
-                tCasa.setText(vnp.getTxtCategoria().getText());
-                ImageView imgCasa = view.findViewById(R.id.imgCasa);
-                imgCasa.setVisibility(LinearLayout.GONE);
+                    TextView tCasa = view.findViewById(R.id.txtCasa);
+                    tCasa.setText(vnp.getTxtCategoria().getText());
+                    ImageView imgCasa = view.findViewById(R.id.imgCasa);
+                    imgCasa.setVisibility(LinearLayout.GONE);
 
-                Utility.getInstance().PrendeImmagineCategoria(Integer.toString(vnp.idCategoriaScelta), imgCasa);
+                    Utility.getInstance().PrendeImmagineCategoria(Integer.toString(vnp.idCategoriaScelta), imgCasa);
 
-                DBRemotoAllenatori dba = new DBRemotoAllenatori();
-                dba.RitornaAllenatoriCategoria(vnp.getContext(), Integer.toString(vnp.idCategoriaScelta), TAG);
+                    DBRemotoAllenatori dba = new DBRemotoAllenatori();
+                    dba.RitornaAllenatoriCategoria(vnp.getContext(), Integer.toString(vnp.idCategoriaScelta), TAG);
+                }
             }
         });
         cmdOkAvversario.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                View view = vnp.getViewActivity();
+                String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    View view = vnp.getViewActivity();
 
-                ChiudeMaschera(view);
+                    ChiudeMaschera(view);
 
-                TextView tFuori = view.findViewById(R.id.txtFuori);
-                tFuori.setText(vnp.getTxtAvversario().getText());
-                final ImageView imgFuori = view.findViewById(R.id.imgFuori);
-                imgFuori.setVisibility(LinearLayout.GONE);
+                    TextView tFuori = view.findViewById(R.id.txtFuori);
+                    tFuori.setText(vnp.getTxtAvversario().getText());
+                    final ImageView imgFuori = view.findViewById(R.id.imgFuori);
+                    imgFuori.setVisibility(LinearLayout.GONE);
 
-                Utility.getInstance().PrendeImmagineAvversario(Integer.toString(vnp.idAvversarioScelto), imgFuori);
+                    Utility.getInstance().PrendeImmagineAvversario(Integer.toString(vnp.idAvversarioScelto), imgFuori);
 
-                Utility.getInstance().PrendeCoordinateDaIndirizzo(view);
+                    Utility.getInstance().PrendeCoordinateDaIndirizzo(view);
+                }
             }
         });
         cmdOkArbitri.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                View view = vnp.getViewActivity();
+                String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    View view = vnp.getViewActivity();
 
-                ChiudeMaschera(view);
+                    ChiudeMaschera(view);
 
                 /* TextView tFuori = view.findViewById(R.id.txtFuori);
                 tFuori.setText(vnp.getTxtAvversario().getText());
@@ -2632,39 +2731,57 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 imgFuori.setVisibility(LinearLayout.GONE);
 
                 Utility.getInstance().PrendeImmagineAvversario(Integer.toString(vnp.idAvversarioScelto), imgFuori); */
+                }
             }
         });
         cmdOkConvocati.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                View view= vnp.getViewActivity();
+                String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    View view = vnp.getViewActivity();
 
-                ChiudeMaschera(view);
+                    ChiudeMaschera(view);
+                }
             }
         });
         cmdOkTipologia .setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                View view= vnp.getViewActivity();
+                String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    View view = vnp.getViewActivity();
 
-                ChiudeMaschera(view);
+                    ChiudeMaschera(view);
+                }
             }
         });
         cmdOkMeteo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                View view= vnp.getViewActivity();
+                String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    View view = vnp.getViewActivity();
 
-                ChiudeMaschera(view);
+                    ChiudeMaschera(view);
+                }
             }
         });
         cmdOkAltro.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                View view= vnp.getViewActivity();
+                String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    View view = vnp.getViewActivity();
 
-                ChiudeMaschera(view);
+                    ChiudeMaschera(view);
+                }
             }
         });
     }
 
     private void SalvaPartita() {
+        ModificaEffettuata = false;
         VariabiliStaticheNuovaPartita vnp = VariabiliStaticheNuovaPartita.getInstance();
 
         Boolean Ok = true;
