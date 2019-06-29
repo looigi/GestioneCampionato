@@ -103,8 +103,12 @@ public class Statistiche extends android.support.v4.app.Fragment {
             final TextView txtTitolo = view.findViewById(R.id.txtTitolo);
 
             RelativeLayout layMascheraModUtenti=view.findViewById(R.id.layMascheraModUtenti);
-            if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
-                layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_verde_chiaro);
+            if (VariabiliStaticheMain.getInstance().getSquadra()!=null) {
+                if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
+                    layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_verde_chiaro);
+                } else {
+                    layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_rosso_chiaro);
+                }
             } else {
                 layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_rosso_chiaro);
             }
