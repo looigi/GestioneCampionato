@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -74,6 +75,7 @@ public class NuovoAnno extends android.support.v4.app.Fragment {
             VariabiliStaticheNuovoAnno.getInstance().setTxtAnno((TextView) view.findViewById(R.id.txtAnno));
             VariabiliStaticheNuovoAnno.getInstance().setEdtAnno((EditText) view.findViewById(R.id.edtDescAnno));
             VariabiliStaticheNuovoAnno.getInstance().setEdtNomeSquadra((EditText) view.findViewById(R.id.edtNomeSquadra));
+            VariabiliStaticheNuovoAnno.getInstance().setChkCopia((CheckBox) view.findViewById(R.id.chkCopiaDati));
 
             final String idAnno = VariabiliStaticheNuovoAnno.getInstance().getTxtAnno().getText().toString().trim();
 

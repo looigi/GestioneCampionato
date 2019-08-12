@@ -45,19 +45,24 @@ public class DBRemotoGenerale {
 				"", "", NS, SA);
 	}
 
-	public void RitornaAnnoAttualeUtenti(Context context) {
-		String Urletto="RitornaAnnoAttualeUtente?";
-		Urletto += "idUtente=" + VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente();
+	public void RitornaAnnoAttualeUtenti(Context context, String MascheraChiamante) {
+		if (VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente()!=null) {
+			String Urletto = "RitornaAnnoAttualeUtente?";
+			Urletto += "idUtente=" + VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente();
 
-		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaAnnoAttualeUtenti",
-				"", "", NS, SA);
+			Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaAnnoAttualeUtenti",
+					"", MascheraChiamante, NS, SA);
+		}
 	}
 
-	public void CreaNuovoAnno(Context context, String idAnno, String descAnno, String nomeSquadra) {
+	public void CreaNuovoAnno(Context context, String idAnno, String descAnno, String nomeSquadra, String TuttiIDati) {
 		String Urletto="CreaNuovoAnno?";
 		Urletto += "idAnno=" + idAnno;
 		Urletto += "&descAnno=" + descAnno;
 		Urletto += "&nomeSquadra=" + nomeSquadra;
+		Urletto += "&idAnnoAttuale=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto += "&idUtente=" + VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente();
+		Urletto += "&CreazioneTuttiIDati=" + TuttiIDati;
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "CreaNuovoAnno",
 				"", "", NS, SA);

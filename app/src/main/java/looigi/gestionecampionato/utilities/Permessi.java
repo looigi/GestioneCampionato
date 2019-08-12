@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 
 public class Permessi {
-    public void ControllaPermessi(Activity context) {
+    public boolean ControllaPermessi(Activity context) {
         int permissionRequestCode1 = 1193;
 
         String[] PERMISSIONS = new String[]{
@@ -21,6 +21,9 @@ public class Permessi {
 
         if(!hasPermissions(context, PERMISSIONS)) {
             ActivityCompat.requestPermissions(context, PERMISSIONS, permissionRequestCode1);
+            return false;
+        } else {
+            return true;
         }
     }
 

@@ -150,8 +150,10 @@ public class wsGenerale {
 			for (String c : r) {
 				if (!c.isEmpty()) {
 					String cc[] = c.split(";", -1);
-					idAnno.add(Integer.parseInt(cc[0]));
-					NomiSquadre.add(cc[2]);
+					if (cc.length > 2) {
+						idAnno.add(Integer.parseInt(cc[0]));
+						NomiSquadre.add(cc[2]);
+					}
 				}
 			}
 
@@ -240,6 +242,10 @@ public class wsGenerale {
 
 						VariabiliStaticheMain.getInstance().getDrawer().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
                     }
+
+                    if (TAG.equals("UTENTI")) {
+						Utility.getInstance().CambiaMaschera(R.id.home, -1, -1);
+					}
 				}
 			}, 50);
 		}
@@ -259,7 +265,7 @@ public class wsGenerale {
 					VariabiliStaticheMain.getInstance().setPartite(null);
 
 					DBRemotoGenerale dbr = new DBRemotoGenerale();
-					dbr.RitornaAnnoAttualeUtenti(context);
+					dbr.RitornaAnnoAttualeUtenti(context, TAG);
 				}
 			}, 50);
 

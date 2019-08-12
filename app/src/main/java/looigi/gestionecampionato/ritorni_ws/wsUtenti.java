@@ -12,6 +12,7 @@ import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
 import looigi.gestionecampionato.dati.VariabiliStaticheMain;
 import looigi.gestionecampionato.dati.VariabiliStaticheUtenti;
 import looigi.gestionecampionato.db_locale.DBLocaleUtenti;
+import looigi.gestionecampionato.db_remoto.DBRemotoGenerale;
 import looigi.gestionecampionato.db_remoto.DBRemotoUtenti;
 import looigi.gestionecampionato.dialog.DialogMessaggio;
 import looigi.gestionecampionato.maschere.ModificaUtente;
@@ -32,18 +33,20 @@ public class wsUtenti {
             DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
                     Appoggio, true, VariabiliStaticheGlobali.NomeApplicazione);
         } else {
-            String Campi[] = Appoggio.split(";",-1);
+            String[] Campi = Appoggio.split(";",-1);
 
-            VariabiliStaticheGlobali.getInstance().setDatiUtente(new StrutturaDatiUtente());
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setIdUtente(Campi[1]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setUtente(Campi[2]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setCognome(Campi[3]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setNome(Campi[4]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setPassword(Campi[5]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setEMail(Campi[6]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setIdCategoria1(Campi[7]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setIdTipologia(Campi[8]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setDescCategoria(Campi[9]);
+            StrutturaDatiUtente s = new StrutturaDatiUtente();
+            s.setIdUtente(Campi[1]);
+            s.setUtente(Campi[2]);
+            s.setCognome(Campi[3]);
+            s.setNome(Campi[4]);
+            s.setPassword(Campi[5]);
+            s.setEMail(Campi[6]);
+            s.setIdCategoria1(Campi[7]);
+            s.setIdTipologia(Campi[8]);
+            s.setDescCategoria(Campi[9]);
+
+            VariabiliStaticheGlobali.getInstance().setDatiUtente(s);
 
             Utility.getInstance().CambiaMaschera(R.id.home, -1, -1);
         }
@@ -56,19 +59,20 @@ public class wsUtenti {
             DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
                     Appoggio, true, VariabiliStaticheGlobali.NomeApplicazione);
         } else {
-            String Campi[] = Appoggio.split(";",-1);
+            String[] Campi = Appoggio.split(";",-1);
 
-            VariabiliStaticheGlobali.getInstance().setDatiUtente(new StrutturaDatiUtente());
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setIdUtente(Campi[1]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setUtente(Campi[2]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setCognome(Campi[3]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setNome(Campi[4]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setPassword(Campi[5]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setEMail(Campi[6]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setIdCategoria1(Campi[7]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setIdTipologia(Campi[8]);
-            VariabiliStaticheGlobali.getInstance().getDatiUtente().setDescCategoria(Campi[9]);
-            // VariabiliStaticheGlobali.getInstance().getDatiUtente().setDescCategoria3(Campi[9]);
+            StrutturaDatiUtente s = new StrutturaDatiUtente();
+            s.setIdUtente(Campi[1]);
+            s.setUtente(Campi[2]);
+            s.setCognome(Campi[3]);
+            s.setNome(Campi[4]);
+            s.setPassword(Campi[5]);
+            s.setEMail(Campi[6]);
+            s.setIdCategoria1(Campi[7]);
+            s.setIdTipologia(Campi[8]);
+            s.setDescCategoria(Campi[9]);
+
+            VariabiliStaticheGlobali.getInstance().setDatiUtente(s);
 
             VariabiliStaticheMain.getInstance().setPartitaApplicazione(true);
             VariabiliStaticheMain.getInstance().getDrawer().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
@@ -77,7 +81,10 @@ public class wsUtenti {
             dbl.SalvaDatiUtente(VariabiliStaticheGlobali.getInstance().getContext(),
                     VariabiliStaticheGlobali.getInstance().getDatiUtente());
 
-            Utility.getInstance().CambiaMaschera(R.id.home, -1, -1);
+            DBRemotoGenerale dbrg = new DBRemotoGenerale();
+            dbrg.RitornaAnnoAttualeUtenti(VariabiliStaticheGlobali.getInstance().getContext(), "UTENTI");
+
+            // Utility.getInstance().CambiaMaschera(R.id.home, -1, -1);
         }
     }
 
@@ -94,7 +101,10 @@ public class wsUtenti {
             dbl.SalvaDatiUtente(VariabiliStaticheGlobali.getInstance().getContext(),
                     VariabiliStaticheGlobali.getInstance().getDatiUtente());
 
-            Utility.getInstance().CambiaMaschera(R.id.home, -1, -1);
+            DBRemotoGenerale dbrg = new DBRemotoGenerale();
+            dbrg.RitornaAnnoAttualeUtenti(VariabiliStaticheGlobali.getInstance().getContext(), "UTENTI");
+
+            // Utility.getInstance().CambiaMaschera(R.id.home, -1, -1);
         }
     }
 

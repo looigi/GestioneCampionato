@@ -287,6 +287,10 @@ public class GestioneWEBServiceSOAP {
 							rCat.RitornaCategorie(context, Ritorno, Maschera);
 							Ancora=false;
 							break;
+						case "RitornaCategoriePerAnno":
+							rCat.RitornaCategoriePerAnno(context, Ritorno, Maschera);
+							Ancora=false;
+							break;
 						case "RitornaTipologie":
 							rGen.RitornaTipologie(context, Ritorno, Maschera);
 							Ancora=false;

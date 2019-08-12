@@ -2,6 +2,7 @@ package looigi.gestionecampionato.maschere;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import looigi.gestionecampionato.R;
 import looigi.gestionecampionato.dati.NomiMaschere;
 import looigi.gestionecampionato.dati.StrutturaDatiUtente;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
+import looigi.gestionecampionato.dati.VariabiliStaticheMain;
 import looigi.gestionecampionato.dati.VariabiliStaticheUtenti;
 import looigi.gestionecampionato.db_remoto.DBRemotoCategorie;
 import looigi.gestionecampionato.db_remoto.DBRemotoGenerale;
@@ -146,7 +148,11 @@ public class Utenti extends android.support.v4.app.Fragment {
                         strutt.setNome(v.getEdtNome().getText().toString());
                         strutt.setPassword(v.getEdtPassword().getText().toString());
                         strutt.setEMail(v.getEdtMail().getText().toString());
-                        strutt.setIdCategoria1(Integer.toString(v.getIdCategoriaScelta()));
+                        if (v.getIdCategoriaScelta()!=null) {
+                            strutt.setIdCategoria1(Integer.toString(v.getIdCategoriaScelta()));
+                        } else {
+                            strutt.setIdCategoria1("-1");
+                        }
                         strutt.setIdTipologia("2");
 
                         if (strutt.getUtente().isEmpty()) {
@@ -168,6 +174,9 @@ public class Utenti extends android.support.v4.app.Fragment {
                                             VariabiliStaticheGlobali.NomeApplicazione);
                                 } else {
                                     VariabiliStaticheGlobali.getInstance().setDatiUtente(strutt);
+
+                                    VariabiliStaticheMain.getInstance().setPartitaApplicazione(true);
+                                    VariabiliStaticheMain.getInstance().getDrawer().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
                                     DBRemotoUtenti dbr = new DBRemotoUtenti();
                                     dbr.SalvaUtente(VariabiliStaticheGlobali.getInstance().getContext(),
@@ -225,7 +234,7 @@ public class Utenti extends android.support.v4.app.Fragment {
                     int appo=VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
                     VariabiliStaticheGlobali.getInstance().setAnnoInCorso(VariabiliStaticheUtenti.idAnnoScelto);
                     DBRemotoCategorie dbr = new DBRemotoCategorie();
-                    dbr.RitornaCategorie(VariabiliStaticheGlobali.getInstance().getContext(), TAG);
+                    dbr.RitornaCategoriePerAnno(VariabiliStaticheGlobali.getInstance().getContext(), TAG);
                     VariabiliStaticheGlobali.getInstance().setAnnoInCorso(appo);
                 }
 

@@ -20,6 +20,15 @@ public class DBRemotoCategorie {
 		}
 	}
 
+	public void RitornaCategoriePerAnno(Context context, String Maschera) {
+		if (VariabiliStaticheGlobali.getInstance().getDatiUtente()!=null) {
+			String Urletto = "RitornaCategoriePerAnno?";
+			Urletto += "idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+
+			Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaCategoriePerAnno", "", Maschera, NS, SA);
+		}
+	}
+
 	public void SalvaCategoria(Context context, String idCategoria, String Categoria, String Maschera) {
 		String Urletto="SalvaCategoria?";
 		Urletto+="idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();

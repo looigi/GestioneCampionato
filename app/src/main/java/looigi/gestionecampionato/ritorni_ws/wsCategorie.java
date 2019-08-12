@@ -188,6 +188,40 @@ public class wsCategorie {
         }
     }
 
+    public void RitornaCategoriePerAnno(final Context context, String Ritorno, final String Maschera) {
+        String Appoggio=ToglieTag(Ritorno);
+
+        if (Appoggio.toUpperCase().contains("ERROR:")) {
+            DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(), Appoggio, true, VariabiliStaticheGlobali.NomeApplicazione);
+        } else {
+            List<String> descCategoria = new ArrayList<>();
+            List<Integer> idCategoria = new ArrayList<>();
+
+            List<String> descCategoria2 = new ArrayList<>();
+            List<Integer> idCategoria2 = new ArrayList<>();
+
+            descCategoria2.add("");
+            idCategoria2.add(-1);
+
+            String cc[]=Appoggio.split("§");
+            for (String ccc : cc) {
+                String c[]=ccc.split(";");
+
+                idCategoria.add(Integer.parseInt(c[0]));
+                descCategoria.add(c[1]);
+
+                idCategoria2.add(Integer.parseInt(c[0]));
+                descCategoria2.add(c[1]);
+            }
+
+            VariabiliStaticheUtenti.getInstance().setNomiCategorie(descCategoria);
+            VariabiliStaticheUtenti.getInstance().setIdNomiCategorie(idCategoria);
+            VariabiliStaticheUtenti.getInstance().setIdCategoriaScelta(idCategoria.get(0));
+
+            Utenti.RiempieListaCategorie();
+        }
+    }
+
     public void SalvaCategoria(String Ritorno, String Maschera) {
         String Appoggio=ToglieTag(Ritorno);
 

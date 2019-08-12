@@ -1,6 +1,7 @@
 package looigi.gestionecampionato.dati;
 
 import android.content.Context;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -23,9 +24,18 @@ public class VariabiliStaticheNuovoAnno {
     private EditText edtAnno;
     private EditText edtNomeSquadra;
     private TextView txtAnno;
+    private CheckBox chkCopia;
 
     public Context getContext() {
         return context;
+    }
+
+    public CheckBox getChkCopia() {
+        return chkCopia;
+    }
+
+    public void setChkCopia(CheckBox chkCopia) {
+        this.chkCopia = chkCopia;
     }
 
     public EditText getEdtNomeSquadra() {

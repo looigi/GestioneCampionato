@@ -92,7 +92,7 @@ public class Splash extends android.support.v4.app.Fragment {
             }
 
             DBRemotoGenerale dbr = new DBRemotoGenerale();
-            dbr.RitornaAnnoAttualeUtenti(context);
+            dbr.RitornaAnnoAttualeUtenti(context, TAG);
 
             VariabiliStaticheMain.getInstance().setImgSplash((ImageView) view.findViewById(R.id.imgSplash));
             VariabiliStaticheMain.getInstance().getImgSplash().setOnClickListener(new View.OnClickListener() {

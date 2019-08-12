@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import looigi.gestionecampionato.R;
@@ -80,9 +81,16 @@ public class DialogNuovoAnno
             String idAnno = VariabiliStaticheNuovoAnno.getInstance().getTxtAnno().getText().toString().trim();
             String descAnno = VariabiliStaticheNuovoAnno.getInstance().getEdtAnno().getText().toString().trim();
             String nomeSquadra = VariabiliStaticheNuovoAnno.getInstance().getEdtNomeSquadra().getText().toString().trim();
+            CheckBox c = VariabiliStaticheNuovoAnno.getInstance().getChkCopia();
+            String copiaDati;
+            if (c.isChecked()) {
+                copiaDati = "S";
+            } else {
+                copiaDati = "N";
+            }
 
             DBRemotoGenerale dbr = new DBRemotoGenerale();
-            dbr.CreaNuovoAnno(context, idAnno, descAnno, nomeSquadra);
+            dbr.CreaNuovoAnno(context, idAnno, descAnno, nomeSquadra, copiaDati);
         }
     };
 }

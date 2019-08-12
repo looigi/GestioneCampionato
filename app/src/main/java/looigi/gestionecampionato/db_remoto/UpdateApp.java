@@ -34,16 +34,19 @@ public class UpdateApp extends AsyncTask<String,Void,Void> {
         }
 //
         if (!messErrore.isEmpty()) {
-            VariabiliStaticheGlobali.getInstance().getContextPrincipale().runOnUiThread(new Runnable() {
+            VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale().runOnUiThread(new Runnable() {
                 public void run() {
-                    DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(), "ERRORE: " + messErrore, true, VariabiliStaticheGlobali.NomeApplicazione);
+                    DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
+                            "ERRORE: " + messErrore,
+                            true,
+                            VariabiliStaticheGlobali.NomeApplicazione);
                 }
             });
         }
     }
 
     private void ApriDialog() {
-        VariabiliStaticheGlobali.getInstance().getContextPrincipale().runOnUiThread(new Runnable() {
+        VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale().runOnUiThread(new Runnable() {
             public void run() {
                 try {
                     progressDialog = new ProgressDialog(context);
@@ -53,7 +56,7 @@ public class UpdateApp extends AsyncTask<String,Void,Void> {
                     progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                     progressDialog.show();
                 } catch (Exception ignored) {
-//
+////
                 }
             }
         });
@@ -63,7 +66,8 @@ public class UpdateApp extends AsyncTask<String,Void,Void> {
     protected Void doInBackground(String... arg0) {
         ApriDialog();
 
-        VariabiliStaticheGlobali.StaAggiornandoLaVersione=true;
+        // VariabiliStaticheGlobali.getInstance().setStaAggiornandoLaVersione(true);
+        File outputFile = null;
 
         try {
             URL url = new URL(arg0[0]);
@@ -74,7 +78,7 @@ public class UpdateApp extends AsyncTask<String,Void,Void> {
             String pathDestinazione = VariabiliStaticheGlobali.getInstance().PercorsoDIR;
             File file = new File(pathDestinazione);
             file.mkdirs();
-            File outputFile = new File(file, "update.apk");
+            outputFile = new File(file, "update.apk");
             if(outputFile.exists()){
                 outputFile.delete();
             }
@@ -90,15 +94,9 @@ public class UpdateApp extends AsyncTask<String,Void,Void> {
             fos.close();
             is.close();
 
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // without this flag android returned a intent error!
-            Uri contentUri = FileProvider.getUriForFile(context,
-                    BuildConfig.APPLICATION_ID + ".provider",
-                    new File(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/update.apk"));
-            intent.setDataAndType(contentUri, "application/vnd.android.package-archive");
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
+            Intent intent = new Intent(VariabiliStaticheGlobali.getInstance().getContext(), installAPK.class);
             VariabiliStaticheGlobali.getInstance().getContext().startActivity(intent);
+
             messErrore="";
         } catch (Exception ignored) {
             messErrore=ignored.getMessage();

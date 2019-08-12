@@ -24,6 +24,9 @@ import android.widget.TextView;
 
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import looigi.gestionecampionato.dati.NomiMaschere;
 import looigi.gestionecampionato.dati.VariabiliStaticheAllenatori;
 import looigi.gestionecampionato.dati.VariabiliStaticheDirigenti;
@@ -32,6 +35,7 @@ import looigi.gestionecampionato.dati.VariabiliStaticheMain;
 import looigi.gestionecampionato.dati.VariabiliStaticheNuovaPartita;
 import looigi.gestionecampionato.dati.VariabiliStaticheRose;
 import looigi.gestionecampionato.db_locale.DBLocale;
+import looigi.gestionecampionato.db_remoto.ControlloVersioneApplicazione;
 import looigi.gestionecampionato.dialog.DialogMessaggio;
 import looigi.gestionecampionato.maschere.Allenatori;
 import looigi.gestionecampionato.maschere.Arbitri;
@@ -60,12 +64,39 @@ public class MainActivity extends AppCompatActivity
     public static String idMultimedia;
     private VariabiliStaticheMain vm = VariabiliStaticheMain.getInstance();
     private VariabiliStaticheGlobali vg = VariabiliStaticheGlobali.getInstance();
+    private boolean CiSonoPermessi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Permessi p=new Permessi();
+        CiSonoPermessi  = p.ControllaPermessi(this);
+        if (CiSonoPermessi) {
+            ControlloVersioneApplicazione c = new ControlloVersioneApplicazione();
+            c.ControllaVersione(this);
+
+            EsegueEntrata();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        if (!CiSonoPermessi) {
+            int index = 0;
+            Map<String, Integer> PermissionsMap = new HashMap<String, Integer>();
+            for (String permission : permissions) {
+                PermissionsMap.put(permission, grantResults[index]);
+                index++;
+            }
+
+            EsegueEntrata();
+        }
+    }
+
+    private void EsegueEntrata() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -86,16 +117,13 @@ public class MainActivity extends AppCompatActivity
 
         vm.setDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, vm.getDrawer(), 
+                this, vm.getDrawer(),
                 toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         vm.getDrawer().addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        Permessi p=new Permessi();
-        p.ControllaPermessi(this);
 
         Utility.getInstance().CreaCartelle(vg.PercorsoDIR);
         Utility.getInstance().CreaCartelle(vg.PercorsoDIR+"/Giocatori");
