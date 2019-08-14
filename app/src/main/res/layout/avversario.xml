@@ -3,6 +3,8 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/bordo_arrotondato_bianco"
+    android:padding="2dp"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 

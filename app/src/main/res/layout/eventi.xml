@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/bordo_arrotondato_bianco"
+    android:padding="3dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ListView
+        android:id="@+id/lvListaEventi"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/bordo_arrotondato_giallo" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <CheckBox
+        android:id="@+id/chkAvversario"
+        android:text="Per l'Avversario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:id="@+id/lvGiocatoreEventi"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/bordo_arrotondato_bianco" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <TextView
+        android:id="@+id/txtEvento"
+        android:textColor="@color/rosso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="end"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/cmdAnnullaEventi"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/annulla" />
+
+        <Button
+            android:id="@+id/cmdOkEventi"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ok" />
+    </LinearLayout>
+
+</LinearLayout>

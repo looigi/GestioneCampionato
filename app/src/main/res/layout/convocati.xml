@@ -5,6 +5,8 @@
     android:layout_width="wrap_content"
     android:orientation="vertical"
     android:layout_margin="7dp"
+    android:background="@drawable/bordo_arrotondato_bianco"
+    android:padding="2dp"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -70,6 +72,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:baselineAligned="false"
             android:layout_width="match_parent"
             android:weightSum="2"
             android:layout_height="wrap_content"

@@ -83,12 +83,12 @@
         android:layout_marginLeft="5dp"
         android:orientation="horizontal"
         android:layout_marginRight="5dp"
-        android:weightSum="7">
+        android:weightSum="8">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="5"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:orientation="vertical"
             android:gravity="center_horizontal|center_vertical"
             android:layout_marginLeft="5dp"
@@ -161,6 +161,7 @@
             android:layout_weight="2"
             android:gravity="center_horizontal"
             android:orientation="vertical"
+            android:layout_marginEnd="2dp"
             android:layout_height="match_parent">
 
             <TextView
@@ -171,12 +172,27 @@
                 android:textColor="@color/verdeScuro"
                 android:textStyle="bold|italic" />
 
-            <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+            <ListView
                 android:id="@+id/lvTempiGAvvSecondoTempo"
                 android:layout_width="match_parent"
                 android:backgroundTint="@color/rosso_chiaro"
                 android:layout_height="match_parent"
                 android:background="@drawable/bordo_arrotondato_bianco" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/bordo_arrotondato_bianco"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btnAvvenimentiSecondoTempo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:textSize="20sp"
+                android:background="@drawable/esclamativo" />
         </LinearLayout>
     </LinearLayout>
 
@@ -216,10 +232,10 @@
             android:layout_weight="4"
             android:orientation="vertical">
 
-            <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+            <ListView
                 android:id="@+id/spnMarcatoriSecondoTempo"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="180dp"
                 android:background="@drawable/bordo_arrotondato_bianco" />
         </LinearLayout>
 
@@ -229,10 +245,10 @@
             android:layout_weight="4"
             android:orientation="vertical">
 
-            <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+            <ListView
                 android:id="@+id/lstvMarcatoriSecondoTempo"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="180dp"
                 android:layout_marginStart="3dp"
                 android:background="@drawable/bordo_arrotondato_giallo" />
         </LinearLayout>
@@ -242,5 +258,11 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray" />
+
+    <ListView
+        android:id="@+id/lstvEventiSecondoTempo"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/bordo_arrotondato_verde_chiaro" />
 
 </LinearLayout>

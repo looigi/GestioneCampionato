@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -17,7 +18,11 @@ import java.util.List;
 
 import looigi.gestionecampionato.adapter.AdapterDirigenti;
 import looigi.gestionecampionato.adapter.AdapterDirigentiConvocati;
+import looigi.gestionecampionato.adapter.AdapterEventi;
+import looigi.gestionecampionato.adapter.AdapterEventiPartita;
 import looigi.gestionecampionato.adapter.AdapterGiocatore;
+import looigi.gestionecampionato.adapter.AdapterGiocatoreEventi;
+import looigi.gestionecampionato.adapter.AdapterGiocatoreRigori;
 import looigi.gestionecampionato.adapter.AdapterMinutiGoalAvversari;
 
 public class VariabiliStaticheNuovaPartita {
@@ -60,6 +65,8 @@ public class VariabiliStaticheNuovaPartita {
     private List<String> AvversariCampoIndirizzo;
     private List<String> GiocatoreConvocato;
     private List<String> GiocatoreDaConvocare;
+    private List<String> GiocatoreConvocatoRigori;
+    private List<String> GiocatoreDaConvocareRigori;
     private ArrayList<String> listMarcPrimoTempo;
     private ArrayList<String> listMarcSecondoTempo;
     private ArrayList<String> listMarcTerzoTempo;
@@ -84,12 +91,38 @@ public class VariabiliStaticheNuovaPartita {
     private CheckBox chkTempi;
     public Intent intentGPS;
 
+    private int GiocatoreSelezionatoRigore;
+
     public Context getContext() {
         return context;
     }
 
     public void setContext(Context context) {
         this.context = context;
+    }
+
+    public int getGiocatoreSelezionatoRigore() {
+        return GiocatoreSelezionatoRigore;
+    }
+
+    public void setGiocatoreSelezionatoRigore(int giocatoreSelezionatoRigore) {
+        GiocatoreSelezionatoRigore = giocatoreSelezionatoRigore;
+    }
+
+    public List<String> getGiocatoreConvocatoRigori() {
+        return GiocatoreConvocatoRigori;
+    }
+
+    public void setGiocatoreConvocatoRigori(List<String> giocatoreConvocatoRigori) {
+        GiocatoreConvocatoRigori = giocatoreConvocatoRigori;
+    }
+
+    public List<String> getGiocatoreDaConvocareRigori() {
+        return GiocatoreDaConvocareRigori;
+    }
+
+    public void setGiocatoreDaConvocareRigori(List<String> giocatoreDaConvocareRigori) {
+        GiocatoreDaConvocareRigori = giocatoreDaConvocareRigori;
     }
 
     public CheckBox getChkTempi() {
@@ -300,6 +333,9 @@ public class VariabiliStaticheNuovaPartita {
         GiocatoriPerMarcature = new ArrayList<>();
     }
 
+    private RelativeLayout rlMaschera;
+    private LinearLayout llContenuto;
+
     private Spinner spnCategorie;
     private Spinner spnTipologie;
     private Spinner spnAvversario;
@@ -309,6 +345,8 @@ public class VariabiliStaticheNuovaPartita {
     private ListView spnDirigentiConvocati;
     private ListView spnDaConvocare;
     private ListView spnConvocati;
+    private ListView spnDaConvocareRigori;
+    private ListView spnConvocatiRigori;
     private ListView spnMarcatoriPrimoTempo;
     private ListView spnMarcatoriSecondoTempo;
     private ListView spnMarcatoriTerzoTempo;
@@ -327,7 +365,9 @@ public class VariabiliStaticheNuovaPartita {
     private TextView txtCampoIndirizzo;
     private TextView txtArbitro;
     private AdapterGiocatore adapterGiocatoriDaConvocare;
+    private AdapterGiocatore adapterGiocatoriDaConvocareRigori;
     private AdapterGiocatore adapterGiocatoriConvocati;
+    private AdapterGiocatoreRigori adapterGiocatoriConvocatiRigori;
     private AdapterGiocatore adapterMarcatoriPrimoTempo;
     private AdapterGiocatore adapterMarcatoriSecondoTempo;
     private AdapterGiocatore adapterMarcatoriTerzoTempo;
@@ -340,6 +380,7 @@ public class VariabiliStaticheNuovaPartita {
     private AdapterGiocatore adapterLvSecondoTempo;
     private AdapterGiocatore adapterLvTerzoTempo;
     private TextView txtGoal;
+    private TextView txtRigori;
     private TextView txtTempi;
     private TextView txtRisAvv1Tempo;
     private TextView txtRisAvv2Tempo;
@@ -374,7 +415,275 @@ public class VariabiliStaticheNuovaPartita {
     private AdapterMinutiGoalAvversari adapterTempiGAvvPrimoTempo;
     private AdapterMinutiGoalAvversari adapterTempiGAvvSecondoTempo;
     private AdapterMinutiGoalAvversari adapterTempiGAvvTerzoTempo;
+
+    private ListView lvEventiPrimoTempo;
+    private ListView lvEventiSecondoTempo;
+    private ListView lvEventiTerzoTempo;
+    private AdapterEventiPartita adapterEventiPrimoTempo;
+    private AdapterEventiPartita adapterEventiSecondoTempo;
+    private AdapterEventiPartita adapterEventiTerzoTempo;
+    private List<String> eventiPrimoTempo;
+    private List<String> eventiSecondoTempo;
+    private List<String> eventiTerzoTempo;
+    private int QualeTempoEvento;
+    private ListView lvEventiGiocatori;
+    private AdapterGiocatoreEventi adapterEventiGiocatori;
+    private List<String> eventiGiocatori;
+    private ListView lvEventiLista;
+    private AdapterEventi adapterListaEventi;
+    private List<String> eventiLista;
+    private TextView txtEvento;
+    private String descEvento="";
+    private int idEvento=-1;
+    private String MinutoEvento="";
+    private String aFavoreDi="";
+    private int idAFavore=-1;
     // Maschera Nuova Partita
+
+    public void PulisceEvento() {
+        descEvento="";
+        idEvento= -1;
+        MinutoEvento="";
+        aFavoreDi="";
+        idAFavore=-1;
+        QualeTempoEvento=-1;
+    }
+
+    public void StampaEvento() {
+        txtEvento.setText(MinutoEvento+"° - " + descEvento + " " + aFavoreDi);
+    }
+
+    public RelativeLayout getRlMaschera() {
+        return rlMaschera;
+    }
+
+    public void setRlMaschera(RelativeLayout rlMaschera) {
+        this.rlMaschera = rlMaschera;
+    }
+
+    public int getIdAFavore() {
+        return idAFavore;
+    }
+
+    public void setIdAFavore(int idAFavore) {
+        this.idAFavore = idAFavore;
+    }
+
+    public int getIdEvento() {
+        return idEvento;
+    }
+
+    public void setIdEvento(int idEvento) {
+        this.idEvento = idEvento;
+    }
+
+    public TextView getTxtEvento() {
+        return txtEvento;
+    }
+
+    public String getDescEvento() {
+        return descEvento;
+    }
+
+    public String getMinutoEvento() {
+        return MinutoEvento;
+    }
+
+    public void setMinutoEvento(String minutoEvento) {
+        MinutoEvento = minutoEvento;
+    }
+
+    public void setDescEvento(String descEvento) {
+        this.descEvento = descEvento;
+    }
+
+    public String getaFavoreDi() {
+        return aFavoreDi;
+    }
+
+    public void setaFavoreDi(String aFavoreDi) {
+        this.aFavoreDi = aFavoreDi;
+    }
+
+    public void setTxtEvento(TextView txtEvento) {
+        this.txtEvento = txtEvento;
+    }
+
+    public ListView getLvEventiLista() {
+        return lvEventiLista;
+    }
+
+    public void setLvEventiLista(ListView lvEventiLista) {
+        this.lvEventiLista = lvEventiLista;
+    }
+
+    public AdapterEventi getAdapterListaEventi() {
+        return adapterListaEventi;
+    }
+
+    public void setAdapterListaEventi(AdapterEventi adapterListaEventi) {
+        this.adapterListaEventi = adapterListaEventi;
+    }
+
+    public List<String> getEventiLista() {
+        return eventiLista;
+    }
+
+    public void setEventiLista(List<String> eventiLista) {
+        this.eventiLista = eventiLista;
+    }
+
+    public ListView getLvEventiGiocatori() {
+        return lvEventiGiocatori;
+    }
+
+    public void setLvEventiGiocatori(ListView lvEventiGiocatori) {
+        this.lvEventiGiocatori = lvEventiGiocatori;
+    }
+
+    public AdapterGiocatoreEventi getAdapterEventiGiocatori() {
+        return adapterEventiGiocatori;
+    }
+
+    public void setAdapterEventiGiocatori(AdapterGiocatoreEventi adapterEventiGiocatori) {
+        this.adapterEventiGiocatori = adapterEventiGiocatori;
+    }
+
+    public List<String> getEventiGiocatori() {
+        return eventiGiocatori;
+    }
+
+    public void setEventiGiocatori(List<String> eventiGiocatori) {
+        this.eventiGiocatori = eventiGiocatori;
+    }
+
+    public List<String> getEventiPrimoTempo() {
+        return eventiPrimoTempo;
+    }
+
+    public void setEventiPrimoTempo(List<String> eventiPrimoTempo) {
+        this.eventiPrimoTempo = eventiPrimoTempo;
+    }
+
+    public List<String> getEventiSecondoTempo() {
+        return eventiSecondoTempo;
+    }
+
+    public void setEventiSecondoTempo(List<String> eventiSecondoTempo) {
+        this.eventiSecondoTempo = eventiSecondoTempo;
+    }
+
+    public List<String> getEventiTerzoTempo() {
+        return eventiTerzoTempo;
+    }
+
+    public void setEventiTerzoTempo(List<String> eventiTerzoTempo) {
+        this.eventiTerzoTempo = eventiTerzoTempo;
+    }
+
+    public LinearLayout getLlContenuto() {
+        return llContenuto;
+    }
+
+    public void setLlContenuto(LinearLayout llContenuto) {
+        this.llContenuto = llContenuto;
+    }
+
+    public AdapterEventiPartita getAdapterEventiPrimoTempo() {
+        return adapterEventiPrimoTempo;
+    }
+
+    public void setAdapterEventiPrimoTempo(AdapterEventiPartita adapterEventiPrimoTempo) {
+        this.adapterEventiPrimoTempo = adapterEventiPrimoTempo;
+    }
+
+    public AdapterEventiPartita getAdapterEventiSecondoTempo() {
+        return adapterEventiSecondoTempo;
+    }
+
+    public void setAdapterEventiSecondoTempo(AdapterEventiPartita adapterEventiSecondoTempo) {
+        this.adapterEventiSecondoTempo = adapterEventiSecondoTempo;
+    }
+
+    public AdapterEventiPartita getAdapterEventiTerzoTempo() {
+        return adapterEventiTerzoTempo;
+    }
+
+    public void setAdapterEventiTerzoTempo(AdapterEventiPartita adapterEventiTerzoTempo) {
+        this.adapterEventiTerzoTempo = adapterEventiTerzoTempo;
+    }
+
+    public int getQualeTempoEvento() {
+        return QualeTempoEvento;
+    }
+
+    public void setQualeTempoEvento(int qualeTempoEvento) {
+        QualeTempoEvento = qualeTempoEvento;
+    }
+
+    public ListView getLvEventiPrimoTempo() {
+        return lvEventiPrimoTempo;
+    }
+
+    public void setLvEventiPrimoTempo(ListView lvEventiPrimoTempo) {
+        this.lvEventiPrimoTempo = lvEventiPrimoTempo;
+    }
+
+    public ListView getLvEventiSecondoTempo() {
+        return lvEventiSecondoTempo;
+    }
+
+    public void setLvEventiSecondoTempo(ListView lvEventiSecondoTempo) {
+        this.lvEventiSecondoTempo = lvEventiSecondoTempo;
+    }
+
+    public ListView getLvEventiTerzoTempo() {
+        return lvEventiTerzoTempo;
+    }
+
+    public void setLvEventiTerzoTempo(ListView lvEventiTerzoTempo) {
+        this.lvEventiTerzoTempo = lvEventiTerzoTempo;
+    }
+
+    public TextView getTxtRigori() {
+        return txtRigori;
+    }
+
+    public void setTxtRigori(TextView txtRigori) {
+        this.txtRigori = txtRigori;
+    }
+
+    public ListView getSpnDaConvocareRigori() {
+        return spnDaConvocareRigori;
+    }
+
+    public void setSpnDaConvocareRigori(ListView spnDaConvocareRigori) {
+        this.spnDaConvocareRigori = spnDaConvocareRigori;
+    }
+
+    public ListView getSpnConvocatiRigori() {
+        return spnConvocatiRigori;
+    }
+
+    public void setSpnConvocatiRigori(ListView spnConvocatiRigori) {
+        this.spnConvocatiRigori = spnConvocatiRigori;
+    }
+
+    public AdapterGiocatore getAdapterGiocatoriDaConvocareRigori() {
+        return adapterGiocatoriDaConvocareRigori;
+    }
+
+    public void setAdapterGiocatoriDaConvocareRigori(AdapterGiocatore adapterGiocatoriDaConvocareRigori) {
+        this.adapterGiocatoriDaConvocareRigori = adapterGiocatoriDaConvocareRigori;
+    }
+
+    public AdapterGiocatoreRigori getAdapterGiocatoriConvocatiRigori() {
+        return adapterGiocatoriConvocatiRigori;
+    }
+
+    public void setAdapterGiocatoriConvocatiRigori(AdapterGiocatoreRigori adapterGiocatoriConvocatiRigori) {
+        this.adapterGiocatoriConvocatiRigori = adapterGiocatoriConvocatiRigori;
+    }
 
     public TextView getTxtArbitro() {
         return txtArbitro;

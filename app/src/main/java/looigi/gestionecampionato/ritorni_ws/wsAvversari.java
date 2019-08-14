@@ -68,9 +68,9 @@ public class wsAvversari {
             final List<String> Lat = new ArrayList<>();
             final List<String> Lon = new ArrayList<>();
 
-            String aa[]=Appoggio.split("§");
+            String[] aa=Appoggio.split("§");
             for (String aaa : aa) {
-                String a[]=aaa.split(";",-1);
+                String[] a=aaa.split(";",-1);
 
                 if (Maschera.equals(NomiMaschere.getInstance().getNuovaPartita()) ||
                         Maschera.equals(NomiMaschere.getInstance().getCampionato())) {

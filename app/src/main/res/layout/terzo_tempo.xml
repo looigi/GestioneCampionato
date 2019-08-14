@@ -68,7 +68,6 @@
                 android:layout_weight="1"
                 android:background="@drawable/reset" />
         </LinearLayout>
-
     </LinearLayout>
 
     <View
@@ -78,12 +77,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:gravity="center_horizontal|center_vertical"
         android:layout_marginLeft="5dp"
         android:orientation="horizontal"
         android:layout_marginRight="5dp"
-        android:weightSum="7">
+        android:weightSum="8">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -152,7 +151,6 @@
                         android:background="@drawable/piu" />
                 </LinearLayout>
             </LinearLayout>
-
         </LinearLayout>
 
         <LinearLayout
@@ -161,6 +159,7 @@
             android:gravity="center_horizontal"
             android:layout_weight="2"
             android:orientation="vertical"
+            android:layout_marginEnd="2dp"
             android:layout_height="match_parent">
 
             <TextView
@@ -178,6 +177,21 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/bordo_arrotondato_bianco" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/bordo_arrotondato_bianco"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/btnAvvenimentiTerzoTempo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:textSize="20sp"
+                android:background="@drawable/esclamativo" />
         </LinearLayout>
     </LinearLayout>
 
@@ -217,10 +231,10 @@
             android:layout_weight="4"
             android:orientation="vertical">
 
-            <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+            <ListView
                 android:id="@+id/spnMarcatoriTerzoTempo"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="180dp"
                 android:background="@drawable/bordo_arrotondato_bianco" />
         </LinearLayout>
 
@@ -231,10 +245,10 @@
             android:layout_weight="4"
             android:orientation="vertical">
 
-            <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+            <ListView
                 android:id="@+id/lstvMarcatoriTerzoTempo"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="180dp"
                 android:background="@drawable/bordo_arrotondato_giallo" />
         </LinearLayout>
     </LinearLayout>
@@ -243,5 +257,11 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/darker_gray" />
+
+    <ListView
+        android:id="@+id/lstvEventiTerzoTempo"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/bordo_arrotondato_verde_chiaro" />
 
 </LinearLayout>

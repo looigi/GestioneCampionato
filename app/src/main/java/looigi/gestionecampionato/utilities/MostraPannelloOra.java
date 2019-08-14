@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
+import looigi.gestionecampionato.dati.VariabiliStaticheNuovaPartita;
 
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -19,11 +20,11 @@ public class MostraPannelloOra implements View.OnClickListener, TimePickerDialog
     private View _MascheraContenuta;
     private RelativeLayout _MascheraContenitore;
 
-    public MostraPannelloOra(Context context, TextView txt, RelativeLayout rl, View v)
+    public MostraPannelloOra(Context context, TextView txt, View v)
     {
         this._editText = txt;
         this._MascheraContenuta =v;
-        this._MascheraContenitore =rl;
+        this._MascheraContenitore = VariabiliStaticheNuovaPartita.getInstance().getRlMaschera();
 
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
 

@@ -68,9 +68,9 @@ public class wsGiocatori {
             List<Integer> NumeroMaglia = new ArrayList<>();
             List<Integer> Categoria2 = new ArrayList<>();
 
-            String gg[]=Appoggio.split("§");
+            String[] gg=Appoggio.split("§");
             for (String ggg : gg) {
-                String g[]=ggg.split(";", -1);
+                String[] g=ggg.split(";", -1);
 
                 if (Maschera.equals(NomiMaschere.getInstance().getNuovaPartita())) {
                     idGiocatore.add(Integer.parseInt(g[0]));

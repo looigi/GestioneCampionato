@@ -78,7 +78,15 @@ public class AdapterStatistiche extends ArrayAdapter {
                 // if (campi.length > 2) {
                     campo1.setText(campi[1] + " " + campi[2]);
                     // if (campi.length > 3) {
-                        campo2.setText(campi[3]);
+                        String goals = campi[3];
+                        if (goals.contains("§")) {
+                            String[] c = goals.split("§", -1);
+                            int g = Integer.parseInt(c[0]);
+                            int r = Integer.parseInt(c[1]);
+                            goals = Integer.toString(g+r) + " (" + c[1] +")";
+                        }
+                        campo2.setText(goals);
+
                         campo3.setText(campi[4]);
                     // } else {
                     //     campo2.setText("");

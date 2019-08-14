@@ -162,7 +162,7 @@ public class Allenamenti extends Fragment {
                     rlMaschera.setVisibility(LinearLayout.GONE);
                     view.findViewById(R.id.idData).setVisibility(LinearLayout.GONE);
                     view.findViewById(R.id.idOra).setVisibility(LinearLayout.VISIBLE);
-                    MostraPannelloData mostraPannelloData = new MostraPannelloData(context, VariabiliStaticheAllenamenti.getInstance().getTxtData(), rlMaschera, view.findViewById(R.id.idData));
+                    MostraPannelloData mostraPannelloData = new MostraPannelloData(context, VariabiliStaticheAllenamenti.getInstance().getTxtData(), view.findViewById(R.id.idData));
                 }
             });
             final String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();

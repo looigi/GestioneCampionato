@@ -170,6 +170,28 @@ public class wsGenerale {
 		}
 	}
 
+	public void RitornaEventi(Context context, String Ritorno, String Maschera) {
+		String Appoggio = ToglieTag(Ritorno);
+
+		if (Appoggio.toUpperCase().contains("ERROR:")) {
+			DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
+					Appoggio, true, VariabiliStaticheGlobali.NomeApplicazione);
+		} else {
+            String[] c = Ritorno.split("§", -1);
+            List<String> lista = new ArrayList<>();
+
+            for (String cc : c) {
+            	if (!cc.isEmpty()) {
+					lista.add(cc);
+				}
+            }
+
+            VariabiliStaticheNuovaPartita.getInstance().setEventiLista(lista);
+
+            NuovaPartita.fillSpinnerEventiLista();
+		}
+	}
+
 	public void RitornaAnnoAttuale(final Context context, String Ritorno, final String TAG) {
 		String Appoggio=ToglieTag(Ritorno);
 
@@ -177,7 +199,7 @@ public class wsGenerale {
 			DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
 					Appoggio, true, VariabiliStaticheGlobali.NomeApplicazione);
 		} else {
-			String c[] = Ritorno.split(";",-1);
+			String[] c = Ritorno.split(";",-1);
 			final String nomeSquadra = c[2].replace(" ", "_").toLowerCase().trim();
 
 			VariabiliStaticheGlobali.getInstance().setAnnoInCorso(Integer.parseInt(c[0]));

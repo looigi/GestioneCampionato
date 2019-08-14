@@ -99,8 +99,8 @@
                             android:layout_width="wrap_content"
                             android:padding="2dp"
                             android:gravity="center_horizontal|center_vertical"
-                            android:background="@drawable/bordo_arrotondato_bianco"
                             android:layout_height="wrap_content">
+                            <!-- android:background="@drawable/bordo_arrotondato_bianco" -->
 
                             <ImageView
                             android:id="@+id/imgCasa"
@@ -131,6 +131,19 @@
                         android:shadowDy="2"
                         android:shadowRadius="1.5"
                         android:textSize="25sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtRigori"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal|center_vertical"
+                        android:text="Rigori "
+                        android:textColor="#008888"
+                        android:shadowColor="#000000"
+                        android:shadowDy="2"
+                        android:shadowRadius="1.5"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -165,8 +178,8 @@
                             android:layout_width="wrap_content"
                             android:padding="2dp"
                             android:gravity="center_horizontal|center_vertical"
-                            android:background="@drawable/bordo_arrotondato_bianco"
                             android:layout_height="wrap_content">
+                            <!-- android:background="@drawable/bordo_arrotondato_bianco" -->
 
                             <ImageView
                                 android:id="@+id/imgFuori"
@@ -186,111 +199,143 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:weightSum="4"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/Pagina1"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:padding="3dp"
-                android:layout_margin="2dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bordo_arrotondato_verde"
-                android:gravity="center_vertical|center_horizontal"
-                android:layout_height="45dp">
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/imgPagina1"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    app:srcCompat="@drawable/tab_generale" />
-
-                <TextView
-                    android:id="@+id/txtPagina1"
-                    android:layout_marginLeft="3dp"
+                <LinearLayout
+                    android:baselineAligned="false"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gener." />
-            </LinearLayout>
+                    android:orientation="horizontal" >
 
-            <LinearLayout
-                android:id="@+id/Pagina2"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:padding="3dp"
-                android:orientation="horizontal"
-                android:layout_margin="2dp"
-                android:background="@drawable/bordo_arrotondato_verde"
-                android:gravity="center_vertical|center_horizontal"
-                android:layout_height="45dp">
+                    <LinearLayout
+                        android:id="@+id/Pagina1"
+                        android:layout_width="150dp"
+                        android:layout_height="45dp"
+                        android:layout_margin="2dp"
+                        android:background="@drawable/bordo_arrotondato_verde"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:orientation="horizontal"
+                        android:padding="3dp">
 
-                <ImageView
-                    android:id="@+id/imgPagina2"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    app:srcCompat="@drawable/giocate" />
+                        <ImageView
+                            android:id="@+id/imgPagina1"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            app:srcCompat="@drawable/tab_generale" />
 
-                <TextView
-                    android:id="@+id/txtPagina2"
-                    android:layout_marginStart="3dp"
-                    android:gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="I Tempo" />
-            </LinearLayout>
+                        <TextView
+                            android:id="@+id/txtPagina1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:text="Generale" />
+                    </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/Pagina3"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:padding="3dp"
-                android:orientation="horizontal"
-                android:layout_margin="2dp"
-                android:background="@drawable/bordo_arrotondato_verde"
-                android:gravity="center_vertical|center_horizontal"
-                android:layout_height="45dp">
+                    <LinearLayout
+                        android:id="@+id/Pagina2"
+                        android:layout_width="150dp"
+                        android:padding="3dp"
+                        android:orientation="horizontal"
+                        android:layout_margin="2dp"
+                        android:background="@drawable/bordo_arrotondato_verde"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_height="45dp">
 
-                <ImageView
-                    android:id="@+id/imgPagina3"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    app:srcCompat="@drawable/partite" />
+                        <ImageView
+                            android:id="@+id/imgPagina2"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            app:srcCompat="@drawable/giocate" />
 
-                <TextView
-                    android:id="@+id/txtPagina3"
-                    android:layout_marginStart="3dp"
-                    android:gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="II Tempo" />
-            </LinearLayout>
+                        <TextView
+                            android:id="@+id/txtPagina2"
+                            android:layout_marginStart="3dp"
+                            android:gravity="center_horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Primo Tempo" />
+                    </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/Pagina4"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:padding="3dp"
-                android:orientation="horizontal"
-                android:layout_margin="2dp"
-                android:background="@drawable/bordo_arrotondato_verde"
-                android:gravity="center_vertical|center_horizontal"
-                android:layout_height="45dp">
+                    <LinearLayout
+                        android:id="@+id/Pagina3"
+                        android:layout_width="150dp"
+                        android:padding="3dp"
+                        android:orientation="horizontal"
+                        android:layout_margin="2dp"
+                        android:background="@drawable/bordo_arrotondato_verde"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_height="45dp">
 
-                <ImageView
-                    android:id="@+id/imgPagina4"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    app:srcCompat="@drawable/nuova_partita" />
+                        <ImageView
+                            android:id="@+id/imgPagina3"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            app:srcCompat="@drawable/partite" />
 
-                <TextView
-                    android:id="@+id/txtPagina4"
-                    android:layout_marginStart="3dp"
-                    android:gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="III Tempo" />
-            </LinearLayout>
+                        <TextView
+                            android:id="@+id/txtPagina3"
+                            android:layout_marginStart="3dp"
+                            android:gravity="center_horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Secondo Tempo" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Pagina4"
+                        android:layout_width="150dp"
+                        android:padding="3dp"
+                        android:orientation="horizontal"
+                        android:layout_margin="2dp"
+                        android:background="@drawable/bordo_arrotondato_verde"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_height="45dp">
+
+                        <ImageView
+                            android:id="@+id/imgPagina4"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/nuova_partita" />
+
+                        <TextView
+                            android:id="@+id/txtPagina4"
+                            android:layout_marginStart="3dp"
+                            android:gravity="center_horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Terzo Tempo" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/Pagina5"
+                        android:layout_width="150dp"
+                        android:padding="3dp"
+                        android:orientation="horizontal"
+                        android:layout_margin="2dp"
+                        android:background="@drawable/bordo_arrotondato_verde"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_height="45dp">
+
+                        <ImageView
+                            android:id="@+id/imgPagina5"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            app:srcCompat="@drawable/fischietto" />
+
+                        <TextView
+                            android:id="@+id/txtPagina5"
+                            android:layout_marginStart="3dp"
+                            android:gravity="center_horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rigori" />
+                    </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
 
         </LinearLayout>
 
@@ -880,6 +925,16 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/layPagina5"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <include layout="@layout/rigori" />
+
+                    </LinearLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -959,13 +1014,13 @@
 
     <RelativeLayout
         android:id="@+id/layMascheraModUtenti"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@drawable/bordo_arrotondato_verde"
         android:padding="5dp"
-        android:layout_margin="5dp">
+        android:layout_centerVertical="true"
+        android:background="@drawable/trasparente"
+        android:gravity="center_vertical|center_horizontal">
 
         <include
             android:id="@+id/idCategoria1"
@@ -1010,6 +1065,16 @@
         <include
             android:id="@+id/idArbitro"
             layout="@layout/arbitro"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/idRigori"
+            layout="@layout/rigore_si_no"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/idEventi"
+            layout="@layout/eventi"
             android:visibility="gone" />
 
     </RelativeLayout>

@@ -499,6 +499,10 @@ public class GestioneWEBServiceSOAP {
 							rGen.RitornaAnnoAttuale(context, Ritorno, Maschera);
 							Ancora=false;
 							break;
+						case "RitornaEventi":
+							rGen.RitornaEventi(context, Ritorno, Maschera);
+							Ancora=false;
+							break;
 						case "ImpostaAnnoAttualeUtente":
 							rGen.ImpostaAnnoAttualeUtente(context, Ritorno, Maschera);
 							Ancora=false;

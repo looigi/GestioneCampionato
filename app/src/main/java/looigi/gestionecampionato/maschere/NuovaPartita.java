@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.lang.annotation.AnnotationFormatError;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,7 +35,11 @@ import java.util.List;
 import looigi.gestionecampionato.R;
 import looigi.gestionecampionato.adapter.AdapterDirigenti;
 import looigi.gestionecampionato.adapter.AdapterDirigentiConvocati;
+import looigi.gestionecampionato.adapter.AdapterEventi;
+import looigi.gestionecampionato.adapter.AdapterEventiPartita;
 import looigi.gestionecampionato.adapter.AdapterGiocatore;
+import looigi.gestionecampionato.adapter.AdapterGiocatoreEventi;
+import looigi.gestionecampionato.adapter.AdapterGiocatoreRigori;
 import looigi.gestionecampionato.adapter.AdapterMinutiGoalAvversari;
 import looigi.gestionecampionato.dati.NomiMaschere;
 import looigi.gestionecampionato.dati.VariabiliStaticheArbitri;
@@ -42,6 +47,7 @@ import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
 import looigi.gestionecampionato.dati.VariabiliStaticheMain;
 import looigi.gestionecampionato.dati.VariabiliStaticheMeteo;
 import looigi.gestionecampionato.dati.VariabiliStaticheNuovaPartita;
+import looigi.gestionecampionato.dati.VariabiliStaticheNuovoAnno;
 import looigi.gestionecampionato.db_remoto.DBRemotoAllenatori;
 import looigi.gestionecampionato.db_remoto.DBRemotoCategorie;
 import looigi.gestionecampionato.db_remoto.DBRemotoGiocatori;
@@ -61,8 +67,7 @@ import static looigi.gestionecampionato.dati.VariabiliStaticheGlobali.RadiceWS;
 
 public class NuovaPartita extends android.support.v4.app.Fragment {
     // private Context context;
-    private boolean ModificaEffettuata = false;
-    private RelativeLayout rlMaschera;
+    private static boolean ModificaEffettuata = false;
     private static String TAG = NomiMaschere.getInstance().getNuovaPartita();
     // private static VariabiliStaticheNuovaPartita vnp;
 
@@ -183,20 +188,20 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     if (VariabiliStaticheMeteo.getInstance().getLat() == null || VariabiliStaticheMeteo.getInstance().getLat().isEmpty()) {
                         VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText("");
                     } else {
-                        if (VariabiliStaticheMeteo.getInstance().getLat().length() > 10) {
-                            VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText("Lat.: " + VariabiliStaticheMeteo.getInstance().getLat().substring(0, 10));
-                        } else {
-                            VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText("Lat.: " + VariabiliStaticheMeteo.getInstance().getLat());
-                        }
+                        // if (VariabiliStaticheMeteo.getInstance().getLat().length() > 10) {
+                        //     VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText("Lat.: " + VariabiliStaticheMeteo.getInstance().getLat().substring(0, 10));
+                        // } else {
+                        VariabiliStaticheNuovaPartita.getInstance().getTxtLat().setText("Lat.: " + VariabiliStaticheMeteo.getInstance().getLat());
+                        // }
                     }
                     if (VariabiliStaticheMeteo.getInstance().getLon() == null || VariabiliStaticheMeteo.getInstance().getLon().isEmpty()) {
                         VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText("");
                     } else {
-                        if (VariabiliStaticheMeteo.getInstance().getLon().length() > 10) {
-                            VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText("Lon.: " + VariabiliStaticheMeteo.getInstance().getLon().substring(0, 10));
-                        } else {
-                            VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText("Lon.: " + VariabiliStaticheMeteo.getInstance().getLon());
-                        }
+                        // if (VariabiliStaticheMeteo.getInstance().getLon().length() > 10) {
+                        //     VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText("Lon.: " + VariabiliStaticheMeteo.getInstance().getLon().substring(0, 10));
+                        // } else {
+                        VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText("Lon.: " + VariabiliStaticheMeteo.getInstance().getLon());
+                        // }
                     }
                 }
             });
@@ -322,9 +327,9 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         VariabiliStaticheNuovaPartita vnp = VariabiliStaticheNuovaPartita.getInstance();
         DatiPartita = DatiPartita.replace("|","£");
 
-        String Campi[]=DatiPartita.split("£",-1);
+        String[] Campi=DatiPartita.split("£",-1);
 
-        String DatiPartitaGen[] = Campi[0].replace("§","").split(";", -1);
+        String[] DatiPartitaGen = Campi[0].replace("§","").split(";", -1);
 
         vnp.idCategoriaScelta=Integer.parseInt(DatiPartitaGen[0]);
         vnp.idAvversarioScelto=Integer.parseInt(DatiPartitaGen[1]);
@@ -334,7 +339,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
              vnp.idAllenatoreScelto = Integer.parseInt(DatiPartitaGen[20]);
         }
         if (!DatiPartitaGen[5].isEmpty() && DatiPartitaGen[5].contains(" ")) {
-            String DataIntera[] = DatiPartitaGen[5].split(" ");
+            String[] DataIntera = DatiPartitaGen[5].split(" ");
             vnp.getTxtData().setText(DataIntera[0].trim());
             vnp.getTxtOra().setText(DataIntera[1].trim());
         } else {
@@ -542,7 +547,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
         String Arbitro = DatiPartitaGen[35];
         if (Arbitro.contains("-")) {
-            String a[] = Arbitro.split("-");
+            String[] a = Arbitro.split("-");
 
             if (a.length > 1) {
                 if (a[0].isEmpty()) {
@@ -571,6 +576,41 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         } else {
             VariabiliStaticheNuovaPartita.getInstance().getChkTempi().setChecked(false);
             vnp.getTxtTempi().setVisibility(LinearLayout.GONE);
+        }
+
+        String RigoriPropri = DatiPartitaGen[37];
+        String RigoriAvv = DatiPartitaGen[38];
+
+        if (RigoriPropri.contains("%")) {
+            vnp.setGiocatoreConvocatoRigori(new ArrayList<String>());
+            String[] rp = RigoriPropri.split("%", -1);
+            for (String s : rp) {
+                if (!s.isEmpty()) {
+                    s = s.replace("!", ";");
+                    vnp.getGiocatoreConvocatoRigori().add(s);
+                }
+            }
+        }
+
+        TextView tse = vnp.getViewActivity().findViewById(R.id.txtRigoriSegnAvversari);
+        TextView tsb = vnp.getViewActivity().findViewById(R.id.txtRigoriSbaAvversari);
+        if (RigoriAvv.isEmpty()) {
+            tse.setText("0");
+            tsb.setText("0");
+        } else {
+            if (RigoriAvv.contains("!")) {
+                String[] ra = RigoriAvv.split("!", -1);
+                if (ra.length>0) {
+                    tse.setText(ra[0]);
+                } else {
+                    tse.setText("0");
+                }
+                if (ra.length>1) {
+                    tsb.setText(ra[1]);
+                } else {
+                    tsb.setText("0");
+                }
+            }
         }
 
         VariabiliStaticheGlobali.getInstance().ApreDialogWS=false;
@@ -730,7 +770,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
     }
 
-    private static void AggiungeGoal(Boolean Avversari, String minuto, int position, int tempo) {
+    private static void AggiungeGoal(boolean Avversari, String minuto, int position, int tempo) {
         String m = "";
 
         if (minuto.isEmpty()) {
@@ -788,11 +828,13 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
     }
 
     public static void fillSpinnerConvocati(List<String> GiocatoreNC, List<Integer> idGiocatore, List<String> Ruolo,
-                                            List<Integer> idRuolo, List<Integer> NumeroMaglia, Boolean PerRicerca) {
+                                            List<Integer> idRuolo, List<Integer> NumeroMaglia, boolean PerRicerca) {
         final VariabiliStaticheNuovaPartita vnp = VariabiliStaticheNuovaPartita.getInstance();
 
         if (GiocatoreNC != null) {
             vnp.setGiocatoreDaConvocare(new ArrayList<String>());
+            vnp.setGiocatoreDaConvocareRigori(new ArrayList<String>());
+            vnp.setEventiGiocatori(new ArrayList<String>());
 
             int i=0;
             for (String s : GiocatoreNC) {
@@ -800,11 +842,26 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                         idGiocatore.get(i)+";"+
                                 Ruolo.get(i)+";"+s+";;;"+
                                 NumeroMaglia.get(i) + ";");
+                vnp.getEventiGiocatori().add(
+                        idGiocatore.get(i)+";"+
+                                Ruolo.get(i)+";"+s+";;;"+
+                                NumeroMaglia.get(i) + ";");
+                vnp.getGiocatoreDaConvocareRigori().add(
+                        idGiocatore.get(i)+";"+
+                                Ruolo.get(i)+";"+s+";;;"+
+                                NumeroMaglia.get(i) + ";"+
+                                "-1;");
                 i++;
             }
 
             if (!PerRicerca) {
                 vnp.setGiocatoreConvocato(new ArrayList<String>());
+                if (vnp.getGiocatoreConvocatoRigori()==null) {
+                    vnp.setGiocatoreConvocatoRigori(new ArrayList<String>());
+                }
+                if (vnp.getEventiGiocatori()==null) {
+                    vnp.setEventiGiocatori(new ArrayList<String>());
+                }
             }
 
             // Carica giocatori nella lista
@@ -815,10 +872,22 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 vnp.getSpnDaConvocare().invalidate();
             }
 
+            // Carica giocatori per rigori nella lista
+            vnp.setAdapterGiocatoriDaConvocareRigori(new AdapterGiocatore(VariabiliStaticheGlobali.getInstance().getContext(),
+                    android.R.layout.simple_list_item_1, vnp.getGiocatoreDaConvocareRigori()));
+            vnp.getSpnDaConvocareRigori().setAdapter(vnp.getAdapterGiocatoriDaConvocareRigori());
+            if (PerRicerca) {
+                vnp.getSpnDaConvocareRigori().invalidate();
+            }
+
             if (!PerRicerca) {
                 vnp.setAdapterGiocatoriConvocati(new AdapterGiocatore(VariabiliStaticheGlobali.getInstance().getContext(),
                         android.R.layout.simple_list_item_1, vnp.getGiocatoreConvocato()));
                 vnp.getSpnConvocati().setAdapter(vnp.getAdapterGiocatoriConvocati());
+
+                vnp.setAdapterGiocatoriConvocatiRigori(new AdapterGiocatoreRigori(VariabiliStaticheGlobali.getInstance().getContext(),
+                        android.R.layout.simple_list_item_1, vnp.getGiocatoreConvocatoRigori()));
+                vnp.getSpnConvocatiRigori().setAdapter(vnp.getAdapterGiocatoriConvocatiRigori());
 
                 vnp.setGiocatoriPerMarcature(new ArrayList<String>());
                 vnp.getGiocatoriPerMarcature().add("Autorete");
@@ -839,8 +908,10 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 vnp.getSpnDaConvocare().setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+                        ModificaEffettuata = false;
+
                         String s= vnp.getGiocatoreDaConvocare().get(position);
-                        Boolean Ok = true;
+                        boolean Ok = true;
                         for (String ss : vnp.getGiocatoreConvocato()) {
                             if (s.equals(ss)) {
                                 Ok=false;
@@ -864,13 +935,14 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                             DialogMessaggio.getInstance().show(VariabiliStaticheNuovaPartita.getInstance().getContext(),
                                     "Giocatore già in lista",true, VariabiliStaticheGlobali.NomeApplicazione);
                         }
-                        }
-
+                    }
                 });
 
                 vnp.getSpnConvocati().setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+                        ModificaEffettuata = false;
+
                         String s = vnp.getGiocatoreConvocato().get(position);
                         vnp.getGiocatoreDaConvocare().add(s);
                         vnp.getGiocatoreConvocato().remove(position);
@@ -888,12 +960,180 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 });
                 // Carica giocatori nella lista
 
+                vnp.getSpnDaConvocareRigori().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+                        ModificaEffettuata = false;
+
+                        String s= vnp.getGiocatoreDaConvocareRigori().get(position);
+                        boolean Ok = true;
+                        for (String ss : vnp.getGiocatoreConvocatoRigori()) {
+                            if (s.equals(ss)) {
+                                Ok=false;
+                                break;
+                            }
+                        }
+
+                        if (Ok) {
+                            vnp.getGiocatoreConvocatoRigori().add(s);
+                            vnp.getGiocatoreDaConvocareRigori().remove(position);
+
+                            vnp.getAdapterGiocatoriConvocatiRigori().notifyDataSetChanged();
+                            vnp.getAdapterGiocatoriDaConvocareRigori().notifyDataSetChanged();
+                        } else {
+                            DialogMessaggio.getInstance().show(VariabiliStaticheNuovaPartita.getInstance().getContext(),
+                                    "Giocatore già in lista",true, VariabiliStaticheGlobali.NomeApplicazione);
+                        }
+                    }
+                });
+
+                vnp.getSpnConvocatiRigori().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                     @Override
+                     public void onItemClick(AdapterView<?> parent, final View sview, int position, long id) {
+                         ModificaEffettuata = false;
+
+                         View view = vnp.getViewActivity();
+                         String s = vnp.getGiocatoreConvocatoRigori().get(position);
+                         String[] c = s.split(";", -1);
+
+                         final CheckBox r1 = view.findViewById(R.id.chkDaTirare);
+                         final CheckBox r2 = view.findViewById(R.id.chkSegnato);
+                         final CheckBox r3 = view.findViewById(R.id.chkSbagliato);
+
+                         switch(c[6]) {
+                             case "-1":
+                                 r1.setChecked(true);
+                                 r2.setChecked(false);
+                                 r3.setChecked(false);
+                                 break;
+                             case "0":
+                                 r1.setChecked(false);
+                                 r2.setChecked(true);
+                                 r3.setChecked(false);
+                                 break;
+                             case "1":
+                                 r1.setChecked(false);
+                                 r2.setChecked(false);
+                                 r3.setChecked(true);
+                                 break;
+                         }
+                         r1.setOnClickListener(new View.OnClickListener() {
+                             public void onClick(View v) {
+                                 if (r1.isChecked()) {
+                                     r2.setChecked(false);
+                                     r3.setChecked(false);
+                                 }
+                             }
+                         });
+                         r2.setOnClickListener(new View.OnClickListener() {
+                             public void onClick(View v) {
+                                 if (r2.isChecked()) {
+                                     r1.setChecked(false);
+                                     r3.setChecked(false);
+                                 }
+                             }
+                         });
+                         r3.setOnClickListener(new View.OnClickListener() {
+                             public void onClick(View v) {
+                                 if (r3.isChecked()) {
+                                     r1.setChecked(false);
+                                     r2.setChecked(false);
+                                 }
+                             }
+                         });
+
+                         vnp.setGiocatoreSelezionatoRigore(position);
+
+                         GestisceSchermate("");
+
+                         TextView txtRigore = view.findViewById(R.id.txtRigoreTiratoDa);
+                         txtRigore.setText("Rigore di\n" + c[2]);
+
+                     }
+                });
+
+                Button cmdOkRigore = vnp.getViewActivity().findViewById(R.id.cmdOkRigore);
+                cmdOkRigore.setOnClickListener(new View.OnClickListener() {
+                     public void onClick(View v) {
+                         View view = vnp.getViewActivity();
+                         view.findViewById(R.id.idRigori).setVisibility(View.GONE);
+                         if (vnp.getGiocatoreSelezionatoRigore()>-1) {
+                             int posizione = vnp.getGiocatoreSelezionatoRigore();
+                             String s = vnp.getGiocatoreConvocatoRigori().get(posizione);
+                             String[] c = s.split(";", -1);
+                             String rigore = "";
+                             CheckBox r1 = view.findViewById(R.id.chkDaTirare);
+                             CheckBox r2 = view.findViewById(R.id.chkSegnato);
+                             CheckBox r3 = view.findViewById(R.id.chkSbagliato);
+                             if (r1.isChecked()) {
+                                 rigore="-1";
+                             } else {
+                                 if (r2.isChecked()) {
+                                     rigore="1";
+                                 } else {
+                                     if (r3.isChecked()) {
+                                         rigore = "0";
+                                     } else {
+                                         rigore ="-1";
+                                     }
+                                 }
+                             }
+                             String gioc = "";
+                             int pos = 0;
+                             for (String cc : c) {
+                                 if (pos!=6) {
+                                     gioc += cc+";";
+                                 } else {
+                                     gioc += rigore+";";
+                                 }
+
+                                 pos++;
+                             }
+                             vnp.getGiocatoreConvocatoRigori().set(posizione, gioc);
+                             vnp.getAdapterGiocatoriConvocatiRigori().notifyDataSetChanged();
+
+                             // 448;Centrocampista;Cataldi Lorenzo;;;14;-1;
+
+                             vnp.setGiocatoreSelezionatoRigore(-1);
+
+                             ScriveRisultato();
+                         }
+                     }
+                 });
+                Button cmdAnnullaRigore = vnp.getViewActivity().findViewById(R.id.cmdAnnullaRigore);
+                cmdAnnullaRigore.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        View view = vnp.getViewActivity();
+                        view.findViewById(R.id.idRigori).setVisibility(View.GONE);
+                        vnp.setGiocatoreSelezionatoRigore(-1);
+                    }
+                });
+
+                vnp.getSpnConvocatiRigori().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                                   int pos, long id) {
+                        ModificaEffettuata = false;
+
+                        String s = vnp.getGiocatoreConvocatoRigori().get(pos);
+                        vnp.getGiocatoreDaConvocareRigori().add(s);
+                        vnp.getGiocatoreConvocatoRigori().remove(pos);
+
+                        vnp.getAdapterGiocatoriConvocatiRigori().notifyDataSetChanged();
+                        vnp.getAdapterGiocatoriDaConvocareRigori().notifyDataSetChanged();
+
+                        return true;
+                    }
+                });
+
                 final String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
 
                 vnp.getSpnMarcatoriPrimoTempo().setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                            ModificaEffettuata = false;
+
                             int minuto = TimerTempo.getInstance().RitornaMinuto(1);
                             String min = "";
                             if (minuto > 0) {
@@ -910,6 +1150,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                            ModificaEffettuata = false;
+
                             v.getParent().requestDisallowInterceptTouchEvent(true);
                         }
                         return false;
@@ -920,6 +1162,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                            ModificaEffettuata = false;
+
                             int minuto = TimerTempo.getInstance().RitornaMinuto(2);
                             String min = "";
                             if (minuto > 0) {
@@ -936,6 +1180,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                            ModificaEffettuata = false;
+
                             v.getParent().requestDisallowInterceptTouchEvent(true);
                         }
                         return false;
@@ -946,6 +1192,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                            ModificaEffettuata = false;
+
                             int minuto = TimerTempo.getInstance().RitornaMinuto(3);
                             String min = "";
                             if (minuto > 0) {
@@ -962,6 +1210,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                            ModificaEffettuata = false;
+
                             v.getParent().requestDisallowInterceptTouchEvent(true);
                         }
                         return false;
@@ -979,6 +1229,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                            ModificaEffettuata = false;
+
                             vnp.getListMarcPrimoTempo().remove(position);
                             vnp.getAdapterLvPrimoTempo().notifyDataSetChanged();
                             ScriveRisultato();
@@ -989,6 +1241,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                            ModificaEffettuata = false;
+
                             v.getParent().requestDisallowInterceptTouchEvent(true);
                         }
                         return false;
@@ -1002,6 +1256,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                            ModificaEffettuata = false;
+
                             vnp.getListMarcSecondoTempo().remove(position);
                             vnp.getAdapterLvSecondoTempo().notifyDataSetChanged();
                             ScriveRisultato();
@@ -1012,6 +1268,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                            ModificaEffettuata = false;
+
                             v.getParent().requestDisallowInterceptTouchEvent(true);
                         }
                         return false;
@@ -1025,6 +1283,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                            ModificaEffettuata = false;
+
                             vnp.getListMarcTerzoTempo().remove(position);
                             vnp.getAdapterLvTerzoTempo().notifyDataSetChanged();
                             ScriveRisultato();
@@ -1035,6 +1295,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                            ModificaEffettuata = false;
+
                             v.getParent().requestDisallowInterceptTouchEvent(true);
                         }
                         return false;
@@ -1045,11 +1307,11 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     VariabiliStaticheGlobali.getInstance().ApreDialogWS = true;
 
                     if (vnp.ConvocatiPerRicarica != null && !vnp.ConvocatiPerRicarica.isEmpty()) {
-                        String Convocati[] = vnp.ConvocatiPerRicarica.split("§");
+                        String[] Convocati = vnp.ConvocatiPerRicarica.split("§");
 
                         for (String c : Convocati) {
                             if (!c.isEmpty()) {
-                                String DatiConvocati[] = c.split(";", -1);
+                                String[] DatiConvocati = c.split(";", -1);
 
                                 String s = DatiConvocati[1] + ";" +
                                         DatiConvocati[4] + ";" +
@@ -1062,11 +1324,11 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     }
 
                     if (vnp.MarcatoriPerRicarica != null && !vnp.MarcatoriPerRicarica.isEmpty()) {
-                        String Marcatori[] = vnp.MarcatoriPerRicarica.split("§");
+                        String[] Marcatori = vnp.MarcatoriPerRicarica.split("§");
 
                         for (String m : Marcatori) {
                             if (!m.isEmpty()) {
-                                String DatiMarcatori[] = m.split(";", -1);
+                                String[] DatiMarcatori = m.split(";", -1);
 
                                 String s = DatiMarcatori[2] + ";" +
                                         DatiMarcatori[6] + ";" +
@@ -1115,6 +1377,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
                 ScriveRisultato();
             }
+
+            fillSpinnerEventiGiocatori();
         }
     }
 
@@ -1229,13 +1493,14 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
     public void ImpostaSchermata(final View view) {
         final VariabiliStaticheNuovaPartita vnp = VariabiliStaticheNuovaPartita.getInstance();
 
-        rlMaschera = view.findViewById(R.id.layMascheraModUtenti);
+        vnp.setRlMaschera((RelativeLayout) view.findViewById(R.id.layMascheraModUtenti));
+        vnp.setLlContenuto((LinearLayout) view.findViewById(R.id.layContenuto));
 
         LinearLayout layHeader=view.findViewById(R.id.layHeader);
         LinearLayout layPTHeader=view.findViewById(R.id.layHeaderPrimoTempo);
         LinearLayout laySTHeader=view.findViewById(R.id.layHeaderSecondoTempo);
         LinearLayout layTTHeader=view.findViewById(R.id.layHeaderTerzoTempo);
-        RelativeLayout layMascheraModUtenti=view.findViewById(R.id.layMascheraModUtenti);
+        // RelativeLayout layMascheraModUtenti=view.findViewById(R.id.layMascheraModUtenti);
         LinearLayout layTasti=view.findViewById(R.id.layBarraTasti);
         TextView txtMarcPtTit = view.findViewById(R.id.txtMarcPTTit);
         TextView txtMarcStTit = view.findViewById(R.id.txtMarcSTTit);
@@ -1263,6 +1528,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             }
         });
 
+        // rlMaschera.setBackgroundResource(R.drawable.trasparente);
+
         if (VariabiliStaticheMain.getInstance().getSquadra()!=null &&
                 VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
             layHeader.setBackgroundResource(R.drawable.bordo_arrotondato_verde);
@@ -1272,7 +1539,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             txtMarcPtTit.setBackgroundResource(R.drawable.bordo_arrotondato_verde);
             txtMarcStTit.setBackgroundResource(R.drawable.bordo_arrotondato_verde);
             txtMarcTtTit.setBackgroundResource(R.drawable.bordo_arrotondato_verde);
-            layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_verde_chiaro);
+            // layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_verde_chiaro);
             layTasti.setBackgroundResource(R.drawable.bordo_arrotondato_verde);
             txtPrimoTempo.setTextColor(Color.BLACK);
             txtSecondoTempo.setTextColor(Color.BLACK);
@@ -1290,7 +1557,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 txtMarcPtTit.setBackgroundResource(R.drawable.bordo_arrotondato_rosso);
                 txtMarcStTit.setBackgroundResource(R.drawable.bordo_arrotondato_rosso);
                 txtMarcTtTit.setBackgroundResource(R.drawable.bordo_arrotondato_rosso);
-                layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_rosso_chiaro);
+                // layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_rosso_chiaro);
                 layTasti.setBackgroundResource(R.drawable.bordo_arrotondato_rosso);
                 txtPrimoTempo.setTextColor(Color.WHITE);
                 txtSecondoTempo.setTextColor(Color.WHITE);
@@ -1308,6 +1575,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.setSpnArbitro((Spinner) view.findViewById(R.id.spnArbitro));
         vnp.setSpnConvocati((ListView) view.findViewById(R.id.spnConvocati));
         vnp.setSpnDaConvocare((ListView) view.findViewById(R.id.spnDaConvocare));
+        vnp.setSpnConvocatiRigori((ListView) view.findViewById(R.id.spnConvocatiRigori));
+        vnp.setSpnDaConvocareRigori((ListView) view.findViewById(R.id.spnDaConvocareRigori));
         vnp.setSpnDirigenti((ListView) view.findViewById(R.id.lstvDirigenti));
         vnp.setSpnDirigentiConvocati((ListView) view.findViewById(R.id.lstvDirigentiConvocati));
         vnp.setSpnMarcatoriPrimoTempo((ListView) view.findViewById(R.id.spnMarcatoriPrimoTempo));
@@ -1332,6 +1601,203 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         ImageView cmdAltroPartita = view.findViewById(R.id.btnAltroPartita);
         ImageView cmdWeb = view.findViewById(R.id.btnWeb);
         ImageView cmdArbitro = view.findViewById(R.id.btnArbitro);
+
+        final String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+
+        // Eventi
+        VariabiliStaticheNuovaPartita.getInstance().PulisceEvento();
+
+        vnp.setEventiPrimoTempo(new ArrayList<String>());
+        vnp.setEventiSecondoTempo(new ArrayList<String>());
+        vnp.setEventiTerzoTempo(new ArrayList<String>());
+
+        Button btnAvvenimentiPrimoTempo = view.findViewById(R.id.btnAvvenimentiPrimoTempo);
+        Button btnAvvenimentiSecondoTempo = view.findViewById(R.id.btnAvvenimentiSecondoTempo);
+        Button btnAvvenimentiTerzoTempo = view.findViewById(R.id.btnAvvenimentiTerzoTempo);
+
+        Button btnOkEventi = view.findViewById(R.id.cmdOkEventi);
+        Button btnAnnullaEventi = view.findViewById(R.id.cmdAnnullaEventi);
+        if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+            btnOkEventi.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    String descEvento=VariabiliStaticheNuovaPartita.getInstance().getDescEvento();
+                    int idEvento=VariabiliStaticheNuovaPartita.getInstance().getIdEvento();
+                    String MinutoEvento=VariabiliStaticheNuovaPartita.getInstance().getMinutoEvento();
+                    String aFavoreDi=VariabiliStaticheNuovaPartita.getInstance().getaFavoreDi();
+                    int idAFavore=VariabiliStaticheNuovaPartita.getInstance().getIdAFavore();
+
+                    if (descEvento.isEmpty() || idEvento==-1 || MinutoEvento.isEmpty() ||
+                        aFavoreDi.isEmpty() || idAFavore==-1) {
+                        DialogMessaggio.getInstance().show(VariabiliStaticheNuovaPartita.getInstance().getContext(),
+                                "Inserire tutti i dettagli dell'evento",
+                                false,
+                                VariabiliStaticheGlobali.NomeApplicazione);
+                    } else {
+                        String evento = MinutoEvento+";"+idEvento+";"+descEvento+";"+idAFavore+";"+ aFavoreDi+";";
+                        int tempo = VariabiliStaticheNuovaPartita.getInstance().getQualeTempoEvento();
+                        switch (tempo) {
+                            case 1:
+                                vnp.getEventiPrimoTempo().add(evento);
+                                break;
+                            case 2:
+                                vnp.getEventiSecondoTempo().add(evento);
+                                break;
+                            case 3:
+                                vnp.getEventiTerzoTempo().add(evento);
+                                break;
+                        }
+
+                        fillSpinnerEventiTempi();
+
+                        VariabiliStaticheNuovaPartita.getInstance().PulisceEvento();
+                        ChiudeMaschera();
+                    }
+                }
+            });
+        }
+        if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+            btnAnnullaEventi.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    ChiudeMaschera();
+                }
+            });
+        }
+
+        vnp.setLvEventiPrimoTempo((ListView) view.findViewById(R.id.lstvEventiPrimoTempo));
+        vnp.setLvEventiSecondoTempo((ListView) view.findViewById(R.id.lstvEventiSecondoTempo));
+        vnp.setLvEventiTerzoTempo((ListView) view.findViewById(R.id.lstvEventiTerzoTempo));
+
+        if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+            btnAvvenimentiPrimoTempo.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    vnp.setQualeTempoEvento(1);
+
+                    GestisceSchermate("EVENTI");
+                }
+            });
+        }
+        if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+            btnAvvenimentiSecondoTempo.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    vnp.setQualeTempoEvento(2);
+
+                    GestisceSchermate("EVENTI");
+                }
+            });
+        }
+        if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+            btnAvvenimentiTerzoTempo.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    vnp.setQualeTempoEvento(3);
+
+                    GestisceSchermate("EVENTI");
+                }
+            });
+        }
+
+        vnp.setLvEventiGiocatori((ListView) view.findViewById(R.id.lvGiocatoreEventi));
+        vnp.setLvEventiLista((ListView) view.findViewById(R.id.lvListaEventi));
+
+        vnp.setTxtEvento((TextView) view.findViewById(R.id.txtEvento));
+
+        final CheckBox chkAvversario = view.findViewById(R.id.chkAvversario);
+        chkAvversario.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (chkAvversario.isChecked()) {
+                    vnp.getLvEventiGiocatori().setVisibility(LinearLayout.GONE);
+                    VariabiliStaticheNuovaPartita.getInstance().setaFavoreDi("Avversario");
+                    VariabiliStaticheNuovaPartita.getInstance().setIdAFavore(9999);
+                    VariabiliStaticheNuovaPartita.getInstance().StampaEvento();
+                } else {
+                    vnp.getLvEventiGiocatori().setVisibility(LinearLayout.VISIBLE);
+                    VariabiliStaticheNuovaPartita.getInstance().setaFavoreDi("");
+                    VariabiliStaticheNuovaPartita.getInstance().setIdAFavore(-1);
+                    VariabiliStaticheNuovaPartita.getInstance().StampaEvento();
+                }
+            }
+        });
+        // Eventi
+
+        // Rigori
+        final TextView txtSegnatiAvversario = view.findViewById(R.id.txtRigoriSegnAvversari);
+        Button cmdMenoAvvSegnati = view.findViewById(R.id.cmdMenoRigoreSegnAvversari);
+        cmdMenoAvvSegnati.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int quanti;
+                if (!txtSegnatiAvversario.getText().toString().isEmpty()){
+                    quanti = Integer.parseInt(txtSegnatiAvversario.getText().toString());
+                } else {
+                    quanti = 0;
+                }
+                if (quanti>0) {
+                    quanti--;
+                    txtSegnatiAvversario.setText(Integer.toString(quanti));
+                    ModificaEffettuata = false;
+
+                    ScriveRisultato();
+                }
+            }
+        });
+        Button cmdPiuAvvSegnati = view.findViewById(R.id.cmdPiuRigoreSegnAvversari);
+        cmdPiuAvvSegnati.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int quanti;
+                if (!txtSegnatiAvversario.getText().toString().isEmpty()){
+                    quanti = Integer.parseInt(txtSegnatiAvversario.getText().toString());
+                } else {
+                    quanti = 0;
+                }
+                quanti++;
+                txtSegnatiAvversario.setText(Integer.toString(quanti));
+                ModificaEffettuata = false;
+
+                ScriveRisultato();
+            }
+        });
+        if (!idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+            cmdMenoAvvSegnati.setEnabled(false);
+            cmdPiuAvvSegnati.setEnabled(false);
+        }
+        txtSegnatiAvversario.setEnabled(false);
+
+        final TextView txtSbagliatiAvversario = view.findViewById(R.id.txtRigoriSbaAvversari);
+        Button cmdMenoAvvSbagliati = view.findViewById(R.id.cmdMenoRigoreSbaAvversari);
+        cmdMenoAvvSbagliati.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int quanti;
+                if (!txtSbagliatiAvversario.getText().toString().isEmpty()){
+                    quanti = Integer.parseInt(txtSbagliatiAvversario.getText().toString());
+                } else {
+                    quanti = 0;
+                }
+                if (quanti>0) {
+                    quanti--;
+                    txtSbagliatiAvversario.setText(Integer.toString(quanti));
+                    ModificaEffettuata = false;
+                }
+            }
+        });
+        Button cmdPiuAvvSbagliati = view.findViewById(R.id.cmdPiuRigoreSbaAvversari);
+        cmdPiuAvvSbagliati.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                int quanti;
+                if (!txtSbagliatiAvversario.getText().toString().isEmpty()){
+                    quanti = Integer.parseInt(txtSbagliatiAvversario.getText().toString());
+                } else {
+                    quanti = 0;
+                }
+                quanti++;
+                txtSbagliatiAvversario.setText(Integer.toString(quanti));
+                ModificaEffettuata = false;
+            }
+        });
+        if (!idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+            cmdMenoAvvSbagliati.setEnabled(false);
+            cmdPiuAvvSbagliati.setEnabled(false);
+        }
+        txtSbagliatiAvversario.setEnabled(false);
+        // Rigori
+
         Button cmdRefresh = view.findViewById(R.id.btnRefresh);
         cmdRefresh.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -1358,8 +1824,13 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.setTxtData((TextView) view.findViewById(R.id.txtdata));
         vnp.setEdtGiochetti((EditText) view.findViewById(R.id.edtGiochetti));
         vnp.setEdtNote((EditText) view.findViewById(R.id.edtNote));
+
         vnp.setTxtGoal((TextView) view.findViewById(R.id.txtGoal));
+        vnp.setTxtRigori((TextView) view.findViewById(R.id.txtRigori));
         vnp.setTxtTempi((TextView) view.findViewById(R.id.txtTempi));
+        vnp.getTxtGoal().setText("");
+        vnp.getTxtRigori().setText("");
+        vnp.getTxtTempi().setText("");
 
         vnp.setTxtCampo((TextView) view.findViewById(R.id.txtCampo));
         vnp.setTxtCampoIndirizzo((TextView) view.findViewById(R.id.txtCampoIndirizzo));
@@ -1398,8 +1869,6 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 }
             }
         });
-
-        final String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
 
         vnp.getTxtTimer1Tempo().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -1895,18 +2364,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdCategoria.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
-                    ModificaEffettuata = true;
-                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
-
-                    view.findViewById(R.id.idCategoria1).setVisibility(View.VISIBLE);
-                    view.findViewById(R.id.idData).setVisibility(View.GONE);
-                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                    GestisceSchermate("CATEGORIE");
                 }
             }
         });
@@ -1914,20 +2372,9 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdData.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
-                    ModificaEffettuata = true;
-                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
+                    GestisceSchermate("DATA");
 
-                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                    view.findViewById(R.id.idData).setVisibility(View.VISIBLE);
-                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
-
-                    new MostraPannelloData(vnp.getContext(), vnp.getTxtData(), rlMaschera, view.findViewById(R.id.idData));
+                    new MostraPannelloData(vnp.getContext(), vnp.getTxtData(), view.findViewById(R.id.idData));
                 }
             }
         });
@@ -1935,20 +2382,9 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdOra.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
-                    ModificaEffettuata = true;
-                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
+                    GestisceSchermate("ORA");
 
-                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                    view.findViewById(R.id.idData).setVisibility(View.GONE);
-                    view.findViewById(R.id.idOra).setVisibility(View.VISIBLE);
-                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
-
-                    new MostraPannelloOra(vnp.getContext(), vnp.getTxtOra(), rlMaschera, view.findViewById(R.id.idOra));
+                    new MostraPannelloOra(vnp.getContext(), vnp.getTxtOra(), view.findViewById(R.id.idOra));
                 }
             }
         });
@@ -2078,18 +2514,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdAvversario.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
-                    ModificaEffettuata = true;
-                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
-
-                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                    view.findViewById(R.id.idData).setVisibility(View.GONE);
-                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAvversario).setVisibility(View.VISIBLE);
-                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                    GestisceSchermate("AVVERSARI");
                 }
             }
         });
@@ -2097,18 +2522,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdTipologia.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
-                    ModificaEffettuata = true;
-                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
-
-                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                    view.findViewById(R.id.idData).setVisibility(View.GONE);
-                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                    view.findViewById(R.id.idTipologia).setVisibility(View.VISIBLE);
-                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                    GestisceSchermate("TIPOLOGIA");
                 }
             }
         });
@@ -2116,18 +2530,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdConvocati.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
-                    ModificaEffettuata = true;
-                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
-
-                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                    view.findViewById(R.id.idData).setVisibility(View.GONE);
-                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                    view.findViewById(R.id.idConvocati).setVisibility(View.VISIBLE);
-                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                    GestisceSchermate("CONVOCATI");
                 }
             }
         });
@@ -2135,18 +2538,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdMeteo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
-                    ModificaEffettuata = true;
-                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
-
-                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                    view.findViewById(R.id.idData).setVisibility(View.GONE);
-                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                    view.findViewById(R.id.idMeteo).setVisibility(View.VISIBLE);
-                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                    GestisceSchermate("METEO");
                 }
             }
         });
@@ -2154,18 +2546,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdAltroPartita.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
-                    ModificaEffettuata = true;
-                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
-
-                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                    view.findViewById(R.id.idData).setVisibility(View.GONE);
-                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAltroPartita).setVisibility(View.VISIBLE);
-                    view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+                    GestisceSchermate("ALTRO");
                 }
             }
         });
@@ -2173,18 +2554,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         cmdArbitro.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
-                    ModificaEffettuata = true;
-                    rlMaschera.setVisibility(RelativeLayout.VISIBLE);
-
-                    view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
-                    view.findViewById(R.id.idData).setVisibility(View.GONE);
-                    view.findViewById(R.id.idOra).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-                    view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-                    view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
-                    view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
-                    view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
-                    view.findViewById(R.id.idArbitro).setVisibility(View.VISIBLE);
+                    GestisceSchermate("ARBITRO");
                 }
             }
         });
@@ -2220,12 +2590,14 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             vnp.getTxtFuori().setTextColor(Color.BLACK);
             vnp.getTxtGoal().setTextColor(Color.BLACK);
             vnp.getTxtTempi().setTextColor(Color.BLACK);
+            vnp.getTxtRigori().setTextColor(Color.BLACK);
         } else {
             if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraPonteDiNona)) {
                 vnp.getTxtCasa().setTextColor(Color.WHITE);
                 vnp.getTxtFuori().setTextColor(Color.WHITE);
                 vnp.getTxtGoal().setTextColor(Color.WHITE);
                 vnp.getTxtTempi().setTextColor(Color.WHITE);
+                vnp.getTxtRigori().setTextColor(Color.WHITE);
             }
         }
 
@@ -2260,21 +2632,25 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         LinearLayout layTastoPagina2 = view.findViewById(R.id.Pagina2);
         LinearLayout layTastoPagina3 = view.findViewById(R.id.Pagina3);
         LinearLayout layTastoPagina4 = view.findViewById(R.id.Pagina4);
+        LinearLayout layTastoPagina5 = view.findViewById(R.id.Pagina5);
 
         final LinearLayout layPagina1 = view.findViewById(R.id.layPagina1);
         final LinearLayout layPagina2 = view.findViewById(R.id.layPagina2);
         final LinearLayout layPagina3 = view.findViewById(R.id.layPagina3);
         final LinearLayout layPagina4 = view.findViewById(R.id.layPagina4);
+        final LinearLayout layPagina5 = view.findViewById(R.id.layPagina5);
 
         TextView txtPagina1 = view.findViewById(R.id.txtPagina1);
         TextView txtPagina2 = view.findViewById(R.id.txtPagina2);
         TextView txtPagina3 = view.findViewById(R.id.txtPagina3);
         TextView txtPagina4 = view.findViewById(R.id.txtPagina4);
+        TextView txtPagina5 = view.findViewById(R.id.txtPagina5);
 
         ImageView imgPagina1 = view.findViewById(R.id.imgPagina1);
         ImageView imgPagina2 = view.findViewById(R.id.imgPagina2);
         ImageView imgPagina3 = view.findViewById(R.id.imgPagina3);
         ImageView imgPagina4 = view.findViewById(R.id.imgPagina4);
+        ImageView imgPagina5 = view.findViewById(R.id.imgPagina5);
 
         if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
             layTastoPagina1.setBackgroundResource(R.drawable.bordo_arrotondato_verde);
@@ -2297,16 +2673,19 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 layTastoPagina2.setBackgroundResource(R.drawable.bordo_arrotondato_rosso);
                 layTastoPagina3.setBackgroundResource(R.drawable.bordo_arrotondato_rosso);
                 layTastoPagina4.setBackgroundResource(R.drawable.bordo_arrotondato_rosso);
+                layTastoPagina5.setBackgroundResource(R.drawable.bordo_arrotondato_rosso);
 
                 txtPagina1.setTextColor(Color.WHITE);
                 txtPagina2.setTextColor(Color.WHITE);
                 txtPagina3.setTextColor(Color.WHITE);
                 txtPagina4.setTextColor(Color.WHITE);
+                txtPagina5.setTextColor(Color.WHITE);
 
                 imgPagina1.setColorFilter(Color.argb(255, 90,10,10));
                 imgPagina2.setColorFilter(Color.argb(255, 90,10,10));
                 imgPagina3.setColorFilter(Color.argb(255, 90,10,10));
                 imgPagina4.setColorFilter(Color.argb(255, 90,10,10));
+                imgPagina5.setColorFilter(Color.argb(255, 90,10,10));
             }
         }
 
@@ -2314,6 +2693,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         layPagina2.setVisibility(LinearLayout.GONE);
         layPagina3.setVisibility(LinearLayout.GONE);
         layPagina4.setVisibility(LinearLayout.GONE);
+        layPagina5.setVisibility(LinearLayout.GONE);
 
         layTastoPagina1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -2323,6 +2703,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     layPagina2.setVisibility(LinearLayout.GONE);
                     layPagina3.setVisibility(LinearLayout.GONE);
                     layPagina4.setVisibility(LinearLayout.GONE);
+                    layPagina5.setVisibility(LinearLayout.GONE);
                 }
             }
         });
@@ -2335,6 +2716,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     layPagina2.setVisibility(LinearLayout.VISIBLE);
                     layPagina3.setVisibility(LinearLayout.GONE);
                     layPagina4.setVisibility(LinearLayout.GONE);
+                    layPagina5.setVisibility(LinearLayout.GONE);
                 }
             }
         });
@@ -2347,6 +2729,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     layPagina2.setVisibility(LinearLayout.GONE);
                     layPagina3.setVisibility(LinearLayout.VISIBLE);
                     layPagina4.setVisibility(LinearLayout.GONE);
+                    layPagina5.setVisibility(LinearLayout.GONE);
                 }
             }
         });
@@ -2359,11 +2742,25 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     layPagina2.setVisibility(LinearLayout.GONE);
                     layPagina3.setVisibility(LinearLayout.GONE);
                     layPagina4.setVisibility(LinearLayout.VISIBLE);
+                    layPagina5.setVisibility(LinearLayout.GONE);
                 }
             }
         });
 
-        rlMaschera.setVisibility(RelativeLayout.GONE);
+        layTastoPagina5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    ModificaEffettuata = true;
+                    layPagina1.setVisibility(LinearLayout.GONE);
+                    layPagina2.setVisibility(LinearLayout.GONE);
+                    layPagina3.setVisibility(LinearLayout.GONE);
+                    layPagina4.setVisibility(LinearLayout.GONE);
+                    layPagina5.setVisibility(LinearLayout.VISIBLE);
+                }
+            }
+        });
+
+        vnp.getRlMaschera().setVisibility(RelativeLayout.GONE);
 
         if (!idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
             cmdCategoria.setVisibility(LinearLayout.INVISIBLE);
@@ -2409,9 +2806,11 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             vnp.getSpnMarcatoriSecondoTempo().setEnabled(false);
             vnp.getSpnMarcatoriTerzoTempo().setEnabled(false);
             vnp.getSpnConvocati().setEnabled(false);
+            vnp.getSpnConvocatiRigori().setEnabled(false);
             vnp.getSpnAvversario().setEnabled(false);
             vnp.getSpnCategorie().setEnabled(false);
             vnp.getSpnDaConvocare().setEnabled(false);
+            vnp.getSpnDaConvocareRigori().setEnabled(false);
             vnp.getSpnTipologie().setEnabled(false);
 
             vnp.getSpnMarcatoriPrimoTempo().setEnabled(false);
@@ -2469,9 +2868,11 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             vnp.getSpnMarcatoriSecondoTempo().setEnabled(true);
             vnp.getSpnMarcatoriTerzoTempo().setEnabled(true);
             vnp.getSpnConvocati().setEnabled(true);
+            vnp.getSpnConvocatiRigori().setEnabled(true);
             vnp.getSpnAvversario().setEnabled(true);
             vnp.getSpnCategorie().setEnabled(true);
             vnp.getSpnDaConvocare().setEnabled(true);
+            vnp.getSpnDaConvocareRigori().setEnabled(true);
             vnp.getSpnTipologie().setEnabled(true);
 
             vnp.getSpnMarcatoriPrimoTempo().setEnabled(true);
@@ -2601,6 +3002,61 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             }
         }
 
+        // Sezione rigori
+        vnp.getTxtRigori().setVisibility(LinearLayout.GONE);
+        boolean RigoriTirati = false;
+        int rigoriSegnati = 0;
+        if (vnp.getGiocatoreConvocatoRigori()!=null) {
+            for (String r : vnp.getGiocatoreConvocatoRigori()) {
+                if (!r.isEmpty()) {
+                    String[] c = r.split(";", -1);
+                    if (c[6].equals("1")) {
+                        rigoriSegnati++;
+                        RigoriTirati = true;
+                    } else {
+                        if (c[6].equals("0")) {
+                            RigoriTirati = true;
+                        }
+                    }
+                }
+            }
+        }
+        int rigoriSubiti = 0;
+        // if (RigoriTirati) {
+            TextView txtRigAvv = vnp.getViewActivity().findViewById(R.id.txtRigoriSegnAvversari);
+            String r = txtRigAvv.getText().toString().trim();
+            if (!r.isEmpty()) {
+                rigoriSubiti = Integer.parseInt(r);
+                if (rigoriSubiti>0) {
+                    RigoriTirati=true;
+                }
+            }
+
+        // }
+
+        if (RigoriTirati) {
+            if (vnp.getChkTempi().isChecked()) {
+                vnp.getTxtRigori().setVisibility(LinearLayout.VISIBLE);
+                vnp.getTxtRigori().setText("Ris. finale: " + Integer.toString(tempi1) + "-" + Integer.toString(tempi2));
+                if (rigoriSegnati > rigoriSubiti) {
+                    tempi1++;
+                } else {
+                    if (rigoriSegnati < rigoriSubiti) {
+                        tempi2++;
+                    } else {
+                        tempi1++;
+                        tempi2++;
+                    }
+                }
+            } else {
+                vnp.getTxtRigori().setText("Ris. finale: " + Integer.toString(TotGoal1) + "-" + Integer.toString(TotGoal2));
+                vnp.getTxtRigori().setVisibility(LinearLayout.VISIBLE);
+                TotGoal1 += rigoriSegnati;
+                TotGoal2 += rigoriSubiti;
+            }
+        }
+        // Sezione rigori
+
         vnp.getTxtGoal().setText("Goal: "+Integer.toString(TotGoal1)+"-"+Integer.toString(TotGoal2));
         if (vnp.getChkTempi().isChecked()) {
             vnp.getTxtTempi().setText("Tempi: "+Integer.toString(tempi1)+"-"+Integer.toString(tempi2));
@@ -2608,16 +3064,6 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         } else {
             vnp.getTxtTempi().setVisibility(LinearLayout.GONE);
         }
-    }
-
-    private void ChiudeMaschera(View view) {
-        rlMaschera.setVisibility(RelativeLayout.GONE);
-
-        view.findViewById(R.id.idData).setVisibility(View.GONE);
-        view.findViewById(R.id.idOra).setVisibility(View.GONE);
-        view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
-        view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
-        view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
     }
 
     private void setOkAnnulla(View view) {
@@ -2638,37 +3084,27 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
         cmdAnnullaArbitri.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                View view= vnp.getViewActivity();
-
-                ChiudeMaschera(view);
+                ChiudeMaschera();
             }
         });
         cmdAnnullaCategoria.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                View view= vnp.getViewActivity();
-
-                ChiudeMaschera(view);
+                ChiudeMaschera();
             }
         });
         cmdAnnullaAvversario.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                View view= vnp.getViewActivity();
-
-                ChiudeMaschera(view);
+                ChiudeMaschera();
             }
         });
         cmdAnnullaTipologia.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                View view= vnp.getViewActivity();
-
-                ChiudeMaschera(view);
+                ChiudeMaschera();
             }
         });
         cmdAnnullaConvocati.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                View view= vnp.getViewActivity();
-
-                ChiudeMaschera(view);
+                ChiudeMaschera();
             }
         });
 
@@ -2679,7 +3115,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     ModificaEffettuata = true;
                     View view = vnp.getViewActivity();
 
-                    ChiudeMaschera(view);
+                    ChiudeMaschera();
 
                     DBRemotoGiocatori dbr = new DBRemotoGiocatori();
                     dbr.RitornaGiocatoriCategoria(vnp.getContext(), Integer.toString(vnp.idCategoriaScelta), TAG);
@@ -2703,7 +3139,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     ModificaEffettuata = true;
                     View view = vnp.getViewActivity();
 
-                    ChiudeMaschera(view);
+                    ChiudeMaschera();
 
                     TextView tFuori = view.findViewById(R.id.txtFuori);
                     tFuori.setText(vnp.getTxtAvversario().getText());
@@ -2723,7 +3159,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     ModificaEffettuata = true;
                     View view = vnp.getViewActivity();
 
-                    ChiudeMaschera(view);
+                    ChiudeMaschera();
 
                 /* TextView tFuori = view.findViewById(R.id.txtFuori);
                 tFuori.setText(vnp.getTxtAvversario().getText());
@@ -2739,9 +3175,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
-                    View view = vnp.getViewActivity();
 
-                    ChiudeMaschera(view);
+                    ChiudeMaschera();
                 }
             }
         });
@@ -2750,9 +3185,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
-                    View view = vnp.getViewActivity();
 
-                    ChiudeMaschera(view);
+                    ChiudeMaschera();
                 }
             }
         });
@@ -2761,9 +3195,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
-                    View view = vnp.getViewActivity();
 
-                    ChiudeMaschera(view);
+                    ChiudeMaschera();
                 }
             }
         });
@@ -2772,9 +3205,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
-                    View view = vnp.getViewActivity();
 
-                    ChiudeMaschera(view);
+                    ChiudeMaschera();
                 }
             }
         });
@@ -2784,7 +3216,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         ModificaEffettuata = false;
         VariabiliStaticheNuovaPartita vnp = VariabiliStaticheNuovaPartita.getInstance();
 
-        Boolean Ok = true;
+        boolean Ok = true;
         Activity act = VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale();
         Context context = VariabiliStaticheGlobali.getInstance().getContext();
         String Tipologia = vnp.getTxtTipologia().getText().toString().trim();
@@ -2940,12 +3372,143 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 RisultatoATempi = "N";
             }
 
-            DBRemotoPartite dbr = new DBRemotoPartite();
-            dbr.SalvaPartita(context, idPartita, idCategoria, idAvversario, idAllenatore, finalDate, Casa,
-                    idTipologia, idCampo, Risultato, Note, sMarcatori, Convocati, RisGiochetti, GoalAvversari,
-                    Campo, Tempo1Tempo, Tempo2Tempo, Tempo3Tempo, Coordinate, Tempo,
-                    Integer.toString(idUnioneCalendario), Tga1, Tga2, Tga3, sDirigentiConvocati,
-                    Integer.toString(vnp.idArbitroScelto), RisultatoATempi, TAG);
+            // Rigori
+            String RigoriPropri = "";
+            String RigoriAvv = "";
+            if (vnp.getGiocatoreConvocatoRigori()!=null) {
+                for (String s : vnp.getGiocatoreConvocatoRigori()) {
+                    RigoriPropri += s + "§";
+                }
+                if (!RigoriPropri.isEmpty()) {
+                    TextView tSegnAvv = vnp.getViewActivity().findViewById(R.id.txtRigoriSegnAvversari);
+                    TextView tSbaAvv = vnp.getViewActivity().findViewById(R.id.txtRigoriSbaAvversari);
+                    String segn = tSegnAvv.getText().toString().trim();
+                    String sba = tSbaAvv.getText().toString().trim();
+                    if (segn.isEmpty()) {
+                        segn = "0";
+                    }
+                    if (sba.isEmpty()) {
+                        sba = "0";
+                    }
+                    RigoriAvv += segn + "§" + sba + "§";
+                }
+            }
+            // Rigori
+
+            if (vnp.idArbitroScelto==0) {
+                DialogMessaggio.getInstance().show(vnp.getContext(),
+                        "Selezionare l'arbitro dell'incontro",
+                        true,
+                        VariabiliStaticheGlobali.NomeApplicazione);
+            } else {
+                DBRemotoPartite dbr = new DBRemotoPartite();
+                dbr.SalvaPartita(context, idPartita, idCategoria, idAvversario, idAllenatore, finalDate, Casa,
+                        idTipologia, idCampo, Risultato, Note, sMarcatori, Convocati, RisGiochetti, GoalAvversari,
+                        Campo, Tempo1Tempo, Tempo2Tempo, Tempo3Tempo, Coordinate, Tempo,
+                        Integer.toString(idUnioneCalendario), Tga1, Tga2, Tga3, sDirigentiConvocati,
+                        Integer.toString(vnp.idArbitroScelto), RisultatoATempi, RigoriPropri, RigoriAvv, TAG);
+            }
+        }
+    }
+
+    private void ChiudeMaschera() {
+        VariabiliStaticheNuovaPartita.getInstance().getRlMaschera().setVisibility(LinearLayout.GONE);
+        VariabiliStaticheNuovaPartita.getInstance().getLlContenuto().setEnabled(true);
+    }
+
+    private static void GestisceSchermate(String quale) {
+        View view = VariabiliStaticheNuovaPartita.getInstance().getViewActivity();
+
+        if (!quale.isEmpty()) {
+            ModificaEffettuata = true;
+        }
+        VariabiliStaticheNuovaPartita.getInstance().getRlMaschera().setVisibility(RelativeLayout.VISIBLE);
+        VariabiliStaticheNuovaPartita.getInstance().getLlContenuto().setEnabled(false);
+
+        view.findViewById(R.id.idCategoria1).setVisibility(View.GONE);
+        view.findViewById(R.id.idData).setVisibility(View.GONE);
+        view.findViewById(R.id.idOra).setVisibility(View.GONE);
+        view.findViewById(R.id.idAvversario).setVisibility(View.GONE);
+        view.findViewById(R.id.idTipologia).setVisibility(View.GONE);
+        view.findViewById(R.id.idConvocati).setVisibility(View.GONE);
+        view.findViewById(R.id.idMeteo).setVisibility(View.GONE);
+        view.findViewById(R.id.idAltroPartita).setVisibility(View.GONE);
+        view.findViewById(R.id.idArbitro).setVisibility(View.GONE);
+        view.findViewById(R.id.idRigori).setVisibility(View.GONE);
+        view.findViewById(R.id.idEventi).setVisibility(View.GONE);
+
+        switch (quale) {
+            case "CATEGORIE":
+                view.findViewById(R.id.idCategoria1).setVisibility(View.VISIBLE);
+                break;
+            case "DATA":
+                view.findViewById(R.id.idData).setVisibility(View.VISIBLE);
+                break;
+            case "ORA":
+                view.findViewById(R.id.idOra).setVisibility(View.VISIBLE);
+                break;
+            case "AVVERSARI":
+                view.findViewById(R.id.idAvversario).setVisibility(View.VISIBLE);
+                break;
+            case "TIPOLOGIA":
+                view.findViewById(R.id.idTipologia).setVisibility(View.VISIBLE);
+                break;
+            case "CONVOCATI":
+                view.findViewById(R.id.idConvocati).setVisibility(View.VISIBLE);
+                break;
+            case "METEO":
+                view.findViewById(R.id.idMeteo).setVisibility(View.VISIBLE);
+                break;
+            case "ALTRO":
+                view.findViewById(R.id.idAltroPartita).setVisibility(View.VISIBLE);
+                break;
+            case "ARBITRO":
+                view.findViewById(R.id.idArbitro).setVisibility(View.VISIBLE);
+                break;
+            case "RIGORI":
+                view.findViewById(R.id.idRigori).setVisibility(View.VISIBLE);
+                break;
+            case "EVENTI":
+                view.findViewById(R.id.idEventi).setVisibility(View.VISIBLE);
+                break;
+        }
+    }
+
+    public static void fillSpinnerEventiGiocatori() {
+        final VariabiliStaticheNuovaPartita vnp = VariabiliStaticheNuovaPartita.getInstance();
+
+        vnp.setAdapterEventiGiocatori(new AdapterGiocatoreEventi(VariabiliStaticheGlobali.getInstance().getContext(),
+                android.R.layout.simple_list_item_1, vnp.getEventiGiocatori()));
+        vnp.getLvEventiGiocatori().setAdapter(vnp.getAdapterEventiGiocatori());
+    }
+
+    public static void fillSpinnerEventiLista() {
+        final VariabiliStaticheNuovaPartita vnp = VariabiliStaticheNuovaPartita.getInstance();
+
+        vnp.setAdapterListaEventi(new AdapterEventi(VariabiliStaticheGlobali.getInstance().getContext(),
+                android.R.layout.simple_list_item_1, vnp.getEventiLista()));
+        vnp.getLvEventiLista().setAdapter(vnp.getAdapterListaEventi());
+    }
+
+    public static void fillSpinnerEventiTempi() {
+        final VariabiliStaticheNuovaPartita vnp = VariabiliStaticheNuovaPartita.getInstance();
+
+        if (VariabiliStaticheNuovaPartita.getInstance().getQualeTempoEvento()==1) {
+            vnp.setAdapterEventiPrimoTempo(new AdapterEventiPartita(VariabiliStaticheGlobali.getInstance().getContext(),
+                    android.R.layout.simple_list_item_1, vnp.getEventiPrimoTempo()));
+            vnp.getLvEventiPrimoTempo().setAdapter(vnp.getAdapterEventiPrimoTempo());
+        }
+
+        if (VariabiliStaticheNuovaPartita.getInstance().getQualeTempoEvento()==2) {
+            vnp.setAdapterEventiSecondoTempo(new AdapterEventiPartita(VariabiliStaticheGlobali.getInstance().getContext(),
+                    android.R.layout.simple_list_item_1, vnp.getEventiSecondoTempo()));
+            vnp.getLvEventiSecondoTempo().setAdapter(vnp.getAdapterEventiSecondoTempo());
+        }
+
+        if (VariabiliStaticheNuovaPartita.getInstance().getQualeTempoEvento()==3) {
+            vnp.setAdapterEventiTerzoTempo(new AdapterEventiPartita(VariabiliStaticheGlobali.getInstance().getContext(),
+                    android.R.layout.simple_list_item_1, vnp.getEventiTerzoTempo()));
+            vnp.getLvEventiTerzoTempo().setAdapter(vnp.getAdapterEventiTerzoTempo());
         }
     }
 }

@@ -312,7 +312,7 @@ public class Campionato extends android.support.v4.app.Fragment {
                 public void onClick(View v) {
                     view.findViewById(R.id.idData).setVisibility(View.VISIBLE);
 
-                    new MostraPannelloData(context, vv.getTxtData(), null, view.findViewById(R.id.idData));
+                    new MostraPannelloData(context, vv.getTxtData(), view.findViewById(R.id.idData));
                 }
             });
 
@@ -320,7 +320,7 @@ public class Campionato extends android.support.v4.app.Fragment {
                 public void onClick(View v) {
                     view.findViewById(R.id.idOra).setVisibility(View.VISIBLE);
 
-                    new MostraPannelloOra(context, vv.getTxtOra(), null, view.findViewById(R.id.idOra));
+                    new MostraPannelloOra(context, vv.getTxtOra(), view.findViewById(R.id.idOra));
                 }
             });
 

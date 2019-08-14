@@ -12,6 +12,7 @@ import looigi.gestionecampionato.dati.VariabiliStaticheArbitri;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
 import looigi.gestionecampionato.dati.VariabiliStaticheNuovaPartita;
 import looigi.gestionecampionato.db_remoto.DBRemotoArbitri;
+import looigi.gestionecampionato.db_remoto.DBRemotoGenerale;
 import looigi.gestionecampionato.dialog.DialogMessaggio;
 import looigi.gestionecampionato.maschere.Arbitri;
 import looigi.gestionecampionato.maschere.NuovaPartita;
@@ -59,9 +60,9 @@ public class wsArbitri {
             List<String> descArbitro = new ArrayList<>();
             List<Integer> idArbitro = new ArrayList<>();
 
-            String cc[]=Appoggio.split("§");
+            String[] cc=Appoggio.split("§");
             for (String ccc : cc) {
-                String c[]=ccc.split(";",-1);
+                String[] c=ccc.split(";",-1);
                 idArbitro.add(Integer.parseInt(c[0]));
 
                 if (Maschera.equals(NomiMaschere.getInstance().getNuovaPartita())) {
@@ -79,15 +80,15 @@ public class wsArbitri {
 
                 NuovaPartita.fillSpinnerArbitri();
 
-                /* hSelezionaRiga = new Handler();
+                hSelezionaRiga = new Handler();
                 hSelezionaRiga.postDelayed(runRiga=new Runnable() {
                     @Override
                     public void run() {
-                        DBRemotoArbitri dbr = new DBRemotoArbitri();
-                        dbr.RitornaArbitri(VariabiliStaticheArbitri.getInstance().getContext(),
-                                NomiMaschere.getInstance().getArbitri());
+                        DBRemotoGenerale dbr = new DBRemotoGenerale();
+                        dbr.RitornaEventi(VariabiliStaticheArbitri.getInstance().getContext(),
+                                "");
                     }
-                }, 50); */
+                }, 50);
             } else {
                 if (Maschera.equals(NomiMaschere.getInstance().getArbitri())) {
                     VariabiliStaticheArbitri.getInstance().setArbitri(descArbitro);

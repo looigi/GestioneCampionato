@@ -407,6 +407,75 @@ public class Statistiche extends android.support.v4.app.Fragment {
             }
         }
 
+        if (QualeStatistica==5){
+            // Gestione marcatori con rigori
+            List<String> statList2=new ArrayList<>();
+
+            int numeroPrimo = 0;
+            int numeroSecondo = 0;
+            boolean trovato = false;
+
+            for (String primo : statList) {
+                trovato=false;
+                if (!primo.isEmpty()) {
+                    String[] p = primo.split(";", -1);
+                    for (String secondo : statList) {
+                        if (!secondo.isEmpty()) {
+                            String[] s = secondo.split(";", -1);
+                            if (numeroPrimo!=numeroSecondo) {
+                                if (p[0].equals(s[0])) {
+                                    if (s[5].equals("RIGORE")) {
+                                        p[3] += "§" + s[3];
+                                        statList2.add(p[0]+";"+p[1]+";"+p[2]+";"+p[3]+";"+p[4]+";");
+                                        trovato=true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        numeroSecondo++;
+                    }
+                    if (!trovato) {
+                        statList2.add(p[0]+";"+p[1]+";"+p[2]+";"+p[3]+";"+p[4]+";");
+                    }
+                }
+                numeroPrimo++;
+            }
+            numeroPrimo = 0;
+            for (String s1 : statList2) {
+                String[] ss1 = s1.split(";", -1);
+                numeroSecondo = 0;
+                for (String s2 : statList2) {
+                    if (numeroPrimo!=numeroSecondo) {
+                        String[] ss2 = s2.split(";", -1);
+                        int g1;
+                        int g2;
+                        if (ss1[3].contains("§")) {
+                            String[] sss1 = ss1[3].split("§", -1);
+                            g1 = Integer.parseInt(sss1[0]) + Integer.parseInt(sss1[1]);
+                        } else {
+                            g1 = Integer.parseInt(ss1[3]);
+                        }
+                        if (ss2[3].contains("§")) {
+                            String[] sss2 = ss2[3].split("§", -1);
+                            g2 = Integer.parseInt(sss2[0]) + Integer.parseInt(sss2[1]);
+                        } else {
+                            g2 = Integer.parseInt(ss2[3]);
+                        }
+                        if (g1 > g2) {
+                            String app = statList2.get(numeroPrimo);
+                            statList2.set(numeroPrimo, statList2.get(numeroSecondo));
+                            statList2.set(numeroSecondo, app);
+                        }
+                    }
+                    numeroSecondo++;
+                }
+                numeroPrimo++;
+            }
+            statList = statList2;
+            // Gestione marcatori con rigori
+        }
+
         switch (QualeStatistica) {
             case 1:
                 StatisticheAvversariPerAnno=Appoggio;

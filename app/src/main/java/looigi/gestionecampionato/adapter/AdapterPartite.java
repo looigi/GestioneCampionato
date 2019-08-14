@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.anychart.scales.Linear;
+
 import java.util.List;
 
 import looigi.gestionecampionato.R;
@@ -62,8 +64,37 @@ public class AdapterPartite extends ArrayAdapter
 		String idArbitro = Campi[15];
 		final String Coords = Campi[14];
 		String RisultatoATempi = Campi[17];
+		String RigoriPropri = Campi[18];
+		String RigoriAvv = Campi[19];
 
-		String puntiATempi[]={"0","0"};
+		int RigoriSegnati = 0;
+		int RigoriSegnatiAvv = 0;
+		int RigoriSbagliatiAvv = 0;
+		boolean CiSonoRigori = false;
+
+		if (!RigoriPropri.isEmpty()) {
+			String[] c = RigoriPropri.split("%",-1);
+			for (String cc : c) {
+				String[] ccc = cc.split("!", -1);
+				if (!cc.isEmpty()) {
+					String termine = ccc[6];
+					if (termine.equals("1")) {
+						RigoriSegnati++;
+						CiSonoRigori = true;
+					}
+				}
+			}
+		}
+		if (!RigoriAvv.isEmpty()) {
+			String[] r = RigoriAvv.split("!", -1);
+			RigoriSegnatiAvv = Integer.parseInt(r[0]);
+			RigoriSbagliatiAvv = Integer.parseInt(r[1]);
+			if (RigoriSegnatiAvv>0 || RigoriSbagliatiAvv>0) {
+				CiSonoRigori = true;
+			}
+		}
+
+		String[] puntiATempi={"0","0"};
 
 		if (Risultato.contains("-")) {
 			puntiATempi = Risultato.split("-");
@@ -74,6 +105,7 @@ public class AdapterPartite extends ArrayAdapter
         TextView txtRisultatoTempi = convertView.findViewById(R.id.risultatoTempi);
 		TextView txtRisultatoGoal = convertView.findViewById(R.id.risultatoGoal);
 		TextView txtTipologia = convertView.findViewById(R.id.txtTipologia);
+		LinearLayout layRigori = convertView.findViewById(R.id.layRigori);
 		Utility.getInstance().SettaColoreSfondoPerNomeSquadra(txtTipologia);
 
 		// TextView txtCampo = convertView.findViewById(R.id.campo);
@@ -104,8 +136,8 @@ public class AdapterPartite extends ArrayAdapter
 		}
 		txtTipologia.setText(Tipologia);
 
-		Boolean CiSonoGoals=false;
-		String goals[] = {"0", "0"};
+		boolean CiSonoGoals=false;
+		String[] goals = {"0", "0"};
 
 		try {
 			String RisGoal = Campi[12];
@@ -170,57 +202,120 @@ public class AdapterPartite extends ArrayAdapter
 		txtSqCasa.setText(Categoria);
 		txtSqFuori.setText(Avversario);
 
-		if (InCasa.equals("S")) {
-			txtRisultatoTempi.setText(puntiATempi[0]+'-'+puntiATempi[1]);
-			if (Integer.parseInt(puntiATempi[0])>Integer.parseInt(puntiATempi[1])) {
-				txtRisultatoTempi.setTextColor(coloreVerde);
+		String[] puntiATempiOriginari = puntiATempi.clone();
+		String[] goalsOriginari = goals.clone();
+
+		layRigori.setVisibility(LinearLayout.GONE);
+		if (CiSonoRigori && CiSonoGoals) {
+			int g1 = Integer.parseInt(goals[0]);
+			int g2 = Integer.parseInt(goals[1]);
+
+			g1+=RigoriSegnati;
+			g2+=RigoriSegnatiAvv;
+
+			if (InCasa.equals("S")) {
+				goals[0] = Integer.toString(g1);
+				goals[1] = Integer.toString(g2);
 			} else {
-				if (Integer.parseInt(puntiATempi[0])<Integer.parseInt(puntiATempi[1])) {
-					txtRisultatoTempi.setTextColor(coloreRosso);
-				} else {
-					txtRisultatoTempi.setTextColor(coloreNero);
+				goals[0] = Integer.toString(g2);
+				goals[1] = Integer.toString(g1);
+			}
+
+			int pt1 = Integer.parseInt(puntiATempi[0]);
+			int pt2 = Integer.parseInt(puntiATempi[1]);
+
+			if (RigoriSegnati>RigoriSegnatiAvv) {
+				pt1++;
+			} else {
+				if (RigoriSegnati<RigoriSegnatiAvv) {
+					pt2++;
 				}
 			}
 
-			if (CiSonoGoals) {
-				txtRisultatoGoal.setText(goals[0]+"-"+goals[1]);
-				if (Integer.parseInt(goals[0])>Integer.parseInt(goals[1])) {
-					txtRisultatoGoal.setTextColor(coloreVerde);
+			if (InCasa.equals("S")) {
+				puntiATempi[0] = Integer.toString(pt1);
+				puntiATempi[1] = Integer.toString(pt2);
+			} else {
+				puntiATempi[0] = Integer.toString(pt2);
+				puntiATempi[1] = Integer.toString(pt1);
+			}
+
+			layRigori.setVisibility(LinearLayout.VISIBLE);
+			TextView tR = convertView.findViewById(R.id.txtRigori);
+			if (InCasa.equals("S")) {
+				if (RisultatoATempi.equals("N")) {
+					txtGoals.setText("Rigori");
+					tR.setText("Risultato dtr " + goalsOriginari[0] + "-" + goalsOriginari[1]);
 				} else {
-					if (Integer.parseInt(goals[0])<Integer.parseInt(goals[1])) {
-						txtRisultatoGoal.setTextColor(coloreRosso);
-					} else {
-						txtRisultatoGoal.setTextColor(coloreNero);
-					}
+					txtTempi.setText("Rigori");
+					tR.setText("Risultato dtr " + puntiATempiOriginari[0] + "-" + puntiATempiOriginari[1]);
 				}
 			} else {
-				txtRisultatoGoal.setText("-");
+				if (RisultatoATempi.equals("N")) {
+					txtGoals.setText("Rigori");
+					tR.setText("Risultato dtr " + goalsOriginari[1] + "-" + goalsOriginari[0]);
+				} else {
+					txtTempi.setText("Rigori");
+					tR.setText("Risultato dtr " + puntiATempiOriginari[1] + "-" + puntiATempiOriginari[0]);
+				}
 			}
-		} else {
-			txtRisultatoTempi.setText(puntiATempi[1]+'-'+puntiATempi[0]);
-			if (Integer.parseInt(puntiATempi[1])>Integer.parseInt(puntiATempi[0])) {
-				txtRisultatoTempi.setTextColor(coloreRosso);
-			} else {
-				if (Integer.parseInt(puntiATempi[1])<Integer.parseInt(puntiATempi[0])) {
+		}
+
+		if (InCasa.equals("S")) {
+			if (RisultatoATempi.equals("S")) {
+				txtRisultatoTempi.setText(puntiATempi[0] + '-' + puntiATempi[1]);
+				if (Integer.parseInt(puntiATempi[0]) > Integer.parseInt(puntiATempi[1])) {
 					txtRisultatoTempi.setTextColor(coloreVerde);
 				} else {
-					txtRisultatoTempi.setTextColor(coloreNero);
-				}
-			}
-
-			if (CiSonoGoals) {
-				txtRisultatoGoal.setText(goals[0]+"-"+goals[1]);
-				if (Integer.parseInt(goals[0])>Integer.parseInt(goals[1])) {
-					txtRisultatoGoal.setTextColor(coloreRosso);
-				} else {
-					if (Integer.parseInt(goals[0])<Integer.parseInt(goals[1])) {
-						txtRisultatoGoal.setTextColor(coloreVerde);
+					if (Integer.parseInt(puntiATempi[0]) < Integer.parseInt(puntiATempi[1])) {
+						txtRisultatoTempi.setTextColor(coloreRosso);
 					} else {
-						txtRisultatoGoal.setTextColor(coloreNero);
+						txtRisultatoTempi.setTextColor(coloreNero);
 					}
 				}
 			} else {
-				txtRisultatoGoal.setText("-");
+				if (CiSonoGoals) {
+					txtRisultatoGoal.setText(goals[0] + "-" + goals[1]);
+					if (Integer.parseInt(goals[0]) > Integer.parseInt(goals[1])) {
+						txtRisultatoGoal.setTextColor(coloreVerde);
+					} else {
+						if (Integer.parseInt(goals[0]) < Integer.parseInt(goals[1])) {
+							txtRisultatoGoal.setTextColor(coloreRosso);
+						} else {
+							txtRisultatoGoal.setTextColor(coloreNero);
+						}
+					}
+				} else {
+					txtRisultatoGoal.setText("-");
+				}
+			}
+		} else {
+			if (RisultatoATempi.equals("S")) {
+				txtRisultatoTempi.setText(puntiATempi[1] + '-' + puntiATempi[0]);
+				if (Integer.parseInt(puntiATempi[1]) > Integer.parseInt(puntiATempi[0])) {
+					txtRisultatoTempi.setTextColor(coloreRosso);
+				} else {
+					if (Integer.parseInt(puntiATempi[1]) < Integer.parseInt(puntiATempi[0])) {
+						txtRisultatoTempi.setTextColor(coloreVerde);
+					} else {
+						txtRisultatoTempi.setTextColor(coloreNero);
+					}
+				}
+			} else {
+				if (CiSonoGoals) {
+					txtRisultatoGoal.setText(goals[0] + "-" + goals[1]);
+					if (Integer.parseInt(goals[0]) > Integer.parseInt(goals[1])) {
+						txtRisultatoGoal.setTextColor(coloreRosso);
+					} else {
+						if (Integer.parseInt(goals[0]) < Integer.parseInt(goals[1])) {
+							txtRisultatoGoal.setTextColor(coloreVerde);
+						} else {
+							txtRisultatoGoal.setTextColor(coloreNero);
+						}
+					}
+				} else {
+					txtRisultatoGoal.setText("-");
+				}
 			}
 		}
 
@@ -239,6 +334,9 @@ public class AdapterPartite extends ArrayAdapter
 		if (RisultatoATempi.equals("N")) {
 			txtTempi.setVisibility(LinearLayout.GONE);
 			txtRisTempi.setVisibility(LinearLayout.GONE);
+		} else {
+			txtGoals.setVisibility(LinearLayout.GONE);
+			txtRisultatoGoal.setVisibility(LinearLayout.GONE);
 		}
 
 		convertView.setOnClickListener(new View.OnClickListener() {

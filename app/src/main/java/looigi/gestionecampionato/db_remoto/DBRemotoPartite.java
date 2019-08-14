@@ -36,7 +36,7 @@ public class DBRemotoPartite {
                              String Note, String Marcatori, String Convocati, String RisGiochetti, String GoalAvversari,
                              String Campo, String Tempo1Tempo, String Tempo2Tempo, String Tempo3Tempo, String Coordinate,
                              String Tempo, String idUnioneCalendario, String Tga1, String Tga2, String Tga3, String Dirigenti,
-							 String idArbitro, String RisultatoATempi, String Maschera) {
+							 String idArbitro, String RisultatoATempi, String RigoriPropri, String RigoriAvv, String Maschera) {
 		String Urletto="SalvaPartita?";
         Urletto+="idPartita=" + idPartita;
         Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
@@ -66,6 +66,8 @@ public class DBRemotoPartite {
 		Urletto+="&Dirigenti=" + Dirigenti;
 		Urletto+="&idArbitro=" + idArbitro;
 		Urletto+="&RisultatoATempi=" + RisultatoATempi;
+		Urletto+="&RigoriPropri=" + RigoriPropri;
+		Urletto+="&RigoriAvv=" + RigoriAvv;
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "SalvaPartita", "", Maschera, NS, SA);
 	}

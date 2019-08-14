@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="A Disposizione"
+                android:textColor="@color/blu"
+                android:textSize="24sp" />
+
+            <ListView
+                android:id="@+id/spnDaConvocareRigori"
+                android:background="@drawable/bordo_arrotondato_bianco"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
+            <LinearLayout
+                android:baselineAligned="false"
+                android:layout_width="match_parent"
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="290dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal|top"
+                        android:text="Rigoristi"
+                        android:textColor="@color/blu"
+                        android:textSize="24sp" />
+
+                    <ListView
+                        android:id="@+id/spnConvocatiRigori"
+                        android:background="@drawable/bordo_arrotondato_giallo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="250dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:paddingLeft="2dp"
+                    android:layout_weight="1"
+                    android:layout_height="290dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal|top"
+                        android:text="Avversari"
+                        android:textColor="@color/blu"
+                        android:textSize="24sp" />
+
+                    <LinearLayout
+                        android:weightSum="3"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:gravity="left|center_vertical"
+                            android:text="Segnati"
+                            android:layout_height="match_parent" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="2"
+                            android:weightSum="3"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+
+                            <Button
+                                android:id="@+id/cmdMenoRigoreSegnAvversari"
+                                android:text="-"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/txtRigoriSegnAvversari"
+                                android:layout_width="0dp"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:layout_weight="1"
+                                android:text="0"
+                                android:layout_height="wrap_content" />
+
+                            <Button
+                                android:id="@+id/cmdPiuRigoreSegnAvversari"
+                                android:text="+"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:weightSum="3"
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:gravity="left|center_vertical"
+                            android:text="Sbagliati"
+                            android:layout_height="match_parent" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="2"
+                            android:weightSum="3"
+                            android:orientation="horizontal"
+                            android:layout_height="wrap_content">
+
+                            <Button
+                                android:id="@+id/cmdMenoRigoreSbaAvversari"
+                                android:text="-"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:id="@+id/txtRigoriSbaAvversari"
+                                android:layout_width="0dp"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:layout_weight="1"
+                                android:text="0"
+                                android:layout_height="wrap_content" />
+
+                            <Button
+                                android:id="@+id/cmdPiuRigoreSbaAvversari"
+                                android:text="+"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
