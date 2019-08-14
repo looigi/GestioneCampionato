@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/bordo_arrotondato_bianco"
-    android:padding="2dp"
+    android:padding="3dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -13,10 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|center_vertical"
         android:layout_marginTop="2dp"
-        android:background="@drawable/bordo_arrotondato_bianco"
         android:gravity="center_horizontal|center_vertical"
         android:text="Meteo"
-        android:textColor="@color/blu"
+        android:textColor="@color/colorPrimary"
         android:textSize="24sp" />
 
     <View
@@ -148,24 +147,42 @@
         android:background="@android:color/darker_gray" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|center_vertical"
-        android:gravity="center_vertical|center_horizontal"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:weightSum="2"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnAggiornaMeteo"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:drawableTint="@color/colorPrimaryDark"
-            android:background="@android:drawable/ic_menu_rotate" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:background="@drawable/bordo_arrotondato_bianco"
+            android:padding="2dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/cmdOkMeteo"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/ok" />
+            <Button
+                android:id="@+id/btnAggiornaMeteo"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:drawableTint="@color/colorPrimaryDark"
+                android:background="@android:drawable/ic_menu_rotate" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:background="@drawable/bordo_arrotondato_bianco"
+            android:gravity="center_vertical|center_horizontal"
+            android:padding="2dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/cmdOkMeteo"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/ok" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

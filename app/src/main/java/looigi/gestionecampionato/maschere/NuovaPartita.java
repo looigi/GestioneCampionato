@@ -613,6 +613,55 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             }
         }
 
+        String EventiPrimoTempo = DatiPartitaGen[39];
+        String EventiSecondoTempo = DatiPartitaGen[40];
+        String EventiTerzoTempo = DatiPartitaGen[41];
+
+        vnp.setEventiPrimoTempo(new ArrayList<String>());
+        if (!EventiPrimoTempo.isEmpty()) {
+            String[] e1 = EventiPrimoTempo.split("%", -1);
+            for (String e2 : e1) {
+                if (!e2.isEmpty()) {
+                    e2=e2.replace("!",";");
+                    vnp.getEventiPrimoTempo().add(e2);
+                }
+            }
+            int quale = VariabiliStaticheNuovaPartita.getInstance().getQualeTempoEvento();
+            VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(1);
+            fillSpinnerEventiTempi();
+            VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(quale);
+        }
+
+        vnp.setEventiSecondoTempo(new ArrayList<String>());
+        if (!EventiSecondoTempo.isEmpty()) {
+            String[] e1 = EventiSecondoTempo.split("%", -1);
+            for (String e2 : e1) {
+                if (!e2.isEmpty()) {
+                    e2=e2.replace("!",";");
+                    vnp.getEventiSecondoTempo().add(e2);
+                }
+            }
+            int quale = VariabiliStaticheNuovaPartita.getInstance().getQualeTempoEvento();
+            VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(2);
+            fillSpinnerEventiTempi();
+            VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(quale);
+        }
+
+        vnp.setEventiTerzoTempo(new ArrayList<String>());
+        if (!EventiTerzoTempo.isEmpty()) {
+            String[] e1 = EventiTerzoTempo.split("%", -1);
+            for (String e2 : e1) {
+                if (!e2.isEmpty()) {
+                    e2=e2.replace("!",";");
+                    vnp.getEventiTerzoTempo().add(e2);
+                }
+            }
+            int quale = VariabiliStaticheNuovaPartita.getInstance().getQualeTempoEvento();
+            VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(3);
+            fillSpinnerEventiTempi();
+            VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(quale);
+        }
+
         VariabiliStaticheGlobali.getInstance().ApreDialogWS=false;
         vnp.AllenatorePerRicarica=DatiPartitaGen[15];
         DBRemotoAllenatori dbr = new DBRemotoAllenatori();
@@ -1664,13 +1713,62 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         }
 
         vnp.setLvEventiPrimoTempo((ListView) view.findViewById(R.id.lstvEventiPrimoTempo));
+        /* if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+            vnp.getLvEventiPrimoTempo().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                               int pos, long id) {
+                    vnp.getEventiPrimoTempo().remove(pos);
+
+                    int appo = vnp.getQualeTempoEvento();
+                    vnp.setQualeTempoEvento(1);
+                    fillSpinnerEventiTempi();
+                    vnp.setQualeTempoEvento(appo);
+
+                    return true;
+                }
+            });
+        } */
         vnp.setLvEventiSecondoTempo((ListView) view.findViewById(R.id.lstvEventiSecondoTempo));
+        /* if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+            vnp.getLvEventiSecondoTempo().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                               int pos, long id) {
+                    vnp.getEventiSecondoTempo().remove(pos);
+
+                    int appo = vnp.getQualeTempoEvento();
+                    vnp.setQualeTempoEvento(2);
+                    fillSpinnerEventiTempi();
+                    vnp.setQualeTempoEvento(appo);
+
+                    return true;
+
+                }
+            });
+        } */
         vnp.setLvEventiTerzoTempo((ListView) view.findViewById(R.id.lstvEventiTerzoTempo));
+        /* if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+            vnp.getLvEventiTerzoTempo().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                               int pos, long id) {
+                    vnp.getEventiTerzoTempo().remove(pos);
+
+                    int appo = vnp.getQualeTempoEvento();
+                    vnp.setQualeTempoEvento(3);
+                    fillSpinnerEventiTempi();
+                    vnp.setQualeTempoEvento(appo);
+
+                    return true;
+                }
+            });
+        } */
 
         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
             btnAvvenimentiPrimoTempo.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    vnp.setQualeTempoEvento(1);
+                    vnp.PulisceEvento();
 
                     GestisceSchermate("EVENTI");
                 }
@@ -1679,7 +1777,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
             btnAvvenimentiSecondoTempo.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    vnp.setQualeTempoEvento(2);
+                    vnp.PulisceEvento();
 
                     GestisceSchermate("EVENTI");
                 }
@@ -1688,7 +1786,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
             btnAvvenimentiTerzoTempo.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    vnp.setQualeTempoEvento(3);
+                    vnp.PulisceEvento();
 
                     GestisceSchermate("EVENTI");
                 }
@@ -2698,6 +2796,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         layTastoPagina1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(-1);
                     ModificaEffettuata=true;
                     layPagina1.setVisibility(LinearLayout.VISIBLE);
                     layPagina2.setVisibility(LinearLayout.GONE);
@@ -2712,6 +2811,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
+                    VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(1);
                     layPagina1.setVisibility(LinearLayout.GONE);
                     layPagina2.setVisibility(LinearLayout.VISIBLE);
                     layPagina3.setVisibility(LinearLayout.GONE);
@@ -2725,6 +2825,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
+                    VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(2);
                     layPagina1.setVisibility(LinearLayout.GONE);
                     layPagina2.setVisibility(LinearLayout.GONE);
                     layPagina3.setVisibility(LinearLayout.VISIBLE);
@@ -2738,6 +2839,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
+                    VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(3);
                     layPagina1.setVisibility(LinearLayout.GONE);
                     layPagina2.setVisibility(LinearLayout.GONE);
                     layPagina3.setVisibility(LinearLayout.GONE);
@@ -2750,6 +2852,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         layTastoPagina5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(-1);
                     ModificaEffettuata = true;
                     layPagina1.setVisibility(LinearLayout.GONE);
                     layPagina2.setVisibility(LinearLayout.GONE);
@@ -3395,6 +3498,21 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             }
             // Rigori
 
+            // Eventi
+            String eventiPrimoTempo = "";
+            for (String e : vnp.getEventiPrimoTempo()) {
+                eventiPrimoTempo += e + "§";
+            }
+            String eventiSecondoTempo = "";
+            for (String e : vnp.getEventiSecondoTempo()) {
+                eventiSecondoTempo += e + "§";
+            }
+            String eventiTerzoTempo = "";
+            for (String e : vnp.getEventiTerzoTempo()) {
+                eventiTerzoTempo += e + "§";
+            }
+            // Eventi
+
             if (vnp.idArbitroScelto==0) {
                 DialogMessaggio.getInstance().show(vnp.getContext(),
                         "Selezionare l'arbitro dell'incontro",
@@ -3406,7 +3524,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                         idTipologia, idCampo, Risultato, Note, sMarcatori, Convocati, RisGiochetti, GoalAvversari,
                         Campo, Tempo1Tempo, Tempo2Tempo, Tempo3Tempo, Coordinate, Tempo,
                         Integer.toString(idUnioneCalendario), Tga1, Tga2, Tga3, sDirigentiConvocati,
-                        Integer.toString(vnp.idArbitroScelto), RisultatoATempi, RigoriPropri, RigoriAvv, TAG);
+                        Integer.toString(vnp.idArbitroScelto), RisultatoATempi, RigoriPropri, RigoriAvv,
+                        eventiPrimoTempo, eventiSecondoTempo, eventiTerzoTempo, TAG);
             }
         }
     }

@@ -7,6 +7,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_marginTop="2dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Eventi"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp" />
+
     <ListView
         android:id="@+id/lvListaEventi"
         android:layout_width="match_parent"
@@ -21,6 +32,7 @@
     <CheckBox
         android:id="@+id/chkAvversario"
         android:text="Per l'Avversario"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -49,20 +61,40 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:gravity="end"
+        android:weightSum="2"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/cmdAnnullaEventi"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/annulla" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:background="@drawable/bordo_arrotondato_bianco"
+            android:padding="2dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/cmdOkEventi"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:background="@drawable/ok" />
+            <Button
+                android:id="@+id/cmdAnnullaEventi"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/annulla" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:background="@drawable/bordo_arrotondato_bianco"
+            android:gravity="center_horizontal|center_vertical"
+            android:padding="2dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/cmdOkEventi"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/ok" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

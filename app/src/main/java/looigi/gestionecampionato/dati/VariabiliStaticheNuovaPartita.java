@@ -446,7 +446,9 @@ public class VariabiliStaticheNuovaPartita {
         MinutoEvento="";
         aFavoreDi="";
         idAFavore=-1;
-        QualeTempoEvento=-1;
+        if (txtEvento!=null) {
+            txtEvento.setText("");
+        }
     }
 
     public void StampaEvento() {

@@ -33,6 +33,7 @@ import looigi.gestionecampionato.dati.StrutturaSquadreCampionato;
 import looigi.gestionecampionato.dati.VariabiliStaticheCampionato;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
 import looigi.gestionecampionato.dati.VariabiliStaticheMain;
+import looigi.gestionecampionato.dati.VariabiliStaticheNuovaPartita;
 import looigi.gestionecampionato.dati.VariabiliStaticheUtenti;
 import looigi.gestionecampionato.db_remoto.DBRemotoAvversari;
 import looigi.gestionecampionato.db_remoto.DBRemotoCampionato;

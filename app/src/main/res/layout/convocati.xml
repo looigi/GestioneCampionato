@@ -6,13 +6,12 @@
     android:orientation="vertical"
     android:layout_margin="7dp"
     android:background="@drawable/bordo_arrotondato_bianco"
-    android:padding="2dp"
+    android:padding="3dp"
     android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:weightSum="7"
-        android:background="@drawable/bordo_arrotondato_bianco"
         android:orientation="horizontal"
         android:layout_height="wrap_content">
 
@@ -20,6 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
+            android:textSize="18sp"
             android:layout_weight="2"
             android:text="Giocatore" />
 
@@ -91,10 +91,10 @@
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:gravity="center_horizontal|center_vertical"
                     android:text="Da convocare"
-                    android:textColor="@color/blu"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="24sp" />
 
-                <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+                <ListView
                     android:id="@+id/spnDaConvocare"
                     android:background="@drawable/bordo_arrotondato_bianco"
                     android:layout_width="wrap_content"
@@ -114,10 +114,10 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="Convocati"
-                android:textColor="@color/blu"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp" />
 
-            <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+            <ListView
                 android:id="@+id/spnConvocati"
                 android:background="@drawable/bordo_arrotondato_giallo"
                 android:layout_width="wrap_content"
@@ -152,6 +152,8 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:background="@drawable/bordo_arrotondato_bianco"
+            android:padding="2dp"
             android:gravity="center_horizontal"
             android:layout_height="wrap_content">
 

@@ -261,7 +261,6 @@
     <ListView
         android:id="@+id/lstvEventiTerzoTempo"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="@drawable/bordo_arrotondato_verde_chiaro" />
+        android:layout_height="100dp" />
 
 </LinearLayout>
