@@ -2,6 +2,7 @@ package looigi.gestionecampionato.maschere;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -1093,7 +1094,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
                          vnp.setGiocatoreSelezionatoRigore(position);
 
-                         GestisceSchermate("");
+                         GestisceSchermate("RIGORI");
 
                          TextView txtRigore = view.findViewById(R.id.txtRigoreTiratoDa);
                          txtRigore.setText("Rigore di\n" + c[2]);
@@ -1662,7 +1663,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
         Button btnAvvenimentiPrimoTempo = view.findViewById(R.id.btnAvvenimentiPrimoTempo);
         Button btnAvvenimentiSecondoTempo = view.findViewById(R.id.btnAvvenimentiSecondoTempo);
-        Button btnAvvenimentiTerzoTempo = view.findViewById(R.id.btnAvvenimentiTerzoTempo);
+        final Button btnAvvenimentiTerzoTempo = view.findViewById(R.id.btnAvvenimentiTerzoTempo);
 
         Button btnOkEventi = view.findViewById(R.id.cmdOkEventi);
         Button btnAnnullaEventi = view.findViewById(R.id.cmdAnnullaEventi);
@@ -2349,6 +2350,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                             }
                             ScriveRisultato();
                         } else {
+                            btnAvvenimentiTerzoTempo.setVisibility(LinearLayout.GONE);
+
                             vnp.getTxtRisAvv3Tempo().setText("Non giocato");
 
                             vnp.getLvvMarcatoriTerzoTempo().setVisibility(LinearLayout.GONE);
@@ -2424,6 +2427,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
                     if (vnp.getTxtRisAvv3Tempo().getText().equals("Non giocato")) {
+                        btnAvvenimentiTerzoTempo.setVisibility(LinearLayout.VISIBLE);
+
                         vnp.getTxtRisAvv3Tempo().setText("0");
 
                         vnp.getLvvMarcatoriTerzoTempo().setVisibility(LinearLayout.VISIBLE);

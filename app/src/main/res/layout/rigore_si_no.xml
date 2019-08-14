@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
+    android:background="@drawable/bordo_arrotondato_bianco"
     android:padding="3dp"
     android:orientation="vertical"
-    android:background="@drawable/bordo_arrotondato_bianco_sfumato"
     android:layout_height="wrap_content">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:layout_marginTop="2dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Esito rigore"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp" />
+
+    <TextView
         android:id="@+id/txtRigoreTiratoDa"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:textColor="@color/rosso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -43,18 +57,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:gravity="end"
+        android:weightSum="2"
         android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/cmdAnnullaRigore"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/annulla" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:background="@drawable/bordo_arrotondato_bianco"
+            android:padding="2dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/cmdOkRigore"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/ok" />
+            <Button
+                android:id="@+id/cmdAnnullaRigore"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/annulla" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:background="@drawable/bordo_arrotondato_bianco"
+            android:padding="2dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/cmdOkRigore"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ok" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -2,7 +2,9 @@ package looigi.gestionecampionato.utilities;
 
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -31,6 +33,17 @@ public class MostraPannelloOra implements View.OnClickListener, TimePickerDialog
         TimePickerDialog dialog = new TimePickerDialog(VariabiliStaticheGlobali.getInstance().getContext(),
                 this,
                 calendar.get(Calendar.HOUR), calendar.get(Calendar.MINUTE), true);
+
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Annulla", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == DialogInterface.BUTTON_NEGATIVE) {
+                    _MascheraContenuta.setVisibility(View.GONE);
+                    if (_MascheraContenitore != null) {
+                        _MascheraContenitore.setVisibility(RelativeLayout.GONE);
+                    }
+                }
+            }
+        });
         dialog.show();
     }
 

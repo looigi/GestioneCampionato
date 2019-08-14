@@ -2,11 +2,14 @@ package looigi.gestionecampionato.utilities;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import looigi.gestionecampionato.R;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
 import looigi.gestionecampionato.dati.VariabiliStaticheNuovaPartita;
 
@@ -33,6 +36,18 @@ public class MostraPannelloData implements View.OnClickListener, DatePickerDialo
                 this,
                 calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH));
+
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Annulla", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == DialogInterface.BUTTON_NEGATIVE) {
+                    _MascheraContenuta.setVisibility(View.GONE);
+                    if (_MascheraContenitore != null) {
+                        _MascheraContenitore.setVisibility(RelativeLayout.GONE);
+                    }
+                }
+            }
+        });
+
         dialog.show();
     }
 
