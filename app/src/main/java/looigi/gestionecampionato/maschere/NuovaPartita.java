@@ -1056,12 +1056,12 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                                  r2.setChecked(false);
                                  r3.setChecked(false);
                                  break;
-                             case "0":
+                             case "1":
                                  r1.setChecked(false);
                                  r2.setChecked(true);
                                  r3.setChecked(false);
                                  break;
-                             case "1":
+                             case "0":
                                  r1.setChecked(false);
                                  r2.setChecked(false);
                                  r3.setChecked(true);
@@ -1097,7 +1097,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                          GestisceSchermate("RIGORI");
 
                          TextView txtRigore = view.findViewById(R.id.txtRigoreTiratoDa);
-                         txtRigore.setText("Rigore di\n" + c[2]);
+                         txtRigore.setText("Rigore di " + c[2]);
 
                      }
                 });
@@ -1147,6 +1147,9 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                              vnp.setGiocatoreSelezionatoRigore(-1);
 
                              ScriveRisultato();
+
+                             VariabiliStaticheNuovaPartita.getInstance().getRlMaschera().setVisibility(LinearLayout.GONE);
+                             VariabiliStaticheNuovaPartita.getInstance().getLlContenuto().setEnabled(true);
                          }
                      }
                  });
@@ -1156,6 +1159,9 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                         View view = vnp.getViewActivity();
                         view.findViewById(R.id.idRigori).setVisibility(View.GONE);
                         vnp.setGiocatoreSelezionatoRigore(-1);
+
+                        VariabiliStaticheNuovaPartita.getInstance().getRlMaschera().setVisibility(LinearLayout.GONE);
+                        VariabiliStaticheNuovaPartita.getInstance().getLlContenuto().setEnabled(true);
                     }
                 });
 
