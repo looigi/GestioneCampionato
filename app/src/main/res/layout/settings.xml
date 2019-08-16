@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -23,6 +24,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/bianco"
                 android:layout_weight="1"
                 android:text="Utente" />
 
@@ -30,6 +32,7 @@
                 android:id="@+id/txtUtente"
                 android:layout_width="0dp"
                 android:textSize="17sp"
+                android:textColor="@color/colorPrimary"
                 android:text="Unknown"
                 android:layout_height="wrap_content"
                 android:layout_weight="3" />
@@ -53,6 +56,7 @@
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="0dp"
+                android:textColor="@color/bianco"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Anno" />
@@ -81,6 +85,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/bianco"
                 android:layout_weight="4"
                 android:text="Crea nuovo anno" />
 
@@ -103,6 +108,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
+                android:textColor="@color/bianco"
                 android:text="Modifica utenti" />
 
             <Button
@@ -123,6 +129,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/bianco"
                 android:layout_weight="4"
                 android:text="Refresh foto" />
 
@@ -135,4 +142,4 @@
         </LinearLayout>
 
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

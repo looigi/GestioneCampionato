@@ -24,6 +24,7 @@ import looigi.gestionecampionato.ritorni_ws.wsAvversari;
 import looigi.gestionecampionato.ritorni_ws.wsCampionato;
 import looigi.gestionecampionato.ritorni_ws.wsCategorie;
 import looigi.gestionecampionato.ritorni_ws.wsDirigenti;
+import looigi.gestionecampionato.ritorni_ws.wsEventi;
 import looigi.gestionecampionato.ritorni_ws.wsGenerale;
 import looigi.gestionecampionato.ritorni_ws.wsGiocatori;
 import looigi.gestionecampionato.ritorni_ws.wsMeteo;
@@ -268,6 +269,7 @@ public class GestioneWEBServiceSOAP {
 				wsAllenatori rAll = new wsAllenatori();
 				wsAllenamenti rAllti = new wsAllenamenti();
 				wsDirigenti rDir = new wsDirigenti();
+				wsEventi rEve = new wsEventi();
 				wsArbitri rArb = new wsArbitri();
 				wsAvversari rAvv = new wsAvversari();
 				wsCategorie rCat = new wsCategorie();
@@ -280,7 +282,7 @@ public class GestioneWEBServiceSOAP {
 				wsMeteo rMet = new wsMeteo();
 				wsCampionato rCam = new wsCampionato();
 
-				Boolean Ancora=true;
+				boolean Ancora=true;
 				while (Ancora) {
 					switch (tOperazione) {
 						case "RitornaCategorie":
@@ -309,6 +311,18 @@ public class GestioneWEBServiceSOAP {
 							break;
 						case "RitornaDirigentiCategoria":
 							rDir.RitornaDirigentiCategoria(context, Ritorno, Maschera);
+							Ancora=false;
+							break;
+						case "RitornaEventi":
+							rEve.RitornaEventi(context, Ritorno, Maschera);
+							Ancora=false;
+							break;
+						case "SalvaEvento":
+							rEve.SalvaEvento(Ritorno, Maschera);
+							Ancora=false;
+							break;
+						case "EliminaEvento":
+							rEve.EliminaEvento(Ritorno, Maschera);
 							Ancora=false;
 							break;
 						case "RitornaArbitri":
@@ -497,10 +511,6 @@ public class GestioneWEBServiceSOAP {
 							break;
 						case "RitornaAnnoAttualeUtenti":
 							rGen.RitornaAnnoAttuale(context, Ritorno, Maschera);
-							Ancora=false;
-							break;
-						case "RitornaEventi":
-							rGen.RitornaEventi(context, Ritorno, Maschera);
 							Ancora=false;
 							break;
 						case "ImpostaAnnoAttualeUtente":

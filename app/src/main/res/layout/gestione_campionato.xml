@@ -18,7 +18,7 @@
             android:layout_height="45dp"
             android:layout_margin="2dp"
             android:layout_weight="1"
-            android:background="@drawable/bordo_arrotondato_verde"
+            android:background="@drawable/bordo_arrotondato_bianco"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="horizontal"
             android:padding="3dp">
@@ -44,7 +44,7 @@
             android:padding="3dp"
             android:orientation="horizontal"
             android:layout_margin="2dp"
-            android:background="@drawable/bordo_arrotondato_verde"
+            android:background="@drawable/bordo_arrotondato_bianco"
             android:gravity="center_vertical|center_horizontal"
             android:layout_height="45dp">
 
@@ -69,7 +69,7 @@
             android:padding="3dp"
             android:orientation="horizontal"
             android:layout_margin="2dp"
-            android:background="@drawable/bordo_arrotondato_verde"
+            android:background="@drawable/bordo_arrotondato_bianco"
             android:gravity="center_vertical|center_horizontal"
             android:layout_height="45dp">
 

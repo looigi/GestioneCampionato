@@ -27,13 +27,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
             android:layout_marginTop="5dp"
-            android:background="@color/colorPrimary"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Allenatori"
-            android:textColor="@color/blu"
+            android:text="@string/allenatori"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp" />
 
-        <ListView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/lstvAllenatori"
+        <ListView
+            android:id="@+id/lstvAllenatori"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>

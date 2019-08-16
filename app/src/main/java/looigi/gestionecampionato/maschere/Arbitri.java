@@ -140,7 +140,7 @@ public class Arbitri extends android.support.v4.app.Fragment {
 
             VariabiliStaticheArbitri.getInstance().setLstvArbitri((ListView) view.findViewById(R.id.lstvArbitri));
 
-            TextView txtAllTit = (TextView) view.findViewById(R.id.txtArbitriTit);
+            /* TextView txtAllTit = (TextView) view.findViewById(R.id.txtArbitriTit);
             Utility.getInstance().SettaColoreSfondoPerNomeSquadra(txtAllTit);
             if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
                 txtAllTit.setTextColor(Color.BLACK);
@@ -157,7 +157,7 @@ public class Arbitri extends android.support.v4.app.Fragment {
                 if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraPonteDiNona)) {
                     layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_rosso_chiaro);
                 }
-            }
+            } */
 
             // Carica nuova foto / Elimina foto
             VariabiliStaticheArbitri.getInstance().setImgScegliFoto((ImageView) view.findViewById(R.id.imgSalvaImmagine));

@@ -110,7 +110,7 @@ public class Album extends android.support.v4.app.Fragment {
 
             VariabiliStaticheAlbum.getInstance().setSpnCategorie((Spinner) view.findViewById(R.id.spnCategorie));
 
-            Utility.getInstance().SettaColoreSceltaCategoria(view);
+            // Utility.getInstance().SettaColoreSceltaCategoria(view);
 
             VariabiliStaticheAlbum.getInstance().setImgAlbum((ImageView) view.findViewById(R.id.imgAlbum));
             VariabiliStaticheAlbum.getInstance().getImgAlbum().setVisibility(LinearLayout.GONE);

@@ -7,65 +7,69 @@
         <item
             android:id="@+id/nuova_partita"
             android:icon="@drawable/nuova_partita"
-            android:title="Nuova partita" />
+            android:title="@string/nuova_partita" />
 
         <item
             android:id="@+id/home"
             android:icon="@drawable/casa"
-            android:title="Home" />
+            android:title="@string/home" />
 
         <item
             android:id="@+id/campionato"
             android:icon="@drawable/campionato"
-            android:title="Campionato" />
+            android:title="@string/campionato" />
 
         <item
             android:id="@+id/allenamenti"
             android:icon="@drawable/allenamenti"
-            android:title="Allenamenti" />
+            android:title="@string/allenamenti" />
 
         <item
             android:id="@+id/statistiche"
             android:icon="@drawable/statistiche"
-            android:title="Statistiche" />
+            android:title="@string/statistiche" />
 
         <item
             android:id="@+id/album"
             android:icon="@drawable/album"
-            android:title="Album" />
+            android:title="@string/album" />
 
         <item
             android:id="@+id/utenti"
             android:icon="@drawable/utenti"
-            android:title="Utenti" />
+            android:title="@string/utenti" />
     </group>
 
-    <item android:title="Gestione dati">
+    <item android:title="@string/gestione_dati">
         <menu>
             <item
                 android:id="@+id/allenatori"
                 android:icon="@drawable/allenatori"
-                android:title="Allenatori" />
+                android:title="@string/allenatori" />
             <item
                 android:id="@+id/arbitri"
                 android:icon="@drawable/arbitri"
-                android:title="Arbitri" />
+                android:title="@string/arbitri" />
             <item
                 android:id="@+id/avversari"
                 android:icon="@drawable/avversari"
-                android:title="Avversari" />
+                android:title="@string/avversari2" />
             <item
                 android:id="@+id/categorie"
                 android:icon="@drawable/categorie"
-                android:title="Categorie" />
+                android:title="@string/categorie" />
             <item
                 android:id="@+id/dirigenti"
                 android:icon="@drawable/dirigenti"
-                android:title="Dirigenti" />
+                android:title="@string/dirigenti" />
+            <item
+                android:id="@+id/eventi"
+                android:icon="@drawable/fischietto"
+                android:title="@string/eventi" />
             <item
                 android:id="@+id/rose"
                 android:icon="@drawable/rose"
-                android:title="Rose" />
+                android:title="@string/rose" />
         </menu>
     </item>
 
@@ -74,12 +78,12 @@
             <item
                 android:id="@+id/about"
                 android:icon="@drawable/about"
-                android:title="About" />
+                android:title="@string/about" />
 
             <item
                 android:id="@+id/uscita"
                 android:icon="@drawable/uscita"
-                android:title="Uscita" />
+                android:title="@string/uscita" />
         </menu>
     </item>
 </menu>

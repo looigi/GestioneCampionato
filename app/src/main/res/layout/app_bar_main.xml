@@ -17,14 +17,14 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/grigio_scuro"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical|right"
-                android:layout_gravity="center_vertical|right">
+                android:gravity="center_vertical|end"
+                android:layout_gravity="center_vertical|end">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="false"
-        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false"
         android:layout_gravity="bottom|right">
 
         <LinearLayout
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
                 android:layout_margin="5dp"
-                app:backgroundTint="@color/colorAccent"
+                app:backgroundTint="@color/rosso"
                 app:srcCompat="@android:drawable/ic_menu_revert" />
 
         </LinearLayout>

@@ -43,6 +43,7 @@ import looigi.gestionecampionato.maschere.Avversari;
 import looigi.gestionecampionato.maschere.Campionato;
 import looigi.gestionecampionato.maschere.Categorie;
 import looigi.gestionecampionato.maschere.Dirigenti;
+import looigi.gestionecampionato.maschere.Eventi;
 import looigi.gestionecampionato.maschere.NuovaPartita;
 import looigi.gestionecampionato.maschere.Rose;
 import looigi.gestionecampionato.maschere.Settings;
@@ -325,6 +326,9 @@ public class MainActivity extends AppCompatActivity
                 DialogMessaggio.getInstance().show(vg.getContext(),"Selezionare una categoria",
                         true, VariabiliStaticheGlobali.NomeApplicazione);
             }
+        }
+        if (VariabiliStaticheGlobali.MascheraAttuale.equals(NomiMaschere.getInstance().getEventi())) {
+            Eventi.NuovoEvento();
         }
         if (VariabiliStaticheGlobali.MascheraAttuale.equals(NomiMaschere.getInstance().getArbitri())) {
             Arbitri.NuovoArbitro();

@@ -121,10 +121,10 @@ public class Allenamenti extends Fragment {
         final View view = VariabiliStaticheGlobali.getInstance().getViewActivity();
         if (view != null) {
             VariabiliStaticheAllenamenti.getInstance().setSpnCategorie((Spinner) view.findViewById(R.id.spnCategorie));
-            Utility.getInstance().SettaColoreSceltaCategoria(view);
+            // Utility.getInstance().SettaColoreSceltaCategoria(view);
             TextView txtAllTit = (TextView) view.findViewById(R.id.txtAllenamentiTit);
-            Utility.getInstance().SettaColoreSfondoPerNomeSquadra(txtAllTit);
-            if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
+            // Utility.getInstance().SettaColoreSfondoPerNomeSquadra(txtAllTit);
+            /* if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
                 txtAllTit.setTextColor(ViewCompat.MEASURED_STATE_MASK);
             } else if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraPonteDiNona)) {
                 txtAllTit.setTextColor(-1);
@@ -134,7 +134,7 @@ public class Allenamenti extends Fragment {
                 layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_verde_chiaro);
             } else if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraPonteDiNona)) {
                 layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_rosso_chiaro);
-            }
+            } */
             VariabiliStaticheAllenamenti.getInstance().idCategoriaScelta = -1;
             if (VariabiliStaticheAllenamenti.getInstance().getCategorie() == null) {
                 new DBRemotoCategorie().RitornaCategorie(context, TAG);

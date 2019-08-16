@@ -18,6 +18,7 @@ public class NomiMaschere {
     private String HomePerTitolo="Home";
     private String AllenatoriPerTitolo="Allenatori";
     private String DirigentiPerTitolo="Dirigenti";
+    private String EventiPerTitolo="Eventi";
     private String ArbitriPerTitolo="Arbitri";
     private String AvversariPerTitolo="Avversari";
     private String RosePerTitolo="Giocatori";
@@ -66,6 +67,10 @@ public class NomiMaschere {
 
     public String getVisualizzaImmaginiPerTitolo() {
         return VisualizzaImmaginiPerTitolo;
+    }
+
+    public String getEventiPerTitolo() {
+        return EventiPerTitolo;
     }
 
     public String getCategoriePerTitolo() {
@@ -142,6 +147,10 @@ public class NomiMaschere {
 
     public String getDirigenti() {
         return DirigentiPerTitolo.toUpperCase().replace(" ","");
+    }
+
+    public String getEventi() {
+        return EventiPerTitolo.toUpperCase().replace(" ","");
     }
 
     public String getDirigentiPerTitolo() {

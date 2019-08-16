@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#44a751</color>
+    <color name="colorPrimary">#aa0000</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#ff4081</color>
 
@@ -11,8 +11,10 @@
     <color name="giallo">#FFFEEDBB</color>
     <color name="blu">#0000aa</color>
     <color name="grigio">#CCCCCC</color>
+    <color name="grigio_scuro">#555555</color>
     <color name="traslucent">#00ffffff</color>
     <color name="rosso_chiaro">#FF9999</color>
+    <color name="rosso_chiarissimo">#FFCCCC</color>
     <color name="verdeScuro">#426d42</color>
     <color name="giallo_scuro">#575336</color>
 </resources>

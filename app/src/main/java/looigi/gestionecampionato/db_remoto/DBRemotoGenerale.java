@@ -55,14 +55,14 @@ public class DBRemotoGenerale {
 		}
 	}
 
-	public void RitornaEventi(Context context, String MascheraChiamante) {
-		if (VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente()!=null) {
-			String Urletto = "RitornaEventi";
-
-			Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaEventi",
-					"", MascheraChiamante, NS, SA);
-		}
-	}
+	// public void RitornaEventi(Context context, String MascheraChiamante) {
+	// 	if (VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente()!=null) {
+	// 		String Urletto = "RitornaEventi";
+//
+	// 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaEventi",
+	// 				"", MascheraChiamante, NS, SA);
+	// 	}
+	// }
 
 	public void CreaNuovoAnno(Context context, String idAnno, String descAnno, String nomeSquadra, String TuttiIDati) {
 		String Urletto="CreaNuovoAnno?";

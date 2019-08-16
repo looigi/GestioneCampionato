@@ -77,7 +77,7 @@ public class Home extends android.support.v4.app.Fragment {
             VariabiliStaticheMain.getInstance().setLstPartite((ListView) view.findViewById(R.id.lstvPartite));
 
             VariabiliStaticheHome.getInstance().setSpnCategorie((Spinner) view.findViewById(R.id.spnCategorie));
-            Utility.getInstance().SettaColoreSceltaCategoria(view);
+            // Utility.getInstance().SettaColoreSceltaCategoria(view);
 
             // if (VariabiliStaticheHome.getInstance().getCategorie()==null) {
                 DBRemotoCategorie dbr = new DBRemotoCategorie();

@@ -102,7 +102,7 @@ public class Statistiche extends android.support.v4.app.Fragment {
 
             final TextView txtTitolo = view.findViewById(R.id.txtTitolo);
 
-            RelativeLayout layMascheraModUtenti=view.findViewById(R.id.layMascheraModUtenti);
+            /* RelativeLayout layMascheraModUtenti=view.findViewById(R.id.layMascheraModUtenti);
             if (VariabiliStaticheMain.getInstance().getSquadra()!=null) {
                 if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
                     layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_verde_chiaro);
@@ -111,7 +111,7 @@ public class Statistiche extends android.support.v4.app.Fragment {
                 }
             } else {
                 layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_rosso_chiaro);
-            }
+            } */
 
             // Avversari
             ImageView ivAvvPerAnno=view.findViewById(R.id.imgAvversariPerAnno);
@@ -363,7 +363,7 @@ public class Statistiche extends android.support.v4.app.Fragment {
             RiempieListaCategorie();
         }
 
-        Utility.getInstance().SettaColoreSceltaCategoria(view);
+        // Utility.getInstance().SettaColoreSceltaCategoria(view);
     }
 
     public static void RiempieListaCategorie() {

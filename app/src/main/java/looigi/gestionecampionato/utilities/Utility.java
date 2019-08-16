@@ -52,6 +52,7 @@ import looigi.gestionecampionato.maschere.Avversari;
 import looigi.gestionecampionato.maschere.Campionato;
 import looigi.gestionecampionato.maschere.Categorie;
 import looigi.gestionecampionato.maschere.Dirigenti;
+import looigi.gestionecampionato.maschere.Eventi;
 import looigi.gestionecampionato.maschere.Grafici;
 import looigi.gestionecampionato.maschere.Home;
 import looigi.gestionecampionato.maschere.Mappa;
@@ -431,6 +432,13 @@ public class Utility {
 					VariabiliStaticheGlobali.MascheraAttualePerMultimedia = "";
 
 					break;
+				case R.id.eventi:
+					fragment = new Eventi();
+					title = NomiMaschere.getInstance().getEventiPerTitolo();
+					VariabiliStaticheGlobali.MascheraAttuale = NomiMaschere.getInstance().getEventi();
+					VariabiliStaticheGlobali.MascheraAttualePerMultimedia = "";
+
+					break;
 				case R.id.arbitri:
 					fragment = new Arbitri();
 					title = NomiMaschere.getInstance().getArbitriPerTitolo();
@@ -541,6 +549,7 @@ public class Utility {
 						VariabiliStaticheGlobali.MascheraAttuale.equals(NomiMaschere.getInstance().getCategorie()) ||
 						VariabiliStaticheGlobali.MascheraAttuale.equals(NomiMaschere.getInstance().getDirigenti()) ||
 						VariabiliStaticheGlobali.MascheraAttuale.equals(NomiMaschere.getInstance().getArbitri()) ||
+						VariabiliStaticheGlobali.MascheraAttuale.equals(NomiMaschere.getInstance().getEventi()) ||
 						VariabiliStaticheGlobali.MascheraAttuale.equals(NomiMaschere.getInstance().getRose())) {
 					vm.getItemNuovo().setVisible(true);
 					vm.getActButtonNew().show(); // .setVisibility(LinearLayout.VISIBLE);
@@ -740,7 +749,7 @@ public class Utility {
 		outStream.close();
 	}
 
-	public void SettaColoreSfondoPerNomeSquadra(TextView t){
+	/* public void SettaColoreSfondoPerNomeSquadra(TextView t){
 		if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraPonteDiNona)) {
 			t.setBackgroundColor(Color.argb(255, 200, 0, 0));
 		} else {
@@ -748,9 +757,9 @@ public class Utility {
 				t.setBackgroundColor(Color.argb(255, 0, 200, 0));
 			}
 		}
-	}
+	} */
 
-	public void SettaColoreTestoPerNomeSquadra(TextView t){
+	/* public void SettaColoreTestoPerNomeSquadra(TextView t){
 		if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraPonteDiNona)) {
 			t.setTextColor(Color.argb(255, 136, 0, 0));
 		} else {
@@ -758,23 +767,23 @@ public class Utility {
 				t.setTextColor(Color.argb(255, 0, 136, 136));
 			}
 		}
-	}
+	} */
 
-	public void SettaColoreSceltaCategoria(View view) {
-		TextView txtCatTit = (TextView) view.findViewById(R.id.txtCategoriaTit);
+	/* public void SettaColoreSceltaCategoria(View view) {
+		// TextView txtCatTit = (TextView) view.findViewById(R.id.txtCategoriaTit);
 		LinearLayout layCat = view.findViewById(R.id.layCat);
 		if (VariabiliStaticheMain.getInstance().getSquadra()!=null) {
 			if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
-				txtCatTit.setTextColor(Color.BLACK);
+				// txtCatTit.setTextColor(Color.BLACK);
 				layCat.setBackgroundResource(R.drawable.bordo_arrotondato_verde);
 			} else {
 				if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraPonteDiNona)) {
-					txtCatTit.setTextColor(Color.WHITE);
+					// txtCatTit.setTextColor(Color.WHITE);
 					layCat.setBackgroundResource(R.drawable.bordo_arrotondato_rosso);
 				}
 			}
 		}
-	}
+	} */
 
 	public void deleteFolder(File fileOrDirectory) {
 		if (fileOrDirectory.isDirectory())

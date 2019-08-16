@@ -1,11 +1,7 @@
 <resources>
     <string name="app_name">Gestione Campionato</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="home">Home</string>
-    <string name="avversari">Avversari</string>
-    <string name="campi">Campi</string>
     <string name="uscita">Uscita</string>
-    <string name="nuova_partita">Nuova Partita</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Gestione Campionato</string>
     <string name="nav_header_subtitle">looigi@gmail.com</string>
@@ -13,4 +9,29 @@
     <string name="action_settings">Settings</string>
     <string name="toast_crash_report">Errore in GestCamp</string>
     <!-- <string name="nome_squadra">Castelverde</string> -->
+
+    <string name="nuova_partita">Nuova Partita</string>
+    <string name="home">Home</string>
+    <string name="avversari2">Avversari</string>
+    <string name="avversario">Avversario</string>
+    <string name="statAvv">Statistiche Avversario</string>
+    <string name="campi">Campi</string>
+    <string name="campionato">Campionato</string>
+    <string name="allenamenti">Allenamenti</string>
+    <string name="statistiche">Statistiche</string>
+    <string name="album">Album</string>
+    <string name="utenti">Utenti</string>
+    <string name="gestione_dati">Gestione Dati</string>
+    <string name="arbitri">Arbitri</string>
+    <string name="allenatori">Allenatori</string>
+    <string name="categorie">Categorie</string>
+    <string name="categoria">Categoria</string>
+    <string name="dirigenti">Dirigenti</string>
+    <string name="dirigente">Dirigente</string>
+    <string name="eventi">Eventi</string>
+    <string name="giocatore">Giocatore</string>
+    <string name="rose">Rose</string>
+    <string name="about">About</string>
+    <string name="squadra">Squadra</string>
+
 </resources>

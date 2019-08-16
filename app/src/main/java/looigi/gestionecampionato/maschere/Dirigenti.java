@@ -146,7 +146,7 @@ public class Dirigenti extends android.support.v4.app.Fragment {
             VariabiliStaticheDirigenti.getInstance().setSpnCategorie((Spinner) view.findViewById(R.id.spnCategorie));
             VariabiliStaticheDirigenti.getInstance().setLstDirigenti((ListView) view.findViewById(R.id.lstvDirigenti));
 
-            Utility.getInstance().SettaColoreSceltaCategoria(view);
+            /* Utility.getInstance().SettaColoreSceltaCategoria(view);
 
             TextView txtAllTit = (TextView) view.findViewById(R.id.txtDirigentiTit);
             Utility.getInstance().SettaColoreSfondoPerNomeSquadra(txtAllTit);
@@ -165,7 +165,7 @@ public class Dirigenti extends android.support.v4.app.Fragment {
                 if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraPonteDiNona)) {
                     layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_rosso_chiaro);
                 }
-            }
+            } */
 
             // Carica nuova foto / Elimina foto
             VariabiliStaticheDirigenti.getInstance().setImgScegliFoto((ImageView) view.findViewById(R.id.imgSalvaImmagine));
@@ -300,7 +300,7 @@ public class Dirigenti extends android.support.v4.app.Fragment {
                             DBRemotoDirigenti dbr = new DBRemotoDirigenti();
                             dbr.SalvaDirigente(VariabiliStaticheDirigenti.getInstance().getContext(),
                                     Integer.toString(VariabiliStaticheDirigenti.getInstance().idCategoriaScelta),
-                                    "-1", Cognome, Nome, EMail, Telefono, NomiMaschere.getInstance().getAllenatori());
+                                    "-1", Cognome, Nome, EMail, Telefono, NomiMaschere.getInstance().getEventi());
 
                             VariabiliStaticheDirigenti.getInstance().getRlMaschera().setVisibility(RelativeLayout.GONE);
                         }

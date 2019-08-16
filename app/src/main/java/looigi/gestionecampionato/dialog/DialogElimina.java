@@ -14,12 +14,14 @@ import looigi.gestionecampionato.dati.VariabiliStaticheAllenatori;
 import looigi.gestionecampionato.dati.VariabiliStaticheAvversari;
 import looigi.gestionecampionato.dati.VariabiliStaticheCampionato;
 import looigi.gestionecampionato.dati.VariabiliStaticheCategorie;
+import looigi.gestionecampionato.dati.VariabiliStaticheEventi;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
 import looigi.gestionecampionato.dati.VariabiliStaticheRose;
 import looigi.gestionecampionato.db_remoto.DBRemotoAllenatori;
 import looigi.gestionecampionato.db_remoto.DBRemotoAvversari;
 import looigi.gestionecampionato.db_remoto.DBRemotoCampionato;
 import looigi.gestionecampionato.db_remoto.DBRemotoCategorie;
+import looigi.gestionecampionato.db_remoto.DBRemotoEventi;
 import looigi.gestionecampionato.db_remoto.DBRemotoGiocatori;
 import looigi.gestionecampionato.db_remoto.DBRemotoMultimedia;
 
@@ -143,6 +145,12 @@ public class DialogElimina
                 DBRemotoMultimedia dbm = new DBRemotoMultimedia();
                 dbm.EliminaImmagine(VariabiliStaticheRose.getInstance().getContext(),
                         NomiMaschere.getInstance().getRosePerTitolo(),
+                        Codice,
+                        Maschera);
+            }
+            if (Maschera.equals(NomiMaschere.getInstance().getEventi())) {
+                DBRemotoEventi dbm = new DBRemotoEventi();
+                dbm.EliminaEvento(VariabiliStaticheEventi.getInstance().getContext(),
                         Codice,
                         Maschera);
             }

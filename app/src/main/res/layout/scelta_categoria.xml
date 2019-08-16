@@ -7,42 +7,43 @@
     <LinearLayout
         android:id="@+id/layCat"
         android:padding="4dp"
+        android:background="@drawable/bordo_arrotondato_bianco"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <!-- <TextView
             android:id="@+id/txtCategoriaTit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
             android:layout_marginTop="2dp"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Categoria"
+            android:text="@string/categorie"
             android:textSize="24sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginBottom="3dp"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray" /> -->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bordo_arrotondato_bianco"
             android:padding="3dp"
             android:orientation="horizontal"
             android:weightSum="9">
+            <!-- android:background="@drawable/bordo_arrotondato_bianco" -->
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left|center_vertical"
                 android:layout_weight="3"
-                android:gravity="left|center_vertical"
-                android:text="Categoria"
-                android:textSize="16sp" />
+                android:gravity="start|center_vertical"
+                android:text="@string/categoria"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp" />
 
             <Spinner
                 android:id="@+id/spnCategorie"
@@ -54,9 +55,9 @@
             <Button
                 android:id="@+id/cmdScegliCat"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="1"
-                android:text="->" />
+                android:background="@drawable/ok" />
         </LinearLayout>
     </LinearLayout>
 

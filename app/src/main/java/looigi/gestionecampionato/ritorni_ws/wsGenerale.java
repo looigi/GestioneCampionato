@@ -218,8 +218,8 @@ public class wsGenerale {
                     final boolean CeUtente=dbl.RitornaUtenteSalvato(VariabiliStaticheGlobali.getInstance().getContext());
                     if (CeUtente) {
                         String nomeLogo = "logo_" + nomeSquadra;
+						/* boolean niente = false;
                         int myColor;
-                        boolean niente = false;
                         switch (nomeSquadra) {
                             case "castelverde_calcio":
                                 myColor = Color.parseColor("#44a751");
@@ -240,7 +240,7 @@ public class wsGenerale {
                                 break;
                         }
                         VariabiliStaticheMain.getInstance().getWindowBackground().getDecorView()
-                                .setBackgroundColor(myColor);
+                                .setBackgroundColor(myColor); */
 
 
 						/* VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale().getWindow()
@@ -249,11 +249,11 @@ public class wsGenerale {
 						VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale().getWindow().setStatusBarColor(
 								VariabiliStaticheGlobali.getInstance().getContextPrincipale().getResources().getColor(myColor)); */
 
-						if (!niente) {
+						// if (!niente) {
                             int id = VariabiliStaticheGlobali.getInstance().getViewActivity().
                                     getResources().getIdentifier("looigi.gestionecampionato:drawable/" + nomeLogo, null, null);
                             VariabiliStaticheMain.getInstance().getImgSplash().setImageResource(id);
-                        }
+                        // }
 						VariabiliStaticheMain.getInstance().setPartitaApplicazione(true);
 						VariabiliStaticheMain.getInstance().getDrawer().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
                     } else {

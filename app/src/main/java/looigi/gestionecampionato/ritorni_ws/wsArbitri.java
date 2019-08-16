@@ -12,6 +12,7 @@ import looigi.gestionecampionato.dati.VariabiliStaticheArbitri;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
 import looigi.gestionecampionato.dati.VariabiliStaticheNuovaPartita;
 import looigi.gestionecampionato.db_remoto.DBRemotoArbitri;
+import looigi.gestionecampionato.db_remoto.DBRemotoEventi;
 import looigi.gestionecampionato.db_remoto.DBRemotoGenerale;
 import looigi.gestionecampionato.dialog.DialogMessaggio;
 import looigi.gestionecampionato.maschere.Arbitri;
@@ -84,9 +85,9 @@ public class wsArbitri {
                 hSelezionaRiga.postDelayed(runRiga=new Runnable() {
                     @Override
                     public void run() {
-                        DBRemotoGenerale dbr = new DBRemotoGenerale();
+                        DBRemotoEventi dbr = new DBRemotoEventi();
                         dbr.RitornaEventi(VariabiliStaticheArbitri.getInstance().getContext(),
-                                "");
+                                NomiMaschere.getInstance().getNuovaPartitaPerTitolo());
                     }
                 }, 50);
             } else {

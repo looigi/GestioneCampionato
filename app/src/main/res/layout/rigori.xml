@@ -18,10 +18,10 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="A Disposizione"
-                android:textColor="@color/blu"
+                android:background="@drawable/bordo_arrotondato_bianco"
+                android:textColor="@color/colorPrimary"
                 android:textSize="24sp" />
 
             <ListView
@@ -34,6 +34,7 @@
                 android:baselineAligned="false"
                 android:layout_width="match_parent"
                 android:weightSum="2"
+                android:background="@drawable/sfondo_bianco"
                 android:orientation="horizontal"
                 android:layout_height="match_parent">
 
@@ -46,9 +47,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/bordo_arrotondato_bianco"
                         android:gravity="center_horizontal|top"
                         android:text="Rigoristi"
-                        android:textColor="@color/blu"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="24sp" />
 
                     <ListView
@@ -70,7 +72,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal|top"
                         android:text="Avversari"
-                        android:textColor="@color/blu"
+                        android:background="@drawable/bordo_arrotondato_bianco"
+                        android:textColor="@color/colorPrimary"
                         android:textSize="24sp" />
 
                     <LinearLayout
@@ -127,7 +130,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:gravity="left|center_vertical"
-                            android:text="Sbagliati"
+                            android:text="Sbagliati / \nParati"
                             android:layout_height="match_parent" />
 
                         <LinearLayout

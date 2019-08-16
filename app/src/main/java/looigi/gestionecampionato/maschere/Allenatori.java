@@ -146,9 +146,9 @@ public class Allenatori extends android.support.v4.app.Fragment {
             VariabiliStaticheAllenatori.getInstance().setSpnCategorie((Spinner) view.findViewById(R.id.spnCategorie));
             VariabiliStaticheAllenatori.getInstance().setLstAllenatori((ListView) view.findViewById(R.id.lstvAllenatori));
 
-            Utility.getInstance().SettaColoreSceltaCategoria(view);
+            // Utility.getInstance().SettaColoreSceltaCategoria(view);
 
-            TextView txtAllTit = (TextView) view.findViewById(R.id.txtAllenatoriTit);
+            /* TextView txtAllTit = (TextView) view.findViewById(R.id.txtAllenatoriTit);
             Utility.getInstance().SettaColoreSfondoPerNomeSquadra(txtAllTit);
             if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
                 txtAllTit.setTextColor(Color.BLACK);
@@ -165,7 +165,7 @@ public class Allenatori extends android.support.v4.app.Fragment {
                 if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraPonteDiNona)) {
                     layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_rosso_chiaro);
                 }
-            }
+            } */
 
             // Carica nuova foto / Elimina foto
             VariabiliStaticheAllenatori.getInstance().setImgScegliFoto((ImageView) view.findViewById(R.id.imgSalvaImmagine));

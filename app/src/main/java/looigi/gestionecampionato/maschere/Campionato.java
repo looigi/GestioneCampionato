@@ -106,7 +106,7 @@ public class Campionato extends android.support.v4.app.Fragment {
 
             vv.setSpnCategorie((Spinner) view.findViewById(R.id.spnCategorie));
 
-            Utility.getInstance().SettaColoreSceltaCategoria(view);
+            // Utility.getInstance().SettaColoreSceltaCategoria(view);
 
             vv.setIdCategoriaScelta(-1);
 
@@ -125,7 +125,7 @@ public class Campionato extends android.support.v4.app.Fragment {
             vv.setLayPagina2((LinearLayout) view.findViewById(R.id.layPagina2Camp));
             vv.setLayPagina3((LinearLayout) view.findViewById(R.id.layPagina3Camp));
 
-            TextView txtPagina1 = view.findViewById(R.id.txtPagina1);
+            /* TextView txtPagina1 = view.findViewById(R.id.txtPagina1);
             TextView txtPagina2 = view.findViewById(R.id.txtPagina2);
             TextView txtPagina3 = view.findViewById(R.id.txtPagina3);
 
@@ -168,7 +168,7 @@ public class Campionato extends android.support.v4.app.Fragment {
                     imgPagina2.setColorFilter(Color.argb(255, 90,10,10));
                     imgPagina3.setColorFilter(Color.argb(255, 90,10,10));
                 }
-            }
+            }*/
 
             vv.getLayPagina1().setVisibility(LinearLayout.GONE);
             vv.getLayPagina2().setVisibility(LinearLayout.GONE);

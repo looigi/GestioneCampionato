@@ -3,10 +3,10 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <View
+    <!-- <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        android:background="@android:color/darker_gray" /> -->
 
     <LinearLayout
         android:id="@+id/layHeaderSecondoTempo"
@@ -16,7 +16,7 @@
         android:weightSum="5"
         android:layout_margin="2dp"
         android:orientation="horizontal"
-        android:background="@drawable/bordo_arrotondato_verde">
+        android:background="@drawable/bordo_arrotondato_bianco">
 
         <TextView
             android:id="@+id/txtSecondoTempo"
@@ -71,15 +71,16 @@
 
     </LinearLayout>
 
-    <View
+    <!-- <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        android:background="@android:color/darker_gray" /> -->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal|center_vertical"
+        android:background="@drawable/sfondo_bianco"
         android:layout_marginLeft="5dp"
         android:orientation="horizontal"
         android:layout_marginRight="5dp"
@@ -118,8 +119,8 @@
 
                     <Button
                         android:id="@+id/btnMenoAvvSecondoTempo"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:textSize="20sp"
                         android:background="@drawable/meno" />
                 </LinearLayout>
@@ -146,8 +147,8 @@
 
                     <Button
                         android:id="@+id/btnPiuAvvSecondoTempo"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
                         android:textSize="20sp"
                         android:background="@drawable/piu" />
                 </LinearLayout>
@@ -175,15 +176,13 @@
             <ListView
                 android:id="@+id/lvTempiGAvvSecondoTempo"
                 android:layout_width="match_parent"
-                android:backgroundTint="@color/rosso_chiaro"
                 android:layout_height="match_parent"
-                android:background="@drawable/bordo_arrotondato_bianco" />
+                android:background="@drawable/sfondo_bianco" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:background="@drawable/bordo_arrotondato_bianco"
             android:gravity="center_horizontal|center_vertical"
             android:layout_height="match_parent">
 
@@ -207,15 +206,16 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:layout_margin="2dp"
-        android:background="@drawable/bordo_arrotondato_verde"
+        android:background="@drawable/bordo_arrotondato_bianco"
+        android:textColor="@color/verdeScuro"
         android:gravity="center_horizontal|center_vertical"
         android:text="Marcatori"
         android:textStyle="bold|italic" />
 
-    <View
+    <!-- <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        android:background="@android:color/darker_gray" /> -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -223,7 +223,6 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
-        android:background="@color/bianco"
         android:weightSum="8">
 
         <LinearLayout
@@ -254,13 +253,14 @@
         </LinearLayout>
     </LinearLayout>
 
-    <View
+    <!-- <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        android:background="@android:color/darker_gray" /> -->
 
     <ListView
         android:id="@+id/lstvEventiSecondoTempo"
+        android:background="@drawable/sfondo_bianco"
         android:layout_width="match_parent"
         android:layout_height="100dp" />
 

@@ -44,8 +44,8 @@ public class VariabiliStaticheGlobali {
     final public static String ValoreAmministratore = "1";
     final public static String NomeApplicazione="Gestione campionato";
 
-    final public static String NomeSquadraCastelVerde="CASTELVERDE";
-    final public static String NomeSquadraPonteDiNona="PONTEDINONA";
+    // final public static String NomeSquadraCastelVerde="CASTELVERDE";
+    // final public static String NomeSquadraPonteDiNona="PONTEDINONA";
 
     public String getLatAnno() {
         return LatAnno;

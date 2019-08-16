@@ -229,7 +229,7 @@ public class Rose extends android.support.v4.app.Fragment {
                 }
             });
 
-            Utility.getInstance().SettaColoreSceltaCategoria(view);
+            /* Utility.getInstance().SettaColoreSceltaCategoria(view);
 
             TextView txtAllTit = (TextView) view.findViewById(R.id.txtGiocatoriTit);
             Utility.getInstance().SettaColoreSfondoPerNomeSquadra(txtAllTit);
@@ -248,7 +248,7 @@ public class Rose extends android.support.v4.app.Fragment {
                 if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraPonteDiNona)) {
                     layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_rosso_chiaro);
                 }
-            }
+            } */
         }
     }
 

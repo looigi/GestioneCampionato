@@ -356,11 +356,16 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         }
 
         String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+        View view = VariabiliStaticheNuovaPartita.getInstance().getViewActivity();
+        Button btnAvvenimentiSecondoTempo = view.findViewById(R.id.btnAvvenimentiSecondoTempo);
+        Button btnAvvenimentiTerzoTempo = view.findViewById(R.id.btnAvvenimentiTerzoTempo);
 
         if (DatiPartitaGen[11].isEmpty()) {
             vnp.getTxtRisAvv2Tempo().setText("0");
         } else {
             if (DatiPartitaGen[11].equals("-1")) {
+                btnAvvenimentiSecondoTempo.setVisibility(LinearLayout.GONE);
+
                 vnp.getTxtRisAvv2Tempo().setText("Non giocato");
 
                 vnp.getLvvMarcatoriSecondoTempo().setVisibility(LinearLayout.GONE);
@@ -372,6 +377,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
                 vnp.getCmdReset2Tempo().setVisibility(LinearLayout.GONE);
             } else {
+                btnAvvenimentiSecondoTempo.setVisibility(LinearLayout.VISIBLE);
+
                 vnp.getTxtRisAvv2Tempo().setText(DatiPartitaGen[11]);
 
                 vnp.getLvvMarcatoriSecondoTempo().setVisibility(LinearLayout.VISIBLE);
@@ -393,6 +400,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             vnp.getTxtRisAvv3Tempo().setText("0");
         } else {
             if (DatiPartitaGen[12].equals("-1")) {
+                btnAvvenimentiTerzoTempo.setVisibility(LinearLayout.GONE);
+
                 vnp.getTxtRisAvv3Tempo().setText("Non giocato");
 
                 vnp.getLvvMarcatoriTerzoTempo().setVisibility(LinearLayout.GONE);
@@ -404,6 +413,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
                 vnp.getCmdReset3Tempo().setVisibility(LinearLayout.GONE);
             } else {
+                btnAvvenimentiTerzoTempo.setVisibility(LinearLayout.VISIBLE);
+
                 vnp.getTxtRisAvv3Tempo().setText(DatiPartitaGen[12]);
 
                 vnp.getLvvMarcatoriTerzoTempo().setVisibility(LinearLayout.VISIBLE);
@@ -676,8 +687,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         if (vnp.getAllenatore() != null) {
             // Carica allenatori nella lista
             final ArrayAdapter<String> adapterAllenatori = new ArrayAdapter<String>(
-                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_piccolo, vnp.getAllenatore());
-            adapterAllenatori.setDropDownViewResource(R.layout.spinner_item_piccolo);
+                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_piccolissimo, vnp.getAllenatore());
+            adapterAllenatori.setDropDownViewResource(R.layout.spinner_item_piccolissimo);
             vnp.getSpnAllenatore().setAdapter(adapterAllenatori);
             // Carica allenatori nella lista
 
@@ -1586,7 +1597,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
         // rlMaschera.setBackgroundResource(R.drawable.trasparente);
 
-        if (VariabiliStaticheMain.getInstance().getSquadra()!=null &&
+        /* if (VariabiliStaticheMain.getInstance().getSquadra()!=null &&
                 VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
             layHeader.setBackgroundResource(R.drawable.bordo_arrotondato_verde);
             layPTHeader.setBackgroundResource(R.drawable.bordo_arrotondato_verde);
@@ -1622,7 +1633,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 txtMarcStTit.setTextColor(Color.WHITE);
                 txtMarcTtTit.setTextColor(Color.WHITE);
             }
-        }
+        } */
 
         vnp.setSpnCategorie((Spinner) view.findViewById(R.id.spnCategoria));
         vnp.setSpnTipologie((Spinner) view.findViewById(R.id.spnTipologia));
@@ -1668,7 +1679,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.setEventiTerzoTempo(new ArrayList<String>());
 
         Button btnAvvenimentiPrimoTempo = view.findViewById(R.id.btnAvvenimentiPrimoTempo);
-        Button btnAvvenimentiSecondoTempo = view.findViewById(R.id.btnAvvenimentiSecondoTempo);
+        final Button btnAvvenimentiSecondoTempo = view.findViewById(R.id.btnAvvenimentiSecondoTempo);
         final Button btnAvvenimentiTerzoTempo = view.findViewById(R.id.btnAvvenimentiTerzoTempo);
 
         Button btnOkEventi = view.findViewById(R.id.cmdOkEventi);
@@ -1944,7 +1955,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.setTxtTimer2Tempo((TextView) view.findViewById(R.id.txtTimer2Tempo));
         vnp.setTxtTimer3Tempo((TextView) view.findViewById(R.id.txtTimer3Tempo));
 
-        if (VariabiliStaticheMain.getInstance().getSquadra()==null) {
+        /* if (VariabiliStaticheMain.getInstance().getSquadra()==null) {
             VariabiliStaticheMain.getInstance().setSquadra(VariabiliStaticheGlobali.NomeSquadraPonteDiNona);
         }
         if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
@@ -1955,7 +1966,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             vnp.getTxtTimer1Tempo().setTextColor(Color.WHITE);
             vnp.getTxtTimer2Tempo().setTextColor(Color.WHITE);
             vnp.getTxtTimer3Tempo().setTextColor(Color.WHITE);
-        }
+        } */
 
         VariabiliStaticheNuovaPartita.getInstance().setDirigenteSelezionato(new ArrayList<String>());
         VariabiliStaticheNuovaPartita.getInstance().setIdDirigenteSelezionato(new ArrayList<Integer>());
@@ -2227,7 +2238,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             }
         });
 
-        if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
+        /* if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
             vnp.getCmdStartSopTimer1Tempo().setColorFilter(Color.argb(255, 0, 0, 0));
             vnp.getCmdStartSopTimer2Tempo().setColorFilter(Color.argb(255, 0, 0, 0));
             vnp.getCmdStartSopTimer3Tempo().setColorFilter(Color.argb(255, 0, 0, 0));
@@ -2243,7 +2254,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             vnp.getCmdReset1Tempo().setColorFilter(Color.argb(255, 90,10,10));
             vnp.getCmdReset2Tempo().setColorFilter(Color.argb(255, 90,10,10));
             vnp.getCmdReset3Tempo().setColorFilter(Color.argb(255, 90,10,10));
-        }
+        } */
 
         vnp.setChkInCasa((CheckBox) view.findViewById(R.id.chkInCasa));
         vnp.getChkInCasa().setChecked(false);
@@ -2325,6 +2336,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                             }
                             ScriveRisultato();
                         } else {
+                            btnAvvenimentiSecondoTempo.setVisibility(LinearLayout.GONE);
+
                             vnp.getTxtRisAvv2Tempo().setText("Non giocato");
 
                             vnp.getLvvMarcatoriSecondoTempo().setVisibility(LinearLayout.GONE);
@@ -2401,6 +2414,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     ModificaEffettuata = true;
                     if (vnp.getTxtRisAvv2Tempo().getText().equals("Non giocato")) {
                         vnp.getTxtRisAvv2Tempo().setText("0");
+
+                        btnAvvenimentiSecondoTempo.setVisibility(LinearLayout.VISIBLE);
 
                         vnp.getLvvMarcatoriSecondoTempo().setVisibility(LinearLayout.VISIBLE);
                         vnp.getLvvMarcatoriSecondoTempo().setEnabled(true);
@@ -2694,7 +2709,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         vnp.getImgFuori().setVisibility(LinearLayout.GONE);
         vnp.setTxtFuori((TextView) view.findViewById(R.id.txtFuori));
 
-        if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
+        /* if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
             vnp.getTxtCasa().setTextColor(Color.BLACK);
             vnp.getTxtFuori().setTextColor(Color.BLACK);
             vnp.getTxtGoal().setTextColor(Color.BLACK);
@@ -2708,7 +2723,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 vnp.getTxtTempi().setTextColor(Color.WHITE);
                 vnp.getTxtRigori().setTextColor(Color.WHITE);
             }
-        }
+        } */
 
         vnp.getTxtFuori().setText("");
 
@@ -2761,7 +2776,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         ImageView imgPagina4 = view.findViewById(R.id.imgPagina4);
         ImageView imgPagina5 = view.findViewById(R.id.imgPagina5);
 
-        if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
+        /* if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
             layTastoPagina1.setBackgroundResource(R.drawable.bordo_arrotondato_verde);
             layTastoPagina2.setBackgroundResource(R.drawable.bordo_arrotondato_verde);
             layTastoPagina3.setBackgroundResource(R.drawable.bordo_arrotondato_verde);
@@ -2796,7 +2811,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 imgPagina4.setColorFilter(Color.argb(255, 90,10,10));
                 imgPagina5.setColorFilter(Color.argb(255, 90,10,10));
             }
-        }
+        } */
 
         layPagina1.setVisibility(LinearLayout.VISIBLE);
         layPagina2.setVisibility(LinearLayout.GONE);

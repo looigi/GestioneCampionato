@@ -22,13 +22,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center_vertical"
             android:layout_marginTop="5dp"
-            android:background="@color/colorPrimary"
             android:gravity="center_horizontal|center_vertical"
-            android:text="Giocatori"
-            android:textColor="@color/blu"
+            android:text="@string/rose"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp" />
 
-        <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+        <ListView
             android:id="@+id/lstvGiocatori"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -40,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/bordo_arrotondato_verde"
+        android:background="@drawable/bordo_arrotondato_bianco"
         android:padding="5dp"
         android:layout_margin="5dp">
 

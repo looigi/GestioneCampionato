@@ -159,7 +159,7 @@ public class AdapterDirigenti extends ArrayAdapter
 							}
 						});
 					} else {
-                        Boolean Ok = true;
+                        boolean Ok = true;
 
                         if (VariabiliStaticheNuovaPartita.getInstance().getDirigenteSelezionato() != null) {
                             for (String d : VariabiliStaticheNuovaPartita.getInstance().getDirigenteSelezionato()) {

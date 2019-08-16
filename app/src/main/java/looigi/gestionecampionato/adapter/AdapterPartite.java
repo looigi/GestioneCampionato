@@ -106,7 +106,7 @@ public class AdapterPartite extends ArrayAdapter
 		TextView txtRisultatoGoal = convertView.findViewById(R.id.risultatoGoal);
 		TextView txtTipologia = convertView.findViewById(R.id.txtTipologia);
 		LinearLayout layRigori = convertView.findViewById(R.id.layRigori);
-		Utility.getInstance().SettaColoreSfondoPerNomeSquadra(txtTipologia);
+		// Utility.getInstance().SettaColoreSfondoPerNomeSquadra(txtTipologia);
 
 		// TextView txtCampo = convertView.findViewById(R.id.campo);
 		ImageView imgMaps = convertView.findViewById(R.id.imgMaps);
@@ -171,10 +171,10 @@ public class AdapterPartite extends ArrayAdapter
 		TextView txtTempi=convertView.findViewById(R.id.txtTempi);
 		TextView txtRisTempi=convertView.findViewById(R.id.risultatoTempi);
 
-		Utility.getInstance().SettaColoreTestoPerNomeSquadra(txtSqCasa);
-		Utility.getInstance().SettaColoreTestoPerNomeSquadra(txtSqFuori);
-		Utility.getInstance().SettaColoreTestoPerNomeSquadra(txtGoals);
-		Utility.getInstance().SettaColoreTestoPerNomeSquadra(txtTempi);
+		// Utility.getInstance().SettaColoreTestoPerNomeSquadra(txtSqCasa);
+		// Utility.getInstance().SettaColoreTestoPerNomeSquadra(txtSqFuori);
+		// Utility.getInstance().SettaColoreTestoPerNomeSquadra(txtGoals);
+		// Utility.getInstance().SettaColoreTestoPerNomeSquadra(txtTempi);
 		// TextView txtAllenatore = convertView.findViewById(R.id.allenatore);
 
 		ImageView imgMultimedia = convertView.findViewById(R.id.imgMultimedia);
