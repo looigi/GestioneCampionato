@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <!-- <TextView
             android:id="@+id/txtArbitriTit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,9 +22,9 @@
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/arbitri"
             android:textColor="@color/colorPrimary"
-            android:textSize="24sp" />
+            android:textSize="24sp" /> -->
 
-        <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+        <ListView
             android:id="@+id/lstvArbitri"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/bordo_arrotondato_verde"
+        android:background="@drawable/bordo_arrotondato_bianco"
         android:padding="5dp"
         android:layout_margin="5dp">
 

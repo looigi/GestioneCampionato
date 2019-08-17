@@ -35,10 +35,6 @@ public class wsEventi {
             DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale(), Appoggio,
                     true, VariabiliStaticheGlobali.NomeApplicazione);
         } else {
-            DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale(),
-                    "Evento salvato",
-                    false,
-                    VariabiliStaticheGlobali.NomeApplicazione);
             //VariabiliStaticheMain.getInstance().setPartite(null);
             VariabiliStaticheEventi.getInstance().getLayMascheraModEventi().setVisibility(RelativeLayout.GONE);
 
@@ -48,9 +44,14 @@ public class wsEventi {
                 public void run() {
                     DBRemotoEventi dbr = new DBRemotoEventi();
                     dbr.RitornaEventi(VariabiliStaticheEventi.getInstance().getContext(),
-                            NomiMaschere.getInstance().getEventi());
+                            NomiMaschere.getInstance().getEventiPerTitolo());
                 }
             }, 50);
+
+            DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale(),
+                    "Evento salvato",
+                    false,
+                    VariabiliStaticheGlobali.NomeApplicazione);
         }
     }
 

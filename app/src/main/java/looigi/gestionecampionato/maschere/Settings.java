@@ -197,8 +197,8 @@ public class Settings extends android.support.v4.app.Fragment {
             }
 
             final ArrayAdapter<String> adapterAnni = new ArrayAdapter<>(
-                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item, AnniDesc);
-            adapterAnni.setDropDownViewResource(R.layout.spinner_item);
+                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_per_utenti, AnniDesc);
+            adapterAnni.setDropDownViewResource(R.layout.spinner_item_per_utenti);
             VariabiliStaticheSettings.getInstance().getSpnAnni().setAdapter(adapterAnni);
 
             int pos = Utility.getInstance().CercaESettaStringaInSpinner(VariabiliStaticheSettings.getInstance().getSpnAnni(), Ricerca);

@@ -110,8 +110,8 @@ public class ModificaUtente extends android.support.v4.app.Fragment {
             VariabiliStaticheGlobali.getInstance().vPerPassaggio=null;
 
             final ArrayAdapter<String> adapterSquadre = new ArrayAdapter<String>(
-                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item, v.getNomiSquadre());
-            adapterSquadre.setDropDownViewResource(R.layout.spinner_item);
+                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_per_categorie, v.getNomiSquadre());
+            adapterSquadre.setDropDownViewResource(R.layout.spinner_item_per_categorie);
             v.getSpnNomeSquadra().setAdapter(adapterSquadre);
 
             v.getSpnNomeSquadra().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -139,8 +139,8 @@ public class ModificaUtente extends android.support.v4.app.Fragment {
             VariabiliStaticheGlobali.getInstance().vPerPassaggio=null;
 
             final ArrayAdapter<String> adapterCategorie = new ArrayAdapter<String>(
-                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item, v.getNomiCategorie());
-            adapterCategorie.setDropDownViewResource(R.layout.spinner_item);
+                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_per_categorie, v.getNomiCategorie());
+            adapterCategorie.setDropDownViewResource(R.layout.spinner_item_per_categorie);
             v.getSpnCategorie().setAdapter(adapterCategorie);
 
             int pos = Utility.getInstance().CercaESettaStringaInSpinner(v.getSpnCategorie(),

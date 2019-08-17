@@ -32,7 +32,7 @@ public class DBRemotoMultimedia {
 				String n = f.getName();
 				String c = f.getPath();
 				String c2=c.replace(n,"");
-				String cc[] = c2.split("/");
+				String[] cc = c2.split("/");
 				String c3=cc[cc.length-1];
 
 				HttpFileUpload hfu = new HttpFileUpload(VariabiliStaticheGlobali.RadiceUpload, Tipologia, n, c3);

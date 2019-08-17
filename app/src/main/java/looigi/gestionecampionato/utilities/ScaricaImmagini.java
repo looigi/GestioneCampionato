@@ -52,7 +52,7 @@ public class ScaricaImmagini {
                 nFile=Integer.toString(Anno)+"_"+id+".jpg";
                 break;
             case "ARBITRI":
-                nFile=Integer.toString(Anno)+"_"+id+".jpg";
+                nFile=id+".jpg";
                 break;
             case "PARTITE":
                 nFile=id + "/" + Name;

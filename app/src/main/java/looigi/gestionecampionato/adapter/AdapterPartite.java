@@ -48,7 +48,7 @@ public class AdapterPartite extends ArrayAdapter
 		} */
 
 		String riga = lista.get(position);
-		String Campi[]=riga.split(";", -1);
+		String[] Campi=riga.split(";", -1);
 
 		String DataOra = Campi[0];
 		final String idPartita = Campi[1];
@@ -118,7 +118,7 @@ public class AdapterPartite extends ArrayAdapter
 			imgMaps.setVisibility(LinearLayout.VISIBLE);
 			imgMaps.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
-					String c[] = Coords.split(",", -1);
+					String[] c = Coords.split(",", -1);
 					Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Coords);
 					// Uri gmmIntentUri = Uri.parse("geo:"+c[0]+","+c[1]);
 					Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
@@ -199,7 +199,13 @@ public class AdapterPartite extends ArrayAdapter
 		txtId.setText(idPartita);
 		txtDataOraCampo.setText(DataOra+" "+Campo);
 		// txtCampo.setText(Campo);
-		txtSqCasa.setText(Categoria);
+
+		String cate = Categoria;
+		if (cate.contains("-")) {
+			cate = cate.substring(cate.indexOf("-")+1, cate.length());
+		}
+		cate = cate.trim();
+		txtSqCasa.setText(cate);
 		txtSqFuori.setText(Avversario);
 
 		String[] puntiATempiOriginari = puntiATempi.clone();
@@ -324,6 +330,7 @@ public class AdapterPartite extends ArrayAdapter
 		Utility.getInstance().PrendeImmagineCategoria(idCategoria, imgCasa);
 		Utility.getInstance().PrendeImmagineAvversario(idAvversario, imgFuori);
 		Utility.getInstance().PrendeImmagineAllenatore(idAllenatore, imgAllenatore);
+
 		if (!idArbitro.isEmpty()) {
 			imgArbitro.setVisibility(LinearLayout.VISIBLE);
 			Utility.getInstance().PrendeImmagineArbitro(idArbitro, imgArbitro);

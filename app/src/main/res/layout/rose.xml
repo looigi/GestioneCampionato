@@ -16,7 +16,7 @@
         <include
             layout="@layout/scelta_categoria" />
 
-        <TextView
+        <!-- <TextView
             android:id="@+id/txtGiocatoriTit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/rose"
             android:textColor="@color/colorPrimary"
-            android:textSize="24sp" />
+            android:textSize="24sp" /> -->
 
         <ListView
             android:id="@+id/lstvGiocatori"

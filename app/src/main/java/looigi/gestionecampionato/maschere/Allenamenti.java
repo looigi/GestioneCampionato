@@ -122,7 +122,7 @@ public class Allenamenti extends Fragment {
         if (view != null) {
             VariabiliStaticheAllenamenti.getInstance().setSpnCategorie((Spinner) view.findViewById(R.id.spnCategorie));
             // Utility.getInstance().SettaColoreSceltaCategoria(view);
-            TextView txtAllTit = (TextView) view.findViewById(R.id.txtAllenamentiTit);
+            // TextView txtAllTit = (TextView) view.findViewById(R.id.txtAllenamentiTit);
             // Utility.getInstance().SettaColoreSfondoPerNomeSquadra(txtAllTit);
             /* if (VariabiliStaticheMain.getInstance().getSquadra().equals(VariabiliStaticheGlobali.NomeSquadraCastelVerde)) {
                 txtAllTit.setTextColor(ViewCompat.MEASURED_STATE_MASK);

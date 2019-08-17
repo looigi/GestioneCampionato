@@ -230,8 +230,8 @@ public class AdapterPartiteCampionato extends ArrayAdapter
                 lSquadra.add(sc.getSquadre());
             }
             final ArrayAdapter<String> adapterSquadra = new ArrayAdapter<>(
-                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item, lSquadra);
-            adapterSquadra.setDropDownViewResource(R.layout.spinner_item);
+                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_per_categorie, lSquadra);
+            adapterSquadra.setDropDownViewResource(R.layout.spinner_item_per_categorie);
 
             if (Casa) {
                 vnp.getSpnCasa().setAdapter(adapterSquadra);

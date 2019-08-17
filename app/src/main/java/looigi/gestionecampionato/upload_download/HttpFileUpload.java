@@ -139,7 +139,10 @@ public class HttpFileUpload implements Runnable {
 
                     String arrotonda = "NO";
                     if (iTipologia.equals(NomiMaschere.getInstance().getCategoriePerTitolo()) ||
+                            iTipologia.equals(NomiMaschere.getInstance().getAllenatoriPerTitolo()) ||
+                            iTipologia.equals(NomiMaschere.getInstance().getArbitriPerTitolo()) ||
                             iTipologia.equals(NomiMaschere.getInstance().getAvversariPerTitolo()) ||
+                            iTipologia.equals(NomiMaschere.getInstance().getDirigentiPerTitolo()) ||
                             iTipologia.equals(NomiMaschere.getInstance().getRosePerTitolo())) {
                             arrotonda = "SI";
                     }

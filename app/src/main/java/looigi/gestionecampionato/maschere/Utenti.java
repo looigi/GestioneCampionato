@@ -197,8 +197,8 @@ public class Utenti extends android.support.v4.app.Fragment {
             VariabiliStaticheGlobali.getInstance().vPerPassaggio=null;
 
             final ArrayAdapter<String> adapterCategorie = new ArrayAdapter<String>(
-                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item, v.getNomiCategorie());
-            adapterCategorie.setDropDownViewResource(R.layout.spinner_item);
+                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_per_utenti, v.getNomiCategorie());
+            adapterCategorie.setDropDownViewResource(R.layout.spinner_item_per_utenti);
             v.getSpnCategorie().setAdapter(adapterCategorie);
 
             v.getSpnCategorie().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -220,8 +220,8 @@ public class Utenti extends android.support.v4.app.Fragment {
             VariabiliStaticheGlobali.getInstance().vPerPassaggio=null;
 
             final ArrayAdapter<String> adapterSquadre = new ArrayAdapter<String>(
-                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item, v.getNomiSquadre());
-            adapterSquadre.setDropDownViewResource(R.layout.spinner_item);
+                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_per_utenti, v.getNomiSquadre());
+            adapterSquadre.setDropDownViewResource(R.layout.spinner_item_per_utenti);
             v.getSpnNomeSquadra().setAdapter(adapterSquadre);
 
             v.getSpnNomeSquadra().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

@@ -297,7 +297,7 @@ public class Album extends android.support.v4.app.Fragment {
 
         int i=0;
         for (String s : VariabiliStaticheAlbum.getInstance().getImmagini())  {
-            String Campi[] = s.split(";");
+            String[] Campi = s.split(";");
 
             Campi[0]=VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+Campi[0].replace("\\","/");
             NomeImmagine.add(Integer.toString(i)+";"+Campi[0]+";");

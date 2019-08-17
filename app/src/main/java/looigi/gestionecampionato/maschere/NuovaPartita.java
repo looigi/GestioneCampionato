@@ -2,9 +2,7 @@ package looigi.gestionecampionato.maschere;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,9 +22,6 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.model.LatLng;
-
-import java.lang.annotation.AnnotationFormatError;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,10 +40,8 @@ import looigi.gestionecampionato.adapter.AdapterMinutiGoalAvversari;
 import looigi.gestionecampionato.dati.NomiMaschere;
 import looigi.gestionecampionato.dati.VariabiliStaticheArbitri;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
-import looigi.gestionecampionato.dati.VariabiliStaticheMain;
 import looigi.gestionecampionato.dati.VariabiliStaticheMeteo;
 import looigi.gestionecampionato.dati.VariabiliStaticheNuovaPartita;
-import looigi.gestionecampionato.dati.VariabiliStaticheNuovoAnno;
 import looigi.gestionecampionato.db_remoto.DBRemotoAllenatori;
 import looigi.gestionecampionato.db_remoto.DBRemotoCategorie;
 import looigi.gestionecampionato.db_remoto.DBRemotoGiocatori;
@@ -469,8 +462,21 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         }
         vnp.getTxtCategoria().setText(DatiPartitaGen[16]);
 
-        vnp.getTxtCasa().setText(DatiPartitaGen[16]);
-        vnp.getTxtFuori().setText(DatiPartitaGen[13]);
+        String cate = DatiPartitaGen[16];
+        if (cate.contains("-")) {
+            cate = cate.substring(cate.indexOf("-")+1, cate.length());
+        }
+        cate = cate.trim();
+
+        vnp.getTxtCasa().setText(cate);
+
+        cate = DatiPartitaGen[13];
+        if (cate.contains("-")) {
+            cate = cate.substring(cate.indexOf("-")+1, cate.length());
+        }
+        cate = cate.trim();
+
+        vnp.getTxtFuori().setText(cate);
 
         Utility.getInstance().PrendeImmagineCategoria(DatiPartitaGen[0], vnp.getImgCasa());
         Utility.getInstance().PrendeImmagineAvversario(DatiPartitaGen[1], vnp.getImgFuori());
@@ -1454,8 +1460,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         if (vnp.getDescrizioneCategorie() != null) {
             // Carica categorie nella lista
             final ArrayAdapter<String> adapterCategorie = new ArrayAdapter<>(
-                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item, vnp.getDescrizioneCategorie());
-            adapterCategorie.setDropDownViewResource(R.layout.spinner_item);
+                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_per_categorie, vnp.getDescrizioneCategorie());
+            adapterCategorie.setDropDownViewResource(R.layout.spinner_item_per_categorie);
             vnp.getSpnCategorie().setAdapter(adapterCategorie);
 
             vnp.getSpnCategorie().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1483,8 +1489,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         if (vnp.getDescrizioneTipologie() != null) {
             // Carica tipologie nella lista
             final ArrayAdapter<String> adapterTipologie = new ArrayAdapter<>(
-                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item, vnp.getDescrizioneTipologie());
-            adapterTipologie.setDropDownViewResource(R.layout.spinner_item);
+                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_per_categorie, vnp.getDescrizioneTipologie());
+            adapterTipologie.setDropDownViewResource(R.layout.spinner_item_per_categorie);
             vnp.getSpnTipologie().setAdapter(adapterTipologie);
             // Carica tipologie nella lista
 
@@ -1507,8 +1513,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         if (Avv != null) {
             // Carica avversari nella lista
             final ArrayAdapter<String> adapterAvversari = new ArrayAdapter<>(
-                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item, Avv);
-            adapterAvversari.setDropDownViewResource(R.layout.spinner_item);
+                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_per_categorie, Avv);
+            adapterAvversari.setDropDownViewResource(R.layout.spinner_item_per_categorie);
             vnp.getSpnAvversario().setAdapter(adapterAvversari);
             // Carica avversari nella lista
 
@@ -3250,7 +3256,15 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     dbr.RitornaGiocatoriCategoria(vnp.getContext(), Integer.toString(vnp.idCategoriaScelta), TAG);
 
                     TextView tCasa = view.findViewById(R.id.txtCasa);
-                    tCasa.setText(vnp.getTxtCategoria().getText());
+
+                    String cate = vnp.getTxtCategoria().getText().toString();
+                    if (cate.contains("-")) {
+                        cate = cate.substring(cate.indexOf("-")+1, cate.length());
+                    }
+                    cate = cate.trim();
+
+                    tCasa.setText(cate);
+
                     ImageView imgCasa = view.findViewById(R.id.imgCasa);
                     imgCasa.setVisibility(LinearLayout.GONE);
 

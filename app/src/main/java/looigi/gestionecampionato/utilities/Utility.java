@@ -192,13 +192,13 @@ public class Utility {
 	}
 
 	public void PrendeImmagineArbitro(String idArbitro, ImageView imgDestinazione) {
-		String nFileAll=Integer.toString(vg.getAnnoInCorso())+"_"+idArbitro+".jpg";
+		String nFileAll=idArbitro+".jpg";
 
 		if (!Utility.getInstance().fileExistsInSD(nFileAll,
 				vg.PercorsoDIR+"/Arbitri")) {
 			ScaricaImmagini.getInstance().AggiungeImmagineDaScaricare(
 					"ARBITRI",
-					vg.getAnnoInCorso(),
+					-1,
 					imgDestinazione,
 					idArbitro,
 					"");

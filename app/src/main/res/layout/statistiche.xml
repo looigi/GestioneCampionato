@@ -451,7 +451,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/bordo_arrotondato_verde"
+        android:background="@drawable/bordo_arrotondato_bianco"
         android:padding="5dp"
         android:visibility="gone"
         android:layout_margin="5dp">
@@ -469,7 +469,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_margin="1dp"
-        app:backgroundTint="@color/colorAccent"
+        app:backgroundTint="@color/rosso"
         app:srcCompat="@android:drawable/ic_menu_revert" />
 
 </RelativeLayout>

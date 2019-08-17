@@ -101,11 +101,20 @@
                     card_view:cardBackgroundColor="@android:color/white"> -->
 
 
-                    <ImageView
-                        android:id="@+id/imgCasa"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:padding="2dp" />
+                <TextView
+                    android:id="@+id/sqCasa"
+                    android:textColor="#008888"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="Ppp Ooo"
+                    android:shadowColor="#000000"
+                    android:shadowDy="2"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:shadowRadius="1.5"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <!-- </android.support.v7.widget.CardView> -->
             </LinearLayout>
@@ -122,19 +131,11 @@
                 android:gravity="center_vertical|center_horizontal"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/sqCasa"
-                    android:textColor="#008888"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ppp Ooo"
-                    android:shadowColor="#000000"
-                    android:shadowDy="2"
-                    android:layout_gravity="center_vertical|center_horizontal"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:shadowRadius="1.5"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/imgCasa"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:padding="2dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -256,7 +257,6 @@
                             card_view:cardBackgroundColor="@android:color/white"> -->
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:background="@drawable/bordo_arrotondato_bianco_sfumato"
                             android:padding="2dp"
                             android:layout_height="wrap_content">
 
@@ -287,7 +287,6 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:background="@drawable/bordo_arrotondato_bianco_sfumato"
                             android:gravity="center_horizontal|center_vertical"
                             android:padding="2dp"
                             android:orientation="vertical"
@@ -323,7 +322,6 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:background="@drawable/bordo_arrotondato_bianco_sfumato"
                             android:padding="2dp"
                             android:layout_height="match_parent">
 
@@ -345,7 +343,6 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:background="@drawable/bordo_arrotondato_bianco_sfumato"
                             android:padding="2dp"
                             android:layout_height="wrap_content">
 
@@ -381,11 +378,21 @@
                     android:padding="2dp"
                     card_view:cardBackgroundColor="@android:color/white"> -->
 
-                    <ImageView
-                        android:id="@+id/imgFuori"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp" />
                 <!-- </android.support.v7.widget.CardView> -->
+
+                <TextView
+                    android:id="@+id/sqFuori"
+                    android:layout_width="match_parent"
+                    android:textColor="#008888"
+                    android:layout_height="wrap_content"
+                    android:text="Ppp Ooo"
+                    android:gravity="center_vertical|end"
+                    android:shadowColor="#000000"
+                    android:shadowDy="2"
+                    android:shadowRadius="1.5"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <!-- <View
@@ -396,23 +403,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_gravity="center_vertical|center_horizontal"
                 android:gravity="center_vertical|center_horizontal"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/sqFuori"
-                    android:layout_width="wrap_content"
-                    android:textColor="#008888"
-                    android:layout_height="wrap_content"
-                    android:text="Ppp Ooo"
-                    android:layout_gravity="center_vertical|center_horizontal"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:shadowColor="#000000"
-                    android:shadowDy="2"
-                    android:shadowRadius="1.5"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/imgFuori"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -431,6 +428,7 @@
             android:layout_height="wrap_content"
             android:shadowColor="@color/bianco"
             android:text="3"
+            android:background="@drawable/sfondo_bianco"
             android:gravity="center_vertical|center_horizontal"
             android:textColor="@color/rosso"
             android:textSize="15sp"

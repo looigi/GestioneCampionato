@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -19,7 +19,7 @@
             android:layout_marginTop="2dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/eventi"
-            android:textColor="@color/bianco"
+            android:textColor="@color/colorPrimary"
             android:textSize="24sp" />
 
         <LinearLayout
@@ -75,4 +75,4 @@
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

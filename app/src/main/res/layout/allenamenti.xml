@@ -4,7 +4,7 @@
     <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
         <include layout="@layout/scelta_categoria" />
         <View android:background="@android:color/darker_gray" android:layout_width="fill_parent" android:layout_height="1.0dip" />
-        <TextView android:textSize="24.0sp" android:textColor="@color/blu" android:gravity="center" android:layout_gravity="center" android:id="@+id/txtAllenamentiTit" android:background="@color/colorPrimary" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="Allenamenti" />
+        <!-- <TextView android:textSize="24.0sp" android:textColor="@color/blu" android:gravity="center" android:layout_gravity="center" android:id="@+id/txtAllenamentiTit" android:background="@color/colorPrimary" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="5.0dip" android:text="Allenamenti" /> -->
         <LinearLayout
             android:orientation="vertical"
             android:id="@+id/layDataOra"
@@ -32,19 +32,17 @@
             android:weightSum="2.0">
             <LinearLayout android:orientation="vertical" android:padding="2.0dip" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
                 <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
-                    <TextView android:textSize="24.0sp" android:textColor="@color/blu" android:gravity="center" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5.0dip" android:text="Assenti" />
+                    <TextView android:textSize="24.0sp" android:textColor="@color/colorPrimary" android:gravity="center" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5.0dip" android:text="Assenti" />
                     <Button android:id="@+id/cmdMetteTutti" android:background="@drawable/avanti" android:layout_width="30.0dip" android:layout_height="30.0dip" />
                 </LinearLayout>
-                <ListView android:id="@+id/lstvDaAllenare" android:layout_width="fill_parent" android:layout_height="fill_parent"
-                    xmlns:android="http://schemas.android.com/apk/res/android" />
+                <ListView android:id="@+id/lstvDaAllenare" android:layout_width="fill_parent" android:layout_height="fill_parent" />
             </LinearLayout>
             <LinearLayout android:orientation="vertical" android:padding="2.0dip" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
                 <LinearLayout android:gravity="center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content">
                     <Button android:id="@+id/cmdToglieTutti" android:background="@drawable/indietro" android:layout_width="30.0dip" android:layout_height="30.0dip" />
-                    <TextView android:textSize="24.0sp" android:textColor="@color/blu" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:text="Presenti" />
+                    <TextView android:textSize="24.0sp" android:textColor="@color/colorPrimary" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5.0dip" android:text="Presenti" />
                 </LinearLayout>
-                <ListView android:id="@+id/lstvAllenanti" android:layout_width="fill_parent" android:layout_height="fill_parent"
-                    xmlns:android="http://schemas.android.com/apk/res/android" />
+                <ListView android:id="@+id/lstvAllenanti" android:layout_width="fill_parent" android:layout_height="fill_parent" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

@@ -182,24 +182,24 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:padding="3dp">
 
-                    <android.support.v7.widget.CardView
+                    <!-- <android.support.v7.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dp"
                         android:padding="1dp"
-                        card_view:cardBackgroundColor="@android:color/white">
+                        card_view:cardBackgroundColor="@android:color/white"> -->
 
                         <ImageView
                             android:id="@+id/imgAllenatore"
                             android:layout_width="35dp"
                             android:layout_height="35dp" />
-                    </android.support.v7.widget.CardView>
+                    <!-- </android.support.v7.widget.CardView> -->
 
                     <TextView
                         android:id="@+id/allenatore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
+                        android:layout_marginStart="3dp"
                         android:text="Ppp Ooo"
                         android:textSize="10sp"
                         android:textStyle="bold|italic" />
@@ -214,25 +214,24 @@
                 android:gravity="top|center_horizontal"
                 android:orientation="vertical">
 
-                <android.support.v7.widget.CardView
+                <!-- <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="3dp"
                     android:padding="2dp"
-                    card_view:cardBackgroundColor="@android:color/white">
+                    card_view:cardBackgroundColor="@android:color/white"> -->
 
                     <ImageView
                         android:id="@+id/imgFuori"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:scaleType="centerCrop" />
-                </android.support.v7.widget.CardView>
+                        android:layout_height="80dp" />
+                <!-- </android.support.v7.widget.CardView> -->
 
                 <TextView
                     android:id="@+id/sqFuori"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="right|center_vertical"
+                    android:layout_gravity="end|center_vertical"
                     android:gravity="center_vertical|center_horizontal"
                     android:text="Ppp Ooo"
                     android:textSize="16sp"

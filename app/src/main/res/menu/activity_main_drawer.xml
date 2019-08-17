@@ -64,7 +64,7 @@
                 android:title="@string/dirigenti" />
             <item
                 android:id="@+id/eventi"
-                android:icon="@drawable/fischietto"
+                android:icon="@drawable/esclamativo"
                 android:title="@string/eventi" />
             <item
                 android:id="@+id/rose"
