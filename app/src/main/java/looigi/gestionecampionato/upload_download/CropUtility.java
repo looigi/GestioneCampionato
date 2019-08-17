@@ -126,7 +126,7 @@ public class CropUtility {
                 f.delete();
             }
 
-            Boolean Errore=false;
+            boolean Errore=false;
 
             try {
                 FileOutputStream out = new FileOutputStream(f);

@@ -13,6 +13,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import looigi.gestionecampionato.dati.NomiMaschere;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
 import looigi.gestionecampionato.dialog.DialogMessaggio;
 import looigi.gestionecampionato.ritorni_ws.wsMultimedia;
@@ -133,6 +134,20 @@ public class HttpFileUpload implements Runnable {
                     dos.writeBytes("Content-Disposition: form-data; name=\"cartella\""+ lineEnd);
                     dos.writeBytes(lineEnd);
                     dos.writeBytes(Cartella);
+                    dos.writeBytes(lineEnd);
+                    dos.writeBytes(twoHyphens + boundary + lineEnd);
+
+                    String arrotonda = "NO";
+                    if (iTipologia.equals(NomiMaschere.getInstance().getCategoriePerTitolo()) ||
+                            iTipologia.equals(NomiMaschere.getInstance().getAvversariPerTitolo()) ||
+                            iTipologia.equals(NomiMaschere.getInstance().getRosePerTitolo())) {
+                            arrotonda = "SI";
+                    }
+
+                    dos.writeBytes(twoHyphens + boundary + lineEnd);
+                    dos.writeBytes("Content-Disposition: form-data; name=\"arrotonda\""+ arrotonda +"\""+lineEnd);
+                    dos.writeBytes(lineEnd);
+                    dos.writeBytes(arrotonda);
                     dos.writeBytes(lineEnd);
                     dos.writeBytes(twoHyphens + boundary + lineEnd);
 

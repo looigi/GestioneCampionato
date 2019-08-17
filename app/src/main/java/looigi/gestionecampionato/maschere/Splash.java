@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +77,7 @@ public class Splash extends android.support.v4.app.Fragment {
         final View view = VariabiliStaticheGlobali.getInstance().getViewActivity();
 
         if (view != null) {
+            // VariabiliStaticheMain.getInstance().getToolBar().setBackgroundColor(Color.BLACK);
             // ControlloVersioneApplicazione c = new ControlloVersioneApplicazione();
             // c.ControllaVersione();
 
@@ -101,6 +103,7 @@ public class Splash extends android.support.v4.app.Fragment {
                     TastoPremuto=true;
                     VariabiliStaticheMain.getInstance().getAppBar().setVisibility(LinearLayout.VISIBLE);
 
+                    // VariabiliStaticheMain.getInstance().getToolBar().setBackgroundColor(Color.GRAY);
                     if (CeUtente) {
                         DBRemotoUtenti dbr = new DBRemotoUtenti();
                         dbr.RitornaUtenteDaId(VariabiliStaticheGlobali.getInstance().getContextPrincipale(),
@@ -118,6 +121,7 @@ public class Splash extends android.support.v4.app.Fragment {
                     if (!TastoPremuto) {
                         VariabiliStaticheGlobali.getInstance().getContextPrincipale().getWindow().getDecorView().setBackgroundColor(Color.WHITE);
                         VariabiliStaticheMain.getInstance().getAppBar().setVisibility(LinearLayout.VISIBLE);
+                        // VariabiliStaticheMain.getInstance().getToolBar().setBackgroundColor(Color.GRAY);
                         if (CeUtente) {
                             DBRemotoUtenti dbr = new DBRemotoUtenti();
                             dbr.RitornaUtenteDaId(VariabiliStaticheGlobali.getInstance().getContextPrincipale(),

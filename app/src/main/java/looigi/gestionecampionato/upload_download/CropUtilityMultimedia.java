@@ -54,7 +54,7 @@ public class CropUtilityMultimedia {
         String nf = Utility.getInstance().getPath(uri);
         if (nf==null) nf = uri.toString();
         File nFile = null;
-        Boolean isImage=false;
+        boolean isImage=false;
         if (nf.toUpperCase().contains("CROPPED")) {
             isImage=true;
         } else {
@@ -102,7 +102,7 @@ public class CropUtilityMultimedia {
 
                 Utility.getInstance().CreaCartelle(Percorso + "/");
 
-                Boolean ok = true;
+                boolean ok = true;
 
                 if (isJpg) {
                     try {
