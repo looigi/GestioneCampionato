@@ -303,7 +303,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_marginTop="-40dp"
                                 android:layout_height="wrap_content"
-                                android:shadowColor="@color/bianco"
+                                android:shadowColor="@color/nero"
                                 android:text="3"
                                 android:textColor="@color/rosso"
                                 android:textSize="25sp"

@@ -94,7 +94,7 @@ public class Settings extends android.support.v4.app.Fragment {
                 cmdOkAnno.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         if (!AnnoSelezionato.isEmpty()) {
-                            String c[] = AnnoSelezionato.split(";", -1);
+                            String[] c = AnnoSelezionato.split(";", -1);
 
                             DBRemotoGenerale dbr = new DBRemotoGenerale();
                             dbr.ImpostaAnnoAttualeUtente(context, c[0]);
