@@ -65,7 +65,6 @@ public class Settings extends android.support.v4.app.Fragment {
     public void onResume()
     {
         super.onResume();
-
         //if (isVisible) {
         //    initializeGraphic();
         //}
