@@ -113,6 +113,14 @@ public class Statistiche extends android.support.v4.app.Fragment {
                 layMascheraModUtenti.setBackgroundResource(R.drawable.bordo_arrotondato_rosso_chiaro);
             } */
 
+            // Allenamenti
+            ImageView ivAllenamenti=view.findViewById(R.id.imgAllenamenti);
+            ivAllenamenti.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Utility.getInstance().CambiaMaschera(-14, -1, -1);
+                }
+            });
+
             // Avversari
             ImageView ivAvvPerAnno=view.findViewById(R.id.imgAvversariPerAnno);
             ivAvvPerAnno.setOnClickListener(new View.OnClickListener() {

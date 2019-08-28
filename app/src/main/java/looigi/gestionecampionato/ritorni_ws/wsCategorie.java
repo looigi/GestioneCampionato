@@ -18,6 +18,7 @@ import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
 import looigi.gestionecampionato.dati.VariabiliStaticheHome;
 import looigi.gestionecampionato.dati.VariabiliStaticheNuovaPartita;
 import looigi.gestionecampionato.dati.VariabiliStaticheRose;
+import looigi.gestionecampionato.dati.VariabiliStaticheStatAllenamenti;
 import looigi.gestionecampionato.dati.VariabiliStaticheStatistiche;
 import looigi.gestionecampionato.dati.VariabiliStaticheUtenti;
 import looigi.gestionecampionato.db_remoto.DBRemotoCategorie;
@@ -34,6 +35,7 @@ import looigi.gestionecampionato.maschere.ModificaUtente;
 import looigi.gestionecampionato.maschere.NuovaPartita;
 import looigi.gestionecampionato.maschere.Rose;
 import looigi.gestionecampionato.maschere.Statistiche;
+import looigi.gestionecampionato.maschere.StatisticheAllenamenti;
 import looigi.gestionecampionato.maschere.Utenti;
 
 public class wsCategorie {
@@ -92,87 +94,95 @@ public class wsCategorie {
 
                     Allenatori.RiempieListaCategorie();
                 } else {
-                    if (Maschera.equals(NomiMaschere.getInstance().getCategorie())) {
-                        VariabiliStaticheCategorie.getInstance().setCategorie(descCategoria);
-                        VariabiliStaticheCategorie.getInstance().setIdCategorie(idCategoria);
+                    if (Maschera.equals(NomiMaschere.getInstance().getStatisticheAllenamenti())) {
+                        VariabiliStaticheStatAllenamenti.getInstance().setCategorie(descCategoria);
+                        VariabiliStaticheStatAllenamenti.getInstance().setIdCategorie(idCategoria);
+                        VariabiliStaticheStatAllenamenti.getInstance().idCategoriaScelta=idCategoria.get(0);
 
-                        Categorie.fillListViewCategorie();
+                        StatisticheAllenamenti.RiempieListaCategorie();
                     } else {
-                        if (Maschera.equals(NomiMaschere.getInstance().getRose())) {
-                            VariabiliStaticheRose.getInstance().setCategorie1(descCategoria);
-                            VariabiliStaticheRose.getInstance().setIdCategorie(idCategoria);
+                        if (Maschera.equals(NomiMaschere.getInstance().getCategorie())) {
+                            VariabiliStaticheCategorie.getInstance().setCategorie(descCategoria);
+                            VariabiliStaticheCategorie.getInstance().setIdCategorie(idCategoria);
 
-                            VariabiliStaticheRose.getInstance().setCategorie2(descCategoria2);
-                            VariabiliStaticheRose.getInstance().setIdCategorie2(idCategoria2);
-
-                            VariabiliStaticheRose.getInstance().setCategorie3(descCategoria2);
-                            VariabiliStaticheRose.getInstance().setIdCategorie3(idCategoria2);
-
-                            Rose.RiempieListaCategorie();
-
-                            hSelezionaRiga = new Handler();
-                            hSelezionaRiga.postDelayed(runRiga=new Runnable() {
-                                @Override
-                                public void run() {
-                                    DBRemotoGenerale dbr = new DBRemotoGenerale();
-                                    dbr.RitornaRuoli(context, Maschera);
-                                }
-                            }, 50);
+                            Categorie.fillListViewCategorie();
                         } else {
-                            if (Maschera.equals(NomiMaschere.getInstance().getUtenti())) {
-                                VariabiliStaticheUtenti.getInstance().setNomiCategorie(descCategoria);
-                                VariabiliStaticheUtenti.getInstance().setIdNomiCategorie(idCategoria);
-                                VariabiliStaticheUtenti.getInstance().setIdCategoriaScelta(idCategoria.get(0));
+                            if (Maschera.equals(NomiMaschere.getInstance().getRose())) {
+                                VariabiliStaticheRose.getInstance().setCategorie1(descCategoria);
+                                VariabiliStaticheRose.getInstance().setIdCategorie(idCategoria);
 
-                                Utenti.RiempieListaCategorie();
+                                VariabiliStaticheRose.getInstance().setCategorie2(descCategoria2);
+                                VariabiliStaticheRose.getInstance().setIdCategorie2(idCategoria2);
+
+                                VariabiliStaticheRose.getInstance().setCategorie3(descCategoria2);
+                                VariabiliStaticheRose.getInstance().setIdCategorie3(idCategoria2);
+
+                                Rose.RiempieListaCategorie();
+
+                                hSelezionaRiga = new Handler();
+                                hSelezionaRiga.postDelayed(runRiga=new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        DBRemotoGenerale dbr = new DBRemotoGenerale();
+                                        dbr.RitornaRuoli(context, Maschera);
+                                    }
+                                }, 50);
                             } else {
-                                if (Maschera.equals(NomiMaschere.getInstance().getCampionato())) {
-                                    VariabiliStaticheCampionato.getInstance().setCategorie(descCategoria);
-                                    VariabiliStaticheCampionato.getInstance().setIdCategorie(idCategoria);
+                                if (Maschera.equals(NomiMaschere.getInstance().getUtenti())) {
+                                    VariabiliStaticheUtenti.getInstance().setNomiCategorie(descCategoria);
+                                    VariabiliStaticheUtenti.getInstance().setIdNomiCategorie(idCategoria);
+                                    VariabiliStaticheUtenti.getInstance().setIdCategoriaScelta(idCategoria.get(0));
 
-                                    Campionato.RiempieListaCategorie();
+                                    Utenti.RiempieListaCategorie();
                                 } else {
-                                    if (Maschera.equals(NomiMaschere.getInstance().getStatistiche())) {
-                                        VariabiliStaticheStatistiche.getInstance().setCategorie(descCategoria);
-                                        VariabiliStaticheStatistiche.getInstance().setIdCategorie(idCategoria);
-                                        VariabiliStaticheStatistiche.getInstance().idCategoriaScelta = idCategoria.get(0);
+                                    if (Maschera.equals(NomiMaschere.getInstance().getCampionato())) {
+                                        VariabiliStaticheCampionato.getInstance().setCategorie(descCategoria);
+                                        VariabiliStaticheCampionato.getInstance().setIdCategorie(idCategoria);
 
-                                        Statistiche.RiempieListaCategorie();
+                                        Campionato.RiempieListaCategorie();
                                     } else {
-                                        if (Maschera.equals(NomiMaschere.getInstance().getModificaUtenti())) {
-                                            VariabiliStaticheUtenti.getInstance().setNomiCategorie(descCategoria);
-                                            VariabiliStaticheUtenti.getInstance().setIdNomiCategorie(idCategoria);
-                                            VariabiliStaticheUtenti.getInstance().setIdCategoriaScelta(idCategoria.get(0));
+                                        if (Maschera.equals(NomiMaschere.getInstance().getStatistiche())) {
+                                            VariabiliStaticheStatistiche.getInstance().setCategorie(descCategoria);
+                                            VariabiliStaticheStatistiche.getInstance().setIdCategorie(idCategoria);
+                                            VariabiliStaticheStatistiche.getInstance().idCategoriaScelta = idCategoria.get(0);
 
-                                            ModificaUtente.RiempieListaCategorie();
+                                            Statistiche.RiempieListaCategorie();
                                         } else {
-                                            if (Maschera.equals(NomiMaschere.getInstance().getAlbum())) {
-                                                VariabiliStaticheAlbum.getInstance().setCategorie(descCategoria);
-                                                VariabiliStaticheAlbum.getInstance().setIdCategorie(idCategoria);
-                                                VariabiliStaticheAlbum.getInstance().idCategoriaScelta=idCategoria.get(0);
+                                            if (Maschera.equals(NomiMaschere.getInstance().getModificaUtenti())) {
+                                                VariabiliStaticheUtenti.getInstance().setNomiCategorie(descCategoria);
+                                                VariabiliStaticheUtenti.getInstance().setIdNomiCategorie(idCategoria);
+                                                VariabiliStaticheUtenti.getInstance().setIdCategoriaScelta(idCategoria.get(0));
 
-                                                Album.RiempieListaCategorie();
+                                                ModificaUtente.RiempieListaCategorie();
                                             } else {
-                                                if (Maschera.equals(NomiMaschere.getInstance().getHome())) {
-                                                    VariabiliStaticheHome.getInstance().setCategorie(descCategoria);
-                                                    VariabiliStaticheHome.getInstance().setIdCategorie(idCategoria);
-                                                    VariabiliStaticheHome.getInstance().idCategoriaScelta=idCategoria.get(0);
+                                                if (Maschera.equals(NomiMaschere.getInstance().getAlbum())) {
+                                                    VariabiliStaticheAlbum.getInstance().setCategorie(descCategoria);
+                                                    VariabiliStaticheAlbum.getInstance().setIdCategorie(idCategoria);
+                                                    VariabiliStaticheAlbum.getInstance().idCategoriaScelta = idCategoria.get(0);
 
-                                                    Home.RiempieListaCategorie();
+                                                    Album.RiempieListaCategorie();
                                                 } else {
-                                                    if (Maschera.equals(NomiMaschere.getInstance().getDirigenti())) {
-                                                        VariabiliStaticheDirigenti.getInstance().setCategorie(descCategoria);
-                                                        VariabiliStaticheDirigenti.getInstance().setIdCategorie(idCategoria);
-                                                        VariabiliStaticheDirigenti.getInstance().idCategoriaScelta=idCategoria.get(0);
+                                                    if (Maschera.equals(NomiMaschere.getInstance().getHome())) {
+                                                        VariabiliStaticheHome.getInstance().setCategorie(descCategoria);
+                                                        VariabiliStaticheHome.getInstance().setIdCategorie(idCategoria);
+                                                        VariabiliStaticheHome.getInstance().idCategoriaScelta = idCategoria.get(0);
 
-                                                        Dirigenti.RiempieListaCategorie();
+                                                        Home.RiempieListaCategorie();
                                                     } else {
-                                                        if (Maschera.equals(NomiMaschere.getInstance().getAllenamenti())) {
-                                                            VariabiliStaticheAllenamenti.getInstance().setCategorie(descCategoria);
-                                                            VariabiliStaticheAllenamenti.getInstance().setIdCategorie(idCategoria);
-                                                            VariabiliStaticheAllenamenti.getInstance().idCategoriaScelta=idCategoria.get(0);
+                                                        if (Maschera.equals(NomiMaschere.getInstance().getDirigenti())) {
+                                                            VariabiliStaticheDirigenti.getInstance().setCategorie(descCategoria);
+                                                            VariabiliStaticheDirigenti.getInstance().setIdCategorie(idCategoria);
+                                                            VariabiliStaticheDirigenti.getInstance().idCategoriaScelta = idCategoria.get(0);
 
-                                                            Allenamenti.RiempieListaCategorie();
+                                                            Dirigenti.RiempieListaCategorie();
+                                                        } else {
+                                                            if (Maschera.equals(NomiMaschere.getInstance().getAllenamenti())) {
+                                                                VariabiliStaticheAllenamenti.getInstance().setCategorie(descCategoria);
+                                                                VariabiliStaticheAllenamenti.getInstance().setIdCategorie(idCategoria);
+                                                                VariabiliStaticheAllenamenti.getInstance().idCategoriaScelta = idCategoria.get(0);
+
+                                                                Allenamenti.RiempieListaCategorie();
+                                                            }
                                                         }
                                                     }
                                                 }

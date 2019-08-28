@@ -30,6 +30,7 @@ import looigi.gestionecampionato.ritorni_ws.wsGiocatori;
 import looigi.gestionecampionato.ritorni_ws.wsMeteo;
 import looigi.gestionecampionato.ritorni_ws.wsMultimedia;
 import looigi.gestionecampionato.ritorni_ws.wsPartite;
+import looigi.gestionecampionato.ritorni_ws.wsStatAllenamenti;
 import looigi.gestionecampionato.ritorni_ws.wsStatistiche;
 import looigi.gestionecampionato.ritorni_ws.wsUtenti;
 
@@ -281,6 +282,7 @@ public class GestioneWEBServiceSOAP {
 				wsUtenti rUte = new wsUtenti();
 				wsMeteo rMet = new wsMeteo();
 				wsCampionato rCam = new wsCampionato();
+				wsStatAllenamenti rSA= new wsStatAllenamenti();
 
 				boolean Ancora=true;
 				while (Ancora) {
@@ -307,6 +309,14 @@ public class GestioneWEBServiceSOAP {
 							break;
 						case "RitornaAllenatoriCategoria":
 							rAll.RitornaAllenatoriCategoria(context, Ritorno, Maschera);
+							Ancora=false;
+							break;
+						case "RitornaStatAllenamentiCategoria":
+							rSA.RitornaStatAllenamentiCategoria(context, Ritorno, Maschera);
+							Ancora=false;
+							break;
+						case "RitornaInfo":
+							rSA.RitornaInfo(context, Ritorno, Maschera);
 							Ancora=false;
 							break;
 						case "RitornaDirigentiCategoria":

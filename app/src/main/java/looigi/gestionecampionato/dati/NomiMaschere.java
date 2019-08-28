@@ -36,6 +36,15 @@ public class NomiMaschere {
     private String ModificaUtenti ="Modifica Utenti";
     private String NuovoAnno ="Nuovo Anno";
     private String Campionato ="Campionato";
+    private String StatisticheAllenamenti ="Statistiche Allenamenti";
+
+    public String getStatisticheAllenamenti() {
+        return StatisticheAllenamenti.toUpperCase().replace(" ","");
+    }
+
+    public String getStatisticheAllenamentiPerTitolo() {
+        return StatisticheAllenamenti;
+    }
 
     public String getAbout() {
         return About.toUpperCase().replace(" ","");

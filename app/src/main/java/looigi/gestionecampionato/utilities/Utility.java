@@ -18,6 +18,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -41,6 +43,7 @@ import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
 import looigi.gestionecampionato.dati.VariabiliStaticheMain;
 import looigi.gestionecampionato.dati.VariabiliStaticheMeteo;
 import looigi.gestionecampionato.dati.VariabiliStaticheNuovaPartita;
+import looigi.gestionecampionato.dati.VariabiliStaticheStatAllenamenti;
 import looigi.gestionecampionato.dati.VariabiliStaticheUtenti;
 import looigi.gestionecampionato.dialog.DialogMessaggio;
 import looigi.gestionecampionato.maschere.About;
@@ -62,6 +65,7 @@ import looigi.gestionecampionato.maschere.NuovaPartita;
 import looigi.gestionecampionato.maschere.NuovoAnno;
 import looigi.gestionecampionato.maschere.Rose;
 import looigi.gestionecampionato.maschere.Statistiche;
+import looigi.gestionecampionato.maschere.StatisticheAllenamenti;
 import looigi.gestionecampionato.maschere.Utenti;
 import looigi.gestionecampionato.maschere.VisualizzaImmagini;
 import looigi.gestionecampionato.soap.GestioneWEBServiceSOAP;
@@ -378,6 +382,18 @@ public class Utility {
 
 					title = "Grafico";
 					VariabiliStaticheGlobali.MascheraAttuale = "Grafico";
+					VariabiliStaticheGlobali.MascheraAttualePerMultimedia = "";
+
+					break;
+				case -14:
+					// Gestione statistiche allenamenti
+					fragment = new StatisticheAllenamenti();
+
+					Bundle argsgs2212121 = new Bundle();
+					fragment.setArguments(argsgs2212121);
+
+					title = "Statistiche allenamenti";
+					VariabiliStaticheGlobali.MascheraAttuale = "Statistiche Allenamenti";
 					VariabiliStaticheGlobali.MascheraAttualePerMultimedia = "";
 
 					break;

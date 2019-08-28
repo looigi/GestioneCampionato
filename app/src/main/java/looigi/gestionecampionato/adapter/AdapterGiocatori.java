@@ -56,7 +56,7 @@ public class AdapterGiocatori extends ArrayAdapter
 		TextView categoria3 = convertView.findViewById(R.id.categoria3);
 		ImageView imgGiocatore = convertView.findViewById(R.id.img);
 		
-		String Campi[] = riga.split(";");
+		String[] Campi = riga.split(";");
 
 		id.setText(Campi[0]);
 		ruolo.setText(Campi[4]);
