@@ -47,6 +47,7 @@ import looigi.gestionecampionato.maschere.Dirigenti;
 import looigi.gestionecampionato.maschere.Eventi;
 import looigi.gestionecampionato.maschere.NuovaPartita;
 import looigi.gestionecampionato.maschere.Rose;
+import looigi.gestionecampionato.maschere.SceltaSquadra;
 import looigi.gestionecampionato.maschere.Settings;
 import looigi.gestionecampionato.maschere.Splash;
 import looigi.gestionecampionato.maschere.VisualizzaImmagini;
@@ -99,75 +100,89 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void EsegueEntrata() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        vm.setToolBar(toolbar);
-
-        a=this;
-        cum = new CropUtilityMultimedia();
-        cu = new CropUtility();
-
-        DBLocale dbl = new DBLocale();
-        dbl.CreaDB(this);
-        dbl.PrendeDatiUtente(this);
-
-        vm.setSfondo((CoordinatorLayout) findViewById(R.id.layPrincipale));
-
-        vm.settAnno((TextView) findViewById(R.id.txtAnno));
-        vm.settDescAnno((TextView) findViewById(R.id.txtDescAnno));
-
-        vm.setDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, vm.getDrawer(),
-                toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        vm.getDrawer().addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        Utility.getInstance().CreaCartelle(vg.PercorsoDIR);
-        Utility.getInstance().CreaCartelle(vg.PercorsoDIR+"/Giocatori");
-        Utility.getInstance().CreaCartelle(vg.PercorsoDIR+"/Categorie");
-        Utility.getInstance().CreaCartelle(vg.PercorsoDIR+"/Avversari");
-        Utility.getInstance().CreaCartelle(vg.PercorsoDIR+"/Allenatori");
-        Utility.getInstance().CreaCartelle(vg.PercorsoDIR+"/Dirigenti");
-        Utility.getInstance().CreaCartelle(vg.PercorsoDIR+"/Arbitri");
-
-        //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-
         vg.setContext(this);
         vg.setFragmentActivityPrincipale(this);
         vg.setContextPrincipale(this);
 
-        VariabiliStaticheNuovaPartita.getInstance().PulisceAmbientePartita();
-
-        vm.setAppBar((AppBarLayout) findViewById(R.id.appBarLayout));
-        vm.getAppBar().setVisibility(LinearLayout.GONE);
-        vm.setWindowBackground(getWindow());
-        // getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-
         vm.setActButtonNew((FloatingActionButton) findViewById(R.id.fab));
         vm.getActButtonNew().hide(); // .setVisibility(LinearLayout.GONE);
-        vm.getActButtonNew().setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                EsegueMenuActionButton();
-            }
-        });
-
         vm.setActButtonBack((FloatingActionButton) findViewById(R.id.fabBack));
         vm.getActButtonBack().hide(); // .setVisibility(LinearLayout.GONE);
-        vm.getActButtonBack().setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                TornaIndietroMultiMedia();
-            }
-        });
 
-        Fragment fragment = new Splash();
-        FragmentTransaction ft = vg.getFragmentActivityPrincipale().getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.content_frame, fragment);
-        ft.commit();
+        Utility.getInstance().CreaCartelle(vg.PercorsoDIR);
+        Utility.getInstance().CreaCartelle(vg.PercorsoDIR+"/Avversari");
+        Utility.getInstance().CreaCartelle(vg.PercorsoDIR+"/Arbitri");
+
+        if (Utility.getInstance().fileExistsInSD("NomeSquadra.dat",
+                VariabiliStaticheGlobali.getInstance().PercorsoDIR)) {
+            String NomeSquadra = Utility.getInstance().LeggeFileDiTesto(VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/NomeSquadra.dat");
+            NomeSquadra=NomeSquadra.replaceAll("\\n", "");
+            VariabiliStaticheGlobali.getInstance().setNomeSquadra(NomeSquadra);
+
+            Utility.getInstance().CreaCartelle(vg.PercorsoDIR+"/"+NomeSquadra+"/Giocatori");
+            Utility.getInstance().CreaCartelle(vg.PercorsoDIR+"/"+NomeSquadra+"/Categorie");
+            Utility.getInstance().CreaCartelle(vg.PercorsoDIR+"/"+NomeSquadra+"/Allenatori");
+            Utility.getInstance().CreaCartelle(vg.PercorsoDIR+"/"+NomeSquadra+"/Dirigenti");
+
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+
+            vm.setToolBar(toolbar);
+
+            a=this;
+            cum = new CropUtilityMultimedia();
+            cu = new CropUtility();
+
+            DBLocale dbl = new DBLocale();
+            dbl.CreaDB(this);
+            dbl.PrendeDatiUtente(this);
+
+            vm.setSfondo((CoordinatorLayout) findViewById(R.id.layPrincipale));
+
+            vm.settAnno((TextView) findViewById(R.id.txtAnno));
+            vm.settDescAnno((TextView) findViewById(R.id.txtDescAnno));
+
+            vm.setDrawer((DrawerLayout) findViewById(R.id.drawer_layout));
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, vm.getDrawer(),
+                    toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            vm.getDrawer().addDrawerListener(toggle);
+            toggle.syncState();
+
+            NavigationView navigationView = findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(this);
+
+            //overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+            VariabiliStaticheNuovaPartita.getInstance().PulisceAmbientePartita();
+
+            vm.setAppBar((AppBarLayout) findViewById(R.id.appBarLayout));
+            vm.getAppBar().setVisibility(LinearLayout.GONE);
+            vm.setWindowBackground(getWindow());
+            // getWindow().getDecorView().setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
+            vm.getActButtonNew().setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    EsegueMenuActionButton();
+                }
+            });
+
+            vm.getActButtonBack().setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    TornaIndietroMultiMedia();
+                }
+            });
+
+            Fragment fragment = new Splash();
+            FragmentTransaction ft = vg.getFragmentActivityPrincipale().getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame, fragment);
+            ft.commit();
+        } else {
+            Fragment fragment = new SceltaSquadra();
+            FragmentTransaction ft = vg.getFragmentActivityPrincipale().getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame, fragment);
+            ft.commit();
+        }
     }
 
     private void TornaIndietroMultiMedia() {

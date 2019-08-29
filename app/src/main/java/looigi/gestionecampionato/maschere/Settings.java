@@ -153,24 +153,26 @@ public class Settings extends android.support.v4.app.Fragment {
             Button cmdRefreshFoto = view.findViewById(R.id.cmdRefreshFoto);
             cmdRefreshFoto.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    File d= new File(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Allenatori");
+                    String NomeSquadra = VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+
+                    File d= new File(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Allenatori");
                     Utility.getInstance().deleteFolder(d);
                     d= new File(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Arbitri");
                     Utility.getInstance().deleteFolder(d);
                     d= new File(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Avversari");
                     Utility.getInstance().deleteFolder(d);
-                    d= new File(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Categorie");
+                    d= new File(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Categorie");
                     Utility.getInstance().deleteFolder(d);
-                    d= new File(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Dirigenti");
+                    d= new File(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Dirigenti");
                     Utility.getInstance().deleteFolder(d);
-                    d= new File(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Giocatori");
+                    d= new File(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Giocatori");
                     Utility.getInstance().deleteFolder(d);
 
-                    Utility.getInstance().CreaCartelle(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Giocatori");
-                    Utility.getInstance().CreaCartelle(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Categorie");
+                    Utility.getInstance().CreaCartelle(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Giocatori");
+                    Utility.getInstance().CreaCartelle(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Categorie");
                     Utility.getInstance().CreaCartelle(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Avversari");
-                    Utility.getInstance().CreaCartelle(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Allenatori");
-                    Utility.getInstance().CreaCartelle(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Dirigenti");
+                    Utility.getInstance().CreaCartelle(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Allenatori");
+                    Utility.getInstance().CreaCartelle(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Dirigenti");
                     Utility.getInstance().CreaCartelle(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Arbitri");
 
                     DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),

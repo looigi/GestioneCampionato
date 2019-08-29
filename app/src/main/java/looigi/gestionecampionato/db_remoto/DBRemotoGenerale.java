@@ -11,35 +11,40 @@ public class DBRemotoGenerale {
 	private String SA="http://cvcalcio.org/";
 
 	public void RitornaAnni(Context context, String Maschera) {
-		String Urletto="RitornaAnni";
+		String Urletto="RitornaAnni?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaAnni",
 				"", Maschera, NS, SA);
 	}
 
 	public void RitornaTipologie(Context context, String Maschera) {
-		String Urletto="RitornaTipologie";
+		String Urletto="RitornaTipologie?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaTipologie",
 				"", Maschera, NS, SA);
 	}
 
 	public void RitornaRuoli(Context context, String Maschera) {
-		String Urletto="RitornaRuoli";
+		String Urletto="RitornaRuoli?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaRuoli",
 				"", Maschera, NS, SA);
 	}
 
 	public void RitornaVersioneApplicazione(Context context, String Maschera) {
-		String Urletto="RitornaVersioneApplicazione";
+		String Urletto="RitornaVersioneApplicazione?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaVersioneApplicazione",
 				"", Maschera, NS, SA);
 	}
 
 	public void RitornaMaxAnno(Context context) {
-		String Urletto="RitornaMaxAnno";
+		String Urletto="RitornaMaxAnno?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaMaxAnno",
 				"", "", NS, SA);
@@ -48,7 +53,8 @@ public class DBRemotoGenerale {
 	public void RitornaAnnoAttualeUtenti(Context context, String MascheraChiamante) {
 		if (VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente()!=null) {
 			String Urletto = "RitornaAnnoAttualeUtente?";
-			Urletto += "idUtente=" + VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente();
+			Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+			Urletto += "&idUtente=" + VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente();
 
 			Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaAnnoAttualeUtenti",
 					"", MascheraChiamante, NS, SA);
@@ -66,7 +72,8 @@ public class DBRemotoGenerale {
 
 	public void CreaNuovoAnno(Context context, String idAnno, String descAnno, String nomeSquadra, String TuttiIDati) {
 		String Urletto="CreaNuovoAnno?";
-		Urletto += "idAnno=" + idAnno;
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + idAnno;
 		Urletto += "&descAnno=" + descAnno;
 		Urletto += "&nomeSquadra=" + nomeSquadra;
 		Urletto += "&idAnnoAttuale=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
@@ -79,7 +86,8 @@ public class DBRemotoGenerale {
 
 	public void ImpostaAnnoAttualeUtente(Context context, String idAnno) {
 		String Urletto="ImpostaAnnoAttualeUtente?";
-		Urletto += "idAnno=" + idAnno;
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + idAnno;
 		Urletto += "&idUtente=" + VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente();
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "ImpostaAnnoAttualeUtente",
@@ -88,7 +96,8 @@ public class DBRemotoGenerale {
 
 	public void CreaNuovoAnno(Context context, String idAnno, String descAnno) {
 		String Urletto="CreaNuovoAnno?";
-		Urletto += "idAnno=" + idAnno;
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + idAnno;
 		Urletto += "Descrizione=" + descAnno;
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "CreaNuovoAnno",
@@ -96,9 +105,26 @@ public class DBRemotoGenerale {
 	}
 
 	public void RitornaValoriPerRegistrazione(Context context, String Maschera) {
-		String Urletto="RitornaValoriPerRegistrazione";
+		String Urletto="RitornaValoriPerRegistrazione?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaValoriPerRegistrazione",
 				"", Maschera, NS, SA);
+	}
+
+	public void RitornaSquadrePerSceltaIniziale(Context context) {
+		String Urletto="RitornaSquadrePerSceltaIniziale";
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaSquadrePerSceltaIniziale",
+				"", "", NS, SA);
+	}
+
+	public void ControllaEsistenzaDB(Context context, String Squadra) {
+		String Urletto="ControllaEsistenzaDB?";
+		Urletto+="Squadra=" + Squadra;
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "ControllaEsistenzaDB",
+				"", "", NS, SA);
 	}
 }

@@ -180,8 +180,9 @@ public class Allenatori extends android.support.v4.app.Fragment {
 
             VariabiliStaticheAllenatori.getInstance().getImgRefreshFoto().setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    String NomeSquadra = VariabiliStaticheGlobali.getInstance().getNomeSquadra();
                     String id = VariabiliStaticheAllenatori.getInstance().getTxtId().getText().toString();
-                    String Percorso=VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/Allenatori/";
+                    String Percorso=VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/"+NomeSquadra+"/Allenatori/";
 
                     Percorso += VariabiliStaticheGlobali.getInstance().getAnnoInCorso()+"_"+id+".jpg";
 

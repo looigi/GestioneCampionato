@@ -21,7 +21,8 @@ public class VariabiliStaticheGlobali {
         return instance;
     }
 
-    public String PercorsoDIR=Environment.getExternalStorageDirectory().getPath()+"/LooigiSoft/cvCalcio";
+    public String PercorsoDIR=Environment.getExternalStorageDirectory().getPath()+"/LooigiSoft/GestioneCampionato";
+    private String NomeSquadra="Ponte_Di_Nona";
     public boolean ApreDialogWS=true;
     private Context context;
     private AppCompatActivity contextPrincipale;
@@ -46,6 +47,14 @@ public class VariabiliStaticheGlobali {
 
     // final public static String NomeSquadraCastelVerde="CASTELVERDE";
     // final public static String NomeSquadraPonteDiNona="PONTEDINONA";
+
+    public String getNomeSquadra() {
+        return NomeSquadra;
+    }
+
+    public void setNomeSquadra(String nomeSquadra) {
+        NomeSquadra = nomeSquadra;
+    }
 
     public String getLatAnno() {
         return LatAnno;

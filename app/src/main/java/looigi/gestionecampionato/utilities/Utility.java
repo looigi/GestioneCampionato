@@ -28,10 +28,12 @@ import android.widget.TextView;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
@@ -94,9 +96,10 @@ public class Utility {
 	private VariabiliStaticheGlobali vg = VariabiliStaticheGlobali.getInstance();
 
     public void PrendeImmagineGiocatore(String id, ImageView imgDestinazione) {
+		String NomeSquadra = VariabiliStaticheGlobali.getInstance().getNomeSquadra();
         String nFile=Integer.toString(vg.getAnnoInCorso())+"_"+id+".jpg";
 
-        if (!Utility.getInstance().fileExistsInSD(nFile, vg.PercorsoDIR+"/Giocatori")) {
+        if (!Utility.getInstance().fileExistsInSD(nFile, vg.PercorsoDIR+"/"+NomeSquadra+"/Giocatori")) {
             ScaricaImmagini.getInstance().AggiungeImmagineDaScaricare(
                     "GIOCATORE",
                     vg.getAnnoInCorso(),
@@ -105,16 +108,17 @@ public class Utility {
 					"");
         } else {
 			if (imgDestinazione!=null) {
-				imgDestinazione.setImageBitmap(BitmapFactory.decodeFile(vg.PercorsoDIR + "/Giocatori/" + nFile));
+				imgDestinazione.setImageBitmap(BitmapFactory.decodeFile(vg.PercorsoDIR + "/"+NomeSquadra+"/Giocatori/" + nFile));
 				imgDestinazione.setVisibility(LinearLayout.VISIBLE);
 			}
         }
     }
 
 	public void PrendeImmagineCategoria(String idCategoria, ImageView imgDestinazione) {
+		String NomeSquadra = VariabiliStaticheGlobali.getInstance().getNomeSquadra();
 		String nFile=Integer.toString(vg.getAnnoInCorso())+"_"+idCategoria+".jpg";
 
-		if (!Utility.getInstance().fileExistsInSD(nFile, vg.PercorsoDIR+"/Categorie")) {
+		if (!Utility.getInstance().fileExistsInSD(nFile, vg.PercorsoDIR+"/"+NomeSquadra+"/Categorie")) {
 			ScaricaImmagini.getInstance().AggiungeImmagineDaScaricare(
 					"CATEGORIE",
 					vg.getAnnoInCorso(),
@@ -123,7 +127,7 @@ public class Utility {
 					"");
 		} else {
 			if (imgDestinazione!=null) {
-				imgDestinazione.setImageBitmap(BitmapFactory.decodeFile(vg.PercorsoDIR + "/Categorie/" + nFile));
+				imgDestinazione.setImageBitmap(BitmapFactory.decodeFile(vg.PercorsoDIR + "/"+NomeSquadra+"/Categorie/" + nFile));
 				imgDestinazione.setVisibility(LinearLayout.VISIBLE);
 			}
 		}
@@ -148,10 +152,11 @@ public class Utility {
 	}
 
 	public void PrendeImmagineAllenatore(String idAllenatore, ImageView imgDestinazione) {
+		String NomeSquadra = VariabiliStaticheGlobali.getInstance().getNomeSquadra();
 		String nFileAll=Integer.toString(vg.getAnnoInCorso())+"_"+idAllenatore+".jpg";
 
 		if (!Utility.getInstance().fileExistsInSD(nFileAll, 
-				vg.PercorsoDIR+"/Allenatori")) {
+				vg.PercorsoDIR+"/"+NomeSquadra+"/Allenatori")) {
 			ScaricaImmagini.getInstance().AggiungeImmagineDaScaricare(
 					"ALLENATORI",
 					vg.getAnnoInCorso(),
@@ -162,7 +167,7 @@ public class Utility {
 			if (imgDestinazione!=null) {
 				try {
 					imgDestinazione.setImageBitmap(BitmapFactory.decodeFile(
-							vg.PercorsoDIR + "/Allenatori/" + nFileAll));
+							vg.PercorsoDIR + "/"+NomeSquadra+"/Allenatori/" + nFileAll));
 					imgDestinazione.setVisibility(LinearLayout.VISIBLE);
 				} catch (Exception ignored) {
 
@@ -172,10 +177,11 @@ public class Utility {
 	}
 
 	public void PrendeImmagineDirigente(String idDirigente, ImageView imgDestinazione) {
+    	String NomeSquadra = VariabiliStaticheGlobali.getInstance().getNomeSquadra();
 		String nFileAll=Integer.toString(vg.getAnnoInCorso())+"_"+idDirigente+".jpg";
 
 		if (!Utility.getInstance().fileExistsInSD(nFileAll,
-				vg.PercorsoDIR+"/Dirigenti")) {
+				vg.PercorsoDIR+"/"+NomeSquadra+"/Dirigenti")) {
 			ScaricaImmagini.getInstance().AggiungeImmagineDaScaricare(
 					"DIRIGENTI",
 					vg.getAnnoInCorso(),
@@ -186,7 +192,7 @@ public class Utility {
 			if (imgDestinazione!=null) {
 				try {
 					imgDestinazione.setImageBitmap(BitmapFactory.decodeFile(
-							vg.PercorsoDIR + "/Dirigenti/" + nFileAll));
+							vg.PercorsoDIR + "/"+NomeSquadra+"/Dirigenti/" + nFileAll));
 					imgDestinazione.setVisibility(LinearLayout.VISIBLE);
 				} catch (Exception ignored) {
 
@@ -613,6 +619,25 @@ public class Utility {
 		}
 	}
 
+	public String LeggeFileDiTesto(String f) {
+		StringBuilder text = new StringBuilder();
+		try {
+			File file = new File(f);
+
+			BufferedReader br = new BufferedReader(new FileReader(file));
+			String line;
+			while ((line = br.readLine()) != null) {
+				text.append(line);
+				text.append('\n');
+			}
+			br.close() ;
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return text.toString();
+	}
+
 	public boolean fileExistsInSD(String sFileName, String Percorso){
 		String sFile=Percorso+"/"+sFileName;
 		File file = new File(sFile);
@@ -672,7 +697,7 @@ public class Utility {
 	}
 
 	public void CreaCartelle(String Percorso) {
-		String Campi[]=(Percorso+"/").split("/");
+		String[] Campi=(Percorso+"/").split("/");
 		String ss="";
 
 		for (String s : Campi) {

@@ -28,15 +28,18 @@ public class HttpFileUpload implements Runnable {
         private String Tipologia;
         private String Cartella;
         private String FileFisico;
+        private String NomeSquadra;
     	private ProgressDialog progressDialog;
 
-        public HttpFileUpload(String urlString, String vTipologia, String vNomeFile, String vCartella, String FileFisico){
+        public HttpFileUpload(String urlString, String vTipologia, String vNomeFile, String vCartella, String FileFisico, String NomeSquadra){
             try{
                 connectURL = new URL(urlString);
                 NomeFile= vNomeFile;
                 Tipologia =vTipologia;
                 Cartella=vCartella;
                 this.FileFisico = FileFisico;
+                this.NomeSquadra = NomeSquadra;
+
             }catch(Exception ex){
                 Log.i("HttpFileUpload","URL Malformatted");
             }
@@ -144,6 +147,12 @@ public class HttpFileUpload implements Runnable {
                     dos.writeBytes("Content-Disposition: form-data; name=\"cartella\""+ lineEnd);
                     dos.writeBytes(lineEnd);
                     dos.writeBytes(Cartella);
+                    dos.writeBytes(lineEnd);
+                    dos.writeBytes(twoHyphens + boundary + lineEnd);
+
+                    dos.writeBytes("Content-Disposition: form-data; name=\"nomesquadra\""+ lineEnd);
+                    dos.writeBytes(lineEnd);
+                    dos.writeBytes(NomeSquadra);
                     dos.writeBytes(lineEnd);
                     dos.writeBytes(twoHyphens + boundary + lineEnd);
 

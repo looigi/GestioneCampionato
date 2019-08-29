@@ -10,7 +10,9 @@ public class DBRemotoAllenamenti {
     private String ws = "wsAllenamenti.asmx/";
 
     public void SalvaAllenamenti(Context context, String idCategoria, String Data, String Ora, String Giocatori, String Maschera) {
-        String Urletto="SalvaAllenamenti?idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+        String Urletto="SalvaAllenamenti?";
+        Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+        Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
         Urletto+="&idCategoria=" + idCategoria;
         Urletto+="&Data=" + Data;
         Urletto+="&Ora=" + Ora;
@@ -20,7 +22,9 @@ public class DBRemotoAllenamenti {
     }
 
     public void RitornaAllenamentiCategoria(Context context, String idCategoria, String Data, String Ora, String Maschera) {
-        String Urletto="RitornaAllenamentiCategoria?idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+        String Urletto="RitornaAllenamentiCategoria?";
+        Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+        Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
         Urletto+="&idCategoria=" + idCategoria;
         Urletto+="&Data=" + Data;
         Urletto+="&Ora=" + Ora;

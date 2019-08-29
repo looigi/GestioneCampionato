@@ -36,7 +36,7 @@ public class AdapterStatistiche extends ArrayAdapter {
     @Nullable
     public View getView(final int position, View convertView, ViewGroup parent)
     {
-        String campi[] = {};
+        String[] campi = {};
         TextView campo1;
         TextView campo2;
         TextView campo3;

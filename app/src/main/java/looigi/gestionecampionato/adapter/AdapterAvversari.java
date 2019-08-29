@@ -52,7 +52,7 @@ public class AdapterAvversari extends ArrayAdapter
 		String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
 
 		String riga = lista.get(position);
-		String Campi[]=riga.split(";",-1);
+		String[] Campi=riga.split(";",-1);
 
 		final String idAvversario = Campi[0];
 		String Avversario = Campi[2];

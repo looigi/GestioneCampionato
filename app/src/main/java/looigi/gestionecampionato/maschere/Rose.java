@@ -180,8 +180,9 @@ public class Rose extends android.support.v4.app.Fragment {
 
             vv.getImgRefreshFoto().setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    String NomeSquadra = VariabiliStaticheGlobali.getInstance().getNomeSquadra();
                     String id = vv.getTxtId().getText().toString();
-                    String Percorso=VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/Giocatori/";
+                    String Percorso=VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/"+NomeSquadra+"/Giocatori/";
 
                     Percorso += VariabiliStaticheGlobali.getInstance().getAnnoInCorso()+"_"+id+".jpg";
 

@@ -52,7 +52,7 @@ public class AdapterModificaUtenti extends ArrayAdapter
 		String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
 
 		String riga = lista.get(position);
-		String Campi[]=riga.split(";", -1);
+		String[] Campi=riga.split(";", -1);
 
 		if (Campi.length>0 && !Campi[0].isEmpty()) {
 			VariabiliStaticheUtenti.idAnnoScelto=Integer.parseInt(Campi[0]);

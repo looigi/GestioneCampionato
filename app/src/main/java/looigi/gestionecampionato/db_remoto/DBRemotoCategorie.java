@@ -13,7 +13,8 @@ public class DBRemotoCategorie {
 	public void RitornaCategorie(Context context, String Maschera) {
 		if (VariabiliStaticheGlobali.getInstance().getDatiUtente()!=null) {
 			String Urletto = "RitornaCategorie?";
-			Urletto += "idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+			Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+			Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 			Urletto += "&idUtente=" + VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente();
 
 			Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaCategorie", "", Maschera, NS, SA);
@@ -23,7 +24,8 @@ public class DBRemotoCategorie {
 	public void RitornaCategoriePerAnno(Context context, String Maschera) {
 		if (VariabiliStaticheGlobali.getInstance().getDatiUtente()!=null) {
 			String Urletto = "RitornaCategoriePerAnno?";
-			Urletto += "idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+			Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+			Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 
 			Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaCategoriePerAnno", "", Maschera, NS, SA);
 		}
@@ -31,7 +33,8 @@ public class DBRemotoCategorie {
 
 	public void SalvaCategoria(Context context, String idCategoria, String Categoria, String Maschera) {
 		String Urletto="SalvaCategoria?";
-		Urletto+="idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto+="&idCategoria=" + idCategoria;
 		Urletto+="&Categoria=" + Categoria;
 
@@ -40,7 +43,8 @@ public class DBRemotoCategorie {
 
 	public void EliminaCategoria(Context context, String idCategoria, String Maschera) {
 		String Urletto="EliminaCategoria?";
-		Urletto+="idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto+="&idCategoria=" + idCategoria;
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "EliminaCategoria", "", Maschera, NS, SA);

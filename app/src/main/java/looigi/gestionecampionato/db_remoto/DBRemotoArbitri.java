@@ -12,7 +12,8 @@ public class DBRemotoArbitri {
 
 	public void SalvaArbitro(Context context, String idCategoria, String idArbitro, String Cognome, String Nome, String EMail, String Telefono, String Maschera) {
 		String Urletto="SalvaArbitro?";
-		Urletto+="idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto+="&idCategoria=" + idCategoria;
 		Urletto+="&idArbitro=" + idArbitro;
 		Urletto+="&Cognome=" + Cognome;
@@ -24,7 +25,9 @@ public class DBRemotoArbitri {
 	}
 
 	public void RitornaArbitri(Context context, String Maschera) {
-		String Urletto="RitornaArbitri?idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		String Urletto="RitornaArbitri?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto+="&idCategoria=0";
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaArbitri", "", Maschera, NS, SA);
@@ -32,7 +35,8 @@ public class DBRemotoArbitri {
 
 	public void EliminaArbitro(Context context, String idArbitro, String Maschera) {
 		String Urletto="EliminaArbitro?";
-		Urletto+="idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto+="&idArbitro=" + idArbitro;
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "EliminaArbitro", "", Maschera, NS, SA);

@@ -35,7 +35,19 @@ public class DBRemotoMultimedia {
 				String[] cc = c2.split("/");
 				String c3=cc[cc.length-1];
 
-				HttpFileUpload hfu = new HttpFileUpload(VariabiliStaticheGlobali.RadiceUpload, Tipologia, n, c3, FileFisico);
+				String NomeSquadra = "";
+
+				switch (Tipologia) {
+					case "Allenatori":
+					case "Categorie":
+					case "Giocatori":
+					case "Partite":
+					case "Dirigenti":
+						NomeSquadra = VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+						break;
+				}
+
+				HttpFileUpload hfu = new HttpFileUpload(VariabiliStaticheGlobali.RadiceUpload, Tipologia, n, c3, FileFisico, NomeSquadra);
 				hfu.Send_Now(VariabiliStaticheGlobali.getInstance().getContext(), fstrm);
 			} else  {
 				DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
@@ -52,7 +64,8 @@ public class DBRemotoMultimedia {
 
 	public void RitornaMultimedia(Context context, String id, String Tipologia, String Maschera) {
 		String Urletto="RitornaMultimedia?";
-		Urletto+="idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto+="&id=" + id;
 		Urletto+="&Tipologia=" + Tipologia;
 

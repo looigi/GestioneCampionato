@@ -12,7 +12,8 @@ public class DBRemotoDirigenti {
 
 	public void SalvaDirigente(Context context, String idCategoria, String idDirigente, String Cognome, String Nome, String EMail, String Telefono, String Maschera) {
 		String Urletto="SalvaDirigente?";
-		Urletto+="idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto+="&idCategoria=" + idCategoria;
 		Urletto+="&idDirigente=" + idDirigente;
 		Urletto+="&Cognome=" + Cognome;
@@ -24,7 +25,9 @@ public class DBRemotoDirigenti {
 	}
 
 	public void RitornaDirigentiCategoria(Context context, String idCategoria, String Maschera) {
-		String Urletto="RitornaDirigentiCategoria?idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		String Urletto="RitornaDirigentiCategoria?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto+="&idCategoria=" + idCategoria;
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaDirigentiCategoria", "", Maschera, NS, SA);
@@ -32,7 +35,8 @@ public class DBRemotoDirigenti {
 
 	public void EliminaDirigente(Context context, String idDirigente, String Maschera) {
 		String Urletto="EliminaDirigente?";
-		Urletto+="idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto+="&idDirigente=" + idDirigente;
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "EliminaDirigente", "", Maschera, NS, SA);

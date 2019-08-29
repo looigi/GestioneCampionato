@@ -130,37 +130,38 @@ public class ScaricaImmagini {
 
     private String EsegueDownload(String Categoria, String NomeFiletto, ImageView v) {
         RitornoDownload="";
+        String NomeSquadra = VariabiliStaticheGlobali.getInstance().getNomeSquadra();
 
         DownloadPic a = new DownloadPic();
         a.setFiletto(NomeFiletto);
         switch(Categoria) {
             case "GIOCATORE":
-                a.setDirectory(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Giocatori");
-                a.setFileDaDown("http://looigi.no-ip.biz:12345/CvCalcio/App_Themes/Standard/Images/Giocatori/" + NomeFiletto);
+                a.setDirectory(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Giocatori");
+                a.setFileDaDown("http://looigi.no-ip.biz:12345/CvCalcio/App_Themes/Standard/Images/"+NomeSquadra+"/Giocatori/" + NomeFiletto);
                 break;
             case "CATEGORIE":
-                a.setDirectory(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Categorie");
-                a.setFileDaDown("http://looigi.no-ip.biz:12345/CvCalcio/App_Themes/Standard/Images/Categorie/" + NomeFiletto);
+                a.setDirectory(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Categorie");
+                a.setFileDaDown("http://looigi.no-ip.biz:12345/CvCalcio/App_Themes/Standard/Images/"+NomeSquadra+"/Categorie/" + NomeFiletto);
                 break;
             case "AVVERSARI":
                 a.setDirectory(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Avversari");
                 a.setFileDaDown("http://looigi.no-ip.biz:12345/CvCalcio/App_Themes/Standard/Images/Avversari/" + NomeFiletto);
                 break;
             case "ALLENATORI":
-                a.setDirectory(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Allenatori");
-                a.setFileDaDown("http://looigi.no-ip.biz:12345/CvCalcio/App_Themes/Standard/Images/Allenatori/" + NomeFiletto);
+                a.setDirectory(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Allenatori");
+                a.setFileDaDown("http://looigi.no-ip.biz:12345/CvCalcio/App_Themes/Standard/Images/"+NomeSquadra+"/Allenatori/" + NomeFiletto);
                 break;
             case "DIRIGENTI":
-                a.setDirectory(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Dirigenti");
-                a.setFileDaDown("http://looigi.no-ip.biz:12345/CvCalcio/App_Themes/Standard/Images/Dirigenti/" + NomeFiletto);
+                a.setDirectory(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Dirigenti");
+                a.setFileDaDown("http://looigi.no-ip.biz:12345/CvCalcio/App_Themes/Standard/Images/"+NomeSquadra+"/Dirigenti/" + NomeFiletto);
                 break;
             case "ARBITRI":
                 a.setDirectory(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Arbitri");
                 a.setFileDaDown("http://looigi.no-ip.biz:12345/CvCalcio/App_Themes/Standard/Images/Arbitri/" + NomeFiletto);
                 break;
             case "PARTITE":
-                a.setDirectory(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Partite");
-                a.setFileDaDown("http://looigi.no-ip.biz:12345/CvCalcio/App_Themes/Standard/Images/Partite/" + NomeFiletto);
+                a.setDirectory(VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Partite");
+                a.setFileDaDown("http://looigi.no-ip.biz:12345/CvCalcio/App_Themes/Standard/Images/"+NomeSquadra+"/Partite/" + NomeFiletto);
                 break;
         }
 

@@ -180,8 +180,9 @@ public class Dirigenti extends android.support.v4.app.Fragment {
 
             VariabiliStaticheDirigenti.getInstance().getImgRefreshFoto().setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    String NomeSquadra = VariabiliStaticheGlobali.getInstance().getNomeSquadra();
                     String id = VariabiliStaticheDirigenti.getInstance().getTxtId().getText().toString();
-                    String Percorso=VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/Dirigenti/";
+                    String Percorso=VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/"+NomeSquadra+"/Dirigenti/";
 
                     Percorso += VariabiliStaticheGlobali.getInstance().getAnnoInCorso()+"_"+id+".jpg";
 

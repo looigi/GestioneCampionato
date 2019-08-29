@@ -61,7 +61,7 @@ public class DownloadMultimediaImage {
                 bitmap = bm;
             }
 
-            String Cartelle[] = Path.split("/",-1);
+            String[] Cartelle = Path.split("/",-1);
             String Path2="";
             for (int i=0; i<Cartelle.length-1;i++) {
                 Path2+=Cartelle[i]+"/";

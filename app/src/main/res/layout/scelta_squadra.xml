@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/nero"
+    android:padding="5dp"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:weightSum="10"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:padding="2dp"
+            android:background="@drawable/bordo_arrotondato_bianco"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_weight="1"
+            android:layout_height="0dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@string/scelta_squadra"
+                android:textSize="22sp"
+                android:textColor="@color/rosso"
+                android:layout_height="wrap_content">
+
+            </TextView>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lstSceltaSquadra"
+            android:layout_width="match_parent"
+            android:layout_weight="7"
+            android:layout_height="0dp" >
+        </ListView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_height="0dp">
+
+            <TextView
+                android:id="@+id/txtNomeSquadra"
+                android:textSize="20sp"
+                android:textColor="@color/bianco"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:layout_height="0dp">
+
+            <LinearLayout
+                android:id="@+id/layAnnullaSquadra"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@drawable/bordo_arrotondato_bianco"
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/btnAnnullaSquadra"
+                    android:layout_margin="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/annulla" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layOkSquadra"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_margin="5dp"
+                android:background="@drawable/bordo_arrotondato_bianco"
+                android:gravity="center_horizontal|center_vertical"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/btnOkSquadra"
+                    android:layout_margin="5dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/ok" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

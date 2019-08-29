@@ -11,7 +11,9 @@ public class DBRemotoStatAllenamenti {
     private String ws = "wsStatAllenamenti.asmx/";
 
     public void RitornaStatAllenamentiCategoria(Context context, String idCategoria, String Mese, String Maschera) {
-        String Urletto="RitornaStatAllenamentiCategoria?idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+        String Urletto="RitornaStatAllenamentiCategoria?";
+        Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+        Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
         Urletto+="&idCategoria=" + idCategoria;
         Urletto+="&Mese=" + Mese;
 
@@ -20,7 +22,9 @@ public class DBRemotoStatAllenamenti {
     }
 
     public void RitornaInfo(Context context, String idCategoria, String idGiocatore, String Mese, String Maschera) {
-        String Urletto="RitornaInfo?idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+        String Urletto="RitornaInfo?";
+        Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+        Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
         Urletto+="&idCategoria=" + idCategoria;
         Urletto+="&idGiocatore=" + idGiocatore;
         Urletto+="&Mese=" + Mese;

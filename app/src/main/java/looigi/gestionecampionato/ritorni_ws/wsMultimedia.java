@@ -68,7 +68,7 @@ public class wsMultimedia {
                         "Immagine allenatore eliminata", false, VariabiliStaticheGlobali.NomeApplicazione);
 
                 id = VariabiliStaticheAllenatori.getInstance().getTxtId().getText().toString();
-                Percorso=VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/Allenatori/";
+                Percorso=VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/" + VariabiliStaticheGlobali.getInstance().getNomeSquadra() + "/Allenatori/";
 
                 Percorso += VariabiliStaticheGlobali.getInstance().getAnnoInCorso()+"_"+id+".jpg";
 
@@ -102,7 +102,7 @@ public class wsMultimedia {
                                 "Immagine categoria eliminata", false, VariabiliStaticheGlobali.NomeApplicazione);
 
                         id = VariabiliStaticheCategorie.getInstance().getTxtId().getText().toString();
-                        Percorso=VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/Categorie/";
+                        Percorso=VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/" + VariabiliStaticheGlobali.getInstance().getNomeSquadra() + "/Categorie/";
 
                         Percorso += VariabiliStaticheGlobali.getInstance().getAnnoInCorso()+"_"+id+".jpg";
 

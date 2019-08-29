@@ -38,7 +38,7 @@ public class AdapterThumbs extends ArrayAdapter
 		convertView = inflater.inflate(R.layout.listview_thumbs, null);
 
 		String riga = lista.get(position);
-		final String campi[] = riga.split(";");
+		final String[] campi = riga.split(";");
 
 		ImageView imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
 

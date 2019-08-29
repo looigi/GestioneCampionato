@@ -70,7 +70,7 @@ public class AdapterGiocatore extends ArrayAdapter
             Utility.getInstance().PrendeImmagineGiocatore(id.getText().toString(), imgGiocatore);
 		} else {
 		    if (riga.contains(";")) {
-				String Campi[] = riga.split(";");
+				String[] Campi = riga.split(";");
 
 				if (riga.contains("Autorete")) {
 					id.setText("");

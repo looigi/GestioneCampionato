@@ -52,7 +52,7 @@ public class AdapterAllenatori extends ArrayAdapter
 		String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
 
 		String riga = lista.get(position);
-		String Campi[]=riga.split(";",-1);
+		String[] Campi=riga.split(";",-1);
 
 		final String idAllenatore = Campi[0];
 		String Cognome = Campi[1];

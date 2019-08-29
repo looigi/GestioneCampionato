@@ -61,7 +61,7 @@ public class AdapterDirigentiConvocati extends ArrayAdapter
 
 		if (lista.get(position).contains(";")) {
 			String riga = lista.get(position);
-			String Campi[] = riga.split(";", -1);
+			String[] Campi = riga.split(";", -1);
 
 			idDirig = Campi[0];
 			Cognome = Campi[1];
@@ -71,7 +71,7 @@ public class AdapterDirigentiConvocati extends ArrayAdapter
 		} else {
 			idDirig=Integer.toString(VariabiliStaticheNuovaPartita.getInstance().getIdDirigenteSelezionato().get(position));
 
-			String Campi[]=lista.get(position).split(" ");
+			String[] Campi=lista.get(position).split(" ");
 
 			Cognome = Campi[0];
 			if (Campi.length>2) {

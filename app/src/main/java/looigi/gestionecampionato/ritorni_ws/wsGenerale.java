@@ -1,6 +1,9 @@
 package looigi.gestionecampionato.ritorni_ws;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.v4.widget.DrawerLayout;
@@ -8,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import looigi.gestionecampionato.MainActivity;
 import looigi.gestionecampionato.R;
 import looigi.gestionecampionato.dati.NomiMaschere;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
@@ -24,6 +28,7 @@ import looigi.gestionecampionato.dialog.DialogMessaggio;
 import looigi.gestionecampionato.maschere.ModificaUtente;
 import looigi.gestionecampionato.maschere.NuovaPartita;
 import looigi.gestionecampionato.maschere.Rose;
+import looigi.gestionecampionato.maschere.SceltaSquadra;
 import looigi.gestionecampionato.maschere.Settings;
 import looigi.gestionecampionato.maschere.Utenti;
 import looigi.gestionecampionato.utilities.Utility;
@@ -34,6 +39,47 @@ public class wsGenerale {
 
 	private String ToglieTag(String Cosa) {
 		return Cosa;
+	}
+
+	public void ControllaEsistenzaDB(final Context context, String Ritorno, final String Maschera) {
+		String Appoggio = ToglieTag(Ritorno);
+
+		if (Appoggio.toUpperCase().contains("ERROR:")) {
+			DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
+					Appoggio, true, VariabiliStaticheGlobali.NomeApplicazione);
+		} else {
+			String SquadraScelta = SceltaSquadra.SquadraScelta.trim().replace(" ","_");
+
+			Utility.getInstance().generateNoteOnSD(VariabiliStaticheGlobali.getInstance().PercorsoDIR,
+					"NomeSquadra.dat",
+					SquadraScelta);
+
+			Intent mStartActivity = new Intent(VariabiliStaticheGlobali.getInstance().getContext(), MainActivity.class);
+			int mPendingIntentId = 123456;
+			PendingIntent mPendingIntent = PendingIntent.getActivity(VariabiliStaticheGlobali.getInstance().getContext(), mPendingIntentId,    mStartActivity, PendingIntent.FLAG_CANCEL_CURRENT);
+			AlarmManager mgr = (AlarmManager) VariabiliStaticheGlobali.getInstance().getContext().getSystemService(Context.ALARM_SERVICE);
+			mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+			System.exit(0);
+		}
+	}
+
+	public void RitornaSquadrePerSceltaIniziale(final Context context, String Ritorno, final String Maschera) {
+		String Appoggio = ToglieTag(Ritorno);
+
+		if (Appoggio.toUpperCase().contains("ERROR:")) {
+			DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
+					Appoggio, true, VariabiliStaticheGlobali.NomeApplicazione);
+		} else {
+			String[] c = Appoggio.split("§", -1);
+			List<String> lista = new ArrayList<>();
+			for (String cc : c) {
+			    if (!cc.isEmpty()) {
+			        lista.add(cc);
+			    }
+			}
+
+			SceltaSquadra.fillListView(lista);
+		}
 	}
 
 	public void RitornaTipologie(final Context context, String Ritorno, final String Maschera) {

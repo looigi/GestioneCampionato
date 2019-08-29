@@ -148,8 +148,9 @@ public class Categorie extends android.support.v4.app.Fragment {
 
             VariabiliStaticheCategorie.getInstance().getImgRefreshFoto().setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    String NomeSquadra = VariabiliStaticheGlobali.getInstance().getNomeSquadra();
                     String id = VariabiliStaticheCategorie.getInstance().getTxtId().getText().toString();
-                    String Percorso=VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/Categorie/";
+                    String Percorso=VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/"+NomeSquadra+"/Categorie/";
 
                     Percorso += VariabiliStaticheGlobali.getInstance().getAnnoInCorso()+"_"+id+".jpg";
 

@@ -46,7 +46,7 @@ public class AdapterSquadreCampionato extends ArrayAdapter
 
 			String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
 			// String riga = lista.get(position);
-			// String Campi[]=riga.split(";",-1);
+			// String[] Campi=riga.split(";",-1);
 
 			final String idAvversario = Integer.toString(s.getIdSquadre());
 			final String Avversario = s.getSquadre();

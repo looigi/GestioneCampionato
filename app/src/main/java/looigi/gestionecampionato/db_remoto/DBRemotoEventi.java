@@ -12,7 +12,8 @@ public class DBRemotoEventi {
 
 	public void SalvaEvento(Context context, String idEvento, String Evento, String Maschera) {
 		String Urletto="SalvaEvento?";
-		Urletto+="idEvento=" + idEvento;
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idEvento=" + idEvento;
 		Urletto+="&Evento=" + Evento;
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "SalvaEvento",
@@ -20,7 +21,8 @@ public class DBRemotoEventi {
 	}
 
 	public void RitornaEventi(Context context, String Maschera) {
-		String Urletto="RitornaEventi";
+		String Urletto="RitornaEventi?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaEventi",
 				"", Maschera, NS, SA);
@@ -28,7 +30,8 @@ public class DBRemotoEventi {
 
 	public void EliminaEvento(Context context, String idEvento, String Maschera) {
 		String Urletto="EliminaEvento?";
-		Urletto+="idEvento=" + idEvento;
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idEvento=" + idEvento;
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "EliminaEvento",
 				"", Maschera, NS, SA);

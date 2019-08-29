@@ -13,14 +13,16 @@ public class DBRemotoUtenti {
 
 	public void RitornaListaUtenti(Context context) {
 		String Urletto="RitornaListaUtenti?";
-		Urletto+="idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaListaUtenti", "", "", NS, SA);
 	}
 
 	public void RitornaUtenteDaId(Context context, String idUtente, String Maschera) {
 		String Urletto="RitornaUtenteDaID?";
-		Urletto+="idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto+="&idUtente=" + idUtente;
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaUtenteDaID", "", Maschera, NS, SA);
@@ -28,7 +30,8 @@ public class DBRemotoUtenti {
 
 	public void RitornaUtentePerLogin(Context context, String Utente, String Password, String Maschera) {
 		String Urletto="RitornaUtentePerLogin?";
-		Urletto+="idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto+="&Utente=" + Utente;
 		Urletto+="&Password=" + Password;
 
@@ -37,7 +40,8 @@ public class DBRemotoUtenti {
 
 	public void SalvaUtente(Context context, String idAnno, StrutturaDatiUtente s, String Maschera) {
 		String Urletto="SalvaUtente?";
-		Urletto+="idAnno=" + idAnno;
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + idAnno;
 		Urletto+="&Utente=" + s.getUtente();
 		Urletto+="&Cognome=" + s.getCognome();
 		Urletto+="&Nome=" + s.getNome();
@@ -51,7 +55,8 @@ public class DBRemotoUtenti {
 
 	public void ModificaUtente(Context context, String idAnno, StrutturaDatiUtente s, String Maschera) {
 		String Urletto="ModificaUtente?";
-		Urletto+="idAnno=" + idAnno;
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + idAnno;
 		Urletto+="&Utente=" + s.getUtente();
 		Urletto+="&Cognome=" + s.getCognome();
 		Urletto+="&Nome=" + s.getNome();

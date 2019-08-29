@@ -95,7 +95,7 @@ public class DownloadPic {
 
 				InputStream input = new BufferedInputStream(url.openStream());
 
-				String s[]=NomeFiletto.split("/");
+				String[] s=NomeFiletto.split("/");
 				if (s.length>1) {
 					File f = new File(Directory+"/"+s[0]);
 					f.mkdirs();
@@ -103,7 +103,7 @@ public class DownloadPic {
 
 				OutputStream output = new FileOutputStream(Directory+"/"+NomeFiletto);
 
-				byte data[] = new byte[1024];
+				byte[] data = new byte[1024];
 				long total = 0;
 				int count;
 				while ((count = input.read(data)) != -1) {
@@ -125,27 +125,29 @@ public class DownloadPic {
 						imgView.setVisibility(LinearLayout.VISIBLE);
 
 						String fDestinazione="";
+						String NomeSquadra=VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+
 						switch(Categoria) {
 							case "GIOCATORE":
-								fDestinazione= VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Giocatori/" + NomeFiletto;
+								fDestinazione= VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Giocatori/" + NomeFiletto;
 								break;
 							case "CATEGORIE":
-								fDestinazione= VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Categorie/" + NomeFiletto;
+								fDestinazione= VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Categorie/" + NomeFiletto;
 								break;
 							case "AVVERSARI":
 								fDestinazione= VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Avversari/" + NomeFiletto;
 								break;
 							case "ALLENATORI":
-								fDestinazione= VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Allenatori/" + NomeFiletto;
+								fDestinazione= VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Allenatori/" + NomeFiletto;
 								break;
 							case "DIRIGENTI":
-								fDestinazione= VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Dirigenti/" + NomeFiletto;
+								fDestinazione= VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Dirigenti/" + NomeFiletto;
 								break;
 							case "ARBITRI":
 								fDestinazione= VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Arbitri/" + NomeFiletto;
 								break;
 							case "PARTITE":
-								fDestinazione= VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/Partite/" + NomeFiletto;
+								fDestinazione= VariabiliStaticheGlobali.getInstance().PercorsoDIR+"/"+NomeSquadra+"/Partite/" + NomeFiletto;
 								break;
 						}
 

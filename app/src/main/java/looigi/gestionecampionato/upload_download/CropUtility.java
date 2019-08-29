@@ -107,10 +107,10 @@ public class CropUtility {
             String NomeFilePerUpload;
             String NomeFileLocale;
             String Percorso;
-
             Percorso = VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/" + Tipologia;
 
-            if (!Tipologia.equals(NomiMaschere.getInstance().getAvversariPerTitolo())) {
+            if (!Tipologia.equals(NomiMaschere.getInstance().getAvversariPerTitolo()) &&
+                    !Tipologia.equals(NomiMaschere.getInstance().getArbitriPerTitolo())) {
                 NomeFilePerUpload = Integer.toString(VariabiliStaticheGlobali.getInstance().getAnnoInCorso()) + "_" +
                         Id + ".jpg";
                 NomeFileLocale = Percorso + "/" + Integer.toString(VariabiliStaticheGlobali.getInstance().getAnnoInCorso()) + "_" +

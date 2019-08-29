@@ -59,7 +59,7 @@ public class AdapterMultimedia extends ArrayAdapter
         ImageView ImgMultimedia= convertView.findViewById(R.id.imgMultimedia);
         ImageView ImgEliminaMultimedia= convertView.findViewById(R.id.imgEliminaMultimedia);
 
-        final String Campi[] = riga.split(";");
+        final String[] Campi = riga.split(";");
 
         TxtId.setText(Campi[0]);
         TxtNome.setText(Campi[1]);
@@ -90,13 +90,14 @@ public class AdapterMultimedia extends ArrayAdapter
 
         String Path="";
         String Nome="";
+        String NomeSquadra = VariabiliStaticheGlobali.getInstance().getNomeSquadra();
 
         if (VariabiliStaticheGlobali.MascheraAttuale.equals(NomiMaschere.getInstance().getRose())) {
-            Path = VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/Giocatori/" + Codice;
+            Path = VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/"+NomeSquadra+"/Giocatori/" + Codice;
             Nome=Campi[1];
         }
         if (VariabiliStaticheGlobali.MascheraAttuale.equals(NomiMaschere.getInstance().getNuovaPartita())) {
-            Path = VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/Partite/" + Codice;
+            Path = VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/"+NomeSquadra+"/Partite/" + Codice;
             Nome=Campi[1];
         }
         final String Imm = Path + "/" + Nome;

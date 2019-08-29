@@ -287,6 +287,14 @@ public class GestioneWEBServiceSOAP {
 				boolean Ancora=true;
 				while (Ancora) {
 					switch (tOperazione) {
+						case "ControllaEsistenzaDB":
+							rGen.ControllaEsistenzaDB(context, Ritorno, Maschera);
+							Ancora=false;
+							break;
+						case "RitornaSquadrePerSceltaIniziale":
+							rGen.RitornaSquadrePerSceltaIniziale(context, Ritorno, Maschera);
+							Ancora=false;
+							break;
 						case "RitornaCategorie":
 							rCat.RitornaCategorie(context, Ritorno, Maschera);
 							Ancora=false;

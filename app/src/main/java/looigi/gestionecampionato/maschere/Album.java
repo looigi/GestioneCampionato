@@ -327,7 +327,7 @@ public class Album extends android.support.v4.app.Fragment {
             // AccendeSpegneIcone();
 
             String Immagine = VariabiliStaticheAlbum.getInstance().getImmagini().get(VariabiliStaticheAlbum.getInstance().QualeImmagine);
-            String Campi[] = Immagine.split(";");
+            String[] Campi = Immagine.split(";");
 
             StopVideo();
             StaVedendo=false;

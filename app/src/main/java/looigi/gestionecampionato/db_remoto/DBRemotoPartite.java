@@ -12,20 +12,25 @@ public class DBRemotoPartite {
 	private String SA="http://cvcalcio_part.org/";
 
 	public void RitornaPartitaDaID(Context context, String idPartita, String Maschera) {
-		String Urletto="RitornaPartitaDaID?idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		String Urletto="RitornaPartitaDaID?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto+="&idPartita=" + idPartita;
 		
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaPartitaDaID", "", Maschera, NS, SA);
 	}
 
     public void RitornaIdPartita(Context context, String Maschera) {
-        String Urletto="RitornaIdPartita";
+        String Urletto="RitornaIdPartita?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
 
-        Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaIdPartita","",  Maschera, NS, SA);
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaIdPartita","",  Maschera, NS, SA);
     }
 
 	public void RitornaPartite(Context context, String Maschera) {
-		String Urletto="RitornaPartite?idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		String Urletto="RitornaPartite?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto+="&idCategoria=" + VariabiliStaticheUtenti.getInstance().getIdCategoriaScelta();
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaPartite", "", Maschera, NS, SA);
@@ -39,7 +44,8 @@ public class DBRemotoPartite {
 							 String idArbitro, String RisultatoATempi, String RigoriPropri, String RigoriAvv,
 							 String eventiPrimoTempo, String eventiSecondoTempo, String eventiTerzoTempo, String Maschera) {
 		String Urletto="SalvaPartita?";
-        Urletto+="idPartita=" + idPartita;
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idPartita=" + idPartita;
         Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto+="&idCategoria=" + idCategoria;
 		Urletto+="&idAvversario=" + idAvversario;

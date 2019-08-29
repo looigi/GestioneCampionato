@@ -12,7 +12,8 @@ public class DBRemotoCampionato {
 
 	public void RitornaCampionatoCategoria(Context context, String idCategoria, String Maschera) {
 		String Urletto="RitornaCampionatoCategoria?";
-		Urletto += "idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto +="&idCategoria=" + idCategoria;
 		Urletto +="&idUtente=" + VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente();
 
@@ -22,7 +23,8 @@ public class DBRemotoCampionato {
 
 	public void AggiungeSquadraAvversaria(Context context, String idCategoria, String idAvversario) {
 		String Urletto="AggiungeSquadraAvversaria?";
-		Urletto += "idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto +="&idCategoria=" + idCategoria;
 		Urletto +="&idAvversario=" + idAvversario;
 
@@ -32,7 +34,8 @@ public class DBRemotoCampionato {
 
 	public void EliminaSquadraAvversaria(Context context, String idCategoria, String idAvversario) {
 		String Urletto="EliminaSquadraAvversaria?";
-		Urletto += "idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto +="&idCategoria=" + idCategoria;
 		Urletto +="&idAvversario=" + idAvversario;
 
@@ -43,7 +46,8 @@ public class DBRemotoCampionato {
 	public void InserisceNuovaPartita(Context context, String idGiornata, String idCategoria,
                                       String Data, String Ora, String Casa, String Fuori) {
 		String Urletto="InserisceNuovaPartita?";
-		Urletto += "idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto += "&idGiornata=" + idGiornata;
 		Urletto +="&idCategoria=" + idCategoria;
 		Urletto +="&Data=" + Data;
@@ -60,7 +64,8 @@ public class DBRemotoCampionato {
                                      String idUnioneCalendario, String ProgressivoPartita,
                                      String Risultato) {
 		String Urletto="ModificaPartitaAltre?";
-		Urletto += "idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto += "&idGiornata=" + idGiornata;
 		Urletto +="&idCategoria=" + idCategoria;
 		Urletto +="&Data=" + Data;
@@ -77,7 +82,8 @@ public class DBRemotoCampionato {
 
 	public void EliminaPartita(Context context, String idGiornata, String idCategoria, String idPartita) {
 		String Urletto="EliminaPartita?";
-		Urletto += "idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto +="&idGiornata=" + idGiornata;
 		Urletto +="&idCategoria=" + idCategoria;
 		Urletto +="&idPartita=" + idPartita;
@@ -88,7 +94,8 @@ public class DBRemotoCampionato {
 
 	public void RitornaClassifica(Context context, String idGiornata, String idCategoria) {
 		String Urletto="CalcolaClassificaAllaGiornata?";
-		Urletto += "idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
 		Urletto +="&idCategoria=" + idCategoria;
 		Urletto +="&idGiornata=" + idGiornata;
 		Urletto +="&idUtente=" + VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente();
@@ -99,6 +106,7 @@ public class DBRemotoCampionato {
 
 	public void RitornaIdPartitaDaUnione(Context context, String idPartita) {
 		String Urletto="RitornaIdPartitaDaUnione?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
 		Urletto +="idUnioneCalendario=" + idPartita;
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto,
@@ -107,7 +115,8 @@ public class DBRemotoCampionato {
 
     public void SalvaGiornataUtenteCategoria(Context context, String idCategoria, String idGiornata) {
         String Urletto="SalvaGiornataUtenteCategoria?";
-        Urletto +="idUtente=" + VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente();
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto +="&idUtente=" + VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdUtente();
         Urletto += "&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
         Urletto +="&idCategoria=" + idCategoria;
         Urletto +="&idGiornata=" + idGiornata;
