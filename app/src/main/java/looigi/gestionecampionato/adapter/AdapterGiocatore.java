@@ -1,6 +1,8 @@
 package looigi.gestionecampionato.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,7 +69,10 @@ public class AdapterGiocatore extends ArrayAdapter
 				}
 			// }
 
-            Utility.getInstance().PrendeImmagineGiocatore(id.getText().toString(), imgGiocatore);
+			Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
+			imgGiocatore.setImageBitmap(bm);
+
+			Utility.getInstance().PrendeImmagineGiocatore(id.getText().toString(), imgGiocatore);
 		} else {
 		    if (riga.contains(";")) {
 				String[] Campi = riga.split(";");

@@ -1,6 +1,8 @@
 package looigi.gestionecampionato.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -93,6 +95,9 @@ public class AdapterArbitri extends ArrayAdapter
 		txtNome.setText(Nome);
 		txtEMail.setText(EMail);
 		txtTelefono.setText(Telefono);
+
+		Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
+		imgArbitro.setImageBitmap(bm);
 
 		Utility.getInstance().PrendeImmagineArbitro(idDirig, imgArbitro);
 

@@ -1,6 +1,8 @@
 package looigi.gestionecampionato.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -106,6 +108,9 @@ public class AdapterSquadreCampionato extends ArrayAdapter
 					}
 				});
 			}
+
+			Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
+			imgAvversario.setImageBitmap(bm);
 
 			if (Integer.parseInt(idAvversario) < 0) {
 				Utility.getInstance().PrendeImmagineCategoria(Integer.toString(-Integer.parseInt(idAvversario)), imgAvversario);

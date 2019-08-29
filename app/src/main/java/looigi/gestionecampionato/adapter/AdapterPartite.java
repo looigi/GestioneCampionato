@@ -2,6 +2,8 @@ package looigi.gestionecampionato.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.Nullable;
@@ -327,12 +329,18 @@ public class AdapterPartite extends ArrayAdapter
 
 		// txtAllenatore.setText(Allenatore);
 
+		Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
+		imgCasa.setImageBitmap(bm);
+		imgFuori.setImageBitmap(bm);
+		imgAllenatore.setImageBitmap(bm);
+
 		Utility.getInstance().PrendeImmagineCategoria(idCategoria, imgCasa);
 		Utility.getInstance().PrendeImmagineAvversario(idAvversario, imgFuori);
 		Utility.getInstance().PrendeImmagineAllenatore(idAllenatore, imgAllenatore);
 
 		if (!idArbitro.isEmpty()) {
 			imgArbitro.setVisibility(LinearLayout.VISIBLE);
+			imgArbitro.setImageBitmap(bm);
 			Utility.getInstance().PrendeImmagineArbitro(idArbitro, imgArbitro);
 		} else {
 			imgArbitro.setVisibility(LinearLayout.INVISIBLE);

@@ -1,6 +1,8 @@
 package looigi.gestionecampionato.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -62,6 +64,9 @@ public class AdapterCategorie extends ArrayAdapter {
 
             txtId.setText(idCategoria);
             txtCategoria.setText(Categoria);
+
+            Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
+            imgCategoria.setImageBitmap(bm);
 
             Utility.getInstance().PrendeImmagineCategoria(idCategoria, imgCategoria);
 

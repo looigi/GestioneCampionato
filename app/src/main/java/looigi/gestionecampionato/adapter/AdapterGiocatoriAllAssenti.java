@@ -1,6 +1,8 @@
 package looigi.gestionecampionato.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +54,10 @@ public class AdapterGiocatoriAllAssenti extends ArrayAdapter {
         categoria1.setText(Campi[20]);
         categoria2.setText(Campi[17]);
         categoria3.setText(Campi[19]);
+
+        Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
+        imgGiocatore.setImageBitmap(bm);
+
         Utility.getInstance().PrendeImmagineGiocatore(id.getText().toString(), imgGiocatore);
         final String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
         convertView2.setOnClickListener(new OnClickListener() {

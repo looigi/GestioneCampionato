@@ -1,6 +1,8 @@
 package looigi.gestionecampionato.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -86,12 +88,15 @@ public class AdapterAvversari extends ArrayAdapter
 		txtIndirizzo.setText(Indirizzo);
 		txtCoords.setText(Lat + ";" + Lon);
 
+		Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
+		imgAvversario.setImageBitmap(bm);
+
 		Utility.getInstance().PrendeImmagineAvversario(Campi[0], imgAvversario);
 
 		if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
 			convertView.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
-					String c[] = VariabiliStaticheAvversari.getInstance().getAvversari().get(position).split(";", -1);
+					String[] c = VariabiliStaticheAvversari.getInstance().getAvversari().get(position).split(";", -1);
 
 					final String idAvversario = c[0];
 					final String idCampo = c[1];

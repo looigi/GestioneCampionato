@@ -1,6 +1,8 @@
 package looigi.gestionecampionato.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -124,6 +126,10 @@ public class AdapterPartiteCampionato extends ArrayAdapter
 
         ImageView imgCasa = convertView.findViewById(R.id.imgCasa);
         ImageView imgFuori = convertView.findViewById(R.id.imgFuori);
+
+        Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
+        imgCasa.setImageBitmap(bm);
+        imgFuori.setImageBitmap(bm);
 
         if (lsp.getIdSqCasa()<0) {
             Utility.getInstance().PrendeImmagineCategoria(Integer.toString(vv.getIdCategoriaScelta()), imgCasa);

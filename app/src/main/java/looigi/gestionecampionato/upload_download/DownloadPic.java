@@ -118,7 +118,7 @@ public class DownloadPic {
 			} catch (Exception e) {
 				e.printStackTrace();
 
-				VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale().runOnUiThread(new Runnable() {
+				/* VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale().runOnUiThread(new Runnable() {
 					public void run() {
 						Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
 						imgView.setImageBitmap(bm);
@@ -153,7 +153,7 @@ public class DownloadPic {
 
 						Utility.getInstance().saveImageFile(bm, fDestinazione);
 					}
-				});
+				}); */
 
 				ScaricaImmagini.getInstance().setRitornoDownload("ERROR: "+e.getMessage());
 			}

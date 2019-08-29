@@ -1,6 +1,8 @@
 package looigi.gestionecampionato.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -65,6 +67,8 @@ public class AdapterStatAllenamenti extends ArrayAdapter
 		((TextView) convertView.findViewById(R.id.txtNumero)).setText(Campi[7]);
 
 		ImageView imgGiocatore = convertView.findViewById(R.id.img);
+		Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
+		imgGiocatore.setImageBitmap(bm);
 		Utility.getInstance().PrendeImmagineGiocatore(Campi[0], imgGiocatore);
 
 		convertView.setOnClickListener(new View.OnClickListener() {
