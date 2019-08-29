@@ -24,7 +24,7 @@ public class DBRemotoMultimedia {
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "EliminaImmagine", "", Maschera, NS, SA);
 	}
 
-	public void UploadFile(String Percorso, String Tipologia, String NomeFile, String Cartella){
+	public void UploadFile(String Percorso, String Tipologia, String NomeFile, String Cartella, String FileFisico){
 		try {
 			File f = new File(NomeFile);
 			if (f.exists()) {
@@ -35,7 +35,7 @@ public class DBRemotoMultimedia {
 				String[] cc = c2.split("/");
 				String c3=cc[cc.length-1];
 
-				HttpFileUpload hfu = new HttpFileUpload(VariabiliStaticheGlobali.RadiceUpload, Tipologia, n, c3);
+				HttpFileUpload hfu = new HttpFileUpload(VariabiliStaticheGlobali.RadiceUpload, Tipologia, n, c3, FileFisico);
 				hfu.Send_Now(VariabiliStaticheGlobali.getInstance().getContext(), fstrm);
 			} else  {
 				DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),

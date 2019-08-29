@@ -123,7 +123,7 @@ public class CropUtilityMultimedia {
 
                 if (ok) {
                     DBRemotoMultimedia dbr = new DBRemotoMultimedia();
-                    dbr.UploadFile(Percorso, Tipologia, NomeFileLocale, Id);
+                    dbr.UploadFile(Percorso, Tipologia, NomeFileLocale, Id, NomeFileLocale);
                 } else {
                     DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
                             "Problemi nella copia del file multimediale", true,

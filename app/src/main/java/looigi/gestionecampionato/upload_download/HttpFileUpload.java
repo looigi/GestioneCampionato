@@ -7,6 +7,7 @@ import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -26,14 +27,16 @@ public class HttpFileUpload implements Runnable {
         private String NomeFile;
         private String Tipologia;
         private String Cartella;
+        private String FileFisico;
     	private ProgressDialog progressDialog;
 
-        public HttpFileUpload(String urlString, String vTipologia, String vNomeFile, String vCartella){
+        public HttpFileUpload(String urlString, String vTipologia, String vNomeFile, String vCartella, String FileFisico){
             try{
                 connectURL = new URL(urlString);
                 NomeFile= vNomeFile;
                 Tipologia =vTipologia;
                 Cartella=vCartella;
+                this.FileFisico = FileFisico;
             }catch(Exception ex){
                 Log.i("HttpFileUpload","URL Malformatted");
             }
@@ -78,7 +81,14 @@ public class HttpFileUpload implements Runnable {
 		        	progressDialog.dismiss();
 		        } catch (Exception ignored) {
 		        }
-		        
+
+		        File f = new File(FileFisico);
+		        try {
+                    f.delete();
+                } catch (Exception ignored) {
+
+                }
+
 		        wsMultimedia r=new wsMultimedia();
 		        r.RitornoUploadImmagine();
     		}
@@ -196,7 +206,7 @@ public class HttpFileUpload implements Runnable {
 
                     int status = conn.getResponseCode();
                     BufferedInputStream in;
-                    Boolean Errore=false;
+                    boolean Errore=false;
                     if (status >= 400 ) {
                         in = new BufferedInputStream( conn.getErrorStream() );
                         Errore=true;

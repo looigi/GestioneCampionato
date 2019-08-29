@@ -79,7 +79,7 @@ public class CropUtilityMultimedia_Backup {
             }
 
             DBRemotoMultimedia dbr = new DBRemotoMultimedia();
-            dbr.UploadFile(Percorso, Tipologia, NomeFileLocale, Id);
+            dbr.UploadFile(Percorso, Tipologia, NomeFileLocale, Id, NomeFileLocale);
         }
     }
 }

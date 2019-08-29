@@ -140,7 +140,7 @@ public class CropUtility {
 
             if (!Errore) {
                 DBRemotoMultimedia dbr = new DBRemotoMultimedia();
-                dbr.UploadFile(Percorso, Tipologia, NomeFileLocale, "");
+                dbr.UploadFile(Percorso, Tipologia, NomeFileLocale, "", NomeFileLocale);
             } else {
                 DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
                         "Problemi nel salvataggio dell'immagine", true, VariabiliStaticheGlobali.NomeApplicazione);
