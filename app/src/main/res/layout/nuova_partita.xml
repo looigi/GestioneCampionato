@@ -8,18 +8,10 @@
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
-    <!-- <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-        <include layout="@layout/bottoni_menu" >
-
-        </include>
-
-    </LinearLayout> -->
-
     <LinearLayout
         android:id="@+id/layContenuto"
         android:orientation="vertical"
+        android:weightSum="22"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -31,8 +23,8 @@
         <LinearLayout
             android:id="@+id/layHeader"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
+            android:layout_height="0dp"
+            android:layout_weight="4"
             android:background="@drawable/bordo_arrotondato_bianco"
             android:orientation="vertical"
             android:padding="3dp">
@@ -194,29 +186,31 @@
             </LinearLayout>
         </LinearLayout>
 
-        <View
+        <!-- <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray" /> -->
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_weight="2"
+            android:layout_height="0dp">
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
                 <LinearLayout
                     android:baselineAligned="false"
+                    android:background="@color/bianco"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="horizontal" >
 
                     <LinearLayout
                         android:id="@+id/Pagina1"
                         android:layout_width="150dp"
-                        android:layout_height="45dp"
+                        android:layout_height="match_parent"
                         android:layout_margin="2dp"
                         android:background="@drawable/bordo_arrotondato_bianco"
                         android:gravity="center_vertical|center_horizontal"
@@ -245,7 +239,7 @@
                         android:layout_margin="2dp"
                         android:background="@drawable/bordo_arrotondato_bianco"
                         android:gravity="center_vertical|center_horizontal"
-                        android:layout_height="45dp">
+                        android:layout_height="match_parent">
 
                         <ImageView
                             android:id="@+id/imgPagina2"
@@ -270,7 +264,7 @@
                         android:layout_margin="2dp"
                         android:background="@drawable/bordo_arrotondato_bianco"
                         android:gravity="center_vertical|center_horizontal"
-                        android:layout_height="45dp">
+                        android:layout_height="match_parent">
 
                         <ImageView
                             android:id="@+id/imgPagina3"
@@ -295,7 +289,7 @@
                         android:layout_margin="2dp"
                         android:background="@drawable/bordo_arrotondato_bianco"
                         android:gravity="center_vertical|center_horizontal"
-                        android:layout_height="45dp">
+                        android:layout_height="match_parent">
 
                         <ImageView
                             android:id="@+id/imgPagina4"
@@ -320,7 +314,7 @@
                         android:layout_margin="2dp"
                         android:background="@drawable/bordo_arrotondato_bianco"
                         android:gravity="center_vertical|center_horizontal"
-                        android:layout_height="45dp">
+                        android:layout_height="match_parent">
 
                         <ImageView
                             android:id="@+id/imgPagina5"
@@ -341,676 +335,129 @@
 
         </LinearLayout>
 
-        <View
+        <!-- <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@android:color/darker_gray" />
+            android:background="@android:color/darker_gray" /> -->
 
         <LinearLayout
             android:id="@+id/layoutGenerale"
+            android:background="@drawable/bordo_arrotondato_bianco"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="14"
             android:orientation="vertical">
 
-            <ScrollView
+            <LinearLayout
+                android:id="@+id/layPagina1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <include layout="@layout/generale" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layPagina2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/primo_tempo" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layPagina3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/secondo_tempo" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layPagina4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/terzo_tempo" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layPagina5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/rigori" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layBarraTasti"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="@drawable/bordo_arrotondato_bianco"
+            android:layout_gravity="center_vertical|end"
+            android:padding="3dp"
+            android:orientation="horizontal"
+            android:gravity="end|center_vertical">
+
+            <!-- <Button
+                android:id="@+id/btnSalva"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Salva" /> -->
+
+            <ImageView
+                android:layout_marginStart="5dp"
+                android:id="@+id/btnSalva"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/save" />
+
+            <!-- <Button
+                android:id="@+id/btnAltroPartita"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Altri dati" /> -->
+
+            <ImageView
+                android:layout_marginStart="5dp"
+                android:id="@+id/btnAltroPartita"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/altri_dati" />
+
+            <!-- <Button
+                android:id="@+id/btnMeteo"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Posizione" /> -->
+
+            <ImageView
+                android:layout_marginStart="5dp"
+                android:id="@+id/btnMeteo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/posizione" />
+
+            <ImageView
+                android:layout_marginStart="5dp"
+                android:id="@+id/btnWeb"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/web" />
+
+            <ImageView
+                android:layout_marginStart="5dp"
+                android:id="@+id/btnUscita"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/uscita2" />
 
-                <LinearLayout
-                    android:id="@+id/layPaginaContenitore"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:id="@+id/layPagina1"
-                        android:background="@drawable/bordo_arrotondato_bianco"
-                        android:layout_margin="3dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:layout_marginStart="5dp"
-                            android:gravity="start|center_vertical"
-                            android:layout_marginEnd="5dp"
-                            android:weightSum="7">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="Tipologia"
-                                android:textColor="@color/verdeScuro"
-                                android:textSize="15sp"
-                                android:textStyle="bold|italic" />
-
-                            <TextView
-                                android:id="@+id/txtTipologia"
-                                android:layout_width="0dp"
-                                android:textSize="15sp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text="TextView" />
-
-                            <!-- <Button
-                                android:id="@+id/btnTipologia"
-                                android:layout_width="0dp"
-                                android:layout_height="40dp"
-                                android:layout_weight="1"
-                                android:text="..." /> -->
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="35dp">
-
-                                <ImageView
-                                    android:id="@+id/btnTipologia"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    app:srcCompat="@drawable/modifica" />
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:gravity="start|center_vertical"
-                            android:background="@color/bianco"
-                            android:weightSum="7">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="Categoria"
-                                android:textSize="15sp"
-                                android:textColor="@color/verdeScuro"
-                                android:textStyle="bold|italic" />
-
-                            <TextView
-                                android:id="@+id/txtCategoria"
-                                android:layout_width="0dp"
-                                android:textSize="15sp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text="TextView" />
-
-                            <!-- <Button
-                                android:id="@+id/btnCategoria"
-                                android:layout_width="0dp"
-                                android:layout_height="40dp"
-                                android:layout_weight="1"
-                                android:text="..." /> -->
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="35dp">
-
-                                <ImageView
-                                    android:id="@+id/btnCategoria"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    app:srcCompat="@drawable/modifica" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:layout_marginStart="5dp"
-                            android:gravity="center_vertical"
-                            android:layout_marginEnd="5dp"
-                            android:weightSum="7">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:gravity="start|center_vertical"
-                                android:textSize="15sp"
-                                android:text="Allenatore"
-                                android:textColor="@color/verdeScuro"
-                                android:textStyle="bold|italic" />
-
-                            <Spinner
-                                android:id="@+id/spnAllenatore"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:layout_width="0dp"
-                                android:layout_weight="5"
-                                android:layout_height="wrap_content" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:gravity="start|center_vertical"
-                            android:background="@color/bianco"
-                            android:weightSum="7">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:textSize="15sp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="Data"
-                                android:textColor="@color/verdeScuro"
-                                android:textStyle="bold|italic" />
-
-                            <TextView
-                                android:id="@+id/txtdata"
-                                android:layout_width="0dp"
-                                android:textSize="15sp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text="TextView" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="35dp">
-
-                                <ImageView
-                                    android:id="@+id/btnData"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    app:srcCompat="@drawable/modifica" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:gravity="start|center_vertical"
-                            android:background="@color/bianco"
-                            android:weightSum="7">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:layout_weight="2"
-                                android:gravity="start|center_vertical"
-                                android:text="Ora"
-                                android:textColor="@color/verdeScuro"
-                                android:textStyle="bold|italic" />
-
-                            <TextView
-                                android:id="@+id/txtOra"
-                                android:layout_width="0dp"
-                                android:textSize="15sp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text="TextView" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="35dp">
-
-                                <ImageView
-                                    android:id="@+id/btnOra"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    app:srcCompat="@drawable/modifica" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:layout_marginStart="5dp"
-                            android:gravity="start|center_vertical"
-                            android:layout_marginEnd="5dp"
-                            android:weightSum="7">
-
-                            <TextView
-                                android:textSize="15sp"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="Avversario"
-                                android:textColor="@color/verdeScuro"
-                                android:textStyle="bold|italic" />
-
-                            <TextView
-                                android:id="@+id/txtAvversario"
-                                android:textSize="15sp"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text="TextView" />
-
-                            <!-- <Button
-                                android:id="@+id/btnAvversario"
-                                android:layout_width="0dp"
-                                android:layout_height="40dp"
-                                android:layout_weight="1"
-                                android:text="..." /> -->
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="35dp">
-
-                                <ImageView
-                                    android:id="@+id/btnAvversario"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    app:srcCompat="@drawable/modifica" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|center_horizontal"
-                            android:layout_marginBottom="1dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:background="@color/bianco"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:weightSum="7">
-
-                            <TextView
-                                android:id="@+id/txt4122"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:layout_weight="2"
-                                android:gravity="start|center_vertical"
-                                android:text="Campo"
-                                android:textColor="@color/verdeScuro"
-                                android:textStyle="bold|italic" />
-
-                            <TextView
-                                android:id="@+id/txtCampo"
-                                android:textSize="15sp"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="5"
-                                android:text="TextView" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end|center_vertical"
-                            android:layout_weight="7"
-                            android:gravity="center_vertical|end">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:layout_weight="2"  />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="2"
-                                android:gravity="center_vertical|left"
-                                android:layout_height="wrap_content">
-
-                                <CheckBox
-                                    android:id="@+id/chkInCasa"
-                                    android:layout_width="wrap_content"
-                                    android:buttonTint="@color/colorPrimary"
-                                    android:layout_height="wrap_content"
-                                    android:text="In Casa" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="3"
-                                android:gravity="center_vertical|center_horizontal"
-                                android:layout_height="wrap_content">
-
-                                <CheckBox
-                                    android:id="@+id/chkEsterno"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:buttonTint="@color/colorPrimary"
-                                    android:text="Campo esterno" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/layCampoIndirizzo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:layout_marginStart="5dp"
-                            android:weightSum="7"
-                            android:gravity="center_vertical|left"
-                            android:layout_marginEnd="5dp"
-                            android:background="@color/bianco">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:layout_weight="2"
-                                android:gravity="start|center_vertical"
-                                android:text="Indirizzo"
-                                android:textColor="@color/verdeScuro"
-                                android:textStyle="bold|italic" />
-
-                            <TextView
-                                android:id="@+id/txtCampoIndirizzo"
-                                android:textSize="15sp"
-                                android:layout_width="0dp"
-                                android:layout_weight="5"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical|left"
-                                android:gravity="center_vertical|left"
-                                android:text="" />
-
-                            <!-- <Button
-                                android:id="@+id/btnCoordinate"
-                                android:layout_width="0dp"
-                                android:layout_height="40dp"
-                                android:layout_weight="1"
-                                android:text="XY" /> -->
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/layCampoEsterno"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"
-                            android:gravity="center_vertical|left"
-                            android:weightSum="7"
-                            android:background="@color/bianco">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:layout_weight="2"
-                                android:gravity="start|center_vertical"
-                                android:text="Ind. campo esterno"
-                                android:textColor="@color/verdeScuro"
-                                android:textStyle="bold|italic" />
-
-                            <EditText
-                                android:id="@+id/edtCampoEsterno"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:ems="10"
-                                android:layout_weight="5"
-                                android:textSize="15sp"
-                                android:inputType="textPersonName"
-                                android:text="Name"
-                                android:theme="@style/MyEditText" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:layout_marginStart="5dp"
-                            android:gravity="start|center_vertical"
-                            android:layout_marginEnd="5dp"
-                            android:weightSum="7">
-
-                            <TextView
-                                android:textSize="15sp"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="2"
-                                android:text="Convocati"
-                                android:textColor="@color/verdeScuro"
-                                android:textStyle="bold|italic" />
-
-                            <TextView
-                                android:id="@+id/txtConvocati"
-                                android:textSize="15sp"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text="TextView" />
-
-                            <!-- <Button
-                                android:id="@+id/btnAvversario"
-                                android:layout_width="0dp"
-                                android:layout_height="40dp"
-                                android:layout_weight="1"
-                                android:text="..." /> -->
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="35dp">
-
-                                <ImageView
-                                    android:id="@+id/btnConvocati"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    app:srcCompat="@drawable/modifica" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:layout_marginStart="5dp"
-                            android:gravity="start|center_vertical"
-                            android:layout_marginEnd="5dp"
-                            android:weightSum="7">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:layout_weight="2"
-                                android:text="Arbitro"
-                                android:textColor="@color/verdeScuro"
-                                android:textStyle="bold|italic" />
-
-                            <TextView
-                                android:id="@+id/txtArbitro"
-                                android:textSize="15sp"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="4"
-                                android:text="TextView" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:layout_height="35dp">
-
-                                <ImageView
-                                    android:id="@+id/btnArbitro"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    app:srcCompat="@drawable/modifica" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="1dp"
-                            android:layout_marginStart="5dp"
-                            android:gravity="start|center_vertical"
-                            android:layout_marginEnd="5dp"
-                            android:weightSum="7">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:textSize="15sp"
-                                android:layout_weight="6"
-                                android:text="Punteggio a tempi"
-                                android:textColor="@color/verdeScuro"
-                                android:textStyle="bold|italic" />
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:gravity="center_horizontal|center_vertical"
-                                android:layout_height="35dp">
-
-                                <CheckBox
-                                    android:id="@+id/chkTempi"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@android:color/darker_gray" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/layPagina2"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <include layout="@layout/primo_tempo" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/layPagina3"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <include layout="@layout/secondo_tempo" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/layPagina4"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <include layout="@layout/terzo_tempo" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/layPagina5"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <include layout="@layout/rigori" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@android:color/darker_gray" />
-
-                    <LinearLayout
-                        android:id="@+id/layBarraTasti"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bordo_arrotondato_bianco"
-                        android:layout_gravity="center_vertical|end"
-                        android:layout_marginTop="2dp"
-                        android:padding="3dp"
-                        android:orientation="horizontal"
-                        android:gravity="end|center_vertical">
-
-                        <!-- <Button
-                            android:id="@+id/btnSalva"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:text="Salva" /> -->
-
-                        <ImageView
-                            android:layout_marginStart="5dp"
-                            android:id="@+id/btnSalva"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            app:srcCompat="@drawable/save" />
-
-                        <!-- <Button
-                            android:id="@+id/btnAltroPartita"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:text="Altri dati" /> -->
-
-                        <ImageView
-                            android:layout_marginStart="5dp"
-                            android:id="@+id/btnAltroPartita"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            app:srcCompat="@drawable/altri_dati" />
-
-                        <!-- <Button
-                            android:id="@+id/btnMeteo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:text="Posizione" /> -->
-
-                        <ImageView
-                            android:layout_marginStart="5dp"
-                            android:id="@+id/btnMeteo"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            app:srcCompat="@drawable/posizione" />
-
-                        <ImageView
-                            android:layout_marginStart="5dp"
-                            android:id="@+id/btnWeb"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            app:srcCompat="@drawable/web" />
-
-                        <ImageView
-                            android:layout_marginStart="5dp"
-                            android:id="@+id/btnUscita"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
-                            app:srcCompat="@drawable/uscita2" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </ScrollView>
         </LinearLayout>
 
     </LinearLayout>

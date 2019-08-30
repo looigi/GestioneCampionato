@@ -393,7 +393,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             vnp.getTxtRisAvv3Tempo().setText("0");
         } else {
             if (DatiPartitaGen[12].equals("-1")) {
-                btnAvvenimentiTerzoTempo.setVisibility(LinearLayout.GONE);
+                /* btnAvvenimentiTerzoTempo.setVisibility(LinearLayout.GONE);
 
                 vnp.getTxtRisAvv3Tempo().setText("Non giocato");
 
@@ -404,21 +404,53 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 Button cmdMenoAvv3Tempo = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.btnMenoAvvTerzoTempo);
                 cmdMenoAvv3Tempo.setVisibility(LinearLayout.GONE);
 
-                vnp.getCmdReset3Tempo().setVisibility(LinearLayout.GONE);
+                vnp.getCmdReset3Tempo().setVisibility(LinearLayout.GONE); */
+
+                btnAvvenimentiTerzoTempo.setEnabled(false);
+
+                vnp.getTxtRisAvv3Tempo().setText("Non giocato");
+
+                vnp.getLvvMarcatoriTerzoTempo().setEnabled(false);
+                vnp.getSpnMarcatoriTerzoTempo().setEnabled(false);
+
+                vnp.getCmdStartSopTimer3Tempo().setEnabled(false);
+                Button cmdMenoAvv3Tempo = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.btnMenoAvvTerzoTempo);
+                cmdMenoAvv3Tempo.setEnabled(false);
+
+                RelativeLayout layNoTerzoTempo = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.layNoTerzoTempo);
+                layNoTerzoTempo.setVisibility(LinearLayout.VISIBLE);
+
+                vnp.getCmdReset3Tempo().setEnabled(false);
             } else {
-                btnAvvenimentiTerzoTempo.setVisibility(LinearLayout.VISIBLE);
+                /* btnAvvenimentiTerzoTempo.setVisibility(LinearLayout.VISIBLE);
 
                 vnp.getTxtRisAvv3Tempo().setText(DatiPartitaGen[12]);
 
                 vnp.getLvvMarcatoriTerzoTempo().setVisibility(LinearLayout.VISIBLE);
-                vnp.getSpnMarcatoriTerzoTempo().setVisibility(LinearLayout.VISIBLE);
+                vnp.getSpnMarcatoriTerzoTempo().setVisibility(LinearLayout.VISIBLE); */
+
+                btnAvvenimentiTerzoTempo.setEnabled(true);
+
+                vnp.getTxtRisAvv3Tempo().setText(DatiPartitaGen[12]);
+
+                vnp.getLvvMarcatoriTerzoTempo().setEnabled(true);
+                vnp.getSpnMarcatoriTerzoTempo().setEnabled(true);
+
+                RelativeLayout layNoTerzoTempo = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.layNoTerzoTempo);
+                layNoTerzoTempo.setVisibility(LinearLayout.GONE);
 
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
-                    vnp.getCmdStartSopTimer3Tempo().setVisibility(LinearLayout.VISIBLE);
+                    /* vnp.getCmdStartSopTimer3Tempo().setVisibility(LinearLayout.VISIBLE);
                     Button cmdMenoAvv3Tempo = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.btnMenoAvvTerzoTempo);
                     cmdMenoAvv3Tempo.setVisibility(LinearLayout.VISIBLE);
-
                     vnp.getCmdReset3Tempo().setVisibility(LinearLayout.VISIBLE);
+                    */
+
+                    vnp.getCmdStartSopTimer3Tempo().setEnabled(true);
+                    Button cmdMenoAvv3Tempo = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.btnMenoAvvTerzoTempo);
+                    cmdMenoAvv3Tempo.setEnabled(true);
+
+                    vnp.getCmdReset3Tempo().setEnabled(true);
                 } else {
                     vnp.getLvvMarcatoriTerzoTempo().setEnabled(false);
                     vnp.getSpnMarcatoriTerzoTempo().setEnabled(false);
@@ -1937,6 +1969,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         Button cmdPiuAvv2Tempo = view.findViewById(R.id.btnPiuAvvSecondoTempo);
         final Button cmdMenoAvv3Tempo = view.findViewById(R.id.btnMenoAvvTerzoTempo);
         Button cmdPiuAvv3Tempo = view.findViewById(R.id.btnPiuAvvTerzoTempo);
+        final RelativeLayout layNoTerzoTempo = view.findViewById(R.id.layNoTerzoTempo);
 
         vnp.setTxtRisAvv1Tempo((TextView) view.findViewById(R.id.txtGoalAvvPrimoTempo));
         vnp.setTxtRisAvv2Tempo((TextView) view.findViewById(R.id.txtGoalAvvSecondoTempo));
@@ -2373,9 +2406,10 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                                 vnp.getTempiGAvvTerzoTempo().remove(vnp.getTempiGAvvTerzoTempo().size() - 1);
                                 fillSpinnerMinutiGoalAvversari();
                             }
+
                             ScriveRisultato();
                         } else {
-                            btnAvvenimentiTerzoTempo.setVisibility(LinearLayout.GONE);
+                            /* btnAvvenimentiTerzoTempo.setVisibility(LinearLayout.GONE);
 
                             vnp.getTxtRisAvv3Tempo().setText("Non giocato");
 
@@ -2385,7 +2419,22 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                             vnp.getCmdStartSopTimer3Tempo().setVisibility(LinearLayout.GONE);
                             cmdMenoAvv3Tempo.setVisibility(LinearLayout.GONE);
 
-                            vnp.getCmdReset3Tempo().setVisibility(LinearLayout.GONE);
+                            vnp.getCmdReset3Tempo().setVisibility(LinearLayout.GONE); */
+
+                            btnAvvenimentiTerzoTempo.setEnabled(false);
+
+                            vnp.getTxtRisAvv3Tempo().setText("Non giocato");
+
+                            vnp.getLvvMarcatoriTerzoTempo().setEnabled(false);
+                            vnp.getSpnMarcatoriTerzoTempo().setEnabled(false);
+
+                            vnp.getCmdStartSopTimer3Tempo().setEnabled(false);
+                            cmdMenoAvv3Tempo.setEnabled(false);
+
+                            vnp.getCmdReset3Tempo().setEnabled(false);
+
+                            RelativeLayout layNoTerzoTempo = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.layNoTerzoTempo);
+                            layNoTerzoTempo.setVisibility(LinearLayout.VISIBLE);
 
                             vnp.setTempiGAvvTerzoTempo(new ArrayList<Integer>());
                             fillSpinnerMinutiGoalAvversari();
@@ -2454,7 +2503,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
                     if (vnp.getTxtRisAvv3Tempo().getText().equals("Non giocato")) {
-                        btnAvvenimentiTerzoTempo.setVisibility(LinearLayout.VISIBLE);
+                        /* btnAvvenimentiTerzoTempo.setVisibility(LinearLayout.VISIBLE);
 
                         vnp.getTxtRisAvv3Tempo().setText("0");
 
@@ -2466,11 +2515,28 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                         vnp.getCmdStartSopTimer3Tempo().setVisibility(LinearLayout.VISIBLE);
                         cmdMenoAvv3Tempo.setVisibility(LinearLayout.VISIBLE);
 
-                        vnp.getCmdReset3Tempo().setVisibility(LinearLayout.VISIBLE);
+                        vnp.getCmdReset3Tempo().setVisibility(LinearLayout.VISIBLE); */
+
+                        btnAvvenimentiTerzoTempo.setEnabled(true);
+
+                        vnp.getTxtRisAvv3Tempo().setText("0");
+
+                        vnp.getLvvMarcatoriTerzoTempo().setEnabled(true);
+                        vnp.getSpnMarcatoriTerzoTempo().setEnabled(true);
+
+                        vnp.getCmdStartSopTimer3Tempo().setEnabled(true);
+                        cmdMenoAvv3Tempo.setEnabled(true);
+
+                        vnp.getCmdReset3Tempo().setEnabled(true);
+
+                        layNoTerzoTempo.setVisibility(LinearLayout.GONE);
+
                         vnp.setTempiGAvvTerzoTempo(new ArrayList<Integer>());
                         fillSpinnerMinutiGoalAvversari();
                     } else {
                         vnp.getTxtRisAvv3Tempo().setText(Integer.toString(Integer.parseInt(vnp.getTxtRisAvv3Tempo().getText().toString()) + 1));
+
+                        layNoTerzoTempo.setVisibility(LinearLayout.VISIBLE);
 
                         int minuto = TimerTempo.getInstance().RitornaMinuto(3);
                         if (minuto>-1) {

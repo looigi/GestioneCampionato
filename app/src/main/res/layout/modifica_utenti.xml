@@ -8,7 +8,8 @@
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
-    <ListView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/lstvUtenti"
+    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/lstvUtenti"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="3dp" />
@@ -19,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/bordo_arrotondato_verde"
+        android:background="@drawable/bordo_arrotondato_bianco"
         android:padding="5dp"
         android:layout_margin="5dp">
 

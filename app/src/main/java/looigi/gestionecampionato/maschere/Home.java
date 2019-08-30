@@ -11,7 +11,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import looigi.gestionecampionato.R;
+import looigi.gestionecampionato.adapter.AdapterNessunaPartita;
 import looigi.gestionecampionato.adapter.AdapterPartite;
 import looigi.gestionecampionato.dati.NomiMaschere;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
@@ -150,10 +154,16 @@ public class Home extends android.support.v4.app.Fragment {
     }
 
     public static void RiempieListaPartite() {
-        VariabiliStaticheMain.getInstance().setAdapterPartite(new AdapterPartite(VariabiliStaticheGlobali.getInstance().getContext(),
-                android.R.layout.simple_list_item_1, VariabiliStaticheMain.getInstance().getPartite()));
-        if (VariabiliStaticheMain.getInstance().getLstPartite()!=null) {
+        if (VariabiliStaticheMain.getInstance().getLstPartite()!=null && VariabiliStaticheMain.getInstance().getPartite().size()>0) {
+            VariabiliStaticheMain.getInstance().setAdapterPartite(new AdapterPartite(VariabiliStaticheGlobali.getInstance().getContext(),
+                    android.R.layout.simple_list_item_1, VariabiliStaticheMain.getInstance().getPartite()));
             VariabiliStaticheMain.getInstance().getLstPartite().setAdapter(VariabiliStaticheMain.getInstance().getAdapterPartite());
+        } else {
+            List<String> l = new ArrayList<>();
+            l.add("*");
+            AdapterNessunaPartita adp= new AdapterNessunaPartita(VariabiliStaticheGlobali.getInstance().getContext(),
+                    android.R.layout.simple_list_item_1, l);
+            VariabiliStaticheMain.getInstance().getLstPartite().setAdapter(adp);
         }
     }
 }

@@ -12,7 +12,8 @@
     <include
         layout="@layout/scelta_categoria" />
 
-    <ListView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/lstvPartite"
+    <ListView
+        android:id="@+id/lstvPartite"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@android:color/transparent"

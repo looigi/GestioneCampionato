@@ -34,7 +34,7 @@
     <string name="about">About</string>
     <string name="squadra">Squadra</string>
     <string name="scelta_squadra">Selezionare la propria squadra</string>
-
+    <string name="no_partite">Nessuna partita in elenco</string>
     <string name="mese">Mese</string>
 
     <string name="lista_squadre">218;Castelverde;1.2,2.3;§160;Ponte di Nona;3.2,2.1;§</string>

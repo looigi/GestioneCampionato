@@ -170,8 +170,8 @@ public class DownloadPic {
 			if (imgView!=null) {
 				if (Utility.getInstance().fileExistsInSD(NomeFiletto, Directory)) {
 					imgView.setImageBitmap(BitmapFactory.decodeFile(Directory + "/" + NomeFiletto));
-				} else {
-					imgView.setImageResource(idSconosciuto);
+				// } else {
+					// imgView.setImageResource(idSconosciuto);
 				}
 				imgView.setVisibility(LinearLayout.VISIBLE);
 			}
