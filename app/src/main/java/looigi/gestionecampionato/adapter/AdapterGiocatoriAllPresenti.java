@@ -40,31 +40,33 @@ public class AdapterGiocatoriAllPresenti extends ArrayAdapter {
         TextView name = (TextView) convertView2.findViewById(R.id.name);
         TextView numero = (TextView) convertView2.findViewById(R.id.txtNumero);
         ImageView imgGiocatore = (ImageView) convertView2.findViewById(R.id.img);
-        String[] Campi = ((String) this.lista.get(i)).split(";");
-        id.setText(Campi[0]);
-        ruolo.setText(Campi[4]);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(Campi[2]);
-        stringBuilder.append(" ");
-        stringBuilder.append(Campi[3]);
-        name.setText(stringBuilder.toString());
-        numero.setText(Campi[14]);
+        if (i<this.lista.size()) {
+            String[] Campi = ((String) this.lista.get(i)).split(";");
+            id.setText(Campi[0]);
+            ruolo.setText(Campi[4]);
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(Campi[2]);
+            stringBuilder.append(" ");
+            stringBuilder.append(Campi[3]);
+            name.setText(stringBuilder.toString());
+            numero.setText(Campi[14]);
 
-        Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
-        imgGiocatore.setImageBitmap(bm);
+            Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
+            imgGiocatore.setImageBitmap(bm);
 
-        Utility.getInstance().PrendeImmagineGiocatore(id.getText().toString(), imgGiocatore);
-        final String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
-        convertView2.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
-                    VariabiliStaticheAllenamenti.getInstance().getGiocatoriAssenti().add(vv.getGiocatoriPresenti().get(i));
-                    VariabiliStaticheAllenamenti.getInstance().getGiocatoriPresenti().remove(i);
-                    Allenamenti.fillListViewGiocatoriPresenti();
-                    Allenamenti.fillListViewGiocatoriAssenti();
+            Utility.getInstance().PrendeImmagineGiocatore(id.getText().toString(), imgGiocatore);
+            final String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+            convertView2.setOnClickListener(new OnClickListener() {
+                public void onClick(View v) {
+                    if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                        VariabiliStaticheAllenamenti.getInstance().getGiocatoriAssenti().add(vv.getGiocatoriPresenti().get(i));
+                        VariabiliStaticheAllenamenti.getInstance().getGiocatoriPresenti().remove(i);
+                        Allenamenti.fillListViewGiocatoriPresenti();
+                        Allenamenti.fillListViewGiocatoriAssenti();
+                    }
                 }
-            }
-        });
+            });
+        }
         return convertView2;
     }
 }
