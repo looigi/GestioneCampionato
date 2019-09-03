@@ -1,18 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="horizontal" android:background="@drawable/bordo_arrotondato_bianco" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="3.0dip"
+<LinearLayout android:orientation="horizontal"
+    android:background="@drawable/bordo_arrotondato_bianco"
+    android:padding="5.0dip"
+    android:layout_width="fill_parent"
+    android:layout_height="120dp"
+    android:layout_margin="3.0dip"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="10.0">
-        <LinearLayout android:gravity="center" android:layout_gravity="center" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="2.0">
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:weightSum="10.0">
+        <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_width="0.0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="2.0">
             <TextView android:textSize="14.0sp" android:id="@id/id" android:layout_width="1.0dip" android:layout_height="1.0dip" />
             <ImageView android:id="@id/img" android:layout_width="fill_parent" android:layout_height="fill_parent" />
         </LinearLayout>
-        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical" android:padding="5.0dip" android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="2.0">
-            <ImageView android:background="@drawable/maglietta" android:layout_width="40.0dip" android:layout_height="40.0dip" />
-            <TextView android:textSize="22.0sp" android:textStyle="bold|italic" android:textColor="@android:color/holo_blue_dark" android:gravity="center" android:id="@id/txtNumero" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="-30.0dip" android:text="99" />
+        <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:padding="5.0dip"
+            android:layout_width="0.0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="2.0">
+            <ImageView android:background="@drawable/maglietta"
+                android:layout_width="55.0dip"
+                android:layout_height="55.0dip" />
+            <TextView android:textSize="20.0sp" android:textStyle="bold|italic" android:textColor="@android:color/holo_blue_dark" android:gravity="center" android:id="@id/txtNumero" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="-40.0dip" android:text="99" />
         </LinearLayout>
-        <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_margin="3.0dip" android:layout_weight="6.0">
+        <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_width="0.0dip"
+            android:layout_height="match_parent"
+            android:layout_margin="3.0dip"
+            android:layout_weight="6.0">
             <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="2.0">
-                <TextView android:textSize="14.0sp" android:textStyle="bold|italic" android:id="@id/name" android:layout_width="0.0dip" android:layout_height="wrap_content" android:text="Ppp Ooo" android:layout_weight="2.0" />
+                <TextView android:textSize="16.0sp"
+                    android:textStyle="bold|italic"
+                    android:id="@id/name"
+                    android:layout_width="0.0dip"
+                    android:layout_height="wrap_content"
+                    android:text="Ppp Ooo"
+                    android:layout_weight="2.0" />
             </LinearLayout>
             <TextView android:textSize="12.0sp" android:id="@id/ruolo" android:layout_width="fill_parent" android:layout_height="wrap_content" />
         </LinearLayout>

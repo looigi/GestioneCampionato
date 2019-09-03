@@ -39,9 +39,6 @@ public class AdapterGiocatoriAllPresenti extends ArrayAdapter {
         TextView ruolo = (TextView) convertView2.findViewById(R.id.ruolo);
         TextView name = (TextView) convertView2.findViewById(R.id.name);
         TextView numero = (TextView) convertView2.findViewById(R.id.txtNumero);
-        TextView categoria1 = (TextView) convertView2.findViewById(R.id.categoria1);
-        TextView categoria2 = (TextView) convertView2.findViewById(R.id.categoria2);
-        TextView categoria3 = (TextView) convertView2.findViewById(R.id.categoria3);
         ImageView imgGiocatore = (ImageView) convertView2.findViewById(R.id.img);
         String[] Campi = ((String) this.lista.get(i)).split(";");
         id.setText(Campi[0]);
@@ -52,9 +49,6 @@ public class AdapterGiocatoriAllPresenti extends ArrayAdapter {
         stringBuilder.append(Campi[3]);
         name.setText(stringBuilder.toString());
         numero.setText(Campi[14]);
-        categoria1.setText(Campi[20]);
-        categoria2.setText(Campi[17]);
-        categoria3.setText(Campi[19]);
 
         Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
         imgGiocatore.setImageBitmap(bm);
