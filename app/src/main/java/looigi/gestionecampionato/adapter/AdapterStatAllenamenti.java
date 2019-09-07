@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import looigi.gestionecampionato.R;
@@ -62,7 +63,12 @@ public class AdapterStatAllenamenti extends ArrayAdapter
 
 		((TextView) convertView.findViewById(R.id.presenze)).setText(Campi[4]);
 		((TextView) convertView.findViewById(R.id.totale)).setText(Campi[5]);
-		((TextView) convertView.findViewById(R.id.perc)).setText(Campi[6]);
+
+		float i2 = Float.parseFloat(Campi[6].replace(",","."));
+		DecimalFormat f = new DecimalFormat("##.00");
+		String formattedValue = f.format(i2);
+
+		((TextView) convertView.findViewById(R.id.perc)).setText(formattedValue);
 
 		((TextView) convertView.findViewById(R.id.txtNumero)).setText(Campi[7]);
 

@@ -402,6 +402,7 @@ public class VariabiliStaticheNuovaPartita {
     private CheckBox chkInCasa;
     private CheckBox chkEsterno;
     private ImageView cmdSalva;
+    private ImageView cmdCreaConv;
     private ImageView cmdUscita;
     private LinearLayout layCampoIndirizzo;
     private LinearLayout layCampoEsterno;
@@ -453,6 +454,14 @@ public class VariabiliStaticheNuovaPartita {
 
     public void StampaEvento() {
         txtEvento.setText(MinutoEvento+"° - " + descEvento + " " + aFavoreDi);
+    }
+
+    public ImageView getCmdCreaConv() {
+        return cmdCreaConv;
+    }
+
+    public void setCmdCreaConv(ImageView cmdCreaConv) {
+        this.cmdCreaConv = cmdCreaConv;
     }
 
     public RelativeLayout getRlMaschera() {

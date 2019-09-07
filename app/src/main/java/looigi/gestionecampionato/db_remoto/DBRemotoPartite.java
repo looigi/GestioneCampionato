@@ -11,6 +11,15 @@ public class DBRemotoPartite {
 	private String NS="http://cvcalcio_part.org/";
 	private String SA="http://cvcalcio_part.org/";
 
+	public void CreaConvocazione(Context context, String idPartita, String Maschera) {
+		String Urletto="CreaFoglioConvocazioni?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="&idPartita=" + idPartita;
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "CreaFoglioConvocazioni", "", Maschera, NS, SA);
+	}
+
 	public void RitornaPartitaDaID(Context context, String idPartita, String Maschera) {
 		String Urletto="RitornaPartitaDaID?";
 		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();

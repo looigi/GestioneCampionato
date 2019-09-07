@@ -426,6 +426,13 @@
 
             <ImageView
                 android:layout_marginStart="5dp"
+                android:id="@+id/btnCreaConvocazioni"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/convocati" />
+
+            <ImageView
+                android:layout_marginStart="5dp"
                 android:id="@+id/btnAltroPartita"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

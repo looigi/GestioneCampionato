@@ -351,6 +351,10 @@ public class GestioneWEBServiceSOAP {
 							rPar.RitornaIdPartita(context, Ritorno, Maschera);
 							Ancora=false;
 							break;
+						case "CreaFoglioConvocazioni":
+							rPar.CreaFoglioConvocazioni(context, Ritorno, Maschera);
+							Ancora=false;
+							break;
 						case "RitornaPartite":
 							rPar.RitornaPartite(context, Ritorno, Maschera);
 							Ancora=false;

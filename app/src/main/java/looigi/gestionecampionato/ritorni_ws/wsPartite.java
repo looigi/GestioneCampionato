@@ -1,6 +1,8 @@
 package looigi.gestionecampionato.ritorni_ws;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
 
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ import looigi.gestionecampionato.db_remoto.DBRemotoDirigenti;
 import looigi.gestionecampionato.dialog.DialogMessaggio;
 import looigi.gestionecampionato.maschere.Home;
 import looigi.gestionecampionato.maschere.NuovaPartita;
+
+import static looigi.gestionecampionato.dati.VariabiliStaticheGlobali.RadiceWS;
 
 public class wsPartite {
     private Runnable runRiga;
@@ -87,6 +91,21 @@ public class wsPartite {
                     dbr.RitornaCategorie(context, Maschera);
                 }
             }, 50);
+        }
+    }
+
+    public void CreaFoglioConvocazioni(final Context context, String Ritorno, final String idPartita) {
+        String Appoggio=ToglieTag(Ritorno);
+
+        if (Appoggio.toUpperCase().contains("ERROR:")) {
+            DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
+                    Appoggio, true, VariabiliStaticheGlobali.NomeApplicazione);
+        } else {
+            String pagina_web = RadiceWS+"/Convocazioni/" +
+                    idPartita + ".html";
+
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pagina_web));
+            VariabiliStaticheGlobali.getInstance().getContextPrincipale().startActivity(browserIntent);
         }
     }
 

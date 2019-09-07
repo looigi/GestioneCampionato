@@ -165,31 +165,33 @@ public class Allenamenti extends Fragment {
                     MostraPannelloData mostraPannelloData = new MostraPannelloData(context, VariabiliStaticheAllenamenti.getInstance().getTxtData(), view.findViewById(R.id.idData));
                 }
             });
-            final String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
-            ((Button) view.findViewById(R.id.cmdMetteTutti)).setOnClickListener(new OnClickListener() {
-                public void onClick(View v) {
-                    if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
-                        for (String a : VariabiliStaticheAllenamenti.getInstance().getGiocatoriAssenti()) {
-                            VariabiliStaticheAllenamenti.getInstance().getGiocatoriPresenti().add(a);
+            if (VariabiliStaticheGlobali.getInstance().getDatiUtente()!=null) {
+                final String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
+                ((Button) view.findViewById(R.id.cmdMetteTutti)).setOnClickListener(new OnClickListener() {
+                    public void onClick(View v) {
+                        if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                            for (String a : VariabiliStaticheAllenamenti.getInstance().getGiocatoriAssenti()) {
+                                VariabiliStaticheAllenamenti.getInstance().getGiocatoriPresenti().add(a);
+                            }
+                            VariabiliStaticheAllenamenti.getInstance().setGiocatoriAssenti(new ArrayList());
+                            Allenamenti.fillListViewGiocatoriAssenti();
+                            Allenamenti.fillListViewGiocatoriPresenti();
                         }
-                        VariabiliStaticheAllenamenti.getInstance().setGiocatoriAssenti(new ArrayList());
-                        Allenamenti.fillListViewGiocatoriAssenti();
-                        Allenamenti.fillListViewGiocatoriPresenti();
                     }
-                }
-            });
-            ((Button) view.findViewById(R.id.cmdToglieTutti)).setOnClickListener(new OnClickListener() {
-                public void onClick(View v) {
-                    if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
-                        for (String p : VariabiliStaticheAllenamenti.getInstance().getGiocatoriPresenti()) {
-                            VariabiliStaticheAllenamenti.getInstance().getGiocatoriAssenti().add(p);
+                });
+                ((Button) view.findViewById(R.id.cmdToglieTutti)).setOnClickListener(new OnClickListener() {
+                    public void onClick(View v) {
+                        if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                            for (String p : VariabiliStaticheAllenamenti.getInstance().getGiocatoriPresenti()) {
+                                VariabiliStaticheAllenamenti.getInstance().getGiocatoriAssenti().add(p);
+                            }
+                            VariabiliStaticheAllenamenti.getInstance().setGiocatoriPresenti(new ArrayList());
+                            Allenamenti.fillListViewGiocatoriAssenti();
+                            Allenamenti.fillListViewGiocatoriPresenti();
                         }
-                        VariabiliStaticheAllenamenti.getInstance().setGiocatoriPresenti(new ArrayList());
-                        Allenamenti.fillListViewGiocatoriAssenti();
-                        Allenamenti.fillListViewGiocatoriPresenti();
                     }
-                }
-            });
+                });
+            }
             VariabiliStaticheAllenamenti.getInstance().setBtnRitornaAllenamenti((Button) view.findViewById(R.id.cmdCercaAllenamenti));
             VariabiliStaticheAllenamenti.getInstance().getBtnRitornaAllenamenti().setOnClickListener(new C06025());
             VariabiliStaticheAllenamenti.getInstance().getCmdSalvaAllenamenti().setOnClickListener(new OnClickListener() {

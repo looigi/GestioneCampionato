@@ -2801,10 +2801,116 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
         vnp.setCmdSalva((ImageView) view.findViewById(R.id.btnSalva));
         vnp.getCmdSalva().setVisibility(LinearLayout.GONE);
+        vnp.getCmdSalva().setVisibility(LinearLayout.GONE);
         vnp.getCmdSalva().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     SalvaPartita();
+                }
+            }
+        });
+
+        vnp.setCmdCreaConv((ImageView) view.findViewById(R.id.btnCreaConvocazioni));
+        vnp.getCmdCreaConv().setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                    TextView txt = (TextView) VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.txtAvversario);
+                    String avve = txt.getText().toString();
+                    if (avve.isEmpty()) {
+                        DialogMessaggio.getInstance().show(
+                                VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale(),
+                                "Selezionare l'avversario",
+                                true, "Errore");
+                    } else {
+                        CheckBox inc = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.chkInCasa);
+                        boolean inCasa = inc.isChecked();
+                        CheckBox est = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.chkEsterno);
+                        boolean esterno = est.isChecked();
+                        String campo = "";
+                        if (inCasa) {
+                            txt = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.txtCampo);
+                            campo = txt.getText().toString();
+                        } else {
+                            campo = "inCasa";
+                        }
+                        if (esterno && campo.isEmpty()) {
+                            campo = "esterno";
+                        }
+                        if (campo.isEmpty()) {
+                            DialogMessaggio.getInstance().show(
+                                    VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale(),
+                                    "Selezionare il campo",
+                                    true, "Errore");
+                        } else {
+                            txt = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.txtCategoria);
+                            String cate = txt.getText().toString();
+                            if (cate.isEmpty()) {
+                                DialogMessaggio.getInstance().show(
+                                        VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale(),
+                                        "Selezionare la categoria",
+                                        true, "Errore");
+                            } else {
+                                String ind = "";
+                                if (!esterno) {
+                                    txt = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.txtCampoIndirizzo);
+                                    ind = txt.getText().toString();
+                                } else {
+                                    EditText edtxt = VariabiliStaticheNuovaPartita.getInstance().getViewActivity(). findViewById(R.id.edtCampoEsterno);
+                                    ind = edtxt.getText().toString();
+                                }
+                                if (ind.isEmpty()) {
+                                    DialogMessaggio.getInstance().show(
+                                            VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale(),
+                                            "Selezionare l'indirizzo del campo",
+                                            true, "Errore");
+                                } else {
+                                    txt = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.txtdata);
+                                    String data = txt.getText().toString();
+                                    if (data.isEmpty()) {
+                                        DialogMessaggio.getInstance().show(
+                                                VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale(),
+                                                "Inserire la data",
+                                                true, "Errore");
+                                    } else {
+                                        txt = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.txtOra);
+                                        String ora = txt.getText().toString();
+                                        if (ora.isEmpty()) {
+                                            DialogMessaggio.getInstance().show(
+                                                    VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale(),
+                                                    "Inserire l'ora",
+                                                    true, "Errore");
+                                        } else {
+                                            if (VariabiliStaticheNuovaPartita.getInstance().getGiocatoreConvocato() == null ||
+                                                    VariabiliStaticheNuovaPartita.getInstance().getGiocatoreConvocato().size() < 10) {
+                                                DialogMessaggio.getInstance().show(
+                                                        VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale(),
+                                                        "Pochi convocati in lista",
+                                                        true, "Errore");
+                                            } else {
+                                                if (VariabiliStaticheNuovaPartita.getInstance().idAllenatoreScelto == -1) {
+                                                    DialogMessaggio.getInstance().show(
+                                                            VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale(),
+                                                            "Selezionare l'allenatore",
+                                                            true, "Errore");
+                                                } else {
+                                                    String idPartita = Integer.toString(vnp.idPartita);
+                                                    if (PartitaNuova!=-1) {
+                                                        idPartita=Integer.toString(PartitaNuova);
+                                                    }
+
+                                                    DBRemotoPartite dbr = new DBRemotoPartite();
+                                                    dbr.CreaConvocazione(
+                                                            VariabiliStaticheGlobali.getInstance().getContext(),
+                                                            idPartita,
+                                                            idPartita);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         });
