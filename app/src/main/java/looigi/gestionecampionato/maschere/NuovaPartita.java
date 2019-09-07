@@ -879,7 +879,11 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         if (!Avversari) {
             m = VariabiliStaticheNuovaPartita.getInstance().getGiocatoriPerMarcature().get(position); //  + ";" + minuto + ";";
             if (m.contains(";")) {
-                String mm[] = m.split(";");
+                String[] mm = m.split(";");
+                if (mm.length < 5){
+                    m += ";";
+                    mm = m.split(";");
+                }
 
                 mm[4] = minuto;
                 m = "";
@@ -2761,7 +2765,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 if (PartitaNuova!=-1) {
                     idPartita=Integer.toString(PartitaNuova);
                 }
-                String pagina_web = RadiceWS+"/Partite/" +
+                String pagina_web = RadiceWS+"Partite/" + VariabiliStaticheGlobali.getInstance().getNomeSquadra() +"/" +
                         VariabiliStaticheGlobali.getInstance().getAnnoInCorso() + "_" + idPartita + ".html";
 
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pagina_web));
@@ -2827,7 +2831,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                         CheckBox est = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.chkEsterno);
                         boolean esterno = est.isChecked();
                         String campo = "";
-                        if (inCasa) {
+                        if (!inCasa) {
                             txt = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.txtCampo);
                             campo = txt.getText().toString();
                         } else {
@@ -2851,12 +2855,16 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                                         true, "Errore");
                             } else {
                                 String ind = "";
-                                if (!esterno) {
-                                    txt = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.txtCampoIndirizzo);
-                                    ind = txt.getText().toString();
+                                if (inCasa) {
+                                    ind ="InCasa";
                                 } else {
-                                    EditText edtxt = VariabiliStaticheNuovaPartita.getInstance().getViewActivity(). findViewById(R.id.edtCampoEsterno);
-                                    ind = edtxt.getText().toString();
+                                    if (!esterno) {
+                                        txt = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.txtCampoIndirizzo);
+                                        ind = txt.getText().toString();
+                                    } else {
+                                        EditText edtxt = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.edtCampoEsterno);
+                                        ind = edtxt.getText().toString();
+                                    }
                                 }
                                 if (ind.isEmpty()) {
                                     DialogMessaggio.getInstance().show(

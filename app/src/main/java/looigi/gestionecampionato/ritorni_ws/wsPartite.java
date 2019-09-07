@@ -101,7 +101,7 @@ public class wsPartite {
             DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
                     Appoggio, true, VariabiliStaticheGlobali.NomeApplicazione);
         } else {
-            String pagina_web = RadiceWS+"/Convocazioni/" +
+            String pagina_web = RadiceWS+"Convocazioni/" + VariabiliStaticheGlobali.getInstance().getNomeSquadra() + "/" +
                     idPartita + ".html";
 
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pagina_web));
