@@ -78,11 +78,11 @@ public class AdapterGiocatori extends ArrayAdapter
 
 		convertView.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				String c[] = vv.getGiocatori().get(position).split(";", -1);
+				if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+					String[] c = vv.getGiocatori().get(position).split(";", -1);
 
-				vv.idGiocatoreScelto = Integer.parseInt(c[0]);
+					vv.idGiocatoreScelto = Integer.parseInt(c[0]);
 
-				// if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
 					vv.getTxtId().setText(c[0]);
 					vv.getEdtCognome().setText(c[2]);
 					vv.getEdtNome().setText(c[3]);
@@ -243,7 +243,7 @@ public class AdapterGiocatori extends ArrayAdapter
 						}
 					});
 				}
-			// }
+			}
 		});
 
 		return convertView;

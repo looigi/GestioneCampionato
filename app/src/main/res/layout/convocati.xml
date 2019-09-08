@@ -5,7 +5,7 @@
     android:layout_width="wrap_content"
     android:orientation="vertical"
     android:layout_margin="7dp"
-    android:background="@drawable/bordo_arrotondato_bianco"
+    android:background="@drawable/bordo_arrotondato_bianchissimo"
     android:padding="3dp"
     android:layout_height="wrap_content">
 

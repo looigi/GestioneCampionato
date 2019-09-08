@@ -2737,17 +2737,17 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
         cmdMeteo.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                // if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     GestisceSchermate("METEO");
-                }
+                // }
             }
         });
 
         cmdAltroPartita.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                // if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     GestisceSchermate("ALTRO");
-                }
+                // }
             }
         });
 
@@ -2815,6 +2815,10 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         });
 
         vnp.setCmdCreaConv((ImageView) view.findViewById(R.id.btnCreaConvocazioni));
+        if (!idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+            vnp.getCmdCreaConv().setVisibility(LinearLayout.GONE);
+        }
+
         vnp.getCmdCreaConv().setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
@@ -3007,7 +3011,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
         layTastoPagina1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                // if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(-1);
                     ModificaEffettuata=true;
                     layPagina1.setVisibility(LinearLayout.VISIBLE);
@@ -3015,13 +3019,13 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     layPagina3.setVisibility(LinearLayout.GONE);
                     layPagina4.setVisibility(LinearLayout.GONE);
                     layPagina5.setVisibility(LinearLayout.GONE);
-                }
+                // }
             }
         });
 
         layTastoPagina2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                // if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
                     VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(1);
                     layPagina1.setVisibility(LinearLayout.GONE);
@@ -3029,13 +3033,13 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     layPagina3.setVisibility(LinearLayout.GONE);
                     layPagina4.setVisibility(LinearLayout.GONE);
                     layPagina5.setVisibility(LinearLayout.GONE);
-                }
+                // }
             }
         });
 
         layTastoPagina3.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                // if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
                     VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(2);
                     layPagina1.setVisibility(LinearLayout.GONE);
@@ -3043,13 +3047,13 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     layPagina3.setVisibility(LinearLayout.VISIBLE);
                     layPagina4.setVisibility(LinearLayout.GONE);
                     layPagina5.setVisibility(LinearLayout.GONE);
-                }
+                // }
             }
         });
 
         layTastoPagina4.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                // if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
                     VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(3);
                     layPagina1.setVisibility(LinearLayout.GONE);
@@ -3057,13 +3061,13 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     layPagina3.setVisibility(LinearLayout.GONE);
                     layPagina4.setVisibility(LinearLayout.VISIBLE);
                     layPagina5.setVisibility(LinearLayout.GONE);
-                }
+                // }
             }
         });
 
         layTastoPagina5.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+                // if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     VariabiliStaticheNuovaPartita.getInstance().setQualeTempoEvento(-1);
                     ModificaEffettuata = true;
                     layPagina1.setVisibility(LinearLayout.GONE);
@@ -3071,7 +3075,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     layPagina3.setVisibility(LinearLayout.GONE);
                     layPagina4.setVisibility(LinearLayout.GONE);
                     layPagina5.setVisibility(LinearLayout.VISIBLE);
-                }
+                // }
             }
         });
 
@@ -3510,6 +3514,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     ModificaEffettuata = true;
 
                     ChiudeMaschera();
+                } else {
+                    ChiudeMaschera();
                 }
             }
         });
@@ -3520,6 +3526,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     ModificaEffettuata = true;
 
                     ChiudeMaschera();
+                } else {
+                    ChiudeMaschera();
                 }
             }
         });
@@ -3529,6 +3537,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
 
+                    ChiudeMaschera();
+                } else {
                     ChiudeMaschera();
                 }
             }
@@ -3734,10 +3744,24 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             // Eventi
 
             if (vnp.idArbitroScelto==0) {
-                DialogMessaggio.getInstance().show(vnp.getContext(),
-                        "Selezionare l'arbitro dell'incontro",
-                        true,
-                        VariabiliStaticheGlobali.NomeApplicazione);
+                TextView ta = VariabiliStaticheGlobali.getInstance().getViewActivity().findViewById(R.id.txtArbitro);
+                String Arbitro = ta.getText().toString();
+                if (!Arbitro.isEmpty()) {
+                    int pos = Utility.getInstance().CercaESettaStringaInSpinner(vnp.getSpnAvversario(), Arbitro);
+                    if (pos > -1) {
+                        vnp.idArbitroScelto = pos;
+                    } else {
+                        DialogMessaggio.getInstance().show(vnp.getContext(),
+                                "Selezionare l'arbitro dell'incontro",
+                                true,
+                                VariabiliStaticheGlobali.NomeApplicazione);
+                    }
+                } else {
+                    DialogMessaggio.getInstance().show(vnp.getContext(),
+                            "Selezionare l'arbitro dell'incontro",
+                            true,
+                            VariabiliStaticheGlobali.NomeApplicazione);
+                }
             } else {
                 DBRemotoPartite dbr = new DBRemotoPartite();
                 dbr.SalvaPartita(context, idPartita, idCategoria, idAvversario, idAllenatore, finalDate, Casa,
