@@ -61,9 +61,9 @@ public class wsCategorie {
             descCategoria2.add("");
             idCategoria2.add(-1);
 
-            String cc[]=Appoggio.split("§");
+            String[] cc=Appoggio.split("§");
             for (String ccc : cc) {
-                String c[]=ccc.split(";");
+                String[] c=ccc.split(";");
 
                 idCategoria.add(Integer.parseInt(c[0]));
                 descCategoria.add(c[1]);
@@ -213,9 +213,9 @@ public class wsCategorie {
             descCategoria2.add("");
             idCategoria2.add(-1);
 
-            String cc[]=Appoggio.split("§");
+            String[] cc=Appoggio.split("§");
             for (String ccc : cc) {
-                String c[]=ccc.split(";");
+                String[] c=ccc.split(";");
 
                 idCategoria.add(Integer.parseInt(c[0]));
                 descCategoria.add(c[1]);

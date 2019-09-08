@@ -6,6 +6,7 @@ import looigi.gestionecampionato.maschere.NuovaPartita;
 public class wsMeteo {
     public void RitornaMeteo(String Ritorno) {
         String Appoggio = Ritorno;
+
         Appoggio=Appoggio.replace("{","");
         Appoggio=Appoggio.replace("}","");
         Appoggio=Appoggio.replace("[","");
@@ -13,9 +14,9 @@ public class wsMeteo {
         Appoggio=Appoggio.replace("\"","");
         Appoggio=Appoggio.replace("main:temp","temp");
 
-        String c[] = Appoggio.split(",");
+        String[] c = Appoggio.split(",");
         for (String cc : c) {
-            String cc2[] = cc.split(":");
+            String[] cc2 = cc.split(":");
 
             switch (cc2[0]) {
                 case "description":
