@@ -64,21 +64,26 @@ public class wsMultimedia {
             String Percorso="";
 
             if (Maschera.toUpperCase().equals((NomiMaschere.getInstance().getAllenatoriPerTitolo()+"Immagine").toUpperCase())) {
-                DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
-                        "Immagine allenatore eliminata", false, VariabiliStaticheGlobali.NomeApplicazione);
+                if (VariabiliStaticheAllenatori.getInstance().getTxtId().getText()!=null) {
+                    DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
+                            "Immagine allenatore eliminata", false, VariabiliStaticheGlobali.NomeApplicazione);
 
-                id = VariabiliStaticheAllenatori.getInstance().getTxtId().getText().toString();
-                Percorso=VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/" + VariabiliStaticheGlobali.getInstance().getNomeSquadra() + "/Allenatori/";
+                    id = VariabiliStaticheAllenatori.getInstance().getTxtId().getText().toString();
+                    Percorso = VariabiliStaticheGlobali.getInstance().PercorsoDIR + "/" + VariabiliStaticheGlobali.getInstance().getNomeSquadra() + "/Allenatori/";
 
-                Percorso += VariabiliStaticheGlobali.getInstance().getAnnoInCorso()+"_"+id+".jpg";
+                    Percorso += VariabiliStaticheGlobali.getInstance().getAnnoInCorso() + "_" + id + ".jpg";
 
-                File file = new File(Percorso);
-                if (file.exists()) {
-                    file.delete();
+                    File file = new File(Percorso);
+                    if (file.exists()) {
+                        file.delete();
+                    }
+
+                    Utility.getInstance().PrendeImmagineAllenatore(VariabiliStaticheAllenatori.getInstance().getTxtId().getText().toString()
+                            , VariabiliStaticheAllenatori.getInstance().getImgAllenatore());
+                } else {
+                    DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
+                            "Problemi nell'eliminazione dell'immagine", false, VariabiliStaticheGlobali.NomeApplicazione);
                 }
-
-                Utility.getInstance().PrendeImmagineAllenatore(VariabiliStaticheAllenatori.getInstance().getTxtId().getText().toString()
-                        , VariabiliStaticheAllenatori.getInstance().getImgAllenatore());
             } else {
                 if (Maschera.toUpperCase().equals((NomiMaschere.getInstance().getAvversariPerTitolo()+"Immagine").toUpperCase())) {
                     DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),

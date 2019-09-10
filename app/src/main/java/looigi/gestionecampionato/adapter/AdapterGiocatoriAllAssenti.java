@@ -58,10 +58,12 @@ public class AdapterGiocatoriAllAssenti extends ArrayAdapter {
             convertView2.setOnClickListener(new OnClickListener() {
                 public void onClick(View v) {
                     if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
-                        VariabiliStaticheAllenamenti.getInstance().getGiocatoriPresenti().add(vv.getGiocatoriAssenti().get(i));
-                        VariabiliStaticheAllenamenti.getInstance().getGiocatoriAssenti().remove(i);
-                        Allenamenti.fillListViewGiocatoriPresenti();
-                        Allenamenti.fillListViewGiocatoriAssenti();
+                        if (VariabiliStaticheAllenamenti.getInstance().getGiocatoriPresenti()!=null) {
+                            VariabiliStaticheAllenamenti.getInstance().getGiocatoriPresenti().add(vv.getGiocatoriAssenti().get(i));
+                            VariabiliStaticheAllenamenti.getInstance().getGiocatoriAssenti().remove(i);
+                            Allenamenti.fillListViewGiocatoriPresenti();
+                            Allenamenti.fillListViewGiocatoriAssenti();
+                        }
                     }
                 }
             });

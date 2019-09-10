@@ -3744,10 +3744,13 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             // Eventi
 
             if (vnp.idArbitroScelto==0) {
-                TextView ta = VariabiliStaticheGlobali.getInstance().getViewActivity().findViewById(R.id.txtArbitro);
-                String Arbitro = ta.getText().toString();
+                TextView ta = VariabiliStaticheNuovaPartita.getInstance().getTxtArbitro();
+                String Arbitro = "";
+                if (ta!=null) {
+                    Arbitro = ta.getText().toString();
+                }
                 if (!Arbitro.isEmpty()) {
-                    int pos = Utility.getInstance().CercaESettaStringaInSpinner(vnp.getSpnAvversario(), Arbitro);
+                    int pos = Utility.getInstance().CercaESettaStringaInSpinner(vnp.getSpnArbitro(), Arbitro);
                     if (pos > -1) {
                         vnp.idArbitroScelto = pos;
                     } else {
