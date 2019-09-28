@@ -46,7 +46,7 @@ public class AdapterGiocatore extends ArrayAdapter
 		ImageView imgGiocatore = convertView.findViewById(R.id.img);
 
 		if (!riga.contains("Autorete")) {
-			String[] Campi = riga.split(";");
+			String[] Campi = riga.split(";", -1);
 
 			// if (Campi.length > 4) {
 				id.setText(Campi[0]);
@@ -58,7 +58,9 @@ public class AdapterGiocatore extends ArrayAdapter
 					} else {
 						minuto.setText(Campi[4] + "°");
 					}
-					numero.setText(Campi[5]);
+					if (Campi.length>5) {
+						numero.setText(Campi[5]);
+					}
 				} else {
 					minuto.setText("");
 					if (Campi.length>5) {

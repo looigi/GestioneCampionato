@@ -37,6 +37,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
 import java.util.List;
 
 import looigi.gestionecampionato.R;
@@ -908,5 +909,34 @@ public class Utility {
 				VariabiliStaticheNuovaPartita.getInstance().getTxtLon().setText("");
 			}
 		}
+	}
+
+	public List<String> OrdinaListaGiocatori(List<String> lista) {
+		List<String> ordinata = lista;
+		int primo = 0;
+		int secondo = 0;
+		String[] campi = {};
+		String Cognome1 = "";
+		String Cognome2 = "";
+
+		for (String prima : ordinata) {
+			campi = prima.split(";", -1);
+			Cognome1= campi[2];
+			secondo=0;
+			for (String seconda : ordinata) {
+				campi = seconda.split(";", -1);
+				Cognome2= campi[2];
+				int diff = Cognome1.compareTo(Cognome2);
+				if (diff < 0) {
+					String riga = ordinata.get(primo);
+					ordinata.set(primo, ordinata.get(secondo));
+					ordinata.set(secondo, riga);
+				}
+				secondo++;
+			}
+			primo++;
+		}
+
+		return ordinata;
 	}
 }

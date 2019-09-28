@@ -3,6 +3,8 @@ package looigi.gestionecampionato.maschere;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -510,6 +512,11 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
         vnp.getTxtFuori().setText(cate);
 
+        Bitmap bm = BitmapFactory.decodeResource(VariabiliStaticheGlobali.getInstance().getContext().getResources(),
+                R.drawable.sconosciuto);
+        vnp.getImgCasa().setImageBitmap(bm);
+        vnp.getImgFuori().setImageBitmap(bm);
+
         Utility.getInstance().PrendeImmagineCategoria(DatiPartitaGen[0], vnp.getImgCasa());
         Utility.getInstance().PrendeImmagineAvversario(DatiPartitaGen[1], vnp.getImgFuori());
 
@@ -879,10 +886,10 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         if (!Avversari) {
             m = VariabiliStaticheNuovaPartita.getInstance().getGiocatoriPerMarcature().get(position); //  + ";" + minuto + ";";
             if (m.contains(";")) {
-                String[] mm = m.split(";");
-                if (mm.length < 5){
+                String[] mm = m.split(";", -1);
+                if (mm.length < 5) {
                     m += ";";
-                    mm = m.split(";");
+                    mm = m.split(";", -1);
                 }
 
                 mm[4] = minuto;
@@ -936,8 +943,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
         if (GiocatoreNC != null) {
             vnp.setGiocatoreDaConvocare(new ArrayList<String>());
-            vnp.setGiocatoreDaConvocareRigori(new ArrayList<String>());
-            vnp.setEventiGiocatori(new ArrayList<String>());
+            // vnp.setGiocatoreDaConvocareRigori(new ArrayList<String>());
+            // vnp.setEventiGiocatori(new ArrayList<String>());
 
             int i=0;
             for (String s : GiocatoreNC) {
@@ -945,7 +952,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                         idGiocatore.get(i)+";"+
                                 Ruolo.get(i)+";"+s+";;;"+
                                 NumeroMaglia.get(i) + ";");
-                vnp.getEventiGiocatori().add(
+                /* vnp.getEventiGiocatori().add(
                         idGiocatore.get(i)+";"+
                                 Ruolo.get(i)+";"+s+";;;"+
                                 NumeroMaglia.get(i) + ";");
@@ -953,7 +960,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                         idGiocatore.get(i)+";"+
                                 Ruolo.get(i)+";"+s+";;;"+
                                 NumeroMaglia.get(i) + ";"+
-                                "-1;");
+                                "-1;"); */
                 i++;
             }
 
@@ -975,18 +982,22 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 vnp.getSpnDaConvocare().invalidate();
             }
 
-            // Carica giocatori per rigori nella lista
-            vnp.setAdapterGiocatoriDaConvocareRigori(new AdapterGiocatore(VariabiliStaticheGlobali.getInstance().getContext(),
-                    android.R.layout.simple_list_item_1, vnp.getGiocatoreDaConvocareRigori()));
-            vnp.getSpnDaConvocareRigori().setAdapter(vnp.getAdapterGiocatoriDaConvocareRigori());
-            if (PerRicerca) {
-                vnp.getSpnDaConvocareRigori().invalidate();
-            }
-
             if (!PerRicerca) {
                 vnp.setAdapterGiocatoriConvocati(new AdapterGiocatore(VariabiliStaticheGlobali.getInstance().getContext(),
                         android.R.layout.simple_list_item_1, vnp.getGiocatoreConvocato()));
                 vnp.getSpnConvocati().setAdapter(vnp.getAdapterGiocatoriConvocati());
+
+                List<String> ordinata = Utility.getInstance().OrdinaListaGiocatori(vnp.getGiocatoreConvocato());
+                vnp.setEventiGiocatori(ordinata);
+                vnp.setGiocatoreDaConvocareRigori(ordinata);
+
+                // Carica giocatori per rigori nella lista
+                vnp.setAdapterGiocatoriDaConvocareRigori(new AdapterGiocatore(VariabiliStaticheGlobali.getInstance().getContext(),
+                        android.R.layout.simple_list_item_1, vnp.getGiocatoreDaConvocareRigori()));
+                vnp.getSpnDaConvocareRigori().setAdapter(vnp.getAdapterGiocatoriDaConvocareRigori());
+                if (PerRicerca) {
+                    vnp.getSpnDaConvocareRigori().invalidate();
+                }
 
                 vnp.setAdapterGiocatoriConvocatiRigori(new AdapterGiocatoreRigori(VariabiliStaticheGlobali.getInstance().getContext(),
                         android.R.layout.simple_list_item_1, vnp.getGiocatoreConvocatoRigori()));
@@ -2540,7 +2551,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     } else {
                         vnp.getTxtRisAvv3Tempo().setText(Integer.toString(Integer.parseInt(vnp.getTxtRisAvv3Tempo().getText().toString()) + 1));
 
-                        layNoTerzoTempo.setVisibility(LinearLayout.VISIBLE);
+                        // layNoTerzoTempo.setVisibility(LinearLayout.VISIBLE);
 
                         int minuto = TimerTempo.getInstance().RitornaMinuto(3);
                         if (minuto>-1) {
@@ -3502,6 +3513,10 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 String idTipologia = VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdTipologia();
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
+
+                    List<String> ordinata = Utility.getInstance().OrdinaListaGiocatori(vnp.getGiocatoreConvocato());
+                    vnp.setEventiGiocatori(ordinata);
+                    vnp.setGiocatoreDaConvocareRigori(ordinata);
 
                     ChiudeMaschera();
                 }

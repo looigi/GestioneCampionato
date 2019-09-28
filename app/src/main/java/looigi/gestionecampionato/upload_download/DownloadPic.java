@@ -30,6 +30,7 @@ public class DownloadPic {
 	private String Categoria;
 	private Context context;
 	private ProgressDialog progressDialog;
+	private boolean Errore;
 
 	public void startDownload(Context context, String Categoria) {
     	this.Categoria = Categoria;
@@ -87,6 +88,8 @@ public class DownloadPic {
 
 	    @Override
 	    protected String doInBackground(String... sUrl) {
+			Errore = false;
+
 			try {
 				URL url = new URL(sUrl[0]);
 				URLConnection connection = url.openConnection();
@@ -116,9 +119,9 @@ public class DownloadPic {
 				output.close();
 				input.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				/* e.printStackTrace();
 
-				/* VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale().runOnUiThread(new Runnable() {
+				VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale().runOnUiThread(new Runnable() {
 					public void run() {
 						Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
 						imgView.setImageBitmap(bm);
@@ -155,6 +158,7 @@ public class DownloadPic {
 					}
 				}); */
 
+				Errore = true;
 				ScaricaImmagini.getInstance().setRitornoDownload("ERROR: "+e.getMessage());
 			}
 
@@ -176,7 +180,9 @@ public class DownloadPic {
 				imgView.setVisibility(LinearLayout.VISIBLE);
 			}
 
-			ScaricaImmagini.getInstance().setRitornoDownload("*");
+			if (!Errore) {
+				ScaricaImmagini.getInstance().setRitornoDownload("*");
+			}
 		}
 
 	    @Override
