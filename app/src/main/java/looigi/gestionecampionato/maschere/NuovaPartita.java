@@ -999,6 +999,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     vnp.getSpnDaConvocareRigori().invalidate();
                 }
 
+                fillSpinnerEventiGiocatori();
+
                 vnp.setAdapterGiocatoriConvocatiRigori(new AdapterGiocatoreRigori(VariabiliStaticheGlobali.getInstance().getContext(),
                         android.R.layout.simple_list_item_1, vnp.getGiocatoreConvocatoRigori()));
                 vnp.getSpnConvocatiRigori().setAdapter(vnp.getAdapterGiocatoriConvocatiRigori());
@@ -3518,6 +3520,14 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     vnp.setEventiGiocatori(ordinata);
                     vnp.setGiocatoreDaConvocareRigori(ordinata);
 
+                    // Carica giocatori per rigori nella lista
+                    vnp.setAdapterGiocatoriDaConvocareRigori(new AdapterGiocatore(VariabiliStaticheGlobali.getInstance().getContext(),
+                            android.R.layout.simple_list_item_1, vnp.getGiocatoreDaConvocareRigori()));
+                    vnp.getSpnDaConvocareRigori().setAdapter(vnp.getAdapterGiocatoriDaConvocareRigori());
+                    vnp.getSpnDaConvocareRigori().invalidate();
+
+                    fillSpinnerEventiGiocatori();
+
                     ChiudeMaschera();
                 }
             }
@@ -3850,6 +3860,11 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 view.findViewById(R.id.idRigori).setVisibility(View.VISIBLE);
                 break;
             case "EVENTI":
+                CheckBox c = (CheckBox) view.findViewById(R.id.chkAvversario);
+                c.setChecked(false);
+                ListView l = (ListView) view.findViewById(R.id.lvGiocatoreEventi);
+                l.setVisibility(LinearLayout.VISIBLE);
+
                 view.findViewById(R.id.idEventi).setVisibility(View.VISIBLE);
                 break;
         }

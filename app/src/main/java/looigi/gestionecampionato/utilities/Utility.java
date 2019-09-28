@@ -912,29 +912,37 @@ public class Utility {
 	}
 
 	public List<String> OrdinaListaGiocatori(List<String> lista) {
-		List<String> ordinata = lista;
-		int primo = 0;
-		int secondo = 0;
 		String[] campi = {};
 		String Cognome1 = "";
 		String Cognome2 = "";
 
-		for (String prima : ordinata) {
-			campi = prima.split(";", -1);
-			Cognome1= campi[2];
-			secondo=0;
-			for (String seconda : ordinata) {
-				campi = seconda.split(";", -1);
-				Cognome2= campi[2];
-				int diff = Cognome1.compareTo(Cognome2);
+		String[] lista2 = new String[lista.size()];
+		int ii =0;
+		for (String p : lista) {
+			String[] pp = p.split(";", -1);
+			lista2[ii]=pp[2];
+			ii++;
+		}
+
+		for (int i = 0; i<lista.size(); i++) {
+			for (int k = 0; k<lista.size(); k++) {
+				int diff = lista2[i].compareTo(lista2[k]);
 				if (diff < 0) {
-					String riga = ordinata.get(primo);
-					ordinata.set(primo, ordinata.get(secondo));
-					ordinata.set(secondo, riga);
+					String riga = lista2[i];
+					lista2[i]=lista2[k];
+					lista2[k]=riga;
 				}
-				secondo++;
 			}
-			primo++;
+		}
+
+		List<String> ordinata = new ArrayList<>();
+		for (String c : lista2) {
+			for (String cc : lista) {
+				if (cc.contains(c)) {
+					ordinata.add(cc);
+					break;
+				}
+			}
 		}
 
 		return ordinata;
