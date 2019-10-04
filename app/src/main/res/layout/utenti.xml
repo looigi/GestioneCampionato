@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="3dp"
+    android:background="@drawable/download"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
@@ -44,7 +45,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Utente"
-                        android:textColor="@color/bianco"
+                        android:textColor="@color/nero"
                         android:textSize="18dp" />
                 </LinearLayout>
 
@@ -78,7 +79,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/bianco"
+                        android:textColor="@color/nero"
                         android:text="Password"
                         android:textSize="18dp" />
                 </LinearLayout>
@@ -155,7 +156,7 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:textColor="@color/bianco"
+                        android:textColor="@color/nero"
                         android:layout_height="wrap_content"
                         android:text="Utente"
                         android:textSize="18dp" />
@@ -191,7 +192,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/bianco"
+                        android:textColor="@color/nero"
                         android:text="Cognome"
                         android:textSize="18dp" />
                 </LinearLayout>
@@ -227,7 +228,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/bianco"
+                        android:textColor="@color/nero"
                         android:text="Nome"
                         android:textSize="18dp" />
                 </LinearLayout>
@@ -263,7 +264,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/bianco"
+                        android:textColor="@color/nero"
                         android:text="E-Mail"
                         android:textSize="18dp" />
                 </LinearLayout>
@@ -299,7 +300,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/bianco"
+                        android:textColor="@color/nero"
                         android:text="Password"
                         android:textSize="18dp" />
                 </LinearLayout>
@@ -335,7 +336,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/bianco"
+                        android:textColor="@color/nero"
                         android:text="Squadra"
                         android:textSize="18dp" />
                 </LinearLayout>
@@ -368,7 +369,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/bianco"
+                        android:textColor="@color/nero"
                         android:text="Categoria"
                         android:textSize="18dp" />
                 </LinearLayout>
