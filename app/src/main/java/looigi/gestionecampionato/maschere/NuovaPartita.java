@@ -359,7 +359,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
             vnp.getTxtRisAvv2Tempo().setText("0");
         } else {
             if (DatiPartitaGen[11].equals("-1")) {
-                btnAvvenimentiSecondoTempo.setVisibility(LinearLayout.GONE);
+                /* btnAvvenimentiSecondoTempo.setVisibility(LinearLayout.GONE);
 
                 vnp.getTxtRisAvv2Tempo().setText("Non giocato");
 
@@ -370,7 +370,23 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 Button cmdMenoAvv2Tempo = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.btnMenoAvvSecondoTempo);
                 cmdMenoAvv2Tempo.setVisibility(LinearLayout.GONE);
 
-                vnp.getCmdReset2Tempo().setVisibility(LinearLayout.GONE);
+                vnp.getCmdReset2Tempo().setVisibility(LinearLayout.GONE); */
+
+                btnAvvenimentiSecondoTempo.setEnabled(false);
+
+                vnp.getTxtRisAvv2Tempo().setText("Non giocato");
+
+                vnp.getLvvMarcatoriSecondoTempo().setEnabled(false);
+                vnp.getSpnMarcatoriSecondoTempo().setEnabled(false);
+
+                vnp.getCmdStartSopTimer2Tempo().setEnabled(false);
+                Button cmdMenoAvv2Tempo = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.btnMenoAvvSecondoTempo);
+                cmdMenoAvv2Tempo.setEnabled(false);
+
+                RelativeLayout layNoSecondoTempo = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.layNoSecondoTempo);
+                layNoSecondoTempo.setVisibility(LinearLayout.VISIBLE);
+
+                vnp.getCmdReset2Tempo().setEnabled(false);
             } else {
                 btnAvvenimentiSecondoTempo.setVisibility(LinearLayout.VISIBLE);
 
@@ -378,6 +394,9 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
 
                 vnp.getLvvMarcatoriSecondoTempo().setVisibility(LinearLayout.VISIBLE);
                 vnp.getSpnMarcatoriSecondoTempo().setVisibility(LinearLayout.VISIBLE);
+
+                RelativeLayout layNoSecondoTempo = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.layNoSecondoTempo);
+                layNoSecondoTempo.setVisibility(LinearLayout.GONE);
 
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     vnp.getCmdStartSopTimer2Tempo().setVisibility(LinearLayout.VISIBLE);
@@ -1987,6 +2006,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
         final Button cmdMenoAvv3Tempo = view.findViewById(R.id.btnMenoAvvTerzoTempo);
         Button cmdPiuAvv3Tempo = view.findViewById(R.id.btnPiuAvvTerzoTempo);
         final RelativeLayout layNoTerzoTempo = view.findViewById(R.id.layNoTerzoTempo);
+        final RelativeLayout layNoSecondoTempo = view.findViewById(R.id.layNoSecondoTempo);
 
         vnp.setTxtRisAvv1Tempo((TextView) view.findViewById(R.id.txtGoalAvvPrimoTempo));
         vnp.setTxtRisAvv2Tempo((TextView) view.findViewById(R.id.txtGoalAvvSecondoTempo));
@@ -2392,7 +2412,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                             }
                             ScriveRisultato();
                         } else {
-                            btnAvvenimentiSecondoTempo.setVisibility(LinearLayout.GONE);
+                            /* btnAvvenimentiSecondoTempo.setVisibility(LinearLayout.GONE);
 
                             vnp.getTxtRisAvv2Tempo().setText("Non giocato");
 
@@ -2403,6 +2423,28 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                             cmdMenoAvv2Tempo.setVisibility(LinearLayout.GONE);
 
                             vnp.getCmdReset2Tempo().setVisibility(LinearLayout.GONE);
+
+                            RelativeLayout layNoSecondoTempo = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.layNoSecondoTempo);
+                            layNoTerzoTempo.setVisibility(LinearLayout.VISIBLE);
+
+                            vnp.setTempiGAvvSecondoTempo(new ArrayList<Integer>());
+                            fillSpinnerMinutiGoalAvversari();
+                            ScriveRisultato(); */
+
+                            btnAvvenimentiSecondoTempo.setEnabled(false);
+
+                            vnp.getTxtRisAvv2Tempo().setText("Non giocato");
+
+                            vnp.getLvvMarcatoriSecondoTempo().setEnabled(false);
+                            vnp.getSpnMarcatoriSecondoTempo().setEnabled(false);
+
+                            vnp.getCmdStartSopTimer2Tempo().setEnabled(false);
+                            cmdMenoAvv2Tempo.setEnabled(false);
+
+                            vnp.getCmdReset2Tempo().setEnabled(false);
+
+                            RelativeLayout layNoSecondoTempo = VariabiliStaticheNuovaPartita.getInstance().getViewActivity().findViewById(R.id.layNoSecondoTempo);
+                            layNoSecondoTempo.setVisibility(LinearLayout.VISIBLE);
 
                             vnp.setTempiGAvvSecondoTempo(new ArrayList<Integer>());
                             fillSpinnerMinutiGoalAvversari();
@@ -2485,6 +2527,8 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
                     ModificaEffettuata = true;
                     if (vnp.getTxtRisAvv2Tempo().getText().equals("Non giocato")) {
+                        /* btnAvvenimentiSecondoTempo.setEnabled(true);
+
                         vnp.getTxtRisAvv2Tempo().setText("0");
 
                         btnAvvenimentiSecondoTempo.setVisibility(LinearLayout.VISIBLE);
@@ -2497,9 +2541,29 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                         vnp.getCmdStartSopTimer2Tempo().setVisibility(LinearLayout.VISIBLE);
                         cmdMenoAvv2Tempo.setVisibility(LinearLayout.VISIBLE);
 
+                        layNoTerzoTempo.setVisibility(LinearLayout.GONE);
+
                         vnp.getCmdReset2Tempo().setVisibility(LinearLayout.VISIBLE);
                         vnp.setTempiGAvvSecondoTempo(new ArrayList<Integer>());
+                        fillSpinnerMinutiGoalAvversari(); */
+
+                        btnAvvenimentiSecondoTempo.setEnabled(true);
+
+                        vnp.getTxtRisAvv2Tempo().setText("0");
+
+                        vnp.getLvvMarcatoriSecondoTempo().setEnabled(true);
+                        vnp.getSpnMarcatoriSecondoTempo().setEnabled(true);
+
+                        vnp.getCmdStartSopTimer2Tempo().setEnabled(true);
+                        cmdMenoAvv2Tempo.setEnabled(true);
+
+                        vnp.getCmdReset2Tempo().setEnabled(true);
+
+                        layNoSecondoTempo.setVisibility(LinearLayout.GONE);
+
+                        vnp.setTempiGAvvSecondoTempo(new ArrayList<Integer>());
                         fillSpinnerMinutiGoalAvversari();
+
                     } else {
                         vnp.getTxtRisAvv2Tempo().setText(Integer.toString(Integer.parseInt(vnp.getTxtRisAvv2Tempo().getText().toString()) + 1));
 
