@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -3843,12 +3844,18 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     if (pos > -1) {
                         vnp.idArbitroScelto = pos;
                     } else {
+                        if (vnp.getContext()==null) {
+                            vnp.setContext(VariabiliStaticheGlobali.getInstance().getContext());
+                        }
                         DialogMessaggio.getInstance().show(vnp.getContext(),
                                 "Selezionare l'arbitro dell'incontro",
                                 true,
                                 VariabiliStaticheGlobali.NomeApplicazione);
                     }
                 } else {
+                    if (vnp.getContext()==null) {
+                        vnp.setContext(VariabiliStaticheGlobali.getInstance().getContext());
+                    }
                     DialogMessaggio.getInstance().show(vnp.getContext(),
                             "Selezionare l'arbitro dell'incontro",
                             true,
