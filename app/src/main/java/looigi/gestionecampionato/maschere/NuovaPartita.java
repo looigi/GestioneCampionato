@@ -1007,18 +1007,6 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                         android.R.layout.simple_list_item_1, vnp.getGiocatoreConvocato()));
                 vnp.getSpnConvocati().setAdapter(vnp.getAdapterGiocatoriConvocati());
 
-                List<String> ordinata = Utility.getInstance().OrdinaListaGiocatori(vnp.getGiocatoreConvocato());
-                vnp.setEventiGiocatori(ordinata);
-                vnp.setGiocatoreDaConvocareRigori(ordinata);
-
-                // Carica giocatori per rigori nella lista
-                vnp.setAdapterGiocatoriDaConvocareRigori(new AdapterGiocatore(VariabiliStaticheGlobali.getInstance().getContext(),
-                        android.R.layout.simple_list_item_1, vnp.getGiocatoreDaConvocareRigori()));
-                vnp.getSpnDaConvocareRigori().setAdapter(vnp.getAdapterGiocatoriDaConvocareRigori());
-                if (PerRicerca) {
-                    vnp.getSpnDaConvocareRigori().invalidate();
-                }
-
                 fillSpinnerEventiGiocatori();
 
                 vnp.setAdapterGiocatoriConvocatiRigori(new AdapterGiocatoreRigori(VariabiliStaticheGlobali.getInstance().getContext(),
@@ -1501,6 +1489,18 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                 vnp.getAdapterLvPrimoTempo().notifyDataSetChanged();
                 vnp.getAdapterLvSecondoTempo().notifyDataSetChanged();
                 vnp.getAdapterLvTerzoTempo().notifyDataSetChanged();
+
+                List<String> ordinata = Utility.getInstance().OrdinaListaGiocatori(vnp.getGiocatoreConvocato());
+                vnp.setEventiGiocatori(ordinata);
+                vnp.setGiocatoreDaConvocareRigori(ordinata);
+
+                // Carica giocatori per rigori nella lista
+                vnp.setAdapterGiocatoriDaConvocareRigori(new AdapterGiocatore(VariabiliStaticheGlobali.getInstance().getContext(),
+                        android.R.layout.simple_list_item_1, vnp.getGiocatoreDaConvocareRigori()));
+                vnp.getSpnDaConvocareRigori().setAdapter(vnp.getAdapterGiocatoriDaConvocareRigori());
+                // if (PerRicerca) {
+                vnp.getSpnDaConvocareRigori().invalidate();
+                // }
             }
             // Refresh liste
 

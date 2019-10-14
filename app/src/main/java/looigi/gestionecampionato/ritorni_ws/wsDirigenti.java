@@ -62,9 +62,9 @@ public class wsDirigenti {
             List<String> descDirigente = new ArrayList<>();
             List<Integer> idDirigente = new ArrayList<>();
 
-            String cc[]=Appoggio.split("§");
+            String[] cc=Appoggio.split("§");
             for (String ccc : cc) {
-                String c[]=ccc.split(";",-1);
+                String[] c=ccc.split(";",-1);
                 idDirigente.add(Integer.parseInt(c[0]));
 
                 if (Maschera.equals(NomiMaschere.getInstance().getNuovaPartita())) {
