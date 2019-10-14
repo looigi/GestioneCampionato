@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import looigi.gestionecampionato.R;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
+import looigi.gestionecampionato.db_remoto.DBRemotoPartite;
 import looigi.gestionecampionato.utilities.Utility;
 
 public class DialogDomanda
@@ -24,6 +25,7 @@ public class DialogDomanda
     private EditText edtValore;
     private Context context;
     private String QualeMaschera;
+    private String NumeroPartita;
 
     private DialogDomanda() {
     }
@@ -37,12 +39,13 @@ public class DialogDomanda
     private Dialog dialog;
 
     //-------- Methods ----------//
-    public void show(Context a, String message, String titleDialog, String QualeMaschera)
+    public void show(Context a, String message, String titleDialog, String QualeMaschera, String numeroPartita)
     {
         this.Error=Error;
         this.context=a;
         this.titleDialog=titleDialog;
         this.QualeMaschera = QualeMaschera;
+        this.NumeroPartita = numeroPartita;
 
         Message = message;
 
@@ -94,6 +97,12 @@ public class DialogDomanda
         {
             if (QualeMaschera.equals("NUOVA_PARTITA")) {
                 Utility.getInstance().CambiaMaschera(R.id.home, -1, -1);
+            } else {
+                if (QualeMaschera.equals("ELIMINA PARTITA")) {
+                    DBRemotoPartite dbr = new DBRemotoPartite();
+                    dbr.EliminaPartita(VariabiliStaticheGlobali.getInstance().getContext(),
+                            NumeroPartita, TAG);
+                }
             }
             dialog.cancel();
         }

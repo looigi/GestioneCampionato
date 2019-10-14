@@ -10,7 +10,9 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ import java.util.List;
 
 import looigi.gestionecampionato.R;
 import looigi.gestionecampionato.dati.VariabiliStaticheGlobali;
+import looigi.gestionecampionato.dialog.DialogDomanda;
 import looigi.gestionecampionato.utilities.Utility;
 
 public class AdapterPartite extends ArrayAdapter
@@ -359,6 +362,19 @@ public class AdapterPartite extends ArrayAdapter
 			   Utility.getInstance().CambiaMaschera(R.id.nuova_partita, Integer.parseInt(idPartita), -1);
 		   }
 		});
+
+		Button btnElimina = convertView.findViewById(R.id.btnEliminaPartita);
+		btnElimina.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+
+				DialogDomanda.getInstance().show(VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale(),
+						"Si vuole eliminare la partita selezionata N° " + idPartita + " ?",
+						VariabiliStaticheGlobali.NomeApplicazione,
+						"ELIMINA PARTITA",
+						idPartita);
+			}
+		});
+
 
 		return convertView;
 	}

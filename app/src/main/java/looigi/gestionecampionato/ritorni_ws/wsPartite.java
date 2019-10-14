@@ -13,6 +13,7 @@ import looigi.gestionecampionato.dati.VariabiliStaticheMain;
 import looigi.gestionecampionato.dati.VariabiliStaticheNuovaPartita;
 import looigi.gestionecampionato.db_remoto.DBRemotoCategorie;
 import looigi.gestionecampionato.db_remoto.DBRemotoDirigenti;
+import looigi.gestionecampionato.db_remoto.DBRemotoPartite;
 import looigi.gestionecampionato.dialog.DialogMessaggio;
 import looigi.gestionecampionato.maschere.Home;
 import looigi.gestionecampionato.maschere.NuovaPartita;
@@ -123,6 +124,23 @@ public class wsPartite {
                     VariabiliStaticheGlobali.NomeApplicazione);
             VariabiliStaticheMain.getInstance().setPartite(null);
             // Utility.getInstance().CambiaMaschera(R.id.home, -1, -1);
+        }
+    }
+
+    public void EliminaPartita(final Context context, String Ritorno, final String Maschera) {
+        String Appoggio=ToglieTag(Ritorno);
+
+        if (Appoggio.toUpperCase().contains("ERROR:")) {
+            DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
+                    Appoggio, true, VariabiliStaticheGlobali.NomeApplicazione);
+        } else {
+            DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
+                    "Partita eliminata",
+                    false,
+                    VariabiliStaticheGlobali.NomeApplicazione
+                    );
+            DBRemotoPartite dbrp = new DBRemotoPartite();
+            dbrp.RitornaPartite(VariabiliStaticheGlobali.getInstance().getContext(), "");
         }
     }
 }

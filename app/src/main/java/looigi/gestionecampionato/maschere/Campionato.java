@@ -38,6 +38,7 @@ import looigi.gestionecampionato.dati.VariabiliStaticheUtenti;
 import looigi.gestionecampionato.db_remoto.DBRemotoAvversari;
 import looigi.gestionecampionato.db_remoto.DBRemotoCampionato;
 import looigi.gestionecampionato.db_remoto.DBRemotoCategorie;
+import looigi.gestionecampionato.dialog.DialogDomanda;
 import looigi.gestionecampionato.dialog.DialogMessaggio;
 import looigi.gestionecampionato.utilities.MostraPannelloData;
 import looigi.gestionecampionato.utilities.MostraPannelloOra;
@@ -766,6 +767,7 @@ public class Campionato extends android.support.v4.app.Fragment {
                 public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                 }
             });
+
             vv.getLvPartite().setVisibility(LinearLayout.VISIBLE);
             TextView t =(TextView) vv.getView().findViewById(R.id.emptyElement);
             t.setVisibility(LinearLayout.GONE);

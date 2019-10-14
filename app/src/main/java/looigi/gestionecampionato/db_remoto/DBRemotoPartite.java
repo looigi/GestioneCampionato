@@ -90,4 +90,13 @@ public class DBRemotoPartite {
 
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "SalvaPartita", "", Maschera, NS, SA);
 	}
+
+	public void EliminaPartita(Context context, String idPartita, String Maschera) {
+		String Urletto="EliminaPartitaGEN?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="&idPartita=" + idPartita;
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "EliminaPartitaGEN", "", Maschera, NS, SA);
+	}
 }

@@ -287,6 +287,10 @@ public class GestioneWEBServiceSOAP {
 				boolean Ancora=true;
 				while (Ancora) {
 					switch (tOperazione) {
+						case "EliminaPartitaGEN":
+							rPar.EliminaPartita(context, Ritorno, Maschera);
+							Ancora=false;
+							break;
 						case "ControllaEsistenzaDB":
 							rGen.ControllaEsistenzaDB(context, Ritorno, Maschera);
 							Ancora=false;

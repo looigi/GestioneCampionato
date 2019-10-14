@@ -3013,7 +3013,7 @@ public class NuovaPartita extends android.support.v4.app.Fragment {
                     DialogDomanda.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
                             "Si vuole veramente uscire ?\nSi perderanno tutte le modifiche effettuate",
                             VariabiliStaticheGlobali.NomeApplicazione,
-                            "NUOVA_PARTITA");
+                            "NUOVA_PARTITA", "");
                 } else {
                     Utility.getInstance().CambiaMaschera(R.id.home, -1, -1);
                 }
