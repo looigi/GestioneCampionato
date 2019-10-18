@@ -267,18 +267,20 @@ public class wsStatistiche {
 
             VariabiliStaticheStatistiche.getInstance().getDescrMarkers().add("");
 
-            String Righe[]=Appoggio.split("§");
+            String[] Righe=Appoggio.split("§");
             int Partite=0;
             for (String s : Righe) {
                 if (!s.isEmpty()) {
                     String c[] = s.split(";");
                     if (c.length>6) {
                         if (!c[5].trim().isEmpty() && !c[6].trim().isEmpty()) {
+                            c[5] = c[5].replace(",", ".");
+                            c[6] = c[6].replace(",", ".");
                             Partite++;
                             LatLng l = new LatLng(Double.parseDouble(c[5]), Double.parseDouble(c[6]));
                             if (!c[9].equals("S")) {
-                                Boolean Ok = true;
-                                Integer C = 0;
+                                boolean Ok = true;
+                                int C = 0;
 
                                 for (LatLng i : VariabiliStaticheStatistiche.getInstance().getCoords()) {
                                     String ii = i.latitude + ";" + i.longitude;
@@ -295,10 +297,10 @@ public class wsStatistiche {
                                     VariabiliStaticheStatistiche.getInstance().getDescrMarkers().add(m);
                                     VariabiliStaticheStatistiche.getInstance().getAvversari().add(c[7]);
                                 } else {
-                                    String d[] = VariabiliStaticheStatistiche.getInstance().getDescrMarkers().get(C).split(">");
+                                    String[] d = VariabiliStaticheStatistiche.getInstance().getDescrMarkers().get(C).split(">");
                                     String m = c[8] + "\n" + d[0] + ">";
                                     d[1]=";"+c[1]+"\n"+d[1].substring(1,d[1].length());
-                                    Integer cc = 0;
+                                    int cc = 0;
                                     for (String ss : d) {
                                         if (cc > 0) {
                                             m += ss;
