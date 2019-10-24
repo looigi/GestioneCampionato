@@ -202,7 +202,8 @@ public class GestioneWEBServiceSOAP {
                 soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
     			soapEnvelope.dotNet = true;
                 soapEnvelope.setOutputSoapObject(Request);
-                aht = new HttpTransportSE(sURL, 30000);
+                aht = new HttpTransportSE(sURL, 20000);
+                aht.reset();
                 aht.call(SOAP_ACTION, soapEnvelope);
             } catch (SocketTimeoutException e) {
             	Errore=true;
