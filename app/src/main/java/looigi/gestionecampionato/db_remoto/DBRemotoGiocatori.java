@@ -21,7 +21,8 @@ public class DBRemotoGiocatori {
 
 	public void SalvaGiocatore(Context context, String idCategoria, String idGiocatore, String idRuolo, String Cognome, String Nome, String EMail,
                                String Telefono, String Soprannome, String DataDiNascita, String Indirizzo, String CodFiscale, String Maschio, String Citta,
-                               String Matricola, String NumeroMaglia, String Ricerca, String Maschera, String idCategoria2, String idCategoria3) {
+                               String Matricola, String NumeroMaglia, String Ricerca, String Maschera,
+							   String idCategoria2, String idCategoria3) {
 		String Urletto="SalvaGiocatore?";
 		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
 		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();

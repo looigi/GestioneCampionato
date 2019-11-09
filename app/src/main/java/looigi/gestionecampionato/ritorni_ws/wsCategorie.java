@@ -55,11 +55,8 @@ public class wsCategorie {
             List<String> descCategoria = new ArrayList<>();
             List<Integer> idCategoria = new ArrayList<>();
 
-            List<String> descCategoria2 = new ArrayList<>();
-            List<Integer> idCategoria2 = new ArrayList<>();
-
-            descCategoria2.add("");
-            idCategoria2.add(-1);
+            descCategoria.add("");
+            idCategoria.add(-1);
 
             String[] cc=Appoggio.split("§");
             for (String ccc : cc) {
@@ -67,9 +64,6 @@ public class wsCategorie {
 
                 idCategoria.add(Integer.parseInt(c[0]));
                 descCategoria.add(c[1]);
-
-                idCategoria2.add(Integer.parseInt(c[0]));
-                descCategoria2.add(c[1]);
             }
 
             if (Maschera.equals(NomiMaschere.getInstance().getNuovaPartita())) {
@@ -108,14 +102,8 @@ public class wsCategorie {
                             Categorie.fillListViewCategorie();
                         } else {
                             if (Maschera.equals(NomiMaschere.getInstance().getRose())) {
-                                VariabiliStaticheRose.getInstance().setCategorie1(descCategoria);
+                                VariabiliStaticheRose.getInstance().setCategorie(descCategoria);
                                 VariabiliStaticheRose.getInstance().setIdCategorie(idCategoria);
-
-                                VariabiliStaticheRose.getInstance().setCategorie2(descCategoria2);
-                                VariabiliStaticheRose.getInstance().setIdCategorie2(idCategoria2);
-
-                                VariabiliStaticheRose.getInstance().setCategorie3(descCategoria2);
-                                VariabiliStaticheRose.getInstance().setIdCategorie3(idCategoria2);
 
                                 Rose.RiempieListaCategorie();
 

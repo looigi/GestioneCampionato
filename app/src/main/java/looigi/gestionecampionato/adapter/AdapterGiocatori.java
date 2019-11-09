@@ -112,6 +112,18 @@ public class AdapterGiocatori extends ArrayAdapter
 					}
 					vv.getSpnRuoli().setSelection(pos);
 
+					pos = Utility.getInstance().CercaESettaStringaInSpinner(vv.getSpnCategorie1(), c[20]);
+					if (pos>-1) {
+						vv.getSpnCategorie1().setSelection(pos);
+						try {
+							vv.idCategoriaScelta1 = Integer.parseInt(c[15]);
+						} catch (Exception ignored) {
+							vv.idCategoriaScelta1 = 0;
+						}
+					} else {
+						vv.idCategoriaScelta1 = 0;
+					}
+
 					pos = Utility.getInstance().CercaESettaStringaInSpinner(vv.getSpnCategorie2(), c[17]);
 					if (pos>-1) {
 						vv.getSpnCategorie2().setSelection(pos);

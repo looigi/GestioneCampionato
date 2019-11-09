@@ -161,7 +161,8 @@ public class Rose extends android.support.v4.app.Fragment {
             vv.setCmdAnnulla((Button) view.findViewById(R.id.cmdAnnullaGiocatore));
             vv.setCmdElimina((Button) view.findViewById(R.id.cmdEliminaGiocatore));
 
-            vv.setSpnCategorie1((Spinner) view.findViewById(R.id.spnCategorie));
+            vv.setSpnCategorie((Spinner) view.findViewById(R.id.spnCategorie));
+            vv.setSpnCategorie1((Spinner) view.findViewById(R.id.spnCategorie1));
             vv.setSpnCategorie2((Spinner) view.findViewById(R.id.spnCategorie2));
             vv.setSpnCategorie3((Spinner) view.findViewById(R.id.spnCategorie3));
             vv.setLstGiocatori((ListView) view.findViewById(R.id.lstvGiocatori));
@@ -221,10 +222,10 @@ public class Rose extends android.support.v4.app.Fragment {
             Button cmdScegliCat = view.findViewById(R.id.cmdScegliCat);
             cmdScegliCat.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (vv.idCategoriaScelta1 >-1) {
+                    if (vv.idCategoriaScelta >-1) {
                         DBRemotoGiocatori dbr = new DBRemotoGiocatori();
                         dbr.RitornaGiocatoriCategoria(vv.getContext(),
-                                Integer.toString(vv.idCategoriaScelta1),
+                                Integer.toString(vv.idCategoriaScelta),
                                 TAG);
                     }
                 }
@@ -256,27 +257,20 @@ public class Rose extends android.support.v4.app.Fragment {
     public static void RiempieListaCategorie() {
         final VariabiliStaticheRose vv = VariabiliStaticheRose.getInstance();
 
-        if (vv.getCategorie1() != null) {
-            final ArrayAdapter<String> adapterCategorie1 = new ArrayAdapter<String>(
-                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_piccolo, vv.getCategorie1());
-            adapterCategorie1.setDropDownViewResource(R.layout.spinner_item_piccolo);
+        if (vv.getCategorie() != null) {
+            ArrayAdapter<String> adapterCategorie = new ArrayAdapter<String>(
+                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_piccolo, vv.getCategorie());
+            adapterCategorie.setDropDownViewResource(R.layout.spinner_item_piccolo);
 
-            final ArrayAdapter<String> adapterCategorie2 = new ArrayAdapter<String>(
-                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_piccolo, vv.getCategorie2());
-            adapterCategorie2.setDropDownViewResource(R.layout.spinner_item_piccolo);
+            vv.getSpnCategorie().setAdapter(adapterCategorie);
+            vv.getSpnCategorie1().setAdapter(adapterCategorie);
+            vv.getSpnCategorie2().setAdapter(adapterCategorie);
+            vv.getSpnCategorie3().setAdapter(adapterCategorie);
 
-            final ArrayAdapter<String> adapterCategorie3 = new ArrayAdapter<String>(
-                    VariabiliStaticheGlobali.getInstance().getContext(), R.layout.spinner_item_piccolo, vv.getCategorie3());
-            adapterCategorie3.setDropDownViewResource(R.layout.spinner_item_piccolo);
-
-            vv.getSpnCategorie1().setAdapter(adapterCategorie1);
-            vv.getSpnCategorie2().setAdapter(adapterCategorie2);
-            vv.getSpnCategorie3().setAdapter(adapterCategorie3);
-
-            Utility.getInstance().CercaESettaStringaInSpinner(vv.getSpnCategorie1(),
+            Utility.getInstance().CercaESettaStringaInSpinner(vv.getSpnCategorie(),
                     VariabiliStaticheGlobali.getInstance().getDatiUtente().getDescCategoria1());
             // if (pos>-1) {
-                vv.idCategoriaScelta1 = Integer.parseInt(VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdCategoria1());
+                vv.idCategoriaScelta = Integer.parseInt(VariabiliStaticheGlobali.getInstance().getDatiUtente().getIdCategoria1());
             // }
 
             // int pos = Utility.getInstance().CercaESettaStringaInSpinner(vv.getSpnCategorie2(),
@@ -290,6 +284,22 @@ public class Rose extends android.support.v4.app.Fragment {
             // if (pos>-1) {
             //     vv.idCategoriaScelta3 = vv.getIdCategorie3().get(pos);
             // }
+
+            vv.getSpnCategorie().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    try {
+                        int idCategoria=vv.getIdCategorie1().get(position);
+                        vv.idCategoriaScelta=idCategoria;
+                    } catch (Exception ignored) {
+                        vv.idCategoriaScelta = 0;
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
 
             vv.getSpnCategorie1().setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -311,7 +321,7 @@ public class Rose extends android.support.v4.app.Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     try {
-                        int idCategoria=vv.getIdCategorie2().get(position);
+                        int idCategoria=vv.getIdCategorie1().get(position);
                         vv.idCategoriaScelta2=idCategoria;
                     } catch (Exception ignored) {
                         vv.idCategoriaScelta2 = 0;
@@ -327,7 +337,7 @@ public class Rose extends android.support.v4.app.Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     try {
-                        int idCategoria = vv.getIdCategorie3().get(position);
+                        int idCategoria = vv.getIdCategorie1().get(position);
                         vv.idCategoriaScelta3 = idCategoria;
                     } catch (Exception ignored) {
                         vv.idCategoriaScelta3 = 0;

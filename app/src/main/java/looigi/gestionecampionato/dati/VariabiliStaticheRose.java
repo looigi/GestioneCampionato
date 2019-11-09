@@ -31,17 +31,12 @@ public class VariabiliStaticheRose {
     }
 
     private List<String> Giocatori;
-    private List<String> Categorie1;
-    private List<String> Categorie2;
-    private List<String> Categorie3;
+    private List<String> Categorie;
     private List<Integer> idCategorie;
-    private List<Integer> idCategorie2;
-    private List<Integer> idCategorie3;
     private List<String> Ruoli;
 
     public void PulisceTuttiGliArray() {
         Giocatori=new ArrayList<String>();
-        Categorie1 =new ArrayList<String>();
         idCategorie=new ArrayList<Integer>();
         Ruoli=new ArrayList<>();
     }
@@ -50,6 +45,7 @@ public class VariabiliStaticheRose {
     private AdapterGiocatori adapterGiocatori;
     private Spinner spnCategorie;
     private Spinner spnRuoli;
+    private Spinner spnCategorie1;
     private Spinner spnCategorie2;
     private Spinner spnCategorie3;
     private Context context;
@@ -70,6 +66,7 @@ public class VariabiliStaticheRose {
     private Button cmdOk;
     private Button cmdElimina;
     private Button cmdAnnulla;
+    public int idCategoriaScelta;
     public int idCategoriaScelta1;
     public int idCategoriaScelta2;
     public int idCategoriaScelta3;
@@ -81,20 +78,20 @@ public class VariabiliStaticheRose {
     private RadioButton optFemmina;
     private ImageView imgRefreshFoto;
 
-    public List<String> getCategorie3() {
-        return Categorie3;
+    public List<String> getCategorie() {
+        return Categorie;
     }
 
-    public void setCategorie3(List<String> categorie3) {
-        Categorie3 = categorie3;
+    public void setCategorie(List<String> categorie) {
+        Categorie = categorie;
     }
 
-    public List<Integer> getIdCategorie3() {
-        return idCategorie3;
+    public Spinner getSpnCategorie1() {
+        return spnCategorie1;
     }
 
-    public void setIdCategorie3(List<Integer> idCategorie3) {
-        this.idCategorie3 = idCategorie3;
+    public void setSpnCategorie1(Spinner spnCategorie1) {
+        this.spnCategorie1 = spnCategorie1;
     }
 
     public Spinner getSpnCategorie3() {
@@ -103,22 +100,6 @@ public class VariabiliStaticheRose {
 
     public void setSpnCategorie3(Spinner spnCategorie3) {
         this.spnCategorie3 = spnCategorie3;
-    }
-
-    public List<String> getCategorie2() {
-        return Categorie2;
-    }
-
-    public void setCategorie2(List<String> categorie2) {
-        Categorie2 = categorie2;
-    }
-
-    public List<Integer> getIdCategorie2() {
-        return idCategorie2;
-    }
-
-    public void setIdCategorie2(List<Integer> idCategorie2) {
-        this.idCategorie2 = idCategorie2;
     }
 
     public Spinner getSpnCategorie2() {
@@ -337,19 +318,11 @@ public class VariabiliStaticheRose {
         this.context = context;
     }
 
-    public List<String> getCategorie1() {
-        return Categorie1;
-    }
-
-    public void setCategorie1(List<String> categorie1) {
-        Categorie1 = categorie1;
-    }
-
-    public Spinner getSpnCategorie1() {
+    public Spinner getSpnCategorie() {
         return spnCategorie;
     }
 
-    public void setSpnCategorie1(Spinner spnCategorie) {
+    public void setSpnCategorie(Spinner spnCategorie) {
         this.spnCategorie = spnCategorie;
     }
 
