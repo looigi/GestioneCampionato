@@ -64,10 +64,23 @@ public class AdapterGiocatori extends ArrayAdapter
 		ruolo.setText(Campi[4]);
 		name.setText(Campi[2]+" "+Campi[3]);
 		numero.setText(Campi[14]);
-		categoria1.setText(Campi[20]);
-		categoria2.setText(Campi[17]);
-		categoria3.setText(Campi[19]);
+
+		if (Campi.length > 17) {
+			categoria2.setText(Campi[17]);
+		} else {
+			categoria2.setText("");
+	}
+		if (Campi.length > 19) {
+			categoria3.setText(Campi[19]);
+		} else {
+			categoria3.setText("");
+		}
 		datanasc.setText(Campi[8]);
+		if (Campi.length > 20) {
+			categoria1.setText(Campi[20]);
+		} else {
+			categoria1.setText("");
+		}
 
 		Bitmap bm = BitmapFactory.decodeResource(context.getResources(), R.drawable.sconosciuto);
 		imgGiocatore.setImageBitmap(bm);

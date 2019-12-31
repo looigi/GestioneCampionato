@@ -412,7 +412,7 @@ public class Utility {
 
 					break;
 				case R.id.nuova_partita:
-					if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore) || (idTipologia.equals("2") && NumeroPartita>0)) {
+					if (idTipologia != null && idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore) || (idTipologia.equals("2") && NumeroPartita>0)) {
 						fragment = new NuovaPartita();
 						title = NomiMaschere.getInstance().getNuovaPartitaPerTitolo();
 						VariabiliStaticheGlobali.MascheraAttuale = NomiMaschere.getInstance().getNuovaPartita();

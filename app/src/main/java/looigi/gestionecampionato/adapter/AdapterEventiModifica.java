@@ -71,7 +71,7 @@ public class AdapterEventiModifica extends ArrayAdapter
 
 		final String idEvento2 = idEvento;
 
-		if (idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
+		if (idTipologia != null && idTipologia.equals(VariabiliStaticheGlobali.ValoreAmministratore)) {
 			convertView.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					if (lista.get(position).contains(";")) {

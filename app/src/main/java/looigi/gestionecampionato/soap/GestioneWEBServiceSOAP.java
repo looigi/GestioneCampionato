@@ -86,7 +86,7 @@ public class GestioneWEBServiceSOAP {
 		String Perc=Cosa;
 		int pos;
 		String Indirizzo="";
-		String Variabili[];
+		String[] Variabili;
 		String Funzione="";
 		
 		pos=Perc.indexOf("?");
