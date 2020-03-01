@@ -19,6 +19,15 @@ public class DBRemotoGiocatori {
 		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaGiocatoriCategoria", "", Maschera, NS, SA);
 	}
 
+	public void RitornaGiocatoriCategoriaSenzaAltri(Context context, String idCategoria, String Maschera) {
+		String Urletto="RitornaGiocatoriCategoriaSenzaAltri?";
+		Urletto+="Squadra=" + VariabiliStaticheGlobali.getInstance().getNomeSquadra();
+		Urletto+="&idAnno=" + VariabiliStaticheGlobali.getInstance().getAnnoInCorso();
+		Urletto+="&idCategoria=" + idCategoria;
+
+		Utility.getInstance().EsegueChiamata(context, ws, Urletto, "RitornaGiocatoriCategoriaSenzaAltri", "", Maschera, NS, SA);
+	}
+
 	public void SalvaGiocatore(Context context, String idCategoria, String idGiocatore, String idRuolo, String Cognome, String Nome, String EMail,
                                String Telefono, String Soprannome, String DataDiNascita, String Indirizzo, String CodFiscale, String Maschio, String Citta,
                                String Matricola, String NumeroMaglia, String Ricerca, String Maschera,

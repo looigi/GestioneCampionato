@@ -320,6 +320,10 @@ public class GestioneWEBServiceSOAP {
 							rGio.RitornaGiocatoriCategoria(context, Ritorno, Maschera);
 							Ancora=false;
 							break;
+						case "RitornaGiocatoriCategoriaSenzaAltri":
+							rGio.RitornaGiocatoriCategoriaSenzaAltri(context, Ritorno, Maschera);
+							Ancora=false;
+							break;
 						case "RitornaAllenatoriCategoria":
 							rAll.RitornaAllenatoriCategoria(context, Ritorno, Maschera);
 							Ancora=false;

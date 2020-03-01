@@ -129,6 +129,59 @@ public class wsGiocatori {
         }
     }
 
+    public void RitornaGiocatoriCategoriaSenzaAltri(Context context, String Ritorno, String Maschera) {
+        String Appoggio=ToglieTag(Ritorno);
+
+        if (Appoggio.toUpperCase().contains("ERROR:")) {
+            DialogMessaggio.getInstance().show(VariabiliStaticheGlobali.getInstance().getContext(),
+                    Appoggio, true, VariabiliStaticheGlobali.NomeApplicazione);
+        } else {
+            List<String> CognomeNome = new ArrayList<>();
+            List<Integer> idGiocatore = new ArrayList<>();
+            List<String> Ruolo = new ArrayList<>();
+            List<Integer> idRuolo = new ArrayList<>();
+            List<Integer> NumeroMaglia = new ArrayList<>();
+            List<Integer> Categoria2 = new ArrayList<>();
+
+            String[] gg=Appoggio.split("§");
+            for (String ggg : gg) {
+                String[] g=ggg.split(";", -1);
+
+                if (Maschera.equals(NomiMaschere.getInstance().getNuovaPartita())) {
+                    idGiocatore.add(Integer.parseInt(g[0]));
+                    idRuolo.add(Integer.parseInt(g[1]));
+                    CognomeNome.add(g[2] + " " + g[3]);
+                    Ruolo.add(g[4]);
+                    if (Utility.getInstance().isNumeric(g[14])) {
+                        NumeroMaglia.add(Integer.parseInt(g[14]));
+                    } else {
+                        NumeroMaglia.add(0);
+                    }
+                } else {
+                    if (Maschera.equals(NomiMaschere.getInstance().getRose()) ||
+                            Maschera.equals(NomiMaschere.getInstance().getAllenamenti())) {
+                        String g1 = "";
+
+                        for (String gc : g) {
+                            g1 += gc + ";";
+                        }
+
+                        CognomeNome.add(g1);
+                    }
+                }
+            }
+
+                 VariabiliStaticheAllenamenti.getInstance().setGiocatoriAssenti(CognomeNome);
+
+                VariabiliStaticheAllenamenti.getInstance().getLayDataOra().setVisibility(LinearLayout.VISIBLE);
+                VariabiliStaticheAllenamenti.getInstance().getLayTasti().setVisibility(LinearLayout.VISIBLE);
+                VariabiliStaticheAllenamenti.getInstance().getBtnRitornaAllenamenti().setVisibility(LinearLayout.VISIBLE);
+
+                Allenamenti.fillListViewGiocatoriAssenti();
+            // }
+        }
+    }
+
     public void EliminaGiocatore(String Ritorno, final String Maschera) {
         String Appoggio=ToglieTag(Ritorno);
 

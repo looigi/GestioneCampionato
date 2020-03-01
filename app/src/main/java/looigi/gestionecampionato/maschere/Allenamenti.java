@@ -58,7 +58,7 @@ public class Allenamenti extends Fragment {
             VariabiliStaticheAllenamenti.getInstance().getLayTasti().setVisibility(LinearLayout.VISIBLE);
             VariabiliStaticheAllenamenti.getInstance().setGiocatoriAssenti(new ArrayList());
             VariabiliStaticheAllenamenti.getInstance().setGiocatoriPresenti(new ArrayList());
-            new DBRemotoGiocatori().RitornaGiocatoriCategoria(VariabiliStaticheAllenamenti.getInstance().getContext(), Integer.toString(VariabiliStaticheAllenamenti.getInstance().idCategoriaScelta), Allenamenti.TAG);
+            new DBRemotoGiocatori().RitornaGiocatoriCategoriaSenzaAltri(VariabiliStaticheAllenamenti.getInstance().getContext(), Integer.toString(VariabiliStaticheAllenamenti.getInstance().idCategoriaScelta), Allenamenti.TAG);
         }
     }
 

@@ -290,9 +290,9 @@ public class Rose extends android.support.v4.app.Fragment {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     try {
                         int idCategoria=vv.getIdCategorie1().get(position);
-                        vv.idCategoriaScelta=idCategoria;
+                        vv.idCategoriaScelta1=idCategoria;
                     } catch (Exception ignored) {
-                        vv.idCategoriaScelta = 0;
+                        vv.idCategoriaScelta1 = 0;
                     }
                 }
 
@@ -391,7 +391,7 @@ public class Rose extends android.support.v4.app.Fragment {
                     for (String r : vv.getRuoli()) {
                         pos++;
                         if (r.contains(vv.getSpnRuoli().getSelectedItem().toString().trim())) {
-                            String rr[] = r.split(";",-1);
+                            String[] rr = r.split(";",-1);
                             idRuolo=rr[0];
                             break;
                         }
