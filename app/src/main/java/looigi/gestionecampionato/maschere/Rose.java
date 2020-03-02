@@ -291,8 +291,10 @@ public class Rose extends android.support.v4.app.Fragment {
                     try {
                         int idCategoria=vv.getIdCategorie1().get(position);
                         vv.idCategoriaScelta1=idCategoria;
+                        vv.idCategoriaScelta=idCategoria;
                     } catch (Exception ignored) {
                         vv.idCategoriaScelta1 = 0;
+                        vv.idCategoriaScelta=0;
                     }
                 }
 
