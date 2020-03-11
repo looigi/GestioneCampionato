@@ -93,7 +93,9 @@ public class PrendeCoordinateGPS implements LocationListener {
 			VariabiliStaticheMeteo.getInstance().setLon(Double.toString(lon));
 			NuovaPartita.ScriveCoords();
 
-			VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale().stopService(VariabiliStaticheNuovaPartita.getInstance().intentGPS);
+			if (VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale() != null) {
+				VariabiliStaticheGlobali.getInstance().getFragmentActivityPrincipale().stopService(VariabiliStaticheNuovaPartita.getInstance().intentGPS);
+			}
 			VariabiliStaticheNuovaPartita.getInstance().intentGPS = null;
 
 			DisattivaGPS();
