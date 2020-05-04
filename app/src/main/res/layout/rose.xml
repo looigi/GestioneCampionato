@@ -31,7 +31,13 @@
         <ListView
             android:id="@+id/lstvGiocatori"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" >
+
+            <include
+                android:id="@+id/modifica_giocatori"
+                layout="@layout/modifica_giocatore"
+                android:visibility="visible" />
+        </ListView>
     </LinearLayout>
 
     <RelativeLayout
@@ -43,11 +49,6 @@
         android:background="@drawable/bordo_arrotondato_bianco"
         android:padding="5dp"
         android:layout_margin="5dp">
-
-        <include
-            android:id="@+id/modifica_giocatori"
-            layout="@layout/modifica_giocatore"
-            android:visibility="visible" />
 
     </RelativeLayout>
 

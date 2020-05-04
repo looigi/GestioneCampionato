@@ -40,7 +40,10 @@
             android:title="@string/utenti" />
     </group>
 
-    <item android:title="@string/gestione_dati">
+    <item
+        android:title="@string/gestione_dati"
+        android:visible="false">
+
         <menu>
             <item
                 android:id="@+id/allenatori"

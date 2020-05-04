@@ -37,7 +37,7 @@ public class VariabiliStaticheGlobali {
     public static String MascheraAttuale;
     public static String MascheraAttualePerMultimedia;
     public static String ImmagineDaEliminare;
-    public static String RadiceWS = "http://loppa.duckdns.org:12345/"; // http://looigi.no-ip.biz:12345/wsCvCalcio/";
+    public static String RadiceWS = "http://loppa.duckdns.org:90/"; // http://looigi.no-ip.biz:12345/wsCvCalcio/";
     public static String RadiceUpload = "http://loppa.duckdns.org:12346/default.aspx"; // "http://looigi.no-ip.biz:12345/CvCalcioUploadPic/default.aspx";
     private StrutturaDatiUtente DatiUtente;
     public VariabiliStaticheUtenti vPerPassaggio;

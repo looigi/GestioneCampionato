@@ -158,6 +158,7 @@ public class Rose extends android.support.v4.app.Fragment {
             vv.setImgGiocatore((ImageView) view.findViewById(R.id.imgGiocatoreMod));
 
             vv.setCmdOk((Button) view.findViewById(R.id.cmdOkGiocatore));
+
             vv.setCmdAnnulla((Button) view.findViewById(R.id.cmdAnnullaGiocatore));
             vv.setCmdElimina((Button) view.findViewById(R.id.cmdEliminaGiocatore));
 
